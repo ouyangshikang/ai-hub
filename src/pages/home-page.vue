@@ -31,20 +31,24 @@ onMounted(ensureLoaded);
   <main id="main-content" class="site-shell">
     <!-- Hero -->
     <section class="hero">
-      <h1 class="hero__title">AI Hub</h1>
-      <p class="hero__desc">个人技术知识库 — 持续记录 AI 前沿动态、Java 学习笔记与前端技术趋势。</p>
-      <div class="hero__stats">
-        <div v-if="latestUpdate" class="hero__stat">
-          <span class="hero__stat-value">{{ latestUpdate }}</span>
-          <span class="hero__stat-label">最近更新</span>
-        </div>
-        <div class="hero__stat">
-          <span class="hero__stat-value">{{ modules.length }}</span>
-          <span class="hero__stat-label">内容栏目</span>
-        </div>
-        <div class="hero__stat">
-          <span class="hero__stat-value">{{ totalItems }}</span>
-          <span class="hero__stat-label">期内容</span>
+      <div class="hero__panel">
+        <h1 class="hero__title">AI Hub</h1>
+        <p class="hero__desc">
+          个人技术知识库 — 持续记录 AI 前沿动态、Java 学习笔记与前端技术趋势。
+        </p>
+        <div class="hero__stats">
+          <div v-if="latestUpdate" class="hero__stat">
+            <span class="hero__stat-value">{{ latestUpdate }}</span>
+            <span class="hero__stat-label">最近更新</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-value">{{ modules.length }}</span>
+            <span class="hero__stat-label">内容栏目</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-value">{{ totalItems }}</span>
+            <span class="hero__stat-label">期内容</span>
+          </div>
         </div>
       </div>
     </section>
@@ -80,52 +84,65 @@ onMounted(ensureLoaded);
 
 <style scoped>
 .hero {
-  padding: 48px 0 0;
+  padding: 32px 0 0;
+}
+
+.hero__panel {
+  padding: 40px 36px;
+  background: linear-gradient(135deg, #2354e0 0%, #3b6ff0 50%, #5b7ef0 100%);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px rgba(35, 84, 224, 0.18);
 }
 
 .hero__title {
   margin: 0;
-  font-size: clamp(40px, 6vw, 64px);
+  font-size: clamp(36px, 5.5vw, 56px);
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.04em;
-  color: var(--ink);
+  color: #fff;
 }
 
 .hero__desc {
-  margin: 16px 0 0;
-  color: var(--muted);
-  font-size: 17px;
+  margin: 14px 0 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 16px;
   line-height: 1.7;
   max-width: 56ch;
 }
 
 .hero__stats {
   display: flex;
-  gap: 40px;
-  margin-top: 32px;
+  gap: 32px;
+  margin-top: 28px;
 }
 
 .hero__stat {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  padding: 12px 20px 12px 0;
+}
+
+.hero__stat + .hero__stat {
+  padding-left: 32px;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .hero__stat-value {
   font-size: 22px;
   font-weight: 700;
-  color: var(--ink);
+  color: #fff;
   font-family: var(--font-mono);
 }
 
 .hero__stat-label {
-  color: var(--subtle);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 13px;
 }
 
 .section {
-  margin-top: 48px;
+  margin-top: 40px;
 }
 
 .section__head {
@@ -142,16 +159,24 @@ onMounted(ensureLoaded);
 
 @media (max-width: 760px) {
   .hero {
-    padding: 32px 0 0;
+    padding: 20px 0 0;
+  }
+
+  .hero__panel {
+    padding: 28px 24px;
   }
 
   .hero__stats {
-    gap: 24px;
+    gap: 20px;
     flex-wrap: wrap;
   }
 
+  .hero__stat + .hero__stat {
+    padding-left: 20px;
+  }
+
   .section {
-    margin-top: 36px;
+    margin-top: 32px;
   }
 
   .section__title {

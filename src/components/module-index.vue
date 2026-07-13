@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ContentModuleIndex } from "../types/content";
+import type { ContentModuleIndex } from '../types/content';
 
 interface Props {
   modules: readonly ContentModuleIndex[];
@@ -23,12 +23,8 @@ defineProps<Props>();
       <h3 class="module-card__title">{{ module.title }}</h3>
       <p class="module-card__desc">{{ module.description }}</p>
       <div class="module-card__foot">
-        <span v-if="module.latestDate" class="module-card__date">{{
-          module.latestDate
-        }}</span>
-        <span v-else class="module-card__date module-card__date--empty"
-          >暂无内容</span
-        >
+        <span v-if="module.latestDate" class="module-card__date">{{ module.latestDate }}</span>
+        <span v-else class="module-card__date module-card__date--empty">暂无内容</span>
         <svg class="module-card__arrow" viewBox="0 0 16 16" aria-hidden="true">
           <path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" />
         </svg>
@@ -45,6 +41,7 @@ defineProps<Props>();
 }
 
 .module-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   padding: 28px;
@@ -56,12 +53,30 @@ defineProps<Props>();
     border-color 200ms ease,
     box-shadow 200ms ease,
     transform 200ms ease;
+  overflow: hidden;
+}
+
+.module-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--brand);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 300ms ease;
 }
 
 .module-card:hover {
   border-color: var(--brand-light);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(35, 84, 224, 0.12);
+  transform: translateY(-3px);
+}
+
+.module-card:hover::before {
+  transform: scaleX(1);
 }
 
 .module-card__head {
@@ -73,17 +88,18 @@ defineProps<Props>();
 
 .module-card__icon {
   display: inline-flex;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   align-items: center;
   justify-content: center;
-  color: var(--brand);
-  background: var(--brand-soft);
+  color: #fff;
+  background: var(--brand);
   border-radius: var(--radius-md);
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.04em;
+  box-shadow: 0 4px 12px rgba(35, 84, 224, 0.25);
 }
 
 .module-card__count {

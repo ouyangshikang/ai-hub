@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ContentItem } from "../types/content";
+import type { ContentItem } from '../types/content';
 
 interface ReleaseEntry {
   item: ContentItem;
@@ -25,9 +25,7 @@ defineProps<Props>();
     >
       <span class="release-row__icon">{{ entry.moduleMark }}</span>
       <span class="release-row__module">{{ entry.moduleTitle }}</span>
-      <time class="release-row__date" :datetime="entry.item.date">{{
-        entry.item.date
-      }}</time>
+      <time class="release-row__date" :datetime="entry.item.date">{{ entry.item.date }}</time>
       <span class="release-row__title">{{ entry.item.title }}</span>
       <svg class="release-row__arrow" viewBox="0 0 16 16" aria-hidden="true">
         <path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" />
@@ -61,21 +59,22 @@ defineProps<Props>();
 }
 
 .release-row:hover {
-  background: var(--surface);
+  background: var(--brand-soft);
 }
 
 .release-row__icon {
   display: inline-flex;
-  width: 32px;
-  height: 28px;
+  width: 34px;
+  height: 30px;
   align-items: center;
   justify-content: center;
-  color: var(--brand);
-  background: var(--brand-soft);
+  color: #fff;
+  background: var(--brand);
   border-radius: var(--radius-sm);
   font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 700;
+  box-shadow: 0 2px 6px rgba(35, 84, 224, 0.2);
 }
 
 .release-row__module {

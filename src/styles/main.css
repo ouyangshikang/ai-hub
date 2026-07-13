@@ -1,25 +1,26 @@
 :root {
   /* ── Color ── */
-  --ink: #1a1a2e;
-  --ink-soft: #3d3d5c;
-  --muted: #6b7280;
-  --subtle: #9ca3af;
+  --ink: #0f172a;
+  --ink-soft: #334155;
+  --muted: #475569;
+  --subtle: #94a3b8;
   --canvas: #ffffff;
-  --surface: #f9fafb;
-  --surface-2: #f3f4f6;
-  --line: #e5e7eb;
-  --line-strong: #d1d5db;
+  --surface: #f3f4f6;
+  --surface-2: #e8eaf0;
+  --line: #d8dbe3;
+  --line-strong: #bdc3d0;
   --brand: #2354e0;
   --brand-light: #5b7ef0;
-  --brand-soft: #eaf0ff;
+  --brand-soft: #dde6fc;
+  --brand-dark: #1a3fb8;
   --danger: #dc2626;
   --success: #059669;
 
   /* ── Shadow ── */
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.03);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.08);
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.07), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 10px 24px rgba(15, 23, 42, 0.1);
 
   /* ── Typography ── */
   --font-sans:
@@ -57,6 +58,7 @@ body {
   min-height: 100vh;
   margin: 0;
   background: var(--surface);
+  padding-top: 56px;
 }
 
 button,

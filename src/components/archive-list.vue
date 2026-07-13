@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import type { ContentItem } from "../types/content";
+import { computed } from 'vue';
+import type { ContentItem } from '../types/content';
 
 interface Props {
   moduleSlug: string;
@@ -69,14 +69,14 @@ const groups = computed(() => {
   flex-direction: column;
   gap: 4px;
   padding: 24px;
-  background: var(--surface);
+  background: #f5f6f8;
   border-right: 1px solid var(--line);
 }
 
 .archive__group-label h3 {
   margin: 0;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--ink);
 }
 

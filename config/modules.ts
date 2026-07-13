@@ -1,6 +1,6 @@
-import type { ContentModuleConfig } from '../src/types/content'
+import type { ContentModuleConfig } from '../src/types/content';
 
-export const SITE_BASE = '/ai-hub/'
+export const SITE_BASE = '/ai-hub/';
 
 export const modules: ContentModuleConfig[] = [
   {
@@ -33,4 +33,4 @@ export const modules: ContentModuleConfig[] = [
     filePattern: /^前端技术雷达-(\d{4}-\d{2}-\d{2})\.md$/,
     theme: { accentColor: '#6d28d9', icon: 'FE' },
   },
-]
+];

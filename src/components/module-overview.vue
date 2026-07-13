@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ContentItem, ContentModuleIndex } from "../types/content";
+import type { ContentItem, ContentModuleIndex } from '../types/content';
 
 interface Props {
   module: ContentModuleIndex;
@@ -33,9 +33,7 @@ defineProps<Props>();
     >
       <div class="module-hero__latest-info">
         <span class="module-hero__latest-label">最新一期</span>
-        <strong class="module-hero__latest-title">{{
-          latestItem.title
-        }}</strong>
+        <strong class="module-hero__latest-title">{{ latestItem.title }}</strong>
       </div>
       <div class="module-hero__latest-meta">
         <span class="module-hero__latest-date">{{ latestItem.date }}</span>
@@ -63,16 +61,17 @@ defineProps<Props>();
 
 .module-hero__icon {
   display: inline-flex;
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   align-items: center;
   justify-content: center;
-  color: var(--brand);
-  background: var(--brand-soft);
+  color: #fff;
+  background: var(--brand);
   border-radius: var(--radius-md);
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
+  box-shadow: 0 4px 12px rgba(35, 84, 224, 0.25);
 }
 
 .module-hero__title {
