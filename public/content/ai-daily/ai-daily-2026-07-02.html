@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 早报 2026-07-02</title>
+<style>
+  :root {
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #1a1a2e;
+    --text-secondary: #555;
+    --accent: #2563eb;
+    --accent-light: #dbeafe;
+    --border: #e2e8f0;
+    --tag-major: #ef4444;
+    --tag-model: #8b5cf6;
+    --tag-product: #10b981;
+    --tag-dev: #f59e0b;
+    --tag-industry: #6366f1;
+    --tag-rumor: #ec4899;
+    --quote-bg: #f1f5f9;
+    --quote-border: #94a3b8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0;
+  }
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 24px 16px 60px;
+  }
+  header {
+    text-align: center;
+    padding: 48px 16px 36px;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 32px;
+  }
+  header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  header .date {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+  }
+  header .subtitle {
+    margin-top: 12px;
+    font-size: 0.88rem;
+    color: #888;
+  }
+  h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin: 36px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+  }
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 20px 0 10px;
+    color: var(--text);
+  }
+
+  /* Overview section */
+  .overview {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 36px;
+  }
+  .overview h2 { margin-top: 0; }
+  .overview .cat-group { margin-bottom: 16px; }
+  .overview .cat-group:last-child { margin-bottom: 0; }
+  .overview .cat-label {
+    font-weight: 600;
+    font-size: 0.92rem;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .overview ul {
+    list-style: none;
+    padding: 0;
+  }
+  .overview li {
+    padding: 3px 0;
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+  .overview li a {
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px dashed #ccc;
+    transition: border-color 0.2s;
+  }
+  .overview li a:hover { border-color: var(--accent); color: var(--accent); }
+  .overview .num {
+    display: inline-block;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 1px 7px;
+    border-radius: 4px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+
+  /* News card */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: #cbd5e1; }
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .card-header .num-badge {
+    flex-shrink: 0;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+  .card-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+  .card-header h3 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .card-header h3 a:hover { color: var(--accent); }
+
+  .tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: #fff;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+  .tag-major { background: var(--tag-major); }
+  .tag-model { background: var(--tag-model); }
+  .tag-product { background: var(--tag-product); }
+  .tag-dev { background: var(--tag-dev); }
+  .tag-industry { background: var(--tag-industry); }
+  .tag-rumor { background: var(--tag-rumor); }
+  .tag-unconfirmed {
+    background: var(--tag-rumor);
+    opacity: 0.8;
+  }
+
+  .summary {
+    background: var(--quote-bg);
+    border-left: 3px solid var(--quote-border);
+    padding: 10px 14px;
+    margin: 12px 0;
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    border-radius: 0 6px 6px 0;
+  }
+  .detail {
+    font-size: 0.92rem;
+    color: var(--text);
+    line-height: 1.75;
+    margin: 12px 0;
+  }
+  .detail p { margin-bottom: 8px; }
+  .detail p:last-child { margin-bottom: 0; }
+
+  .links {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .links span {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    margin-right: 6px;
+  }
+  .links a {
+    font-size: 0.82rem;
+    color: var(--accent);
+    text-decoration: none;
+    margin-right: 12px;
+  }
+  .links a:hover { text-decoration: underline; }
+
+  .rumor-note {
+    background: #fdf2f8;
+    border: 1px solid #f9a8d4;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 0.82rem;
+    color: #9d174d;
+    margin-top: 10px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 32px 16px 0;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+    font-size: 0.82rem;
+    color: #999;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .container { padding: 12px 10px 40px; }
+    header { padding: 32px 10px 24px; }
+    header h1 { font-size: 1.5rem; }
+    .card { padding: 18px 16px; }
+    .overview { padding: 18px 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>AI 早报 2026-07-02</h1>
+  <div class="date">2026 年 7 月 2 日 &middot; 星期四</div>
+  <div class="subtitle">自动聚合 &middot; 过去 24-72 小时最值得关注的 AI 前沿信息 &middot; 共 20 条</div>
+</header>
+
+<!-- ========== 概览 ========== -->
+<div class="overview">
+<h2>概览</h2>
+
+<div class="cat-group">
+  <div class="cat-label"><span class="tag tag-major" style="font-size:0.68rem;padding:1px 6px;">要闻</span></div>
+  <ul>
+    <li><a href="#item-1">Anthropic 发布 Claude Sonnet 5：百万上下文、接近 Opus 性能</a> <span class="num">#1</span></li>
+    <li><a href="#item-2">加州与 Anthropic 签署半价 AI 合作协议，联邦层面关系紧张</a> <span class="num">#2</span></li>
+    <li><a href="#item-3">五眼联盟联合警告：前沿 AI 正在加速网络安全威胁</a> <span class="num">#3</span></li>
+    <li><a href="#item-4">Anthropic 和 OpenAI 相继秘密提交 IPO 文件</a> <span class="num">#4</span></li>
+  </ul>
+</div>
+
+<div class="cat-group">
+  <div class="cat-label"><span class="tag tag-model" style="font-size:0.68rem;padding:1px 6px;">模型发布</span></div>
+  <ul>
+    <li><a href="#item-5">Claude Fable 5 &amp; Mythos 5：SWE-bench 95% 的新高度</a> <span class="num">#5</span></li>
+    <li><a href="#item-6">OpenAI 预览 GPT-5.6 系列：Sol、Terra、Luna 三款模型</a> <span class="num">#6</span></li>
+    <li><a href="#item-7">Google Nano Banana 2：Pro 级能力 + Flash 级速度的图像生成</a> <span class="num">#7</span></li>
+  </ul>
+</div>
+
+<div class="cat-group">
+  <div class="cat-label"><span class="tag tag-product" style="font-size:0.68rem;padding:1px 6px;">产品应用</span></div>
+  <ul>
+    <li><a href="#item-8">Anthropic 推出 Claude Science 科研工作台</a> <span class="num">#8</span></li>
+    <li><a href="#item-9">Claude 在 Microsoft Foundry (Azure) 正式 GA</a> <span class="num">#9</span></li>
+    <li><a href="#item-10">xAI Grok 4.3 上线 Amazon Bedrock</a> <span class="num">#10</span></li>
+    <li><a href="#item-11">AgentOn 平台正式上线：推动 AI Agent 成为数字劳动力</a> <span class="num">#11</span></li>
+  </ul>
+</div>
+
+<div class="cat-group">
+  <div class="cat-label"><span class="tag tag-dev" style="font-size:0.68rem;padding:1px 6px;">开发生态</span></div>
+  <ul>
+    <li><a href="#item-12">Cloudflare Agents Week 2026：超 20 项 Agent 基础设施发布</a> <span class="num">#12</span></li>
+    <li><a href="#item-13">GPT-5.6 Sol &times; Cerebras 合作：晶圆级芯片极速推理</a> <span class="num">#13</span></li>
+    <li><a href="#item-14">LiteLLM 严重远程代码执行漏洞 CVE-2026-42271</a> <span class="num">#14</span></li>
+    <li><a href="#item-15">Squidbleed：存在 29 年的 Squid 代理漏洞被 AI 安全项目发现</a> <span class="num">#15</span></li>
+  </ul>
+</div>
+
+<div class="cat-group">
+  <div class="cat-label"><span class="tag tag-industry" style="font-size:0.68rem;padding:1px 6px;">行业动态</span></div>
+  <ul>
+    <li><a href="#item-16">AI IPO 竞赛白热化：SpaceX、OpenAI、Anthropic 排队上市</a> <span class="num">#16</span></li>
+    <li><a href="#item-17">2026 年科技行业 AI 驱动裁员持续，超 15 万岗位流失</a> <span class="num">#17</span></li>
+    <li><a href="#item-18">加州政府 AI 采购扩展：内部助手 Poppy 与 SITeS 门户</a> <span class="num">#18</span></li>
+  </ul>
+</div>
+
+<div class="cat-group">
+  <div class="cat-label"><span class="tag tag-rumor" style="font-size:0.68rem;padding:1px 6px;">前瞻与传闻</span></div>
+  <ul>
+    <li><a href="#item-19">DeepSeek V4 延期传闻：Bloomberg 报道转向国产芯片</a> <span class="num">#19</span></li>
+    <li><a href="#item-20">GPT-5.6 Sol/Terra/Luna 目前仅限有限预览伙伴使用</a> <span class="num">#20</span></li>
+  </ul>
+</div>
+
+</div>
+
+<!-- ========== 详细内容 ========== -->
+
+<!-- ===== 要闻 ===== -->
+<h2>要闻</h2>
+
+<div class="card" id="item-1">
+  <div class="card-header">
+    <div class="num-badge">1</div>
+    <h3><a href="https://www.anthropic.com/news" target="_blank">Anthropic 发布 Claude Sonnet 5：百万上下文、接近 Opus 性能</a></h3>
+  </div>
+  <span class="tag tag-major">要闻</span>
+  <div class="summary">Anthropic 于 6 月 30 日发布 Claude Sonnet 5，1M token 上下文窗口，性能接近旗舰级 Opus 4.8，价格仅为 Sonnet 级别。</div>
+  <div class="detail">
+    <p>Claude Sonnet 5 是 Anthropic 最新的标准级模型，于 2026 年 6 月 30 日正式上线。它支持 100 万 token 的上下文长度和 128K token 的最大输出，定价为 $3/$15 每百万 token（输入/输出），8 月 31 日前促销价 $2/$10。</p>
+    <p>该模型默认启用自适应推理（Adaptive Thinking），性能接近旗舰级 Opus 4.8。值得注意的技术变化包括：新 tokenizer 导致相同文本多消耗约 30% token（英文约 1.4 倍，Python 代码约 1.28 倍），以及不再支持 temperature、top_p、top_k 等采样参数。开发者迁移时需关注 token 成本的实际变化。</p>
+  </div>
+  <div class="links">
+    <span>来源：</span>
+    <a href="https://simonwillison.net/2026/Jun/30/claude-sonnet-5/" target="_blank">Simon Willison</a>
+    <a href="https://www.anthropic.com/news" target="_blank">Anthropic News</a>
+    <a href="https://docs.anthropic.com/en/docs/models-overview" target="_blank">模型文档</a>
+  </div>
+</div>
+
+<div class="card" id="item-2">
+  <div class="card-header">
+    <div class="num-badge">2</div>
+    <h3><a href="https://www.gov.ca.gov/2026/06/29/governor-newsom-announces-a-first-of-its-kind-partnership-providing-anthropic-tools-to-state-agencies-and-improving-services-for-californians/" target="_blank">加州与 Anthropic 签署半价 AI 合作协议</a></h3>
+  </div>
+  <span class="tag tag-major">要闻</span>
+  <div class="summary">加州州长 Newsom 宣布与 Anthropic 达成首个此类合作，全州政府机构以半价使用 Claude，含技术支持和员工培训。</div>
+  <div class="detail">
+    <p>6 月 29 日，加州州长 Gavin Newsom 宣布与 Anthropic 签署开创性合作协议。根据协议，加州所有州级和地方政府机构可以半价获取 Claude AI 工具，同时包含技术支持和劳动力培训服务。加州正在将 AI 工具分发给数十万公共雇员。</p>
+    <p>这一合作的背景是联邦政府层面关系紧张——GSA（美国总务管理局）此前将 Anthropic 列为"供应链风险"，联邦层面与 Anthropic 的关系出现裂痕。加州此举被视为在联邦政策之外独立推进政府 AI 应用。</p>
+  </div>
+  <div class="links">
+    <span>来源：</span>
+    <a href="https://techcrunch.com/2026/06/29/anthropic-and-gov-newsom-forge-deal-allowing-california-government-to-use-claude-at-half-price/" target="_blank">TechCrunch</a>
+    <a href="https://www.gov.ca.gov/2026/06/29/governor-newsom-announces-a-first-of-its-kind-partnership-providing-anthropic-tools-to-state-agencies-and-improving-services-for-californians/" target="_blank">加州政府官网</a>
+    <a href="https://www.latimes.com/business/story/2026-06-29/anthropic-partners-with-california-to-expand-ai-use-by-government-workers" target="_blank">LA Times</a>
+  </div>
+</div>
+
+<div class="card" id="item-3">
+  <div class="card-header">
+    <div class="num-badge">3</div>
+    <h3><a href="https://www.cyber.gov.au/about-us/view-all-content/news/five-eyes-cyber-security-agencies-statement" target="_blank">五眼联盟联合警告：前沿 AI 正在加速网络安全威胁</a></h3>
+  </div>
+  <span class="tag tag-major">要闻</span>
+  <div class="summary">美、英、澳、加、新五国情报机构发布联合声明，警告先进 AI 将在数月内根本性改变网络攻防格局。</div>
+  <div class="detail">
+    <p>五眼联盟（美国 NSA/CISA、英国 NCSC、澳大利亚 ASD、加拿大 CSE、新西兰 NCSC）发布罕见的联合安全声明，警告前沿 AI 模型正在加速网络安全威胁的演进速度。声明指出，AI 可能在数月内显著改变攻击者的能力，包括自动化漏洞发现、社会工程攻击和网络渗透。</p>
+    <p>声明呼吁企业和政府董事会立即行动，确保网络安全韧性到位，特别是要关注 AI 驱动的新型攻击向量。这是五眼联盟首次就 AI 对网络安全的系统性影响发布如此高级别的联合警告。</p>
+  </div>
+  <div class="links">
+    <span>来源：</span>
+    <a href="https://edition.cnn.com/2026/06/23/world/ai-five-eyes-warning-cyber-threat-intl-hnk" target="_blank">CNN</a>
+    <a href="https://www.theguardian.com/technology/2026/jun/22/anthropic-claude-fable-ai-model-artificial-intelligence-national-security" target="_blank">The Guardian</a>
+    <a href="https://www.cyber.gov.au/about-us/view-all-content/news/five-eyes-cyber-security-agencies-statement" target="_blank">澳大利亚网络安全中心</a>
+  </div>
+</div>
+
+<div class="card" id="item-4">
+  <div class="card-header">
+    <div class="num-badge">4</div>
+    <h3><a href="https://www.reuters.com/business/ai-giant-anthropic-confidentially-files-us-ipo-2026-06-01/" target="_blank">Anthropic 和 OpenAI 相继秘密提交 IPO 文件</a></h3>
+  </div>
+  <span class="tag tag-major">要闻</span>
+  <div class="summary">Anthropic 于 6 月 1 日秘密提交 S-1，OpenAI 紧随其后于 6 月 8 日提交，AI 巨头竞相登陆资本市场。</div>
+  <div class="detail">
+    <p>两大 AI 巨头在短短一周内相继向 SEC 秘密提交了 IPO 文件。Anthropic 率先于 6 月 1 日提交，OpenAI 随后于 6 月 8 日跟进。加上此前已提交文件的 SpaceX，2026 年下半年的科技 IPO 市场将迎来历史性时刻。</p>
+    <p>分析师指出，这些超大型 IPO 将测试市场对 AI 公司估值的接受程度，同时也面临监管审查、财务风险因素和市场波动等挑战。</p>
+  </div>
+  <div class="links">
+    <span>来源：</span>
+    <a href="https://www.reuters.com/business/ai-giant-anthropic-confidentially-files-us-ipo-2026-06-01/" target="_blank">Reuters (Anthropic)</a>
+    <a href="https://techcrunch.com/2026/06/08/following-anthropic-openai-files-confidentially-for-ipo/" target="_blank">TechCrunch (OpenAI)</a>
+    <a href="https://www.nytimes.com/2026/06/01/technology/anthropic-ipo.html" target="_blank">NYT</a>
+  </div>
+</div>
+
+<!-- ===== 模型发布 ===== -->
+<h2>模型发布</h2>
+
+<div class="card" id="item-5">
+  <div class="card-header">
+    <div class="num-badge">5</div>
+    <h3><a href="https://www.anthropic.com/news/claude-fable-5-mythos-5" target="_blank">Claude Fable 5 &amp; Mythos 5：SWE-bench 95% 的新高度</a></h3>
+  </div>
+  <span class="tag tag-model">模型发布</span>
+  <div class="summary">Anthropic 同步发布两款旗舰模型：Fable 5 在 SWE-bench Verified 上达到 95%，Mythos 5 具有更强的网络安全能力。</div>
+  <div class="detail">
+    <p>Claude Fable 5 是 Anthropic 新的编程旗舰，SWE-bench Verified 得分达到 95.0%，SWE-bench Pro（Vendor Scaffold）80.3%。它支持 1M token 上下文和 128K 输出，定价 $10/$50 每百万 token。Claude Mythos 5 则是面向安全研究的特殊模型，SWE-bench Verified 93.9%，但在网络安全能力评估（ExploitBench 78.0%、BioMysteryBench 46.1%）中表现更强。</p>
+    <p>Mythos 5 目前仅限于 Project Glasswing 合作伙伴使用。Sonnet 5 的系统卡指出，Sonnet 5 在网络安全任务上的能力显著弱于 Mythos 5，这也是 Sonnet 5 得以使用较宽松安全管控的原因之一。</p>
+  </div>
+  <div class="links">
+    <span>来源：</span>
+    <a href="https://www.anthropic.com/news/claude-fable-5-mythos-5" target="_blank">Anthropic</a>
+    <a href="https://www.morphllm.com/claude-benchmarks" target="_blank">Benchmark 数据</a>
+    <a href="https://www.anthropic.com/glasswing" target="_blank">Project Glasswing</a>
+  </div>
+</div>
+
+<div class="card" id="item-6">
+  <div class="card-header">
+    <div class="num-badge">6</div>
+    <h3><a href="https://openai.com/index/previewing-gpt-5-6-sol/" target="_blank">OpenAI 预览 GPT-5.6 系列：Sol、Terra、Luna 三款模型</a></h3>
+  </div>
+  <span class="tag tag-model">模型发布</span>
+  <div class="summary">OpenAI 发布新一代 GPT-5.6 模型家族，包含 Sol（极速）、Terra（平衡）、Luna（轻量）三款定位不同的模型。</div>
+  <div class="detail">
+    <p>6 月 26 日，OpenAI 正式预览了 GPT-5.6 系列，这是一个包含三款模型的新家族：Sol 定位极速推理，与 Cerebras 合作在晶圆级芯片上运行，可达 750 token/s；Terra 定位平衡性能与成本；Luna 定位轻量级边缘部署。</p>
+    <p>三款模型目前仅面向有限的预览合作伙伴开放，尚未公开可用。这标志着 OpenAI 开始采用差异化产品线策略，针对不同场景提供不同规格的模型。</p>
+  </div>
+  <div class="links">
+    <span>来源：</span>
+    <a href="https://openai.com/index/previewing-gpt-5-6-sol/" target="_blank">OpenAI</a>
+    <a href="https://help.openai.com/en/articles/20001325-a-preview-of-gpt-56-sol-terra-and-luna" target="_blank">Help Center</a>
+    <a href="https://venturebeat.com/technology/openai-unveils-gpt-5-6-sol-terra-and-luna-models-but-only-accessible-to-limited-preview-partners-for-now-per-us-gov" target="_blank">VentureBeat</a>
+  </div>
+</div>
+
+<div class="card" id="item-7">
+  <div class="card-header">
+    <div class="num-badge">7</div>
+    <h3><a href="https://blog.google/innovation-and-ai/technology/ai/nano-banana-2/" target="_blank">Google Nano Banana 2：Pro 级能力 + Flash 级速度的图像生成</a></h3>
+  </div>
+  <span class="tag tag-model">模型发布</span>
+  <div class="summary">Google 推出新一代图像生成模型 Nano Banana 2，兼顾高质量与快速推理，支持主体一致性和生产级规格。</div>
+  <div class="detail">
+    <p>Google 发布了 Nano Banana 2 图像生成模型，定位为兼具 Pro 级能力和 Flash 级速度的图像生成方案。该模型具备先进的世界知识、生产级输出规格和主体一致性，同时保持极快的推理速度。Google 同时提供了两种图像生成模型选项，分别面向大批量成本敏感场景和高质量创意工作流。</p>
+  </div>
+  <div class="links">
+    <span>来源：</span>
+    <a href="https://blog.google/innovation-and-ai/technology/ai/nano-banana-2/" target="_blank">Google Blog</a>
+    <a href="https://ai.google.dev/gemini-api/docs/image-generation" target="_blank">API 文档</a>
+    <a href="https://deepmind.google/models/gemini-image/" target="_blank">DeepMind</a>
+  </div>
+</div>
+
+<!-- ===== 产品应用 ===== -->
+<h2>产品应用</h2>
+
+<div class="card" id="item-8">
+  <div class="card-header">
+    <div class="num-badge">8</div>
+    <h3><a href="https://www.anthropic.com/news/claude-science-ai-workbench" target="_blank">Anthropic 推出 Claude Science 科研工作台</a></h3>
+  </div>
+  <span class="tag tag-product">产品应用</span>
+  <div class="summary">面向科学家的一站式 AI 研究工作台，内置 60+ 专业技能和连接器，支持基因组学、化学信息学等领域。</div>
+  <div class="detail">
+    <p>6 月 30 日，Anthropic 推出 Claude Science，这是一个专为科研工作者设计的 AI 工作台。不同于标准的对话式助手，Claude Science 将碎片化的研究工具统一到一个工作空间中，内置超过 60 个面向基因组学、化学信息学等学科的专业技能和连接器。</p>
+    <p>该平台采用多智能体架构，主协调器将任务分派给专业子智能体，同时有专门的审核器验证引用和计算。它支持在本地机器或外部集群/GPU 上执行计算任务，确保敏感数据不离开原始基础设施。目前面向 Pro/Max/Team/Enterprise 订阅用户开放，学术实验室和非营利组织可享受折扣。</p>
+  </div>
+  <div class="links">
+    <span>来源：</span>
+    <a href="https://www.anthropic.com/news/claude-science-ai-workbench" target="_blank">Anthropic</a>
+    <a href="https://www.statnews.com/2026/06/30/anthropic-release-claude-science-ceo-dario-amodei/" target="_blank">STAT News</a>
+    <a href="https://news.northeastern.edu/2026/06/30/anthropic-claude-science-launch/" target="_blank">Northeastern University</a>
+  </div>
+</div>
+
+<div class="card" id="item-9">
+  <div class="card-header">
+    <div class="num-badge">9</div>
+    <h3><a href="https://www.developersdigest.tech/blog/claude-microsoft-foundry-azure-developer-guide-2026" target="_blank">Claude 在 Microsoft Foundry (Azure) 正式 GA</a></h3>
+  </div>
+  <span class="tag tag-product">产品应用</span>
+  <div class="summary">Anthropic Claude 模型在微软 Azure 云平台正式全面可用，搭载 NVIDIA GB300 硬件。</div>
+  <div class="detail">
+    <p>Claude 模型已在 Microsoft Foundry（Azure AI 平台）正式 GA（Generally Available），运行在最新的 NVIDIA GB300 高性能硬件和网络基础设施上。这为企业用户提供了在 Azure 生态中直接使用 Claude 的能力，无需跨平台管理多个供应商。</p>
+  </div>
+  <div class="links">
+    <span>来源：</span>
+    <a href="https://www.developersdigest.tech/blog/claude-microsoft-foundry-azure-developer-guide-2026" target="_blank">Developer Digest</a>
+    <a href="https://ai.azure.com/catalog" target="_blank">Azure AI Model Catalog</a>
+  </div>
+</div>
+
+<div class="card" id="item-10">
+  <div class="card-header">
+    <div class="num-badge">10</div>
+    <h3><a href="https://aws.amazon.com/about-aws/whats-new/2026/06/grok-amazon-bedrock/" target="_blank">xAI Grok 4.3 上线 Amazon Bedrock</a></h3>
+  </div>
+  <span class="tag tag-product">产品应用</span>
+  <div class="summary">Elon Musk 旗下 xAI 的 Grok 4.3 中间层模型正式登陆 AWS Amazon Bedrock 平台。</div>
+  <div class="detail">
+    <p>xAI 的 Grok 4.3 中间层模型现已在 Amazon Bedrock 上可用，为在 AWS 平台上管理多供应商模型的企业用户提供了更经济的选择。Grok 4.3 定位介于旗舰模型和轻量模型之间，适合需要平衡性能和成本的场景。</p>
+  </div>
+  <div class="links">
+    <span>来源：</span>
+    <a href="https://aws.amazon.com/about-aws/whats-new/2026/06/grok-amazon-bedrock/" target="_blank">AWS</a>
+    <a href="https://x.ai/news/grok-amazon-bedrock" target="_blank">xAI</a>
+  </div>
+</div>
+
+<div class="card" id="item-11">
+  <div class="card-header">
+    <div class="num-badge">11</div>
+    <h3><a href="https://cn.chinadaily.com.cn/a/202607/01/WS6a4485aba310d709c2fbb390.html" target="_blank">AgentOn 平台正式上线：推动 AI Agent 成为数字劳动力</a></h3>
+  </div>
+  <span class="tag tag-product">产品应用</span>
+  <div class="summary">ME Group 孵化的 AgentOn 平台正式上线，提供 70+ 任务类型和 10 万美金赏金计划，推动 Agent 从对话到实际执行。</div>
+  <div class="detail">
+    <p>7 月 1 日，由 ME Group 孵化的 AI Agent 协作平台 AgentOn 正式上线。该平台定位为"AI Native 任务网络"，将 AI Agent 从简单的对话交互提升为真正的"数字劳动力"——能够执行实际操作、管理注册、汇编信息等。平台提供超过 70 种任务类型，涵盖产品测试、社区参与、工作流设计和数据分析。</p>
+    <p>平台同时启动了为期一个月（6 月 8 日至 7 月 8 日）的 10 万美金赏金计划，鼓励用户和开发者参与。Story.fun、iPollo、Ultiland、SFI 等已集成各自的专业工作流。</p>
+  </div>
+  <div class="links">
+    <span>来源：</span>
+    <a href="https://cn.chinadaily.com.cn/a/202607/01/WS6a4485aba310d709c2fbb390.html" target="_blank">中国日报</a>
+    <a href="https://www.me.news/contents/285517" target="_blank">MetaEra</a>
+  </div>
+</div>
+
+<!-- ===== 开发生态 ===== -->
+<h2>开发生态</h2>
+
+<div class="card" id="item-12">
+  <div class="card-header">
+    <div class="num-badge">12</div>
+    <h3><a href="https://blog.cloudflare.com/zh-cn/agents-week-in-review/" target="_blank">Cloudflare Agents Week 2026：超 20 项 Agent 基础设施发布</a></h3>
+  </div>
+  <span class="tag tag-dev">开发生态</span>
+  <div class="summary">Cloudflare 在 Agents Week 期间集中发布了覆盖计算、安全、Agent 工具箱、开发到生产全流程的 20+ 项新产品和功能。</div>
+  <div class="detail">
+    <p>Cloudflare 在 2026 年 Agents Week 期间发布了大量面向 AI Agent 的基础设施，涵盖五大领域。计算层：Sandboxes GA（持久隔离环境）、Artifacts（Git 兼容版本化存储）、Workflows v2（支持 5 万并发执行）。安全层：Cloudflare Mesh（Agent 安全网络访问）、Managed OAuth for Access（RFC 9728）、Enterprise MCP 参考架构。</p>
+    <p>Agent 工具箱方面发布了 Project Think（下一代 Agents SDK 预览）、Voice Agents（实验性语音管线）、Cloudflare Email Service（公测）、AI Search（混合检索）、Browser Run（实时视图和会话录制）、Agent Memory（持久记忆服务）、Unweight（无损推理压缩，减少 22% 模型体积）。还发布了 Agent Readiness Score（网站 AI 兼容性评分）和 AI Training Redirects 等面向 Agent Web 的功能。</p>
+  </div>
+  <div class="links">
+    <span>来源：</span>
+    <a href="https://blog.cloudflare.com/zh-cn/agents-week-in-review/" target="_blank">Cloudflare Blog</a>
+    <a href="https://www.cloudflare.com/zh-cn/agents-week/updates/" target="_blank">Agents Week 更新列表</a>
+  </div>
+</div>
+
+<div class="card" id="item-13">
+  <div class="card-header">
+    <div class="num-badge">13</div>
+    <h3><a href="https://www.cerebras.ai/blog/openai-partners-with-cerebras-to-bring-high-speed-inference-to-the-mainstream" target="_blank">GPT-5.6 Sol &times; Cerebras：晶圆级芯片极速推理</a></h3>
+  </div>
+  <span class="tag tag-dev">开发生态</span>
+  <div class="summary">OpenAI 与 Cerebras 合作，将 GPT-5.6 Sol 部署在晶圆级芯片上，实现 750 token/s 的极速推理。</div>
+  <div class="detail">
+    <p>OpenAI 与 Cerebras 达成合作，将 GPT-5.6 Sol 模型部署在 Cerebras 的晶圆级（wafer-scale）专用推理硬件上。据报道，推理速度可达 750 token/s，相比传统 GPU 有数量级的提升。这一合作旨在让实时交互式 AI 应用成为可能，降低推理延迟和成本。</p>
+    <p>Cerebras 此前曾展示过在自家硬件上运行 OpenAI 开源模型 gpt-oss-120B 达到 3000 token/s 的能力。此次与 OpenAI 的正式合作标志着专用推理芯片开始进入主流商用阶段。</p>
+  </div>
+  <div class="links">
+    <span>来源：</span>
+    <a href="https://www.cerebras.ai/blog/openai-partners-with-cerebras-to-bring-high-speed-inference-to-the-mainstream" target="_blank">Cerebras</a>
+    <a href="https://openai.com/index/cerebras-partnership/" target="_blank">OpenAI</a>
+  </div>
+</div>
+
+<div class="card" id="item-14">
+  <div class="card-header">
+    <div class="num-badge">14</div>
+    <h3><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-42271" target="_blank">LiteLLM 严重远程代码执行漏洞 CVE-2026-42271</a></h3>
+  </div>
+  <span class="tag tag-dev">开发生态</span>
+  <div class="summary">流行 AI 网关 LiteLLM 被发现严重 RCE 漏洞（CVSS 8.8），可暴露已配置的 API 密钥，CISA 已发布通告。</div>
+  <div class="detail">
+    <p>广泛使用的 AI 模型代理网关 LiteLLM 被发现一个严重的远程代码执行漏洞（CVE-2026-42271），CVSS 评分 8.8。攻击者可通过该漏洞获取已配置的 API 密钥并执行任意命令。CISA 已发布安全通告，建议立即打补丁并轮换所有相关凭证。</p>
+    <p>Horizon3.ai 的安全研究还发现该漏洞可与 CVE-2026-48710 链式利用，进一步扩大攻击面。使用 LiteLLM 的团队应尽快升级到最新版本。</p>
+  </div>
+  <div class="links">
+    <span>来源：</span>
+    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-42271" target="_blank">NVD</a>
+    <a href="https://horizon3.ai/attack-research/vulnerabilities/cve-2026-42271-chained-with-cve-2026-48710/" target="_blank">Horizon3.ai</a>
+    <a href="https://asec.ahnlab.com/en/94063/" target="_blank">ASEC</a>
+  </div>
+</div>
+
+<div class="card" id="item-15">
+  <div class="card-header">
+    <div class="num-badge">15</div>
+    <h3><a href="https://thehackernews.com/2026/06/29-year-old-squid-proxy-bug-squidbleed.html" target="_blank">Squidbleed：存在 29 年的 Squid 代理漏洞被 AI 安全项目发现</a></h3>
+  </div>
+  <span class="tag tag-dev">开发生态</span>
+  <div class="summary">AI 安全研究项目发现 Squid 代理服务器中存在 29 年的内存泄漏漏洞（CVE-2026-47729），可暴露 HTTP 凭证。</div>
+  <div class="detail">
+    <p>一个 AI 安全研究项目发现了 Squid 代理服务器中一个存在长达 29 年的严重漏洞，被命名为"Squidbleed"（CVE-2026-47729）。该漏洞是一个解析器层面的内存泄漏缺陷，攻击者可利用它窃取经过代理传输的 HTTP 凭证等敏感数据。该漏洞影响范围广泛，因为 Squid 是全球使用最广泛的代理服务器之一。</p>
+  </div>
+  <div class="links">
+    <span>来源：</span>
+    <a href="https://thehackernews.com/2026/06/29-year-old-squid-proxy-bug-squidbleed.html" target="_blank">The Hacker News</a>
+    <a href="https://blog.calif.io/p/squidbleed-cve-2026-47729" target="_blank">Calif.io</a>
+    <a href="https://horizon3.ai/attack-research/vulnerabilities/cve-2026-47729/" target="_blank">Horizon3.ai</a>
+  </div>
+</div>
+
+<!-- ===== 行业动态 ===== -->
+<h2>行业动态</h2>
+
+<div class="card" id="item-16">
+  <div class="card-header">
+    <div class="num-badge">16</div>
+    <h3><a href="https://www.reuters.com/legal/government/mega-ipos-loom-wall-street-elon-musks-spacex-confidentially-files-paperwork-2026-06-08/" target="_blank">AI IPO 竞赛白热化：SpaceX、OpenAI、Anthropic 排队上市</a></h3>
+  </div>
+  <span class="tag tag-industry">行业动态</span>
+  <div class="summary">三大科技巨头在数周内相继提交 IPO 文件，2026 下半年将迎来历史性的科技 IPO 浪潮。</div>
+  <div class="detail">
+    <p>2026 年的 IPO 市场正迎来前所未有的热潮。SpaceX 率先秘密提交文件，随后 Anthropic（6 月 1 日）和 OpenAI（6 月 8 日）相继跟进。这三家公司合计估值超过万亿美元，如果顺利上市，将重新定义科技 IPO 的规模。</p>
+    <p>分析师关注的主要风险因素包括：AI 投资可持续性问题、监管不确定性、芯片供应链风险以及市场估值泡沫担忧。尽管如此，华尔街对这些 IPO 的热情依然高涨。</p>
+  </div>
+  <div class="links">
+    <span>来源：</span>
+    <a href="https://www.reuters.com/legal/government/mega-ipos-loom-wall-street-elon-musks-spacex-confidentially-files-paperwork-2026-06-08/" target="_blank">Reuters</a>
+    <a href="https://finance.yahoo.com/markets/article/spacex-openai-and-anthropic-2026-ipo-deals-260520" target="_blank">Yahoo Finance</a>
+    <a href="https://www.cnn.com/2026/06/09/tech/openai-ipo-anthropic-wall-street" target="_blank">CNN</a>
+  </div>
+</div>
+
+<div class="card" id="item-17">
+  <div class="card-header">
+    <div class="num-badge">17</div>
+    <h3><a href="https://techcrunch.com/2026/06/22/the-running-list-major-tech-layoffs-in-2026-where-employers-cited-ai/" target="_blank">2026 年科技行业 AI 驱动裁员持续，超 15 万岗位流失</a></h3>
+  </div>
+  <span class="tag tag-industry">行业动态</span>
+  <div class="summary">越来越多科技公司在裁员时明确提及 AI 替代因素，2026 年已有超过 15 万科技岗位被削减。</div>
+  <div class="detail">
+    <p>据 TechCrunch 持续追踪的数据，2026 年至今已有超过 15 万科技岗位被裁减，其中越来越多的公司在裁员声明中明确提及 AI 替代因素。Oracle、Block、Salesforce 等大型科技公司均在此列。旧金山湾区高薪科技员工面临财务压力，AI 正在使中层技术工作商品化。</p>
+    <p>NYT 报道指出，即使年薪 18 万美元的科技岗位也无法幸免于 AI 驱动的结构性变化。与此同时，即将到来的 AI 公司 IPO 正在创造新的超级富豪阶层，加剧了行业内部的财富分化。</p>
+  </div>
+  <div class="links">
+    <span>来源：</span>
+    <a href="https://techcrunch.com/2026/06/22/the-running-list-major-tech-layoffs-in-2026-where-employers-cited-ai/" target="_blank">TechCrunch</a>
+    <a href="https://tech-insider.org/tech-layoffs-2026-ai-workforce-impact/" target="_blank">Tech Insider</a>
+  </div>
+</div>
+
+<div class="card" id="item-18">
+  <div class="card-header">
+    <div class="num-badge">18</div>
+    <h3><a href="https://www.gov.ca.gov/2026/06/29/governor-newsom-announces-a-first-of-its-kind-partnership-providing-anthropic-tools-to-state-agencies-and-improving-services-for-californians/" target="_blank">加州政府 AI 采购扩展：内部助手 Poppy 与 SITeS 门户</a></h3>
+  </div>
+  <span class="tag tag-industry">行业动态</span>
+  <div class="summary">加州正在扩展其内部政府 AI 助手 Poppy，并通过 SITeS 门户集中采购 AI 工具，覆盖数十万公共雇员。</div>
+  <div class="detail">
+    <p>作为与 Anthropic 合作协议的一部分，加州政府正在扩展其内部 AI 助手"Poppy"，并建立名为 SITeS 的集中采购门户，以便将 AI 工具高效分发给全州数十万公共雇员。这是美国州级政府层面最激进的 AI 采购计划之一，为其他州提供了参考模板。</p>
+  </div>
+  <div class="links">
+    <span>来源：</span>
+    <a href="https://www.gov.ca.gov/2026/06/29/governor-newsom-announces-a-first-of-its-kind-partnership-providing-anthropic-tools-to-state-agencies-and-improving-services-for-californians/" target="_blank">加州政府</a>
+  </div>
+</div>
+
+<!-- ===== 前瞻与传闻 ===== -->
+<h2>前瞻与传闻</h2>
+
+<div class="card" id="item-19">
+  <div class="card-header">
+    <div class="num-badge">19</div>
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-04-26/deepseek-v4-delay-shows-shift-to-china-chips-cctv-account-says" target="_blank">DeepSeek V4 延期传闻：Bloomberg 报道转向国产芯片</a></h3>
+  </div>
+  <span class="tag tag-rumor">前瞻与传闻</span>
+  <span class="tag tag-unconfirmed">未确认</span>
+  <div class="summary">社区广泛预期的 DeepSeek V4 迟迟未发布，Bloomberg 报道称延期与转向国产芯片有关。</div>
+  <div class="detail">
+    <p>DeepSeek V4 是社区最期待的未发布模型之一。此前多方爆料 V4 将改进 MoE 架构的专家路由、扩大上下文窗口（社区猜测 256K 至 1M token）、增强推理能力。然而截至目前，DeepSeek 官方仍未确认 V4 的发布时间表。</p>
+    <p>Bloomberg 此前报道称，V4 的延期与 DeepSeek 转向使用国产芯片有关，CCTV 账号也有相关说法。社区讨论显示，V4 的目标是编程领域的统治性地位，但具体发布时间仍不确定。</p>
+  </div>
+  <div class="rumor-note">此信息基于 Bloomberg 报道和社区讨论，DeepSeek 官方尚未确认 V4 的具体发布计划。</div>
+  <div class="links">
+    <span>来源：</span>
+    <a href="https://www.bloomberg.com/news/articles/2026-04-26/deepseek-v4-delay-shows-shift-to-china-chips-cctv-account-says" target="_blank">Bloomberg</a>
+    <a href="https://ai.plainenglish.io/deepseek-v4-the-most-anticipated-ai-model-of-2026-still-hasnt-launched-and-that-delay-tells-you-28b7c6b15f26" target="_blank">分析文章</a>
+  </div>
+</div>
+
+<div class="card" id="item-20">
+  <div class="card-header">
+    <div class="num-badge">20</div>
+    <h3><a href="https://venturebeat.com/technology/openai-unveils-gpt-5-6-sol-terra-and-luna-models-but-only-accessible-to-limited-preview-partners-for-now-per-us-gov" target="_blank">GPT-5.6 Sol/Terra/Luna 目前仅限有限预览伙伴使用</a></h3>
+  </div>
+  <span class="tag tag-rumor">前瞻与传闻</span>
+  <span class="tag tag-unconfirmed">未确认</span>
+  <div class="summary">OpenAI 新发布的 GPT-5.6 三款模型目前仅对有限的预览合作伙伴开放，广泛可用性时间表尚不明确。</div>
+  <div class="detail">
+    <p>尽管 OpenAI 已正式预览了 GPT-5.6 Sol、Terra 和 Luna 三款模型，但 VentureBeat 报道称它们目前仅面向有限的预览合作伙伴。有消息指这与美国政府相关的使用限制有关。社区正在讨论这些模型何时能向更广泛的用户群体开放。</p>
+  </div>
+  <div class="rumor-note">广泛可用的时间表尚未由 OpenAI 官方确认，上述限制的具体原因也未完全公开。</div>
+  <div class="links">
+    <span>来源：</span>
+    <a href="https://venturebeat.com/technology/openai-unveils-gpt-5-6-sol-terra-and-luna-models-but-only-accessible-to-limited-preview-partners-for-now-per-us-gov" target="_blank">VentureBeat</a>
+    <a href="https://explainx.ai/blog/when-will-gpt-5-6-sol-terra-luna-be-available-everyone-2026" target="_blank">ExplainX</a>
+  </div>
+</div>
+
+<footer>
+  <p>AI 早报 &middot; 自动生成于 2026-07-02</p>
+  <p>信息来源包括官方博客、科技媒体、安全通告和社区讨论。每条信息均保留原始链接。</p>
+  <p>传闻和未确认信息已明确标注。本早报不构成任何投资或决策建议。</p>
+</footer>
+
+</div>
+</body>
+</html>

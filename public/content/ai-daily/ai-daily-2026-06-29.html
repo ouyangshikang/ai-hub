@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 早报 2026-06-29</title>
+<style>
+  :root {
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #1a1a2e;
+    --text-secondary: #555;
+    --accent: #2563eb;
+    --accent-light: #dbeafe;
+    --border: #e5e7eb;
+    --tag-bg: #f0f4ff;
+    --quote-bg: #f1f5f9;
+    --red: #dc2626;
+    --orange: #ea580c;
+    --green: #16a34a;
+    --purple: #7c3aed;
+    --yellow: #ca8a04;
+    --cyan: #0891b2;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0;
+  }
+  .header {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+    color: #fff;
+    padding: 48px 24px 40px;
+    text-align: center;
+  }
+  .header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .header .date {
+    font-size: 0.95rem;
+    opacity: 0.85;
+  }
+  .header .stats {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+    opacity: 0.9;
+  }
+  .header .stats span {
+    background: rgba(255,255,255,0.15);
+    padding: 4px 12px;
+    border-radius: 12px;
+  }
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 24px 16px 60px;
+  }
+
+  /* Overview */
+  .overview {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 24px;
+    margin-bottom: 32px;
+  }
+  .overview h2 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: var(--accent);
+  }
+  .overview-category {
+    margin-bottom: 16px;
+  }
+  .overview-category h3 {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--border);
+  }
+  .overview-category ul {
+    list-style: none;
+    padding: 0;
+  }
+  .overview-category li {
+    font-size: 0.92rem;
+    padding: 3px 0;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .overview-category li .tag {
+    font-size: 0.72rem;
+    background: var(--accent-light);
+    color: var(--accent);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 36px;
+  }
+  .section-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title .icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  /* Card */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 22px;
+    margin-bottom: 14px;
+    transition: box-shadow 0.15s;
+  }
+  .card:hover {
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .card-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .card-header .num {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 2px 8px;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+  .card-header h3 {
+    font-size: 1.02rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .card-header h3 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .card-header h3 a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .card blockquote {
+    background: var(--quote-bg);
+    border-left: 3px solid var(--accent);
+    padding: 8px 14px;
+    margin: 8px 0 10px;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    border-radius: 0 6px 6px 0;
+  }
+  .card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    line-height: 1.65;
+  }
+  .card .links {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .card .links a {
+    font-size: 0.78rem;
+    color: var(--accent);
+    text-decoration: none;
+    background: var(--tag-bg);
+    padding: 2px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+  }
+  .card .links a:hover {
+    background: var(--accent-light);
+    text-decoration: underline;
+  }
+  .unconfirmed {
+    display: inline-block;
+    font-size: 0.72rem;
+    background: #fef3c7;
+    color: #92400e;
+    padding: 1px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .footer {
+    text-align: center;
+    padding: 32px 16px;
+    font-size: 0.8rem;
+    color: #999;
+    border-top: 1px solid var(--border);
+    margin-top: 24px;
+  }
+  @media (max-width: 600px) {
+    .header { padding: 32px 16px 28px; }
+    .header h1 { font-size: 1.5rem; }
+    .container { padding: 16px 10px 40px; }
+    .card { padding: 16px; }
+    .overview { padding: 20px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>AI 早报 2026-06-29</h1>
+  <div class="date">每日 AI 前沿资讯精选 · 自动生成于 2026-06-29</div>
+  <div class="stats">
+    <span>收录 20 条</span>
+    <span>6 个分类</span>
+    <span>含 1 条未确认传闻</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 概览 -->
+  <div class="overview">
+    <h2>概览</h2>
+
+    <div class="overview-category">
+      <h3>要闻</h3>
+      <ul>
+        <li><span class="tag">#1</span>OpenAI 发布 GPT-5.6 系列，受美国政府安全审查限制分阶段推出</li>
+        <li><span class="tag">#2</span>OpenAI 从 ChatGPT 退役 GPT-4.5，GPT-4 系列正式落幕</li>
+        <li><span class="tag">#3</span>美国政府施压 Meta 提交 AI 模型进行发布前安全审查</li>
+        <li><span class="tag">#4</span>三星电子全球部署 ChatGPT Enterprise 与 Codex</li>
+        <li><span class="tag">#5</span>微软 CEO 纳德拉警告：少数 AI 巨头可能"掏空"整个行业</li>
+      </ul>
+    </div>
+
+    <div class="overview-category">
+      <h3>模型发布</h3>
+      <ul>
+        <li><span class="tag">#6</span>百川 M4 医疗大模型发布，登顶 OpenAI HealthBench</li>
+        <li><span class="tag">#7</span>Google Gemini 3.5 Flash 推出 Computer Use 工具公开预览</li>
+      </ul>
+    </div>
+
+    <div class="overview-category">
+      <h3>产品应用</h3>
+      <ul>
+        <li><span class="tag">#8</span>Anthropic 推出 Claude Tag：AI 虚拟员工接入 Slack</li>
+        <li><span class="tag">#9</span>OpenAI Codex Remote 面向所有 ChatGPT 计划开放</li>
+        <li><span class="tag">#10</span>OpenAI 开始向 Go 层级付费用户展示广告</li>
+        <li><span class="tag">#11</span>GPT-5 Pro 协助解决三年 T 细胞免疫学难题</li>
+      </ul>
+    </div>
+
+    <div class="overview-category">
+      <h3>开发生态</h3>
+      <ul>
+        <li><span class="tag">#12</span>OpenAI Codex 无法排除敏感文件，开发者提议安全新标准</li>
+        <li><span class="tag">#13</span>Workweave 开源路由 Agent 集成多种 LLM，降低 40-70% 成本</li>
+        <li><span class="tag">#14</span>NatureBench 论文：AI 编码 Agent 在部分任务上超越 SOTA</li>
+        <li><span class="tag">#15</span>LiteLLM 网关严重漏洞链导致 API 密钥面临泄露风险</li>
+      </ul>
+    </div>
+
+    <div class="overview-category">
+      <h3>行业动态</h3>
+      <ul>
+        <li><span class="tag">#16</span>OpenAI 与 Broadcom 联合发布 Jalapeño LLM 推理芯片</li>
+        <li><span class="tag">#17</span>OpenAI 内部 Codex 采用率达 97.9%</li>
+        <li><span class="tag">#18</span>DeepSeek 首轮融资约 70 亿美元，估值攀升至 590 亿美元</li>
+        <li><span class="tag">#19</span>OpenAI 发布 GPT-5.5-Cyber 并启动开源安全计划</li>
+      </ul>
+    </div>
+
+    <div class="overview-category">
+      <h3>前瞻与传闻</h3>
+      <ul>
+        <li><span class="tag">#20</span>DeepSeek V4.1 传闻定档 6 月，具体日期未确认 <span class="unconfirmed">未确认</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 要闻 -->
+  <div class="section">
+    <div class="section-title"><span class="icon" style="background:var(--red);">!</span>要闻</div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#1</span>
+        <h3><a href="https://aiweekly.co/alerts/openai-rolls-out-gpt-56-models-under-trump-administration-limits" target="_blank">OpenAI 发布 GPT-5.6 系列，受美国政府安全审查限制分阶段推出</a></h3>
+      </div>
+      <blockquote>白宫首次直接干预前沿 AI 模型的商业化发布，GPT-5.6 初期仅向约 20 家受信任合作伙伴开放。</blockquote>
+      <p>OpenAI 于 6 月 26 日限量预览发布 GPT-5.6 系列三款模型：旗舰产品 <strong>Sol</strong> 新增"ultra"子代理模式与"max"推理等级；<strong>Terra</strong> 性能对标上一代但推理成本降低一半；<strong>Luna</strong> 为入门级定位。整个系列在生物及网络安全能力上均首次被评为"High"，Sol 的自主推理失控率达 1.3%。白宫出于国家安全考量要求采取分阶段推出策略，OpenAI 表示当前限制"不应成为长期默认状态"。</p>
+      <div class="links">
+        <a href="https://deploymentsafety.openai.com/gpt-5-6-preview" target="_blank">OpenAI 安全卡</a>
+        <a href="https://thehackernews.com/2026/06/openai-limits-gpt-56-rollout-as-sol.html" target="_blank">The Hacker News</a>
+        <a href="https://www.techtimes.com/articles/319171/20260626/gpt-56-sol-launches-under-government-lock-cyber-risk-sets-new-access-precedent.htm" target="_blank">TechTimes</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#2</span>
+        <h3><a href="https://openai.com/index/retiring-gpt-4o-and-older-models/" target="_blank">OpenAI 从 ChatGPT 退役 GPT-4.5，GPT-4 系列正式落幕</a></h3>
+      </div>
+      <blockquote>OpenAI 于 6 月 27 日正式从消费级产品中移除 GPT-4.5，标志着整个 GPT-4 系列时代的终结。</blockquote>
+      <p>GPT-4.5 是 GPT-4 系列的最后一个版本，此前 OpenAI 已逐步用 GPT-5 系列替代旧模型。此次退役涵盖 GPT-4o、GPT-4.1、GPT-4.1 mini 以及 o4-mini 等模型。开发者需在 API 端完成迁移，ChatGPT 用户将默认使用 GPT-5 系列模型。</p>
+      <div class="links">
+        <a href="https://openai.com/index/retiring-gpt-4o-and-older-models/" target="_blank">OpenAI 官方公告</a>
+        <a href="https://help.openai.com/en/articles/20001051-retiring-gpt-4o-and-other-chatgpt-models" target="_blank">Help Center</a>
+        <a href="https://tech.yahoo.com/ai/chatgpt/articles/openai-just-quietly-retired-final-152930749.html" target="_blank">Yahoo Tech</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#3</span>
+        <h3><a href="https://www.reuters.com/world/us/us-presses-meta-agree-ai-reviews-security-concerns-rise-nyt-reports-2026-06-23/" target="_blank">美国政府施压 Meta 提交 AI 模型进行发布前安全审查</a></h3>
+      </div>
+      <blockquote>白宫要求 Meta 加入 AI 预发布审查协议，提交前沿模型进行政府安全评估。</blockquote>
+      <p>据纽约时报与路透社报道，美国政府正对 Meta 施加压力，要求其将大模型提交至政府主导的安全审查机制。此举延续了此前对 OpenAI 和 Anthropic 的审查模式，意味着美国政府对前沿 AI 模型的管控正在扩大。Meta 以开源策略著称，此审查可能对其模型发布流程产生重大影响。</p>
+      <div class="links">
+        <a href="https://www.nytimes.com/2026/06/23/business/meta-ai-government-reviews-security.html" target="_blank">纽约时报</a>
+        <a href="https://www.reuters.com/world/us/us-presses-meta-agree-ai-reviews-security-concerns-rise-nyt-reports-2026-06-23/" target="_blank">路透社</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#4</span>
+        <h3><a href="https://openai.com/index/samsung-electronics-chatgpt-codex-deployment/" target="_blank">三星电子全球部署 ChatGPT Enterprise 与 Codex</a></h3>
+      </div>
+      <blockquote>三星成为全球最大规模的企业级 ChatGPT 与 Codex 部署案例之一，覆盖全球员工。</blockquote>
+      <p>OpenAI 宣布与三星电子合作，向其全球员工提供 ChatGPT Enterprise 和 Codex 工具。值得注意的是，Codex 的使用已不仅限于开发团队，非开发人员（如产品、运营）也在积极采用。这一案例显示 AI 编程工具正从开发者专用向全员工具演进。</p>
+      <div class="links">
+        <a href="https://openai.com/index/samsung-electronics-chatgpt-codex-deployment/" target="_blank">OpenAI 官方</a>
+        <a href="https://www.techtimes.com/articles/318831/20260622/samsung-chatgpt-enterprise-codex-reaches-non-developers-openais-biggest-korea-rollout.htm" target="_blank">TechTimes</a>
+        <a href="https://dataconomy.com/2026/06/22/samsung-launches-chatgpt-enterprise-codex-rollout/" target="_blank">Dataconomy</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#5</span>
+        <h3><a href="https://www.businessinsider.com/microsoft-ceo-warns-ai-winners-hurt-whole-industries-satya-nadella-2026-6" target="_blank">微软 CEO 纳德拉警告：少数 AI 巨头可能"掏空"整个行业</a></h3>
+      </div>
+      <blockquote>纳德拉在公开场合发出罕见警告，认为 AI 领域少数赢家可能像全球化一样冲击整个产业生态。</blockquote>
+      <p>微软 CEO Satya Nadella 表示，如果 AI 能力过度集中在少数公司手中，可能产生类似全球化对制造业的"掏空"效应——虽然整体效率提升了，但大量中间层企业会被淘汰。他呼吁行业关注 AI 的广泛分配而非垄断，这一言论被视为微软在 AI 竞争格局中的战略定位表态。</p>
+      <div class="links">
+        <a href="https://venturebeat.com/technology/satya-nadella-warns-that-ai-could-hollow-out-entire-industries-echoing-the-damage-done-by-globalization" target="_blank">VentureBeat</a>
+        <a href="https://www.businessinsider.com/microsoft-ceo-warns-ai-winners-hurt-whole-industries-satya-nadella-2026-6" target="_blank">Business Insider</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 模型发布 -->
+  <div class="section">
+    <div class="section-title"><span class="icon" style="background:var(--purple);">M</span>模型发布</div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#6</span>
+        <h3><a href="https://www.ithome.com/0/967/106.htm" target="_blank">百川 M4 医疗大模型发布，登顶 OpenAI HealthBench</a></h3>
+      </div>
+      <blockquote>百川智能发布新一代医疗增强大模型 M4，在 OpenAI HealthBench 医疗评测中以显著优势超越 GPT-5.5。</blockquote>
+      <p>百川 M4 专为医疗场景优化，在 HealthBench Hard 等医疗基准测试中取得领先成绩。该模型在临床推理、医学知识问答和病历分析等方面展现出专业能力，标志着中国 AI 公司在垂直领域大模型上的重要进展。此外，微创图迈手术机器人同日获得欧盟 CE 认证，显示 AI 医疗器械的商业化正在加速。</p>
+      <div class="links">
+        <a href="https://www.ithome.com/0/967/106.htm" target="_blank">IT之家</a>
+        <a href="https://finance.sina.com.cn/tech/digi/2026-06-22/doc-iniehmvt7113489.shtml" target="_blank">新浪科技</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#7</span>
+        <h3><a href="https://ai.google.dev/gemini-api/docs/computer-use" target="_blank">Google Gemini 3.5 Flash 推出 Computer Use 工具公开预览</a></h3>
+      </div>
+      <blockquote>Gemini 3.5 Flash 新增内置 Computer Use 工具，支持浏览器、移动端和桌面环境的自动化操作。</blockquote>
+      <p>Google 于 6 月 24 日在 Gemini 3.5 Flash 中推出 Computer Use 工具的公开预览版。该工具引入了简化的意图操作（intents），内置了对浏览器、移动端和桌面环境的支持，并增加了可配置的安全策略与高级命令注入检测功能。开发者可通过 API 直接调用，无需额外集成。Forbes 将此评价为 Google 在 AI Agent 自动化领域的重要一步。</p>
+      <div class="links">
+        <a href="https://ai.google.dev/gemini-api/docs/computer-use" target="_blank">Google 开发文档</a>
+        <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-computer-use-gemini-3-5-flash/" target="_blank">Google Blog</a>
+        <a href="https://www.forbes.com/sites/paulmonckton/2026/06/27/google-gemini-computer-use-agent/" target="_blank">Forbes</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 产品应用 -->
+  <div class="section">
+    <div class="section-title"><span class="icon" style="background:var(--green);">P</span>产品应用</div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#8</span>
+        <h3><a href="https://www.anthropic.com/news/introducing-claude-tag" target="_blank">Anthropic 推出 Claude Tag：AI 虚拟员工接入 Slack</a></h3>
+      </div>
+      <blockquote>Claude Tag 让 AI 以虚拟员工身份接入 Slack，支持多人共享交互、上下文记忆、异步自主工作。</blockquote>
+      <p>Anthropic 于 6 月 23 日发布 Claude Tag（测试版），这是一款专为团队协作设计的 AI 助手集成方案。核心特性包括：同一频道内所有成员共享同一个 AI 实例、AI 通过阅读频道历史自动积累背景知识、支持后台长时间异步自主工作。底层由 Claude Opus 4.8 驱动，面向企业版和团队版客户。Fortune 将其描述为"虚拟员工"工具，被视为 AI Agent 在企业协作场景的重要落地。</p>
+      <div class="links">
+        <a href="https://www.anthropic.com/news/introducing-claude-tag" target="_blank">Anthropic 官方</a>
+        <a href="https://www.reuters.com/technology/anthropic-launches-claude-tag-research-preview-slack-users-2026-06-23/" target="_blank">路透社</a>
+        <a href="https://techcrunch.com/2026/06/23/anthropics-claude-tag-is-learning-your-company-one-slack-message-at-a-time/" target="_blank">TechCrunch</a>
+        <a href="https://fortune.com/2026/06/23/anthropic-claude-tag-virtual-employee-tool-slack/" target="_blank">Fortune</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#9</span>
+        <h3><a href="https://aicatchup.com/news/codex-chatgpt-mobile-preview" target="_blank">OpenAI Codex Remote 面向所有 ChatGPT 计划开放</a></h3>
+      </div>
+      <blockquote>Codex Remote 现已向所有 ChatGPT 订阅计划全面开放，并支持移动端访问。</blockquote>
+      <p>OpenAI 将 Codex Remote 从此前仅限高级计划的限制中解放出来，现在包括 Plus、Pro 等所有 ChatGPT 付费计划均可使用，同时新增移动端支持。用户可通过手机远程管理和监控 Codex 编码任务。此举大幅降低了 AI 编码工具的准入门槛。</p>
+      <div class="links">
+        <a href="https://aicatchup.com/news/codex-chatgpt-mobile-preview" target="_blank">AI Catch Up</a>
+        <a href="https://tech.yahoo.com/ai/chatgpt/articles/phone-now-remotely-control-chatgpts-135501571.html" target="_blank">Yahoo Tech</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#10</span>
+        <h3><a href="https://aiweekly.co/alerts/openai-serves-ads-to-chatgpt-go-tier-paying-subscribers" target="_blank">OpenAI 开始向 Go 层级付费用户展示广告</a></h3>
+      </div>
+      <blockquote>月付 8 美元的 Go 计划用户开始在对话中看到来自金融时报、Shein 等品牌的广告。</blockquote>
+      <p>OpenAI 定价页面已明确"Free 和 Go 计划可能出现广告"。一位用户反映在对话过程中突然看到广告后取消了订阅。目前广告可被 uBlock Origin 等插件拦截。OpenAI 与 Google、Meta 一同出席了戛纳广告节，显示其积极拓展广告收入的意图。外界猜测这与公司筹备 IPO 的财务数据需求直接相关。Plus 及更高级别目前仍无广告。</p>
+      <div class="links">
+        <a href="https://aiweekly.co/alerts/openai-serves-ads-to-chatgpt-go-tier-paying-subscribers" target="_blank">AI Weekly</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#11</span>
+        <h3><a href="https://aiweekly.co/alerts/gpt-5-pro-helps-derya-unutmaz-crack-a-three-year-t-cell-mystery" target="_blank">GPT-5 Pro 协助解决三年 T 细胞免疫学难题</a></h3>
+      </div>
+      <blockquote>免疫学家 Derya Unutmaz 利用 GPT-5 Pro 破解了一个困扰其三年的 T 细胞研究难题。</blockquote>
+      <p>这一案例展示了前沿 AI 模型在科学研究中的实际应用价值。GPT-5 Pro 通过深度推理能力协助研究者整合跨领域知识、构建假设并验证推理链条，最终帮助解决了长期悬而未决的免疫学问题。这是 AI 在生物医药研究领域的一个重要应用示范。</p>
+      <div class="links">
+        <a href="https://aiweekly.co/alerts/gpt-5-pro-helps-derya-unutmaz-crack-a-three-year-t-cell-mystery" target="_blank">AI Weekly</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 开发生态 -->
+  <div class="section">
+    <div class="section-title"><span class="icon" style="background:var(--cyan);">D</span>开发生态</div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#12</span>
+        <h3><a href="https://aiweekly.co/alerts/openai-codex-has-no-way-to-block-sensitive-files-from-agent-reads" target="_blank">OpenAI Codex 无法排除敏感文件，开发者提议安全新标准</a></h3>
+      </div>
+      <blockquote>开发者社区提议引入专用配置文件来屏蔽环境变量、私钥等机密路径，防止 AI 编程助手获取敏感数据。</blockquote>
+      <p>技术社区指出，即使限制了直接文件读取，Agent 依然可能通过终端指令的输出结果意外暴露机密信息。虽然部分同类工具已有自定义忽略规则，但行业仍缺乏通用的跨厂商规范。误传加密凭证至云端模型的后果比普通的代码提交错误严重得多。OpenAI 官方暂未指派专人处理此问题，用户目前只能依赖操作系统层面的权限控制。</p>
+      <div class="links">
+        <a href="https://aiweekly.co/alerts/openai-codex-has-no-way-to-block-sensitive-files-from-agent-reads" target="_blank">AI Weekly</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#13</span>
+        <h3><a href="https://aiweekly.co/alerts/workweave-router-targets-40-70-ai-cost-cuts-with-endpoint-swap" target="_blank">Workweave 开源路由 Agent 集成多种 LLM，降低 40-70% 成本</a></h3>
+      </div>
+      <blockquote>开源路由代理 Workweave 通过智能端点切换，声称可将 AI 调用成本降低 40-70%。</blockquote>
+      <p>Workweave 是一个新发布的开源 LLM 路由代理，能够根据任务复杂度自动选择最合适的模型端点，在保证输出质量的前提下显著降低 API 调用成本。该项目为多模型架构提供了一种轻量化的成本优化方案，适合需要管理多个 LLM 调用的开发团队。</p>
+      <div class="links">
+        <a href="https://aiweekly.co/alerts/workweave-router-targets-40-70-ai-cost-cuts-with-endpoint-swap" target="_blank">AI Weekly</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#14</span>
+        <h3><a href="https://arxiv.org/html/2606.24530v1" target="_blank">NatureBench 论文：AI 编码 Agent 在部分任务上超越 SOTA</a></h3>
+      </div>
+      <blockquote>新论文 NatureBench 评估显示，Claude Opus 4.7 等 AI 编码 Agent 在 17.8% 的案例中超越了已发表论文的最高水平。</blockquote>
+      <p>arXiv 上的新论文 NatureBench 提出了一个基准测试框架，评估 AI 编码 Agent 是否能复现和超越 Nature 系列论文中报告的 SOTA 结果。研究发现 Claude Opus 4.7 在 17.8% 的案例中确实超越了已有最高水平，但在更复杂的任务上仍存在明显差距。这一研究对评估 AI 在科研编码中的应用具有重要参考价值。</p>
+      <div class="links">
+        <a href="https://arxiv.org/html/2606.24530v1" target="_blank">arXiv 论文</a>
+        <a href="https://www.researchgate.net/publication/407647743_NatureBench_Can_Coding_Agents_Match_the_Published_SOTA_of_Nature-Family_Papers" target="_blank">ResearchGate</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#15</span>
+        <h3><a href="https://www.penligent.ai/hackinglabs/fr/litellm-vulnerability-chain/" target="_blank">LiteLLM 网关严重漏洞链导致 API 密钥面临泄露风险</a></h3>
+      </div>
+      <blockquote>LiteLLM 的漏洞链（CVE-2026-42271）可实现未认证远程代码执行，CVSS 评分达 10.0，已被列入 KEV 目录。</blockquote>
+      <p>广泛使用的 AI API 网关 LiteLLM 被发现严重漏洞链，攻击者可在未经认证的情况下执行远程代码，进而获取存储在网关中的 OpenAI、Anthropic 等服务商的 API 密钥。该漏洞已被 CISA 列入已知被利用漏洞（KEV）目录，表明已有活跃攻击。使用 LiteLLM 的团队应立即更新至最新版本。</p>
+      <div class="links">
+        <a href="https://github.com/BerriAI/litellm/security/advisories/GHSA-r75f-5x8p-qvmc" target="_blank">GitHub Advisory</a>
+        <a href="https://horizon3.ai/attack-research/vulnerabilities/cve-2026-42271-chained-with-cve-2026-48710/" target="_blank">Horizon3</a>
+        <a href="https://labs.cloudsecurityalliance.org/research/csa-research-note-litellm-ai-gateway-attack-chain-20260617-c/" target="_blank">CSA Research</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 行业动态 -->
+  <div class="section">
+    <div class="section-title"><span class="icon" style="background:var(--orange);">$</span>行业动态</div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#16</span>
+        <h3><a href="https://aiweekly.co/alerts/broadcom-and-openai-unveil-jalapeo-llm-inference-chip" target="_blank">OpenAI 与 Broadcom 联合发布 Jalapeño LLM 推理芯片</a></h3>
+      </div>
+      <blockquote>专为大语言模型推理构建的定制芯片，从设计到流片仅用 9 个月，预计可降低约 50% 推理成本。</blockquote>
+      <p>Jalapeño 芯片的物理尺寸达到单次光刻的制造极限，最大化计算密度。团队通过 AI 模型辅助设计，实现了可能是"史上最快 ASIC 开发周期"。工程样品已成功运行 GPT-5.3-Codex-Spark 等生产级负载。OpenAI 计划于 2026 年底联合微软等伙伴在吉瓦级数据中心推进落地。不过，官方能效声明暂无第三方独立验证。</p>
+      <div class="links">
+        <a href="https://aiweekly.co/alerts/broadcom-and-openai-unveil-jalapeo-llm-inference-chip" target="_blank">AI Weekly</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#17</span>
+        <h3><a href="https://aiweekly.co/alerts/openai-ladoption-de-codex-passe-de-40-979-en-interne" target="_blank">OpenAI 内部 Codex 采用率达 97.9%</a></h3>
+      </div>
+      <blockquote>OpenAI 内部 Codex 使用率从 40% 飙升至 97.9%，非开发者群体的采用率增长尤为显著。</blockquote>
+      <p>这一数据展示了 AI 编码工具在组织内部的渗透速度。非开发人员（产品经理、运营、市场等）也在大量使用 Codex 完成各类任务，表明 AI 编程助手的定位正在从"开发者专用工具"向"通用效率工具"转变。这一趋势与三星等企业的全面部署策略相互印证。</p>
+      <div class="links">
+        <a href="https://aiweekly.co/alerts/openai-ladoption-de-codex-passe-de-40-979-en-interne" target="_blank">AI Weekly</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#18</span>
+        <h3><a href="https://finance.sina.com.cn/roll/2026-06-03/doc-iniacnun2390676.shtml" target="_blank">DeepSeek 首轮融资约 70 亿美元，估值攀升至 590 亿美元</a></h3>
+      </div>
+      <blockquote>DeepSeek 首轮融资规模约 70 亿美元，估值达 590 亿美元，创始人梁文锋个人出资 200 亿元。</blockquote>
+      <p>DeepSeek 的首轮外部融资创下中国 AI 公司融资纪录。创始人梁文锋个人出资 200 亿元人民币，显示出对公司发展的强力信心。此前估值曾喊至 3000 亿至 4000 亿元人民币。字节、阿里、腾讯等巨头也在加速整合大模型公司，中国 AI 行业进入"诸神之战"阶段。</p>
+      <div class="links">
+        <a href="https://finance.sina.com.cn/roll/2026-06-03/doc-iniacnun2390676.shtml" target="_blank">新浪财经</a>
+        <a href="https://www.tmtpost.com/7980468.html" target="_blank">钛媒体</a>
+        <a href="https://www.qbitai.com/2026/05/414432.html" target="_blank">量子位</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#19</span>
+        <h3><a href="https://aiweekly.co/alerts/openai-lance-patch-the-planet-pour-scuriser-lopen-source" target="_blank">OpenAI 发布 GPT-5.5-Cyber 并启动开源安全计划</a></h3>
+      </div>
+      <blockquote>OpenAI 推出专注网络安全的 GPT-5.5-Cyber 模型，同时启动"Patch the Planet"计划保护开源软件安全。</blockquote>
+      <p>GPT-5.5-Cyber 是 OpenAI 首个专注于网络安全领域的模型变体，旨在帮助安全团队更高效地发现和修复漏洞。配套的"Patch the Planet"计划将利用该模型自动扫描主流开源项目中的安全缺陷，显示 OpenAI 正在将 AI 能力应用于软件供应链安全。</p>
+      <div class="links">
+        <a href="https://aiweekly.co/alerts/openai-lance-patch-the-planet-pour-scuriser-lopen-source" target="_blank">AI Weekly</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 前瞻与传闻 -->
+  <div class="section">
+    <div class="section-title"><span class="icon" style="background:var(--yellow);">?</span>前瞻与传闻</div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="num">#20</span>
+        <h3><a href="https://www.qbitai.com/2026/05/414432.html" target="_blank">DeepSeek V4.1 传闻定档 6 月 <span class="unconfirmed">未确认</span></a></h3>
+      </div>
+      <blockquote>多方消息称 DeepSeek V4.1 定档 6 月发布，但官方尚未正式确认具体日期和更新内容。</blockquote>
+      <p>根据量子位等多家媒体报道，DeepSeek V4.1 计划于 6 月发布。此前 DeepSeek V4（4 月发布）已凭借 1T 参数规模在多项基准中接近前沿水平，且推理价格远低于竞品。V4.1 预计将在编码能力和多模态支持上进一步增强。但截至发稿时，DeepSeek 官方 API 更新日志中尚未出现 V4.1 的正式记录，具体发布时间仍待确认。</p>
+      <div class="links">
+        <a href="https://www.qbitai.com/2026/05/414432.html" target="_blank">量子位</a>
+        <a href="https://api-docs.deepseek.com/updates" target="_blank">DeepSeek API Changelog</a>
+        <a href="https://simonwillison.net/2026/Apr/24/deepseek-v4/" target="_blank">Simon Willison (V4 评测)</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>AI 早报 · 每日自动生成 · 信息来源包括官方博客、可信科技媒体、学术论文及开发者社区</p>
+    <p>传闻和未确认信息已明确标注，不代表事实。如有遗漏或错误请反馈。</p>
+  </div>
+
+</div>
+
+</body>
+</html>

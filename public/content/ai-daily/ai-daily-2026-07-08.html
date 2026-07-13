@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 早报 2026-07-08</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 800px; margin: 0 auto; padding: 24px 16px 60px; }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 48px 20px 36px;
+    margin-bottom: 28px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+    border-radius: 16px;
+    color: #fff;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .header .subtitle {
+    font-size: 14px;
+    color: #a1a1a6;
+  }
+
+  /* Overview */
+  .overview {
+    background: #fff;
+    border-radius: 12px;
+    padding: 28px 24px;
+    margin-bottom: 28px;
+  }
+  .overview h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #1d1d1f;
+  }
+  .overview .cat-section { margin-bottom: 18px; }
+  .overview .cat-section:last-child { margin-bottom: 0; }
+  .overview .cat-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6e6e73;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .overview ul { list-style: none; }
+  .overview li {
+    font-size: 14px;
+    padding: 4px 0;
+    color: #1d1d1f;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .overview li .tag {
+    font-size: 11px;
+    color: #86868b;
+    background: #f5f5f7;
+    padding: 1px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+    margin-left: 8px;
+    flex-shrink: 0;
+  }
+
+  /* Category Divider */
+  .cat-divider {
+    display: flex;
+    align-items: center;
+    margin: 32px 0 20px;
+  }
+  .cat-divider span {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1d1d1f;
+    padding-right: 12px;
+    white-space: nowrap;
+  }
+  .cat-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #d2d2d7;
+  }
+
+  /* Card */
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+    transition: box-shadow 0.2s;
+  }
+  .card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .card-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .card-header .num {
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    background: #0071e3;
+    padding: 2px 8px;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+  .card-header h3 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .card-header h3 a {
+    color: #1d1d1f;
+    text-decoration: none;
+  }
+  .card-header h3 a:hover { color: #0071e3; }
+  .card .summary {
+    font-size: 14px;
+    color: #6e6e73;
+    border-left: 3px solid #0071e3;
+    padding: 8px 14px;
+    margin: 10px 0 12px;
+    background: #f5f5f7;
+    border-radius: 0 6px 6px 0;
+    line-height: 1.6;
+  }
+  .card .detail {
+    font-size: 14px;
+    color: #424245;
+    margin-bottom: 12px;
+    line-height: 1.7;
+  }
+  .card .detail p { margin-bottom: 8px; }
+  .card .detail p:last-child { margin-bottom: 0; }
+  .card .links {
+    border-top: 1px solid #f0f0f0;
+    padding-top: 10px;
+    margin-top: 10px;
+  }
+  .card .links span.label {
+    font-size: 12px;
+    color: #86868b;
+    margin-right: 6px;
+  }
+  .card .links a {
+    font-size: 13px;
+    color: #0071e3;
+    text-decoration: none;
+    margin-right: 14px;
+  }
+  .card .links a:hover { text-decoration: underline; }
+  .card .unconfirmed {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    color: #bf4800;
+    background: #fff3e0;
+    padding: 2px 8px;
+    border-radius: 6px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 32px 0 0;
+    font-size: 12px;
+    color: #a1a1a6;
+  }
+
+  @media (max-width: 600px) {
+    .container { padding: 12px 10px 40px; }
+    .header { padding: 32px 14px 28px; }
+    .header h1 { font-size: 22px; }
+    .card { padding: 18px 16px; }
+    .overview { padding: 20px 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>AI 早报 2026-07-08</h1>
+    <div class="subtitle">每日 AI 前沿资讯 &middot; 自动生成于 2026-07-08</div>
+  </div>
+
+  <!-- Overview -->
+  <div class="overview">
+    <h2>概览</h2>
+
+    <div class="cat-section">
+      <div class="cat-title">要闻</div>
+      <ul>
+        <li><span>xAI 确认 Grok 4 将于 7 月 9 日直播发布</span><span class="tag">#1</span></li>
+        <li><span>中国 AI 伴侣法规 7 月 15 日生效，豆包/通义 Agent 功能被迫下线</span><span class="tag">#2</span></li>
+        <li><span>白宫 AI 标准框架预计本周出炉，GPT-5.6 广泛发布在即</span><span class="tag">#3</span></li>
+        <li><span>Microsoft 将 Excel/Outlook AI 提示词路由转向自研 MAI 模型</span><span class="tag">#4</span></li>
+        <li><span>OpenAI 首席未来学家 Joshua Achiam 九年任职后离职</span><span class="tag">#5</span></li>
+      </ul>
+    </div>
+
+    <div class="cat-section">
+      <div class="cat-title">模型发布</div>
+      <ul>
+        <li><span>OpenAI 发布 GPT-Realtime-2.1 及 Mini 版本语音模型</span><span class="tag">#6</span></li>
+        <li><span>Anthropic Claude Fable 5 全球重新部署，7 月 8 日起转付费积分</span><span class="tag">#7</span></li>
+      </ul>
+    </div>
+
+    <div class="cat-section">
+      <div class="cat-title">产品应用</div>
+      <ul>
+        <li><span>Anthropic Claude Cowork 扩展至 Web 和移动端，支持跨设备同步</span><span class="tag">#8</span></li>
+        <li><span>Claude for Government Desktop 公测：FedRAMP High 授权</span><span class="tag">#9</span></li>
+        <li><span>OpenAI ChatGPT Enterprise/Business 转向消费计费模式</span><span class="tag">#10</span></li>
+      </ul>
+    </div>
+
+    <div class="cat-section">
+      <div class="cat-title">开发生态</div>
+      <ul>
+        <li><span>Anthropic 发布 Claude Science Workbench 科研工作台</span><span class="tag">#11</span></li>
+        <li><span>OpenAI 发布 GeneBench-Pro 计算生物学基准</span><span class="tag">#12</span></li>
+        <li><span>Meta 开源 SWE-Together 多轮编程基准</span><span class="tag">#13</span></li>
+        <li><span>Claude Code 一周迭代 7 个版本（v2.1.197 - v2.1.203）</span><span class="tag">#14</span></li>
+      </ul>
+    </div>
+
+    <div class="cat-section">
+      <div class="cat-title">行业动态</div>
+      <ul>
+        <li><span>中国 AI 模型占 OpenRouter 流量约 45%，美国企业用量超 30%</span><span class="tag">#15</span></li>
+        <li><span>AI 芯片股 7 月 7 日集体大跌，纳斯达克下跌 1%</span><span class="tag">#16</span></li>
+        <li><span>Tesla Robotaxi 迈阿密上线：首次默认完全无监督驾驶</span><span class="tag">#17</span></li>
+        <li><span>OpenAI 与 Anthropic 竞相向初创公司提供大额免费算力</span><span class="tag">#18</span></li>
+        <li><span>阿里巴巴合并五个 AI 部门，统一领导架构</span><span class="tag">#19</span></li>
+      </ul>
+    </div>
+
+    <div class="cat-section">
+      <div class="cat-title">前瞻与传闻</div>
+      <ul>
+        <li><span>Google Gemini 3.5 Pro 持续延期，仍限于企业预览 <span style="color:#bf4800;font-size:11px;font-weight:600;">未确认</span></span><span class="tag">#20</span></li>
+        <li><span>Anthropic 发布 AI 越狱严重度框架草案 <span style="color:#bf4800;font-size:11px;font-weight:600;">未确认</span></span><span class="tag">#21</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ========== 要闻 ========== -->
+  <div class="cat-divider"><span>要闻</span></div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">#1</span>
+      <h3><a href="https://www.reddit.com/r/singularity/comments/1lu67e1/elon_announces_grok_4_release_livestream_on_july/" target="_blank">xAI 确认 Grok 4 将于 7 月 9 日直播发布</a></h3>
+    </div>
+    <div class="summary">Elon Musk 宣布 xAI 将于 7 月 9 日举行 Grok 4 发布直播，这是 xAI 今年最重要的模型发布。</div>
+    <div class="detail">
+      <p>Grok 4 是 xAI 的下一代旗舰大模型，此前已有 Grok 4.2 和 4.3 等中间版本迭代。根据 xAI 公开的路线图，目前同时有 7 个模型在训练中，Grok 5 的目标参数量达到 10 万亿级别。</p>
+      <p>这次发布时间选在 7 月 4 日独立日之后，与此前 AI Business 报道的"Post July 4 Release"时间线吻合。直播预计将展示 Grok 4 的能力、基准测试结果和 API 定价。</p>
+    </div>
+    <div class="links">
+      <span class="label">相关链接：</span>
+      <a href="https://www.reddit.com/r/singularity/comments/1lu67e1/elon_announces_grok_4_release_livestream_on_july/" target="_blank">Reddit 讨论</a>
+      <a href="https://aibusiness.com/language-models/most-read-elon-musk-xai-slates-post-july-4-release-for-grok-4-meta-launches-superintelligence-labs-in-major-ai-restructuring" target="_blank">AI Business</a>
+      <a href="https://www.mindstudio.ai/blog/xai-grok-roadmap-7-models-training-grok-5-10-trillion" target="_blank">xAI 路线图</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">#2</span>
+      <h3><a href="https://www.techtimes.com/articles/319703/20260704/china-ai-companion-law-arrives-july-15-doubao-qwen-agent-data-will-deleted.htm" target="_blank">中国 AI 伴侣法规 7 月 15 日生效，豆包/通义 Agent 功能被迫下线</a></h3>
+    </div>
+    <div class="summary">中国新 AI 监管规定要求平台关闭具备"拟人化伴侣"特征的 Agent 功能，字节豆包和阿里通义率先受影响。</div>
+    <div class="detail">
+      <p>这项新规将于 7 月 15 日正式生效，要求所有 AI 伴侣类产品必须内置防沉迷机制，且不得模拟人类情感关系。分析指出，这些要求与持久记忆型 Agent 的架构存在结构性冲突，迫使平台直接关闭相关功能。</p>
+      <p>据 Straits Times 和 TechTimes 报道，字节跳动的豆包和阿里巴巴的通义系列是首批受影响的主要 AI 应用。用户数据将在法规生效后被删除。这一变化对中国 AI Agent 生态的发展路径可能产生深远影响。</p>
+    </div>
+    <div class="links">
+      <span class="label">相关链接：</span>
+      <a href="https://www.straitstimes.com/asia/east-asia/bytedance-alibaba-pull-ai-companions-as-beijing-tightens-rules" target="_blank">Straits Times</a>
+      <a href="https://thenextweb.com/news/china-humanlike-ai-agent-rules" target="_blank">TNW</a>
+      <a href="https://aisafetychina.substack.com/p/china-bans-ai-partners-for-minors" target="_blank">AI Safety China</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">#3</span>
+      <h3><a href="https://www.whitehouse.gov/presidential-actions/2026/06/promoting-advanced-artificial-intelligence-innovation-and-security/" target="_blank">白宫 AI 标准框架预计本周出炉，GPT-5.6 广泛发布在即</a></h3>
+    </div>
+    <div class="summary">美国白宫预计在 7 月 7-11 日期间发布自愿性前沿模型标准框架，OpenAI GPT-5.6 的公开发布与此直接挂钩。</div>
+    <div class="detail">
+      <p>该行政令于 6 月签署，建立了自愿性的前沿 AI 模型审查机制，包括分级基准测试和政府预审流程。框架将设立机密级别的安全基准，用于评估前沿模型的潜在风险。</p>
+      <p>OpenAI 的 GPT-5.6 目前仅向约 20 家合作伙伴开放。市场分析认为，一旦框架正式发布，OpenAI 将获得明确的合规路径，从而推动 GPT-5.6 面向更广泛用户群体发布。</p>
+    </div>
+    <div class="links">
+      <span class="label">相关链接：</span>
+      <a href="https://www.npr.org/2026/06/02/nx-s1-5844347/ai-safety-trump-executive-order" target="_blank">NPR</a>
+      <a href="https://www.ropesgray.com/en/insights/alerts/2026/06/trumps-ai-cybersecurity-order-a-voluntary-framework-with-mandatory-implications" target="_blank">Ropes Gray 分析</a>
+      <a href="https://cryptobriefing.com/openai-releases-gpt-56-models-to-20-partners-public-launch-expected-by-july-2026/" target="_blank">Crypto Briefing</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">#4</span>
+      <h3><a href="https://aiweekly.co/alerts/microsoft-routes-excel-and-outlook-ai-prompts-to-in-house-mai" target="_blank">Microsoft 将 Excel/Outlook AI 提示词路由转向自研 MAI 模型</a></h3>
+    </div>
+    <div class="summary">微软开始将生产力软件中的 AI 任务从 OpenAI/Anthropic 外部模型切换到自研 MAI 系统，以降低运营成本。</div>
+    <div class="detail">
+      <p>据 AI Weekly 报道，微软内部自研的 MAI 模型目前每周已在 Excel 和 Outlook 中处理"数万条 AI 提示词"。这一转变主要由降低运营成本的动机驱动，消息公布后微软股价上涨约 1.75%。</p>
+      <p>不过，目前转移的工作量仅占"整个 Copilot 生态"的一小部分。微软与 OpenAI 的核心合作关系不变，但在非核心推理任务上，微软正加速自主能力建设。这对 AI 模型供应商的商业模式是一个值得关注的信号。</p>
+    </div>
+    <div class="links">
+      <span class="label">相关链接：</span>
+      <a href="https://aiweekly.co/alerts/microsoft-routes-excel-and-outlook-ai-prompts-to-in-house-mai" target="_blank">AI Weekly</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">#5</span>
+      <h3><a href="https://aiweekly.co/alerts/openai-chief-futurist-joshua-achiam-departs-after-nine-years" target="_blank">OpenAI 首席未来学家 Joshua Achiam 九年任职后离职</a></h3>
+    </div>
+    <div class="summary">OpenAI 内部最后一位非营利时代的安全研究声音离场，反映安全研究与商业化之间的张力。</div>
+    <div class="detail">
+      <p>Joshua Achiam 在 OpenAI 任职近十年，2026 年 2 月升任首席未来学家之前，曾领导任务对齐（Mission Alignment）部门——该部门随后被解散。他曾在 2026 年 5 月 Musk 与 Altman 的法律纠纷中出庭作证。</p>
+      <p>报道指出，他的离职凸显了安全研究人员与企业商业化压力之间的深层矛盾。同事曾送他一座奖杯，上面刻着"never stop being a jackass for safety"。</p>
+    </div>
+    <div class="links">
+      <span class="label">相关链接：</span>
+      <a href="https://aiweekly.co/alerts/openai-chief-futurist-joshua-achiam-departs-after-nine-years" target="_blank">AI Weekly</a>
+    </div>
+  </div>
+
+  <!-- ========== 模型发布 ========== -->
+  <div class="cat-divider"><span>模型发布</span></div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">#6</span>
+      <h3><a href="https://openai.com/index/advancing-voice-intelligence-with-new-models-in-the-api/" target="_blank">OpenAI 发布 GPT-Realtime-2.1 及 Mini 版本语音模型</a></h3>
+    </div>
+    <div class="summary">OpenAI 更新实时语音 API 模型，改进噪声处理、字母数字识别和静默检测能力。</div>
+    <div class="detail">
+      <p>GPT-Realtime-2.1 是 GPT-Realtime-2 的升级版，主要改进了三个方面：字母数字识别准确率、静默和噪声处理能力，以及整体推理质量。同步发布的 GPT-Realtime-2.1-Mini 提供更低成本的选项。</p>
+      <p>这些模型适用于需要实时语音交互的多模态应用场景，开发者可通过 OpenAI API 直接接入。</p>
+    </div>
+    <div class="links">
+      <span class="label">相关链接：</span>
+      <a href="https://openai.com/index/advancing-voice-intelligence-with-new-models-in-the-api/" target="_blank">OpenAI 官方</a>
+      <a href="https://community.openai.com/t/new-realtime-models-on-the-api-gpt-realtime-2-1-and-gpt-realtime-2-1-mini/1385896" target="_blank">社区论坛</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">#7</span>
+      <h3><a href="https://www.anthropic.com/news/redeploying-fable-5" target="_blank">Anthropic Claude Fable 5 全球重新部署，7 月 8 日起转付费积分</a></h3>
+    </div>
+    <div class="summary">Fable 5 在全球范围内重新上线并增强安全分类器，订阅用户免费使用期于 7 月 7 日结束。</div>
+    <div class="detail">
+      <p>Anthropic 此前因安全原因短暂下架了 Claude Fable 5，7 月初重新部署时加入了增强的网络安全分类器。同时，Anthropic 发布了一份"AI 越狱严重度框架"草案，旨在建立行业统一的 Prompt 注入风险评估标准。</p>
+      <p>7 月 7 日是 Fable 5 作为订阅包含模型的最后一天。从 7 月 8 日起，用户需要通过购买积分来使用 Fable 5，这标志着 Anthropic 旗舰模型定价策略的转变。</p>
+    </div>
+    <div class="links">
+      <span class="label">相关链接：</span>
+      <a href="https://www.anthropic.com/news/redeploying-fable-5" target="_blank">Anthropic 官方</a>
+      <a href="https://platform.claude.com/docs/en/about-claude/models/introducing-claude-fable-5-and-claude-mythos-5" target="_blank">模型文档</a>
+      <a href="https://simonwillison.net/2026/Jun/9/claude-fable-5/" target="_blank">Simon Willison 评测</a>
+    </div>
+  </div>
+
+  <!-- ========== 产品应用 ========== -->
+  <div class="cat-divider"><span>产品应用</span></div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">#8</span>
+      <h3><a href="https://venturebeat.com/technology/anthropic-brings-claude-cowork-to-mobile-and-web-as-usage-data-shows-most-users-arent-coding" target="_blank">Anthropic Claude Cowork 扩展至 Web 和移动端，支持跨设备同步</a></h3>
+    </div>
+    <div class="summary">Claude Cowork 从桌面端扩展到全平台，会话和文件跨设备同步，后台任务在笔记本合盖后继续运行。</div>
+    <div class="detail">
+      <p>7 月 7 日，Anthropic 将 Claude Cowork 功能扩展到 Web 和移动平台。核心改进包括：会话和文件在账户内跨设备持久同步、后台处理在设备休眠后仍可继续运行。</p>
+      <p>使用数据显示，大部分 Cowork 用户的使用场景并非编程，而是文档处理、数据分析和日常办公自动化。这一洞察可能影响 Anthropic 后续的产品方向。</p>
+    </div>
+    <div class="links">
+      <span class="label">相关链接：</span>
+      <a href="https://venturebeat.com/technology/anthropic-brings-claude-cowork-to-mobile-and-web-as-usage-data-shows-most-users-arent-coding" target="_blank">VentureBeat</a>
+      <a href="https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork" target="_blank">Claude Cowork 指南</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">#9</span>
+      <h3><a href="https://www.anthropic.com/news" target="_blank">Claude for Government Desktop 公测：FedRAMP High 授权</a></h3>
+    </div>
+    <div class="summary">Anthropic 面向政府客户推出 Claude Code 和 Cowork 的政府专用版本，具备本地文件处理、审计日志和管理开支控制。</div>
+    <div class="detail">
+      <p>7 月 7 日进入公测的 Claude for Government Desktop 获得了 FedRAMP High 授权，这是美国联邦政府信息系统的高级别安全认证。该版本特别增加了本地文件处理能力（数据不上云）、防篡改审计日志，以及管理员级别的开支控制功能。</p>
+      <p>这标志着 Anthropic 正式进入政府 AI 市场，与 OpenAI 的政府合约形成直接竞争。</p>
+    </div>
+    <div class="links">
+      <span class="label">相关链接：</span>
+      <a href="https://www.anthropic.com/news" target="_blank">Anthropic Newsroom</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">#10</span>
+      <h3><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes" target="_blank">OpenAI ChatGPT Enterprise/Business 转向消费计费模式</a></h3>
+    </div>
+    <div class="summary">ChatGPT 企业版和商业版的电子表格及 Agent 操作转为按用量计费，PowerPoint 集成暂时免费。</div>
+    <div class="detail">
+      <p>7 月 6 日起，ChatGPT Enterprise 和 Business 版本对 Workspace Agents、Excel 集成等 Agent 操作转为消费式计费（Consumption-based billing），从通用 Codex 额度池扣费。PowerPoint 集成将保持免费至 8 月 6 日。</p>
+      <p>这一变化反映了 OpenAI 在 AI Agent 场景下的商业模式演进——Agent 操作的 token 消耗远高于普通对话，按量计费更符合实际使用成本。</p>
+    </div>
+    <div class="links">
+      <span class="label">相关链接：</span>
+      <a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes" target="_blank">ChatGPT Release Notes</a>
+    </div>
+  </div>
+
+  <!-- ========== 开发生态 ========== -->
+  <div class="cat-divider"><span>开发生态</span></div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">#11</span>
+      <h3><a href="https://www.anthropic.com/news/claude-science-ai-workbench" target="_blank">Anthropic 发布 Claude Science Workbench 科研工作台</a></h3>
+    </div>
+    <div class="summary">面向科研人员的可定制工作台，集成 60+ 科学数据库，支持多步骤研究工作流并生成可审计的成果产物。</div>
+    <div class="detail">
+      <p>Claude Science Workbench 不是一个新模型，而是一个面向科研工作流的产品层。它将 Claude Opus 模型与科研人员最常用的工具和数据库连接起来，支持多步骤研究、跨数据库查询，并产出可审计的研究产物。</p>
+      <p>Forbes 的评测显示，完成一项领域映射任务仅需 26 美元。TechCrunch 指出，Anthropic 押注的是"工作流"而非"新模型"来赢得科研用户——这是一个值得关注的产品策略差异。</p>
+    </div>
+    <div class="links">
+      <span class="label">相关链接：</span>
+      <a href="https://www.anthropic.com/news/claude-science-ai-workbench" target="_blank">Anthropic 官方</a>
+      <a href="https://techcrunch.com/2026/06/30/anthropics-claude-science-bets-on-workflow-not-a-new-model-to-win-over-scientists/" target="_blank">TechCrunch</a>
+      <a href="https://www.reuters.com/science/anthropic-unveils-claude-science-ai-platform-scientific-research-2026-06-30/" target="_blank">Reuters</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">#12</span>
+      <h3><a href="https://www.buildfastwithai.com/blogs/ai-news-today-july-6-2026" target="_blank">OpenAI 发布 GeneBench-Pro 计算生物学基准</a></h3>
+    </div>
+    <div class="summary">新基准专门评估 AI 在计算生物学领域处理模糊性和专家级科学问题的能力，前沿模型表现不佳。</div>
+    <div class="detail">
+      <p>GeneBench-Pro 是一个新的评估框架，旨在精确衡量 AI 模型在计算生物学中处理模糊、不确定性问题的能力。测试结果显示，包括最新前沿模型在内的系统在面对专家级科学问题时仍明显力不从心。</p>
+      <p>这一基准凸显了领域专用工具的重要性，以及 AI 在垂直科学领域仍有巨大的提升空间。</p>
+    </div>
+    <div class="links">
+      <span class="label">相关链接：</span>
+      <a href="https://www.buildfastwithai.com/blogs/ai-news-today-july-6-2026" target="_blank">BuildFastWithAI</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">#13</span>
+      <h3><a href="https://www.swebench.com/" target="_blank">Meta 开源 SWE-Together 多轮编程基准</a></h3>
+    </div>
+    <div class="summary">新基准评估 Agent 在多轮编程协作中需要多少人类介入纠偏，Anthropic 模型所需修正次数最少。</div>
+    <div class="detail">
+      <p>SWE-Together 是一个新的多轮编程基准，由 Meta 开源。与传统的 SWE-bench 不同，它衡量的不只是 Agent 能否解决代码问题，还评估在多大程度上需要人类"驾驶"（steering）——即修正方向、补充上下文、纠正错误。</p>
+      <p>在初步测试中，Anthropic 的模型所需的人类干预次数最少，展示了更强的自主编程能力。这一基准对 AI 编程工具的实际使用体验评估更有参考价值。</p>
+    </div>
+    <div class="links">
+      <span class="label">相关链接：</span>
+      <a href="https://www.swebench.com/" target="_blank">SWE-bench 排行榜</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">#14</span>
+      <h3><a href="https://releasebot.io/updates/anthropic" target="_blank">Claude Code 一周迭代 7 个版本（v2.1.197 - v2.1.203）</a></h3>
+    </div>
+    <div class="summary">Claude Code 保持极高发布节奏，一周内推出 7 个版本，引入 Sonnet 5 默认模型、Chrome 集成、数据可视化等功能。</div>
+    <div class="detail">
+      <p>7 月 1 日的 v2.1.197 将 Claude Sonnet 5 设为默认模型（原生 100 万 token 上下文窗口），7 月 2 日的 v2.1.198 使 "Claude in Chrome" 浏览器扩展正式 GA，并增加了后台 Agent 通知和 /dataviz 图表技能。</p>
+      <p>7 月 3 日的 v2.1.199/200 将默认权限模式改为手动（manual），7 月 4-7 日的后续版本主要修复崩溃、遥测和跨平台兼容性问题。这种日均一版的迭代速度在 AI 开发工具中极为罕见。</p>
+    </div>
+    <div class="links">
+      <span class="label">相关链接：</span>
+      <a href="https://releasebot.io/updates/anthropic" target="_blank">Releasebot</a>
+    </div>
+  </div>
+
+  <!-- ========== 行业动态 ========== -->
+  <div class="cat-divider"><span>行业动态</span></div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">#15</span>
+      <h3><a href="https://aiweekly.co/alerts/chinese-models-take-30-of-us-openrouter-token-use-since-feb-8" target="_blank">中国 AI 模型占 OpenRouter 流量约 45%，美国企业用量超 30%</a></h3>
+    </div>
+    <div class="summary">成本优势和超大上下文窗口驱动中国 AI 模型在 OpenRouter 路由平台流量占比飙升，美国企业也在大量使用。</div>
+    <div class="detail">
+      <p>OpenRouter 数据显示，中国 AI 模型（包括小米等提供商）目前占平台总流量约 45%。更值得注意的是，美国企业用户自 2 月 8 日以来，使用中国模型的 token 比例已超过 30%。</p>
+      <p>主要驱动力是成本套利——中国模型的每 token 价格显著低于欧美同类产品，同时在长上下文处理等能力上具有竞争力。这一趋势正在改变全球 AI 模型的市场格局。</p>
+    </div>
+    <div class="links">
+      <span class="label">相关链接：</span>
+      <a href="https://aiweekly.co/alerts/chinese-models-take-30-of-us-openrouter-token-use-since-feb-8" target="_blank">AI Weekly</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">#16</span>
+      <h3><a href="https://www.cnbc.com/2026/07/06/stock-market-today-live-updates.html" target="_blank">AI 芯片股 7 月 7 日集体大跌，纳斯达克下跌 1%</a></h3>
+    </div>
+    <div class="summary">全球市场 AI 焦虑情绪蔓延，芯片板块领跌，纳斯达克综合指数下跌约 1%。</div>
+    <div class="detail">
+      <p>7 月 7 日，全球芯片和 AI 相关股票出现大幅抛售。CNBC 报道纳斯达克综合指数下跌约 1%，Bloomberg 将其归因于市场对 AI 投资回报的焦虑情绪。</p>
+      <p>此轮下跌的背景是：大规模 AI 基础设施投资尚未见到明确的商业回报，叠加地缘政治不确定性和出口管制政策变动，市场信心受到打压。</p>
+    </div>
+    <div class="links">
+      <span class="label">相关链接：</span>
+      <a href="https://www.cnbc.com/2026/07/06/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">#17</span>
+      <h3><a href="https://www.reuters.com/business/autos-transportation/tesla-rolls-out-robotaxi-service-miami-2026-07-03/" target="_blank">Tesla Robotaxi 迈阿密上线：首次默认完全无监督驾驶</a></h3>
+    </div>
+    <div class="summary">迈阿密成为 Tesla Robotaxi 第五个运营城市，也是首个默认启用完全无监督自动驾驶的城市。</div>
+    <div class="detail">
+      <p>Tesla 于 7 月 3 日在迈阿密正式推出 Robotaxi 服务，这是继此前四个城市之后的第五站。关键突破在于：迈阿密是首个默认以"完全无监督自主驾驶"模式运营的城市，不再配备安全监控员。</p>
+      <p>TechTimes 指出，佛罗里达多雨的气候对纯摄像头 FSD 方案构成了最严峻的测试环境。这一里程碑标志着 Tesla 在自动驾驶商业化道路上迈出了重要一步。</p>
+    </div>
+    <div class="links">
+      <span class="label">相关链接：</span>
+      <a href="https://www.reuters.com/business/autos-transportation/tesla-rolls-out-robotaxi-service-miami-2026-07-03/" target="_blank">Reuters</a>
+      <a href="https://www.techtimes.com/articles/319711/20260704/tesla-robotaxi-arrives-miami-floridas-rain-hardest-test-yet-camera-only-fsd.htm" target="_blank">TechTimes</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">#18</span>
+      <h3><a href="https://aiweekly.co/alerts/openai-anthropic-battle-for-startups-with-free-compute-credits" target="_blank">OpenAI 与 Anthropic 竞相向初创公司提供大额免费算力</a></h3>
+    </div>
+    <div class="summary">两大 AI 实验室争夺初创企业市场，通过赠送大量算力积分来锁定未来的收入来源。</div>
+    <div class="detail">
+      <p>OpenAI 和 Anthropic 正在加大力度，向初创公司提供大规模免费算力积分。两家公司将初创企业视为 AI API 消费增长的引擎，通过早期绑定来锁定长期客户关系。</p>
+      <p>这一竞争态势对开发者社区是利好——初创公司可以以更低的成本接入前沿 AI 模型进行产品开发和验证。</p>
+    </div>
+    <div class="links">
+      <span class="label">相关链接：</span>
+      <a href="https://aiweekly.co/alerts/openai-anthropic-battle-for-startups-with-free-compute-credits" target="_blank">AI Weekly</a>
+      <a href="https://www.anthropic.com/startup-program-official-terms" target="_blank">Anthropic 初创计划</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">#19</span>
+      <h3><a href="https://www.wsj.com/tech/ai/alibaba-consolidates-ai-operations-under-new-business-group-de8283e2" target="_blank">阿里巴巴合并五个 AI 部门，统一领导架构</a></h3>
+    </div>
+    <div class="summary">阿里将五个分散的 AI 业务单元整合为统一架构，聚焦大规模 token 生成和企业 AI 落地。</div>
+    <div class="detail">
+      <p>据 WSJ 报道，阿里巴巴正将此前分散在不同事业群的五个 AI 团队合并到统一的领导架构下。整合后的方向聚焦两个核心：大规模 token 生成能力和企业级 AI 应用落地。</p>
+      <p>这一调整与阿里今年早些时候提出的 AI Agent 战略方向一致。Reuters 此前报道，阿里正大力押注 Agent 赛道，试图通过组织变革加速 AI 商业化。</p>
+    </div>
+    <div class="links">
+      <span class="label">相关链接：</span>
+      <a href="https://www.wsj.com/tech/ai/alibaba-consolidates-ai-operations-under-new-business-group-de8283e2" target="_blank">WSJ</a>
+      <a href="https://www.reuters.com/world/china/alibabas-ai-strategy-shift-comes-into-focus-with-big-bets-agents-2026-03-18/" target="_blank">Reuters</a>
+    </div>
+  </div>
+
+  <!-- ========== 前瞻与传闻 ========== -->
+  <div class="cat-divider"><span>前瞻与传闻</span></div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">#20</span>
+      <h3><a href="https://www.buildfastwithai.com/blogs/best-ai-models-june-2026" target="_blank">Google Gemini 3.5 Pro 持续延期，仍限于企业预览</a><span class="unconfirmed">未确认</span></h3>
+    </div>
+    <div class="summary">Google 旗舰模型 Gemini 3.5 Pro 错过内部截止日期，通用发布日期仍不明朗。</div>
+    <div class="detail">
+      <p>Gemini 3.5 Pro 目前仍处于有限的企业预览阶段，没有公开 GA（General Availability）时间表。据报道，Google 曾向测试人员承诺"给我们到下个月"，但由于 token 效率和推理质量问题，未能如期交付。</p>
+      <p><em>注：此信息来源于第三方评测机构，Google 官方未正式确认延期原因。</em></p>
+    </div>
+    <div class="links">
+      <span class="label">相关链接：</span>
+      <a href="https://www.buildfastwithai.com/blogs/best-ai-models-june-2026" target="_blank">BuildFastWithAI</a>
+      <a href="https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-june-2026/" target="_blank">Google Blog</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">#21</span>
+      <h3><a href="https://www.anthropic.com/news/redeploying-fable-5" target="_blank">Anthropic 发布 AI 越狱严重度框架草案</a><span class="unconfirmed">未确认</span></h3>
+    </div>
+    <div class="summary">Anthropic 提出 AI Prompt 注入攻击的严重度分级框架，试图建立行业标准。</div>
+    <div class="detail">
+      <p>在 Fable 5 重新部署的同一篇公告中，Anthropic 附带发布了一份"AI 越狱严重度框架"草案。该框架旨在为 Prompt 注入和越狱攻击建立统一的严重度评估标准，类似于安全领域的 CVSS 评分体系。</p>
+      <p><em>注：该框架目前仍为草案阶段，尚未被行业广泛采纳或正式评审。</em></p>
+    </div>
+    <div class="links">
+      <span class="label">相关链接：</span>
+      <a href="https://www.anthropic.com/news/redeploying-fable-5" target="_blank">Anthropic 官方</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>AI 早报 &middot; 2026-07-08 &middot; 共收录 21 条</p>
+    <p>信息来源：官方博客、Reuters、CNBC、TechCrunch、VentureBeat、AI Weekly 等</p>
+    <p style="margin-top:6px;">本早报由 AI 自动收集生成，信息以原始来源为准。</p>
+  </div>
+
+</div>
+</body>
+</html>

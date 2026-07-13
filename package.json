@@ -1,0 +1,33 @@
+{
+  "name": "ai-hub",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "packageManager": "pnpm@10.17.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "pnpm generate:index && vite",
+    "build": "pnpm generate:index && vue-tsc -b && vite build && tsx scripts/prepare-static-pages.ts",
+    "preview": "vite preview",
+    "generate:index": "tsx scripts/generate-content-index.ts",
+    "typecheck": "vue-tsc -b"
+  },
+  "dependencies": {
+    "dompurify": "^3.4.12",
+    "highlight.js": "^11.11.1",
+    "markdown-it": "^14.3.0",
+    "vue": "^3.5.39",
+    "vue-router": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^14.1.2",
+    "@types/node": "^26.1.1",
+    "@vitejs/plugin-vue": "^6.0.7",
+    "tsx": "^4.23.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.1.4",
+    "vue-tsc": "^3.3.7"
+  }
+}

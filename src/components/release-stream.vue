@@ -1,0 +1,158 @@
+<script setup lang="ts">
+import type { ContentItem } from '../types/content';
+
+interface ReleaseEntry {
+  item: ContentItem;
+  moduleSlug: string;
+  moduleTitle: string;
+  moduleMark: string;
+}
+
+interface Props {
+  entries: readonly ReleaseEntry[];
+}
+
+defineProps<Props>();
+</script>
+
+<template>
+  <div class="release-list">
+    <RouterLink
+      v-for="entry in entries"
+      :key="`${entry.moduleSlug}-${entry.item.date}`"
+      class="release-row"
+      :to="`/${entry.moduleSlug}/${entry.item.date}`"
+    >
+      <span class="release-row__icon">{{ entry.moduleMark }}</span>
+      <span class="release-row__module">{{ entry.moduleTitle }}</span>
+      <time class="release-row__date" :datetime="entry.item.date">{{ entry.item.date }}</time>
+      <span class="release-row__title">{{ entry.item.title }}</span>
+      <svg class="release-row__arrow" viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" />
+      </svg>
+    </RouterLink>
+  </div>
+</template>
+
+<style scoped>
+.release-list {
+  background: var(--canvas);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.release-row {
+  display: grid;
+  grid-template-columns: 32px 100px 88px minmax(0, 1fr) 16px;
+  align-items: center;
+  gap: 16px;
+  min-height: 52px;
+  padding: 8px 20px;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background 200ms ease;
+}
+
+.release-row + .release-row {
+  border-top: 1px solid var(--line);
+}
+
+.release-row:hover {
+  background: var(--surface);
+}
+
+.release-row__icon {
+  display: inline-flex;
+  width: 28px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand);
+  background: var(--brand-soft);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.release-row__module {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.release-row__date {
+  color: var(--subtle);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.release-row__title {
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 200ms ease;
+}
+
+.release-row:hover .release-row__title {
+  color: var(--brand);
+}
+
+.release-row__arrow {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: var(--subtle);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition:
+    stroke 200ms ease,
+    transform 200ms ease;
+}
+
+.release-row:hover .release-row__arrow {
+  stroke: var(--brand);
+  transform: translateX(2px);
+}
+
+@media (max-width: 760px) {
+  .release-row {
+    grid-template-columns: 28px 1fr 14px;
+    grid-template-rows: auto auto;
+    gap: 4px 10px;
+    min-height: auto;
+    padding: 12px 16px;
+  }
+
+  .release-row__icon {
+    grid-row: 1 / 3;
+  }
+
+  .release-row__module {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .release-row__date {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+  }
+
+  .release-row__title {
+    grid-column: 2;
+    grid-row: 2;
+    white-space: normal;
+  }
+
+  .release-row__arrow {
+    grid-row: 1 / 3;
+    align-self: center;
+  }
+}
+</style>

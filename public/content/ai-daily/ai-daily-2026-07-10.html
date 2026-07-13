@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 早报 2026-07-10</title>
+<style>
+  :root {
+    --bg: #fafafa;
+    --card-bg: #ffffff;
+    --text: #1a1a1a;
+    --text-secondary: #555;
+    --accent: #2563eb;
+    --accent-light: #dbeafe;
+    --border: #e5e7eb;
+    --tag-bg: #f3f4f6;
+    --quote-bg: #f9fafb;
+    --quote-border: #d1d5db;
+    --rumor-bg: #fffbeb;
+    --rumor-border: #f59e0b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0;
+  }
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+  }
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 48px 0 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .header .date {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+  .header .stats {
+    display: inline-flex;
+    gap: 16px;
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    background: var(--tag-bg);
+    padding: 6px 16px;
+    border-radius: 20px;
+  }
+  .header .stats span { white-space: nowrap; }
+
+  /* Section */
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 40px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+  }
+  .section-title:first-of-type { margin-top: 0; }
+
+  /* Overview */
+  .overview {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 40px;
+  }
+  .overview h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--accent);
+  }
+  .overview h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin: 16px 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .overview h3:first-of-type { margin-top: 0; }
+  .overview ul {
+    list-style: none;
+    padding: 0;
+  }
+  .overview li {
+    font-size: 14px;
+    padding: 4px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .overview li a {
+    color: var(--text);
+    text-decoration: none;
+    flex: 1;
+  }
+  .overview li a:hover { color: var(--accent); }
+  .overview li .num {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    background: var(--accent-light);
+    padding: 1px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+
+  /* Card */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 16px;
+    transition: border-color 0.15s;
+  }
+  .card:hover { border-color: #c5cad0; }
+  .card.rumor {
+    background: var(--rumor-bg);
+    border-color: var(--rumor-border);
+  }
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .card-header .num {
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--accent);
+    padding: 2px 9px;
+    border-radius: 10px;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+  .card.rumor .card-header .num { background: var(--rumor-border); }
+  .card-header h3 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .card-header h3 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .card-header h3 a:hover { color: var(--accent); }
+  .rumor-badge {
+    font-size: 11px;
+    font-weight: 600;
+    color: #92400e;
+    background: #fef3c7;
+    border: 1px solid var(--rumor-border);
+    padding: 1px 8px;
+    border-radius: 8px;
+    white-space: nowrap;
+    margin-top: 3px;
+  }
+  .card blockquote {
+    font-size: 14px;
+    color: var(--text-secondary);
+    background: var(--quote-bg);
+    border-left: 3px solid var(--quote-border);
+    padding: 8px 14px;
+    margin: 0 0 12px;
+    border-radius: 0 6px 6px 0;
+  }
+  .card.rumor blockquote {
+    background: #fef9e7;
+    border-left-color: var(--rumor-border);
+  }
+  .card .detail {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.8;
+    margin-bottom: 12px;
+  }
+  .card .detail p { margin-bottom: 8px; }
+  .card .detail p:last-child { margin-bottom: 0; }
+  .card .links {
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+    margin-top: 4px;
+  }
+  .card .links a {
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    margin-right: 16px;
+    display: inline-block;
+    margin-bottom: 4px;
+  }
+  .card .links a:hover { text-decoration: underline; }
+
+  /* Category divider */
+  .category-divider {
+    margin: 40px 0 8px;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 40px 0 20px;
+    font-size: 12px;
+    color: #999;
+    border-top: 1px solid var(--border);
+    margin-top: 48px;
+  }
+
+  @media (max-width: 600px) {
+    .container { padding: 16px 14px 40px; }
+    .header { padding: 32px 0 24px; }
+    .header h1 { font-size: 22px; }
+    .card { padding: 18px 16px; }
+    .overview { padding: 18px 16px; }
+    .header .stats { flex-wrap: wrap; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>AI 早报 2026-07-10</h1>
+  <div class="date">生成时间：2026 年 7 月 10 日 · 数据覆盖过去 24 小时</div>
+  <div class="stats">
+    <span>收录 20 条</span>
+    <span>要闻 6</span>
+    <span>模型发布 4</span>
+    <span>产品应用 3</span>
+    <span>开发生态 3</span>
+    <span>行业动态 3</span>
+    <span>前瞻与传闻 1</span>
+  </div>
+</div>
+
+<!-- 概览 -->
+<div class="overview">
+  <h2>概览</h2>
+
+  <h3>要闻</h3>
+  <ul>
+    <li><a href="#n1">OpenAI 正式发布 GPT-5.6 系列：Sol、Terra、Luna</a><span class="num">#1</span></li>
+    <li><a href="#n2">Meta 将于 9 月量产自研 AI 芯片 Iris，算力翻倍计划启动</a><span class="num">#2</span></li>
+    <li><a href="#n3">NPR 深度分析：Google 为何在 AI 竞赛中落后</a><span class="num">#3</span></li>
+    <li><a href="#n4">Anthropic 恢复 Claude Fable 5 与 Mythos 5 访问权限</a><span class="num">#4</span></li>
+    <li><a href="#n5">Anthropic 更新隐私政策，要求政府身份验证</a><span class="num">#5</span></li>
+    <li><a href="#n6">2026 上半年全球创业融资创纪录达 5100 亿美元</a><span class="num">#6</span></li>
+  </ul>
+
+  <h3>模型发布</h3>
+  <ul>
+    <li><a href="#n7">美团开源 LongCat-2.0：1.6T MoE 模型，MIT 许可，全程国产芯片训练</a><span class="num">#7</span></li>
+    <li><a href="#n8">Gemini Deep Think 科学研究取得多项突破</a><span class="num">#8</span></li>
+    <li><a href="#n9">Google DeepMind 推迟 Gemini 3.5 Pro 发布至 7 月 17 日</a><span class="num">#9</span></li>
+    <li><a href="#n10">xAI Grok V9 内部测试：1.5T 参数，Cursor 数据训练</a><span class="num">#10</span></li>
+  </ul>
+
+  <h3>产品应用</h3>
+  <ul>
+    <li><a href="#n11">Cloudflare Agents Week 2026：20+ Agent 基础设施新功能</a><span class="num">#11</span></li>
+    <li><a href="#n12">Anthropic Fable 5 正式计费，单次编码会话可达 $100</a><span class="num">#12</span></li>
+    <li><a href="#n13">IBM 推出企业 AI 多 Agent 开发与现代化工作流</a><span class="num">#13</span></li>
+  </ul>
+
+  <h3>开发生态</h3>
+  <ul>
+    <li><a href="#n14">A2A 协议一周年：150+ 组织加入，1.0 稳定版发布</a><span class="num">#14</span></li>
+    <li><a href="#n15">GPT-5.6 开发者特性：Multi-Agent API、推理控制、上下文持久化</a><span class="num">#15</span></li>
+    <li><a href="#n16">GLM-5.2 在 Vercel 平台采用量暴涨 80 倍</a><span class="num">#16</span></li>
+  </ul>
+
+  <h3>行业动态</h3>
+  <ul>
+    <li><a href="#n17">Thrive Holdings 获 20 亿美元融资，SoftBank 领投，用 AI 改造专业服务</a><span class="num">#17</span></li>
+    <li><a href="#n18">Bespoke Labs 融资 4000 万美元，构建 AI Agent 训练环境</a><span class="num">#18</span></li>
+    <li><a href="#n19">中国开源模型在美国企业市场份额大幅增长</a><span class="num">#19</span></li>
+  </ul>
+
+  <h3>前瞻与传闻</h3>
+  <ul>
+    <li><a href="#n20">OpenAI 提议给予美国政府 5% 股权以换取监管支持</a><span class="num">#20</span></li>
+  </ul>
+</div>
+
+<!-- 详细内容：要闻 -->
+<div class="category-divider">
+  <div class="section-title">要闻</div>
+</div>
+
+<div class="card" id="n1">
+  <div class="card-header">
+    <span class="num">#1</span>
+    <h3><a href="https://openai.com/index/gpt-5-6/" target="_blank">OpenAI 正式发布 GPT-5.6 系列：Sol、Terra、Luna</a></h3>
+  </div>
+  <blockquote>OpenAI 于 7 月 9 日公开推出新一代模型家族，包含旗舰推理模型 Sol、性价比模型 Terra 和高吞吐模型 Luna。</blockquote>
+  <div class="detail">
+    <p>GPT-5.6 Sol 定位为开发者和企业的旗舰模型，专为前沿推理和长周期 Agent 任务设计。Terra 作为日常均衡模型，性能与上一代持平但成本降低一半。Luna 则面向高吞吐场景优化。Sol 的 token 价格与 GPT-5.5 持平，Terra 价格为前代旗舰的一半。</p>
+    <p>新系列引入多项开发者能力：6 级推理力度控制（none 到 max）、上下文持久化、显式缓存管理、程序化工具调用，以及 Multi-Agent 并行子代理 API（Beta）。Codex CLI 0.144.0 已同步集成。发布时间为太平洋时间 7 月 9 日上午 10 点，全球扩展预览在 24 小时内铺开。</p>
+  </div>
+  <div class="links">
+    <a href="https://openai.com/index/gpt-5-6/" target="_blank">OpenAI 官方</a>
+    <a href="https://openai.com/index/previewing-gpt-5-6-sol/" target="_blank">GPT-5.6 Sol 预览</a>
+    <a href="https://techcrunch.com/2026/07/09/openai-launches-its-new-family-of-models-with-gpt-5-6/" target="_blank">TechCrunch</a>
+    <a href="https://community.openai.com/t/introducing-gpt-5-6-series-sol-terra-and-luna-coming-july-9/1384931?page=2" target="_blank">OpenAI 社区</a>
+  </div>
+</div>
+
+<div class="card" id="n2">
+  <div class="card-header">
+    <span class="num">#2</span>
+    <h3><a href="https://www.reuters.com/world/asia-pacific/meta-put-ai-chip-into-production-september-it-looks-double-computing-capacity-2026-07-09/" target="_blank">Meta 将于 9 月量产自研 AI 芯片 Iris，算力翻倍计划启动</a></h3>
+  </div>
+  <blockquote>Meta 自研 AI 处理器 Iris（MTIA 系列）将于 2026 年 9 月投入量产，目标是降低对外部 GPU 的依赖。</blockquote>
+  <div class="detail">
+    <p>据路透社 7 月 9 日报道，Meta 计划 9 月开始制造其自研 AI 芯片 Iris。该芯片属于 MTIA 项目，由 Broadcom 协作设计、TSMC 代工，内部测试仅约 6 周即通过 bug 检测阶段且未发现重大问题。芯片定位为补充而非替代目前从 AMD 和 Nvidia 采购的大量 GPU。</p>
+    <p>Meta 规划每 6 个月推出一款新处理器直至 2027 年，节奏远快于行业惯例。支撑这一计划的是大规模设施扩建：2026 年新增 7GW 算力容量，2027 年达到 14GW，AI 投资预计达 1450 亿美元。同时已与 Samsung（内存）、Sandisk（闪存）、Sumitomo Electric（光纤硬件）签订长期供应协议。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.reuters.com/world/asia-pacific/meta-put-ai-chip-into-production-september-it-looks-double-computing-capacity-2026-07-09/" target="_blank">Reuters</a>
+    <a href="https://www.cnbc.com/2026/07/09/meta-to-put-ai-chip-into-production-in-september-report.html" target="_blank">CNBC</a>
+    <a href="https://ai.meta.com/blog/meta-mtia-scale-ai-chips-for-billions/" target="_blank">Meta AI 博客</a>
+  </div>
+</div>
+
+<div class="card" id="n3">
+  <div class="card-header">
+    <span class="num">#3</span>
+    <h3><a href="https://www.npr.org/2026/07/09/nx-s1-5885026/why-google-fell-behind-in-the-ai-race" target="_blank">NPR 深度分析：Google 为何在 AI 竞赛中落后</a></h3>
+  </div>
+  <blockquote>NPR 将 Google 的困境归结为"创新者困境"，指出 Gemini 尚未获得与 ChatGPT、Claude 同等的用户认知度。</blockquote>
+  <div class="detail">
+    <p>NPR 在 7 月 9 日发布的深度报道中分析了 Google 在生成式 AI 竞争中落后的原因，核心问题是"创新者困境"——作为搜索领域的绝对霸主，Google 在颠覆自身核心业务的 AI 转型上面临内部掣肘。Gemini 虽然在技术上具备竞争力，但"没有获得与 Claude 和 ChatGPT 相同的家喻户晓的认知度"。</p>
+    <p>DeepMind 负责人 Demis Hassabis 正试图绕过"一家庞大公司的种种约束"来追求超级智能目标。此前 Bloomberg 的报道也指出 Google 在 AI 编程工具领域的内部政治使其难以追赶竞争对手。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.npr.org/2026/07/09/nx-s1-5885026/why-google-fell-behind-in-the-ai-race" target="_blank">NPR</a>
+    <a href="https://www.bloomberg.com/news/articles/2026-04-21/google-struggles-to-gain-ground-in-ai-coding-as-rivals-advance" target="_blank">Bloomberg</a>
+  </div>
+</div>
+
+<div class="card" id="n4">
+  <div class="card-header">
+    <span class="num">#4</span>
+    <h3><a href="https://www.anthropic.com/news/redeploying-fable-5" target="_blank">Anthropic 恢复 Claude Fable 5 与 Mythos 5 访问权限</a></h3>
+  </div>
+  <blockquote>在与美国政府沟通后，Anthropic 重新开放此前因安全考量而限制访问的高性能模型。</blockquote>
+  <div class="detail">
+    <p>Anthropic 正式恢复 Claude Fable 5 和 Mythos 5 的公开访问。此前这两款模型因美国政府的出口管制和安全审查要求被限制使用。据 Business Insider 报道，恢复决定是在与白宫进行协商后做出的。</p>
+    <p>Anthropic 同时启动了 HackerOne 安全漏洞赏金计划，并发布了新的漏洞评分框架，按复现难度和潜在危害对漏洞进行分级，以避免引发过度的政府反应。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.anthropic.com/news/redeploying-fable-5" target="_blank">Anthropic 官方</a>
+    <a href="https://mashable.com/tech/anthropic-fable-restore-access" target="_blank">Mashable</a>
+    <a href="https://en.ain.ua/2026/07/01/anthropic-restores-access-to-claude-fable-5-and-mythos-5/" target="_blank">AIN</a>
+  </div>
+</div>
+
+<div class="card" id="n5">
+  <div class="card-header">
+    <span class="num">#5</span>
+    <h3><a href="https://privacy.claude.com/en/articles/10301952-updates-to-our-privacy-policy" target="_blank">Anthropic 更新隐私政策，要求政府身份验证</a></h3>
+  </div>
+  <blockquote>新隐私政策要求用户提交政府签发的身份证件，以确保符合出口管制重新部署协议。</blockquote>
+  <div class="detail">
+    <p>Anthropic 更新了 Claude 的隐私政策，增加了显式的身份验证要求。通过 claude.ai 订阅访问 Fable 5 的用户可能被要求验证身份。此举旨在确保符合出口管制法规的重新部署协议，防止未授权的海外访问和模型蒸馏攻击。</p>
+    <p>Anthropic 同时正在积极封堵 VPN 和海外子公司绕过限制的手段。据 Financial Times 报道，这反映了前沿 AI 模型在地缘政治背景下面临的日益复杂的合规挑战。</p>
+  </div>
+  <div class="links">
+    <a href="https://privacy.claude.com/en/articles/10301952-updates-to-our-privacy-policy" target="_blank">Anthropic 隐私政策</a>
+    <a href="https://www.techzine.eu/news/applications/142185/anthropic-may-require-identity-verification-for-claude-use/" target="_blank">Techzine</a>
+    <a href="https://explainx.ai/blog/anthropic-claude-id-verification-persona-fable-5-2026" target="_blank">ExplainX</a>
+  </div>
+</div>
+
+<div class="card" id="n6">
+  <div class="card-header">
+    <span class="num">#6</span>
+    <h3><a href="https://news.crunchbase.com/venture/record-breaking-funding-ai-global-q1-2026/" target="_blank">2026 上半年全球创业融资创纪录达 5100 亿美元</a></h3>
+  </div>
+  <blockquote>H1 2026 全球创业融资总额达到 5100 亿美元历史新高，AI 领域吸收了近一半投资。</blockquote>
+  <div class="detail">
+    <p>据 Crunchbase 和 SiliconANGLE 报道，2026 年上半年全球创业融资创下 5100 亿美元的纪录，其中两家主要前沿 AI 实验室吸收了近一半的投资。Q1 单季度达到 2970 亿美元，已经打破了历史纪录。</p>
+    <p>AI 投资的集中度持续走高，前沿模型公司和基础设施公司成为主要受益者。这一数据反映出 AI 行业仍处于资本密集型的快速扩张期。</p>
+  </div>
+  <div class="links">
+    <a href="https://news.crunchbase.com/venture/record-breaking-funding-ai-global-q1-2026/" target="_blank">Crunchbase</a>
+    <a href="https://siliconangle.com/2026/07/02/global-venture-funding-hits-record-510b-first-half-ai-boom-accelerates/" target="_blank">SiliconANGLE</a>
+  </div>
+</div>
+
+<!-- 详细内容：模型发布 -->
+<div class="category-divider">
+  <div class="section-title">模型发布</div>
+</div>
+
+<div class="card" id="n7">
+  <div class="card-header">
+    <span class="num">#7</span>
+    <h3><a href="https://github.com/meituan-longcat/LongCat-2.0" target="_blank">美团开源 LongCat-2.0：1.6T MoE 模型，MIT 许可，全程国产芯片训练</a></h3>
+  </div>
+  <blockquote>美团发布 1.6 万亿参数 MoE 开源模型，在国产 ASIC 集群上完成训练，SWE-bench Pro 得分 59.5%。</blockquote>
+  <div class="detail">
+    <p>美团以 MIT 许可证开源了 LongCat-2.0，一个 1.6 万亿参数的 Mixture-of-Experts 模型，每 token 激活参数在 33B 到 56B 之间（平均 48B），支持 100 万 token 上下文长度。该模型此前以"Owl Alpha"的匿名身份在 OpenRouter 上线，获得了开发者 unbiased 反馈后才公开归属。</p>
+    <p>LongCat-2.0 完全在 5 万卡国产 ASIC 集群上训练，未使用 Nvidia H100/A100 等受限 GPU，证明了中国自主半导体供应链构建顶级 AI 基础设施的可行性。在 SWE-bench Pro 上得分 59.5%、Terminal-Bench 上 70.8%，编程能力略超 GPT-5.5。模型权重已在 Hugging Face 和 GitHub 发布。</p>
+  </div>
+  <div class="links">
+    <a href="https://github.com/meituan-longcat/LongCat-2.0" target="_blank">GitHub</a>
+    <a href="https://venturebeat.com/technology/meituan-open-sources-longcat-2-0-the-1-6t-near-frontier-agentic-coding-model-thats-been-leading-openrouter-trained-entirely-on-chinese-chips" target="_blank">VentureBeat</a>
+  </div>
+</div>
+
+<div class="card" id="n8">
+  <div class="card-header">
+    <span class="num">#8</span>
+    <h3><a href="https://deepmind.google/blog/accelerating-mathematical-and-scientific-discovery-with-gemini-deep-think/" target="_blank">Gemini Deep Think 科学研究取得多项突破</a></h3>
+  </div>
+  <blockquote>Google DeepMind 的深度推理模型在纯数学、计算机科学和天体物理学中自主解决了多个未解难题。</blockquote>
+  <div class="detail">
+    <p>Gemini Deep Think 能"推理一些最具挑战性的数学和编程问题"，并使用自然语言验证器来识别答案中的逻辑缺陷。在纯数学领域，它自主撰写了可发表论文并解决了 Bloom Erdős 猜想数据库中的多个未解问题。在计算机科学中，它发现了一个组合反例，"解决了一个存在十年的在线子模优化猜想"。</p>
+    <p>在天体物理学中，它发现了一个使用 Gegenbauer 多项式的新解法来评估时空中拓扑缺陷发出的引力波。基准方面，该系统在 IMO-ProofBench Advanced 测试上达到 90%，并以数学研究 Agent Aletheia 的形式部署，同时协助 STOC'26 会议的论文评审。</p>
+  </div>
+  <div class="links">
+    <a href="https://deepmind.google/blog/accelerating-mathematical-and-scientific-discovery-with-gemini-deep-think/" target="_blank">DeepMind 博客</a>
+    <a href="https://deepmind.google/models/gemini/deep-think/" target="_blank">模型页面</a>
+  </div>
+</div>
+
+<div class="card" id="n9">
+  <div class="card-header">
+    <span class="num">#9</span>
+    <h3><a href="https://www.buildfastwithai.com/blogs/ai-news-today-july-8-2026" target="_blank">Google DeepMind 推迟 Gemini 3.5 Pro 发布至 7 月 17 日</a></h3>
+  </div>
+  <blockquote>Google 确认 Gemini 3.5 Pro 延期，原因是 token 效率问题和编程性能差距。</blockquote>
+  <div class="detail">
+    <p>Google DeepMind 原计划在 7 月初发布的 Gemini 3.5 Pro 被推迟至 7 月 17 日。Google 确认延期原因是"token 效率问题和编程性能差距"，工程团队正在针对性优化。</p>
+    <p>此次延期发生在 Google 面临 AI 竞争压力的背景下——NPR 同日的分析指出 Google 在 AI 竞赛中正经历"创新者困境"，Gemini 系列在消费者端认知度不及 ChatGPT 和 Claude。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.buildfastwithai.com/blogs/ai-news-today-july-8-2026" target="_blank">Build Fast with AI</a>
+  </div>
+</div>
+
+<div class="card" id="n10">
+  <div class="card-header">
+    <span class="num">#10</span>
+    <h3><a href="https://x.ai/news" target="_blank">xAI Grok V9 内部测试：1.5T 参数，Cursor 数据训练</a></h3>
+  </div>
+  <blockquote>Musk 宣布 xAI 正在内部测试 1.5 万亿参数的基础模型，使用了 Cursor IDE 数据进行训练。</blockquote>
+  <div class="detail">
+    <p>Elon Musk 宣布 xAI 正在其旗下公司（SpaceX 和 Tesla）内部测试一个 1.5 万亿参数的基础模型。V9 架构于 5 月完成训练，独特之处在于跳过了 GitHub 公开代码，转而使用 Cursor IDE 中的实际编码行为数据进行训练，以更贴近开发者的真实编码模式。</p>
+    <p>Musk 声称早期结果"接近甚至可能超越 Opus"。xAI 计划每月更新模型迭代，并在开发一个 6 到 10 万亿参数的后续版本。</p>
+  </div>
+  <div class="links">
+    <a href="https://x.ai/news" target="_blank">xAI 官方</a>
+    <a href="https://kie.ai/blog/grok-4-5-xai-cursor-1-5t-model-analysis" target="_blank">Kie.ai 分析</a>
+  </div>
+</div>
+
+<!-- 详细内容：产品应用 -->
+<div class="category-divider">
+  <div class="section-title">产品应用</div>
+</div>
+
+<div class="card" id="n11">
+  <div class="card-header">
+    <span class="num">#11</span>
+    <h3><a href="https://blog.cloudflare.com/agents-week-in-review/" target="_blank">Cloudflare Agents Week 2026：20+ Agent 基础设施新功能</a></h3>
+  </div>
+  <blockquote>Cloudflare 在 Agents Week 中发布了覆盖计算、安全、Agent 工具和开发者体验的全面更新。</blockquote>
+  <div class="detail">
+    <p>Cloudflare 的 Agents Week 2026 发布了 20 多项新功能。计算基础设施方面包括：Git 兼容的 Artifacts 存储、Sandboxes GA（持久化隔离环境）、Outbound Workers 零信任出口代理、Workflows v2 高并发引擎。安全方面有 Cloudflare Mesh 私有网络访问和 Managed OAuth。</p>
+    <p>Agent 工具方面推出了 Project Think SDK 预览、Voice Pipeline（WebSocket 实时语音）、Email Service 公测、Agent Memory 长期记忆服务、AI Search 混合检索，以及 Browser Run 升级。开发者体验方面包括统一 cf CLI、Agent Lee 仪表盘助手、Flagship 特性开关服务，以及 PlanetScale 集成。</p>
+  </div>
+  <div class="links">
+    <a href="https://blog.cloudflare.com/agents-week-in-review/" target="_blank">Cloudflare 博客</a>
+    <a href="https://www.cloudflare.com/agents-week/updates/" target="_blank">更新列表</a>
+  </div>
+</div>
+
+<div class="card" id="n12">
+  <div class="card-header">
+    <span class="num">#12</span>
+    <h3><a href="https://releasebot.io/updates/anthropic" target="_blank">Anthropic Fable 5 正式计费，单次编码会话可达 $100</a></h3>
+  </div>
+  <blockquote>Anthropic 对所有层级开始收取 Fable 5 信用费用，一次处理 200 万输出 token 的 Agent 编码会话约花费 $100。</blockquote>
+  <div class="detail">
+    <p>Anthropic 现在对所有订阅层级收取 Fable 5 信用费用。Pro 用户需为此模型额外付费，Sonnet 5 和 Opus 4.8 仍包含在基础套餐中。据报道，单次 Fable 5 Agent 编码会话（处理 200 万输出 token）约花费 $100 信用。</p>
+    <p>这一定价反映了前沿推理模型的高计算成本，同时也引发了企业用户对 AI 编码工具 ROI 的讨论。Palantir CEO 此前公开批评前沿 AI 实验室的推理定价"疯狂"，称其对企业施加了"财富税"。</p>
+  </div>
+  <div class="links">
+    <a href="https://releasebot.io/updates/anthropic" target="_blank">Releasebot</a>
+    <a href="https://www.cnbc.com/2026/06/10/palantir-karp-enterprise-ai.html" target="_blank">CNBC (Palantir 批评)</a>
+  </div>
+</div>
+
+<div class="card" id="n13">
+  <div class="card-header">
+    <span class="num">#13</span>
+    <h3><a href="https://www.hpcwire.com/aiwire/2026/07/09/ibm-advances-enterprise-ai-software-development-with-multi-agent-capabilities-and-specialized-modernization-workflows/" target="_blank">IBM 推出企业 AI 多 Agent 开发与现代化工作流</a></h3>
+  </div>
+  <blockquote>IBM 在企业 AI 软件开发中引入多 Agent 能力和专项现代化工作流，面向传统系统迁移。</blockquote>
+  <div class="detail">
+    <p>IBM 于 7 月 9 日宣布在企业 AI 软件开发中增加多 Agent 能力，并推出专项现代化工作流。该方案面向大型企业的遗留系统现代化需求，通过多个专业 Agent 协同完成代码分析、重构和测试任务。</p>
+    <p>此举延续了 IBM 在企业 AI 领域的布局，与 Cloudflare Agents Week 和 OpenAI Multi-Agent API 形成多层次的企业 Agent 生态。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.hpcwire.com/aiwire/2026/07/09/ibm-advances-enterprise-ai-software-development-with-multi-agent-capabilities-and-specialized-modernization-workflows/" target="_blank">HPC Wire</a>
+  </div>
+</div>
+
+<!-- 详细内容：开发生态 -->
+<div class="category-divider">
+  <div class="section-title">开发生态</div>
+</div>
+
+<div class="card" id="n14">
+  <div class="card-header">
+    <span class="num">#14</span>
+    <h3><a href="https://www.linuxfoundation.org/press/a2a-protocol-surpasses-150-organizations-lands-in-major-cloud-platforms-and-sees-enterprise-production-use-in-first-year" target="_blank">A2A 协议一周年：150+ 组织加入，1.0 稳定版发布</a></h3>
+  </div>
+  <blockquote>Google 发起的 Agent-to-Agent 协议已获 150+ 组织支持，1.0 稳定版带来多租户、签名 Agent Card 和支付框架。</blockquote>
+  <div class="detail">
+    <p>Linux 基金会宣布 A2A 协议在一周年之际已获超过 150 家组织支持（包括 Cisco、IBM、Salesforce、SAP、ServiceNow），主要代码库在 GitHub 上获得 22,000+ 星。Microsoft Azure AI 和 Copilot Studio、AWS Bedrock AgentCore Runtime 已原生集成该协议。</p>
+    <p>1.0 稳定版引入了多租户、多协议能力，关键新增包括：身份验证的签名 Agent Card、Web 兼容结构设计，以及用于货币交换的 AP2 框架。该协议与 MCP 兼容，A2A 被视为"使 Agent 间通信可靠且可互操作的语法层"。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.linuxfoundation.org/press/a2a-protocol-surpasses-150-organizations-lands-in-major-cloud-platforms-and-sees-enterprise-production-use-in-first-year" target="_blank">Linux Foundation</a>
+    <a href="https://www.prnewswire.com/news-releases/a2a-protocol-surpasses-150-organizations-lands-in-major-cloud-platforms-and-sees-enterprise-production-use-in-first-year-302737641.html" target="_blank">PR Newswire</a>
+  </div>
+</div>
+
+<div class="card" id="n15">
+  <div class="card-header">
+    <span class="num">#15</span>
+    <h3><a href="https://community.openai.com/t/introducing-gpt-5-6-series-sol-terra-and-luna-coming-july-9/1384931?page=2" target="_blank">GPT-5.6 开发者特性：Multi-Agent API、推理控制、上下文持久化</a></h3>
+  </div>
+  <blockquote>GPT-5.6 为开发者带来了细粒度推理控制、Multi-Agent 并行 API 和程序化工具调用等重要新能力。</blockquote>
+  <div class="detail">
+    <p>GPT-5.6 引入了 6 级推理力度控制（none / low / medium / high / xhigh / max），开发者可通过 reasoning.mode: "pro" 触发高级处理。上下文持久化支持 auto、all_turns、current_turn 三种模式，保持思维过程跨轮次连贯。</p>
+    <p>新的 programmatic_tool_calling 允许应用以 allowed_callers 控制工具执行权限。Multi-Agent Beta 通过 Responses API 支持并行子代理和可分离复杂任务的综合处理。显式缓存通过 prompt_cache_options 管理，cache writes 成本为 1.25 倍未缓存输入。模型命名也去掉了"snapshot date"。</p>
+  </div>
+  <div class="links">
+    <a href="https://community.openai.com/t/introducing-gpt-5-6-series-sol-terra-and-luna-coming-july-9/1384931?page=2" target="_blank">OpenAI 社区</a>
+  </div>
+</div>
+
+<div class="card" id="n16">
+  <div class="card-header">
+    <span class="num">#16</span>
+    <h3><a href="https://www.buildfastwithai.com/blogs/ai-news-today-july-8-2026" target="_blank">GLM-5.2 在 Vercel 平台采用量暴涨 80 倍</a></h3>
+  </div>
+  <blockquote>中国开源模型 GLM-5.2 上线首周，Vercel 平台日 token 量增长约 27 倍，使用客户数增长约 80 倍。</blockquote>
+  <div class="detail">
+    <p>据 CNBC 和 Vercel 数据，中国开源模型 GLM-5.2 在上线首周经历了前所未有的采用增长：日 token 量增长约 27 倍，使用该模型的客户数增长约 80 倍。开发者正在将标准任务路由到更具成本效益的开源模型，而将昂贵的前沿模型留给复杂任务。</p>
+    <p>这一趋势反映了企业 AI 支出策略的转变——Q2 预算修正后，越来越多公司实施了员工级支出分层、用量分析和模型路由控制。Hugging Face 数据也显示工程师倾向于选择 GLM-5.2 和 DeepSeek 处理常规编码任务。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.buildfastwithai.com/blogs/ai-news-today-july-8-2026" target="_blank">Build Fast with AI</a>
+    <a href="https://www.theatlantic.com/technology/2026/07/glm-5-2-china-cheap-ai-agents/687828/" target="_blank">The Atlantic</a>
+  </div>
+</div>
+
+<!-- 详细内容：行业动态 -->
+<div class="category-divider">
+  <div class="section-title">行业动态</div>
+</div>
+
+<div class="card" id="n17">
+  <div class="card-header">
+    <span class="num">#17</span>
+    <h3><a href="https://www.pymnts.com/news/artificial-intelligence/2026/thrive-holdings-raises-2-billion-to-buy-and-rewire-services-firms-with-ai/" target="_blank">Thrive Holdings 获 20 亿美元融资，SoftBank 领投，用 AI 改造专业服务</a></h3>
+  </div>
+  <blockquote>Josh Kushner 旗下 Thrive Holdings 获 SoftBank、Altimeter、D1 的 20 亿美元投资，用于收购并 AI 化会计、法律等专业服务公司。</blockquote>
+  <div class="detail">
+    <p>据 The Information 报道，Thrive Holdings 获得 SoftBank、Altimeter 和 D1 Capital 的 20 亿美元融资。该公司的策略是购买会计、法律和其他专业服务公司的控股权，然后利用 AI 对其进行现代化改造。</p>
+    <p>这一模式代表了 AI 投资从纯技术公司向传统行业渗透的趋势，将 AI 能力直接嵌入已有客户基础和现金流的成熟业务中。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.pymnts.com/news/artificial-intelligence/2026/thrive-holdings-raises-2-billion-to-buy-and-rewire-services-firms-with-ai/" target="_blank">PYMNTS</a>
+    <a href="https://www.theinformation.com/articles/softbank-altimeter-d1-invest-thrive-holdings-2-billion-financing" target="_blank">The Information</a>
+  </div>
+</div>
+
+<div class="card" id="n18">
+  <div class="card-header">
+    <span class="num">#18</span>
+    <h3><a href="https://bespokelabs.ai/blog/bespoke-labs-raises-40m-to-build-environments-that-enable-reliable-agents" target="_blank">Bespoke Labs 融资 4000 万美元，构建 AI Agent 训练环境</a></h3>
+  </div>
+  <blockquote>Bespoke Labs 获 A 轮 4000 万美元融资，构建强化学习环境来训练可靠的 AI Agent。</blockquote>
+  <div class="detail">
+    <p>Bespoke Labs 完成 4000 万美元融资，Wing VC 领投 A 轮，8VC 领投种子轮，其他投资方包括 Mayfield、The House Fund、Tristan Handy、Jeff Dean，以及来自主要 AI 公司的个人投资者。</p>
+    <p>该公司构建"强化学习环境来训练和优化 AI Agent"，核心产品包含世界构建引擎、高吞吐沙盒和调优模块。融资将用于打造"世界最佳前沿数据研究实验室"，并加速数据集精炼和复杂数字模拟的创建，使 Agent 能掌握长期业务流程。</p>
+  </div>
+  <div class="links">
+    <a href="https://bespokelabs.ai/blog/bespoke-labs-raises-40m-to-build-environments-that-enable-reliable-agents" target="_blank">Bespoke Labs 博客</a>
+    <a href="https://www.axios.com/pro/enterprise-software-deals/2026/07/06/bespoke-labs-training-ai-agents" target="_blank">Axios</a>
+    <a href="https://thenextweb.com/news/bespoke-labs-40m-ai-agent-training-environments" target="_blank">TNW</a>
+  </div>
+</div>
+
+<div class="card" id="n19">
+  <div class="card-header">
+    <span class="num">#19</span>
+    <h3><a href="https://www.theatlantic.com/technology/2026/07/glm-5-2-china-cheap-ai-agents/687828/" target="_blank">中国开源模型在美国企业市场份额大幅增长</a></h3>
+  </div>
+  <blockquote>调查显示中国开源模型比 Anthropic、OpenAI 领先模型便宜 60%-90%，在 OpenRouter 和 Vercel 上采用率飙升。</blockquote>
+  <div class="detail">
+    <p>CNBC 调查显示，企业正大规模转向来自中国的更廉价 AI 模型替代方案。据 The Atlantic 报道，中国开源模型比 Anthropic 和 OpenAI 的领先模型便宜 60% 到 90%，在 OpenRouter 和 Vercel 等平台上的采用率急剧上升。</p>
+    <p>企业正在实施精细的成本管控策略：按员工设定支出层级、使用量分析和模型路由控制。一种新的最佳实践正在形成——"当任务不需要最好的模型时，团队开始将任务路由到最便宜的合格模型"。这一趋势对前沿 AI 实验室的定价权构成挑战。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.theatlantic.com/technology/2026/07/glm-5-2-china-cheap-ai-agents/687828/" target="_blank">The Atlantic</a>
+    <a href="https://www.businessinsider.com/what-is-glm-5-2-chinese-ai-coding-model-2026-6" target="_blank">Business Insider</a>
+  </div>
+</div>
+
+<!-- 详细内容：前瞻与传闻 -->
+<div class="category-divider">
+  <div class="section-title">前瞻与传闻</div>
+</div>
+
+<div class="card rumor" id="n20">
+  <div class="card-header">
+    <span class="num">#20</span>
+    <h3><a href="https://www.cnbc.com/2026/07/02/openai-proposes-us-government-own-5percent-stake-to-address-political-blowback.html" target="_blank">OpenAI 提议给予美国政府 5% 股权以换取监管支持</a></h3>
+    <span class="rumor-badge">未最终确认</span>
+  </div>
+  <blockquote>据报道，OpenAI 在 IPO 前向特朗普政府提议给予 5% 股权，以对齐监管和商业利益。</blockquote>
+  <div class="detail">
+    <p>据 Financial Times 和多家媒体报道，OpenAI 已向特朗普政府提议给予美国政府 5% 的股权份额，以在 IPO 前缓解政治压力并对齐监管与商业利益。批评者认为这是"一笔糟糕的交易"，称 OpenAI 想以成功收益的 5% 来换取政策便利。</p>
+    <p>该提议目前仍在早期讨论阶段，尚未正式确认或落地。如果实施，这将是前沿 AI 公司与政府之间前所未有的利益绑定模式，对行业治理具有深远影响。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.cnbc.com/2026/07/02/openai-proposes-us-government-own-5percent-stake-to-address-political-blowback.html" target="_blank">CNBC</a>
+    <a href="https://www.theguardian.com/technology/2026/jul/02/openai-stake-us-government-ai-sam-altman" target="_blank">The Guardian</a>
+    <a href="https://www.reuters.com/business/openai-proposes-handing-trump-administration-5-stake-ft-reports-2026-07-02/" target="_blank">Reuters</a>
+  </div>
+</div>
+
+<div class="footer">
+  AI 早报 · 自动生成于 2026-07-10 · 信息来源包括官方博客、TechCrunch、Reuters、CNBC、NPR 等<br>
+  传闻与未确认信息已明确标注 · 不构成投资建议
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<script setup lang="ts">
+import type { ContentModuleIndex } from '../types/content';
+
+interface Props {
+  modules: readonly ContentModuleIndex[];
+  activeSlug?: string;
+}
+
+defineProps<Props>();
+</script>
+
+<template>
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <RouterLink class="site-header__brand" to="/">
+        <span class="site-header__logo" aria-hidden="true">
+          <svg viewBox="0 0 28 28" fill="none">
+            <rect x="2" y="2" width="24" height="24" rx="7" fill="currentColor" />
+            <path
+              d="M9 18V10L14 7L19 10V18L14 21L9 18Z"
+              stroke="#fff"
+              stroke-width="1.6"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M14 7V21M9 10L19 18M19 10L9 18"
+              stroke="#fff"
+              stroke-width="1"
+              stroke-opacity=".4"
+            />
+          </svg>
+        </span>
+        <span class="site-header__name">AI Hub</span>
+      </RouterLink>
+      <nav class="site-header__nav" aria-label="内容模块">
+        <RouterLink class="site-header__link" :class="{ 'is-active': !activeSlug }" to="/">
+          首页
+        </RouterLink>
+        <RouterLink
+          v-for="module in modules"
+          :key="module.id"
+          class="site-header__link"
+          :class="{ 'is-active': activeSlug === module.slug }"
+          :to="`/${module.slug}`"
+        >
+          {{ module.title }}
+        </RouterLink>
+      </nav>
+    </div>
+  </header>
+</template>
+
+<style scoped>
+.skip-link {
+  position: fixed;
+  top: -80px;
+  left: 16px;
+  z-index: 100;
+  padding: 8px 14px;
+  color: #fff;
+  background: var(--ink);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  transition: top 200ms ease;
+}
+
+.skip-link:focus {
+  top: 8px;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header__inner {
+  display: flex;
+  width: min(var(--page-width), calc(100% - 40px));
+  min-height: 56px;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.site-header__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.02em;
+}
+
+.site-header__logo {
+  display: flex;
+  width: 28px;
+  height: 28px;
+  color: var(--brand);
+}
+
+.site-header__logo svg {
+  width: 100%;
+  height: 100%;
+}
+
+.site-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.site-header__link {
+  display: inline-flex;
+  min-height: 32px;
+  padding: 0 12px;
+  align-items: center;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+
+.site-header__link:hover {
+  color: var(--ink);
+  background: var(--surface-2);
+}
+
+.site-header__link.is-active {
+  color: var(--brand);
+  background: var(--brand-soft);
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .site-header__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 8px 0;
+  }
+
+  .site-header__nav {
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+
+  .site-header__nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .site-header__link {
+    padding: 0 10px;
+  }
+}
+</style>

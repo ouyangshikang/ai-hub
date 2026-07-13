@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 早报 2026-07-03</title>
+<style>
+  :root {
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #1a1a2e;
+    --text-secondary: #555770;
+    --accent: #2563eb;
+    --accent-light: #dbeafe;
+    --border: #e5e7eb;
+    --tag-bg: #f0f4ff;
+    --tag-text: #3b5998;
+    --quote-border: #2563eb;
+    --quote-bg: #f0f7ff;
+    --section-major: #dc2626;
+    --section-model: #7c3aed;
+    --section-product: #0891b2;
+    --section-dev: #059669;
+    --section-industry: #d97706;
+    --section-rumor: #6b7280;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0;
+  }
+  .container { max-width: 780px; margin: 0 auto; padding: 20px 16px 60px; }
+  header {
+    text-align: center;
+    padding: 40px 20px 30px;
+    margin-bottom: 8px;
+  }
+  header h1 {
+    font-size: 2em;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  header .date {
+    font-size: 0.95em;
+    color: var(--text-secondary);
+  }
+  header .subtitle {
+    font-size: 0.85em;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  /* Overview Section */
+  .overview {
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    padding: 24px 28px;
+    margin-bottom: 28px;
+  }
+  .overview h2 {
+    font-size: 1.3em;
+    font-weight: 700;
+    margin-bottom: 18px;
+    color: var(--text);
+  }
+  .overview-category { margin-bottom: 14px; }
+  .overview-category:last-child { margin-bottom: 0; }
+  .overview-category h3 {
+    font-size: 0.85em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .overview-category ul { list-style: none; padding: 0; }
+  .overview-category li {
+    font-size: 0.92em;
+    padding: 2px 0;
+    color: var(--text);
+  }
+  .overview-category li a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .overview-category li a:hover { color: var(--accent); }
+  .num-tag {
+    display: inline-block;
+    font-size: 0.75em;
+    font-weight: 600;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    padding: 1px 7px;
+    border-radius: 4px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  /* Section headers */
+  .section-header {
+    font-size: 1.1em;
+    font-weight: 700;
+    padding: 10px 0 6px;
+    margin-top: 16px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-header .dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  .section-header.major .dot { background: var(--section-major); }
+  .section-header.model .dot { background: var(--section-model); }
+  .section-header.product .dot { background: var(--section-product); }
+  .section-header.dev .dot { background: var(--section-dev); }
+  .section-header.industry .dot { background: var(--section-industry); }
+  .section-header.rumor .dot { background: var(--section-rumor); }
+
+  /* Cards */
+  .card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    margin-bottom: 14px;
+    transition: border-color 0.15s;
+  }
+  .card:hover { border-color: #c5cad3; }
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .card-title {
+    font-size: 1.05em;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .card-title a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .card-title a:hover { color: var(--accent); }
+  .card-num {
+    font-size: 0.78em;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .card blockquote {
+    border-left: 3px solid var(--quote-border);
+    background: var(--quote-bg);
+    padding: 8px 14px;
+    margin: 10px 0 12px;
+    font-size: 0.9em;
+    color: var(--text-secondary);
+    border-radius: 0 6px 6px 0;
+  }
+  .card .detail {
+    font-size: 0.92em;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin-bottom: 10px;
+  }
+  .card .detail p { margin-bottom: 8px; }
+  .card .detail p:last-child { margin-bottom: 0; }
+  .card .links {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .card .links span.label {
+    font-size: 0.8em;
+    font-weight: 600;
+    color: var(--text-secondary);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .card .links a {
+    font-size: 0.82em;
+    color: var(--accent);
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 14px;
+    margin-bottom: 3px;
+    word-break: break-all;
+  }
+  .card .links a:hover { text-decoration: underline; }
+  .rumor-badge {
+    display: inline-block;
+    font-size: 0.72em;
+    font-weight: 600;
+    color: #b91c1c;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    padding: 1px 8px;
+    border-radius: 4px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  footer {
+    text-align: center;
+    padding: 30px 20px 10px;
+    font-size: 0.82em;
+    color: #999;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* Category colors for overview headers */
+  .cat-major { color: var(--section-major); }
+  .cat-model { color: var(--section-model); }
+  .cat-product { color: var(--section-product); }
+  .cat-dev { color: var(--section-dev); }
+  .cat-industry { color: var(--section-industry); }
+  .cat-rumor { color: var(--section-rumor); }
+
+  @media (max-width: 600px) {
+    .container { padding: 12px 10px 40px; }
+    header { padding: 24px 12px 20px; }
+    header h1 { font-size: 1.5em; }
+    .card { padding: 16px 16px; }
+    .overview { padding: 18px 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>AI 早报 2026-07-03</h1>
+  <div class="date">2026 年 7 月 3 日 星期五</div>
+  <div class="subtitle">每日精选 AI 前沿动态，共 20 条 · 6 个分类</div>
+</header>
+
+<!-- ==================== 概览 ==================== -->
+<div class="overview">
+  <h2>概览</h2>
+
+  <div class="overview-category">
+    <h3 class="cat-major">要闻</h3>
+    <ul>
+      <li><a href="#n1">Anthropic 发布 Claude Sonnet 5，号称最强 Sonnet</a> <span class="num-tag">#1</span></li>
+      <li><a href="#n2">美国解除 Anthropic Fable 5 / Mythos 出口管制</a> <span class="num-tag">#2</span></li>
+      <li><a href="#n3">Anthropic 推出 Claude Science 科研工作台</a> <span class="num-tag">#3</span></li>
+      <li><a href="#n4">OpenAI 探索向美国政府提供 5% 股权</a> <span class="num-tag">#4</span></li>
+      <li><a href="#n5">OpenAI 发布 Jalapeño 自研推理芯片</a> <span class="num-tag">#5</span></li>
+      <li><a href="#n6">Meta 计划将 AI 算力商业化，进军云计算</a> <span class="num-tag">#6</span></li>
+    </ul>
+  </div>
+
+  <div class="overview-category">
+    <h3 class="cat-model">模型发布</h3>
+    <ul>
+      <li><a href="#n7">OpenAI GPT-5.6 系列预览：Sol / Terra / Luna</a> <span class="num-tag">#7</span></li>
+      <li><a href="#n8">字节跳动发布 Seed 2.1 Pro 和 Turbo</a> <span class="num-tag">#8</span></li>
+      <li><a href="#n9">智谱 AI 开源 GLM-5.2，支持 100 万 Token 上下文</a> <span class="num-tag">#9</span></li>
+      <li><a href="#n10">Moonshot AI 开源 Kimi K2.7 Code 编程模型</a> <span class="num-tag">#10</span></li>
+      <li><a href="#n11">Cohere 开源 North Mini Code 30B 编程模型</a> <span class="num-tag">#11</span></li>
+    </ul>
+  </div>
+
+  <div class="overview-category">
+    <h3 class="cat-product">产品应用</h3>
+    <ul>
+      <li><a href="#n12">Palantir CEO 猛烈抨击 AI 按 Token 计费模式</a> <span class="num-tag">#12</span></li>
+      <li><a href="#n13">Meta 禁止员工使用竞品 AI 编程助手</a> <span class="num-tag">#13</span></li>
+    </ul>
+  </div>
+
+  <div class="overview-category">
+    <h3 class="cat-dev">开发生态</h3>
+    <ul>
+      <li><a href="#n14">Qualcomm 39 亿美元收购 AI 软件公司 Modular</a> <span class="num-tag">#14</span></li>
+      <li><a href="#n15">MCP 协议发布 2026-07-28 候选版，聚焦 Agent 身份认证</a> <span class="num-tag">#15</span></li>
+    </ul>
+  </div>
+
+  <div class="overview-category">
+    <h3 class="cat-industry">行业动态</h3>
+    <ul>
+      <li><a href="#n16">NVIDIA 与 Corning 合作建设美国光工厂，支撑 AI 基础设施</a> <span class="num-tag">#16</span></li>
+      <li><a href="#n17">Blackstone 计划 300 亿美元投资日本 AI 数据中心</a> <span class="num-tag">#17</span></li>
+      <li><a href="#n18">2026 世界人工智能大会（WAIC）7 月上海举办</a> <span class="num-tag">#18</span></li>
+    </ul>
+  </div>
+
+  <div class="overview-category">
+    <h3 class="cat-rumor">前瞻与传闻</h3>
+    <ul>
+      <li><a href="#n19">OpenAI 发现算法优化可将推理成本减半</a> <span class="num-tag">#19</span></li>
+      <li><a href="#n20">AI 驱动裁员浪潮持续扩大</a> <span class="num-tag">#20</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== 要闻 ==================== -->
+<div class="section-header major"><span class="dot"></span>要闻</div>
+
+<div class="card" id="n1">
+  <div class="card-header">
+    <div class="card-title"><a href="https://www.anthropic.com/news/claude-sonnet-5" target="_blank">Anthropic 发布 Claude Sonnet 5，号称最强 Sonnet</a></div>
+    <span class="card-num">#1</span>
+  </div>
+  <blockquote>Anthropic 推出 Claude Sonnet 5，自主浏览和命令行能力大幅提升，性能接近 Opus 4.8，价格仅为 Opus 的零头。</blockquote>
+  <div class="detail">
+    <p>6 月 30 日，Anthropic 正式发布 Claude Sonnet 5，定位为"最强 Sonnet"。该模型可自主浏览网页和操作命令行完成多步骤复杂任务，在推理、编程和信息处理方面均优于前代 Sonnet 4.6。同时，抗 prompt 注入能力增强，sycophancy 和幻觉问题显著减少。新的 tokenizer 将效率提升约 1-1.35 倍。</p>
+    <p>在最大 effort 配置下，Sonnet 5 的表现接近旗舰级 Opus 4.8。API 标识为 claude-sonnet-5，推广期定价为输入 $2/百万 token、输出 $10/百万 token，9 月后恢复至 $3/$15。该模型现已面向免费和付费用户开放。</p>
+  </div>
+  <div class="links">
+    <span class="label">相关链接</span>
+    <a href="https://www.anthropic.com/news/claude-sonnet-5" target="_blank">Anthropic 官方公告</a>
+    <a href="https://platform.claude.com/docs/en/about-claude/models/whats-new-sonnet-5" target="_blank">What's New 文档</a>
+    <a href="https://simonwillison.net/2026/Jun/30/claude-sonnet-5/" target="_blank">Simon Willison 评测</a>
+  </div>
+</div>
+
+<div class="card" id="n2">
+  <div class="card-header">
+    <div class="card-title"><a href="https://www.aljazeera.com/economy/2026/7/1/us-lifts-restrictions-on-powerful-ai-models-fable-mythos-anthropic-says" target="_blank">美国解除 Anthropic Fable 5 / Mythos 出口管制</a></div>
+    <span class="card-num">#2</span>
+  </div>
+  <blockquote>美国商务部解除对 Anthropic Fable 5 和 Mythos 的出口限制，7 月 1 日起恢复全球访问。</blockquote>
+  <div class="detail">
+    <p>7 月 1 日起，Anthropic 恢复了 Fable 5 和 Mythos 的全球访问。此前这两款模型因出口管制被限制使用约 20 天。美国商务部于 6 月 30 日取消限制，Anthropic 承诺将主动检测安全风险、配合政府安全标准制定。</p>
+    <p>Anthropic 在解除管制过程中证明了 Opus 4.8、GPT-5.5 和 Kimi K2.7 等竞品系统同样可被利用进行同类操作，不存在独占性威胁。用户将获得截至 7 月 7 日的 50% 免费使用额度。Mythos 5 仍限于约 100 家经过审查的美国 Project Glasswing 合作伙伴。</p>
+  </div>
+  <div class="links">
+    <span class="label">相关链接</span>
+    <a href="https://www.aljazeera.com/economy/2026/7/1/us-lifts-restrictions-on-powerful-ai-models-fable-mythos-anthropic-says" target="_blank">Al Jazeera 报道</a>
+    <a href="https://www.theguardian.com/technology/2026/jul/01/anthropic-fable-mythos-ai-models-us-export-controls-lifted" target="_blank">The Guardian</a>
+    <a href="https://www.reuters.com/business/us-lift-export-controls-anthropics-fable-ai-model-tuesday-source-says-2026-06-30/" target="_blank">Reuters</a>
+  </div>
+</div>
+
+<div class="card" id="n3">
+  <div class="card-header">
+    <div class="card-title"><a href="https://www.anthropic.com/news/claude-science-ai-workbench" target="_blank">Anthropic 推出 Claude Science 科研工作台</a></div>
+    <span class="card-num">#3</span>
+  </div>
+  <blockquote>面向制药、生物科技和学术研究的专用 AI 工作台，可原生渲染蛋白质结构、连接 60+ 生物数据库。</blockquote>
+  <div class="detail">
+    <p>6 月 30 日，Anthropic 推出首个专业领域产品 Claude Science，定位为"科学家的 AI 工作台"。该产品可原生渲染蛋白质、分子结构等复杂可视化数据，采用多 Agent 架构（含协调者、专业子 Agent 和自动引用审核 Agent），并原生对接超过 60 个专业生物数据库。</p>
+    <p>与普通 Claude 不同，Claude Science 的所有输出均可复现、关联底层代码，数据保留在本地基础设施上。支持本地笔记本、集群和按需 GPU 计算。目前面向 Pro、Max、Team 和 Enterprise 用户开放 beta，学术和非营利实验室享有折扣方案。</p>
+  </div>
+  <div class="links">
+    <span class="label">相关链接</span>
+    <a href="https://www.anthropic.com/news/claude-science-ai-workbench" target="_blank">Anthropic 官方</a>
+    <a href="https://www.technologyreview.com/2026/06/30/1139987/claude-science-is-anthropics-newest-flagship-product/" target="_blank">MIT Technology Review</a>
+    <a href="https://www.statnews.com/2026/06/30/anthropic-release-claude-science-ceo-dario-amodei/" target="_blank">STAT News</a>
+  </div>
+</div>
+
+<div class="card" id="n4">
+  <div class="card-header">
+    <div class="card-title"><a href="https://www.theguardian.com/technology/2026/jul/02/openai-stake-us-government-ai-sam-altman" target="_blank">OpenAI 探索向美国政府提供 5% 股权</a></div>
+    <span class="card-num">#4</span>
+  </div>
+  <blockquote>OpenAI 正与白宫讨论向美国政府提供约 5% 的股权，可能通过主权投资工具实现，IPO 前的重要信号。</blockquote>
+  <div class="detail">
+    <p>据 The Guardian 报道，OpenAI 正在与 Trump 政府讨论向美国政府提供约 5% 的股权。该方案可能通过主权投资载体实现，旨在让公众获得 AI 未来利润的经济份额。这是 OpenAI IPO 前的一个重要动态，也反映了 AI 公司与政府关系的深化。</p>
+    <p>此前 CNBC 已报道双方正在进行相关谈判。此举被视为 OpenAI 从非营利向营利转型过程中寻求政府背书的一部分策略，同时也引发了关于 AI 是否应被视为"公共资产"的广泛讨论。</p>
+  </div>
+  <div class="links">
+    <span class="label">相关链接</span>
+    <a href="https://www.theguardian.com/technology/2026/jul/02/openai-stake-us-government-ai-sam-altman" target="_blank">The Guardian</a>
+    <a href="https://www.cnbc.com/2026/06/05/trump-open-ai-altman-stake.html" target="_blank">CNBC</a>
+    <a href="https://www.barrons.com/articles/openai-ipo-trump-administration-stake-50c5045f" target="_blank">Barron's</a>
+  </div>
+</div>
+
+<div class="card" id="n5">
+  <div class="card-header">
+    <div class="card-title"><a href="https://openai.com/index/openai-broadcom-jalapeno-inference-chip/" target="_blank">OpenAI 发布 Jalapeño 自研推理芯片</a></div>
+    <span class="card-num">#5</span>
+  </div>
+  <blockquote>OpenAI 与 Broadcom 联合发布首款自研 AI 推理 ASIC 芯片 Jalapeño，专为 LLM 推理优化设计。</blockquote>
+  <div class="detail">
+    <p>OpenAI 正式发布了其首款自研推理芯片 Jalapeño，由 Broadcom 合作制造。该芯片专门为大规模语言模型推理设计，旨在降低对 NVIDIA GPU 的依赖，显著改善单位经济效益。</p>
+    <p>这一举措标志着 OpenAI 在硬件自主方面迈出关键一步，将与其软件层面的推理优化相结合，有望大幅降低 API 调用成本。分析人士认为，这也为 OpenAI 的 IPO 增加了硬件资产叙事。</p>
+  </div>
+  <div class="links">
+    <span class="label">相关链接</span>
+    <a href="https://openai.com/index/openai-broadcom-jalapeno-inference-chip/" target="_blank">OpenAI 官方</a>
+    <a href="https://techcrunch.com/2026/06/24/openai-unveils-its-first-custom-chip-built-by-broadcom/" target="_blank">TechCrunch</a>
+    <a href="https://www.spheron.network/blog/openai-jalapeno-chip-gpu-cloud-inference-2026/" target="_blank">Spheron 分析</a>
+  </div>
+</div>
+
+<div class="card" id="n6">
+  <div class="card-header">
+    <div class="card-title"><a href="https://www.bloomberg.com/news/articles/2026-07-01/meta-is-building-a-cloud-business-to-sell-excess-ai-compute" target="_blank">Meta 计划将 AI 算力商业化，进军云计算</a></div>
+    <span class="card-num">#6</span>
+  </div>
+  <blockquote>Meta 正考虑将内部 AI 算力架构转变为商业云服务，出租闲置算力，挑战 AWS/Azure/GCP。</blockquote>
+  <div class="detail">
+    <p>据 Bloomberg 报道，Meta 正在规划一项商业云计算业务，将内部大规模 AI 算力资源对外出租。此举类似于 SpaceX 将内部基础设施商业化的路径，可能让 Meta 直接与 AWS、Azure 和 GCP 竞争。</p>
+    <p>TechCrunch 指出，Meta 的算力规模已足以支撑商业化运营，消息传出后 Meta 股价应声上涨。这反映了 AI 基础设施投资正在从纯成本中心转向潜在收入来源的趋势。</p>
+  </div>
+  <div class="links">
+    <span class="label">相关链接</span>
+    <a href="https://www.bloomberg.com/news/articles/2026-07-01/meta-is-building-a-cloud-business-to-sell-excess-ai-compute" target="_blank">Bloomberg</a>
+    <a href="https://techcrunch.com/2026/07/01/meta-like-spacex-looks-to-turn-excess-ai-compute-into-cash/" target="_blank">TechCrunch</a>
+    <a href="https://www.reuters.com/business/meta-sell-excess-ai-computing-capacity-via-cloud-business-bloomberg-news-reports-2026-07-01/" target="_blank">Reuters</a>
+  </div>
+</div>
+
+<!-- ==================== 模型发布 ==================== -->
+<div class="section-header model"><span class="dot"></span>模型发布</div>
+
+<div class="card" id="n7">
+  <div class="card-header">
+    <div class="card-title"><a href="https://openai.com/index/previewing-gpt-5-6-sol/" target="_blank">OpenAI GPT-5.6 系列预览：Sol / Terra / Luna</a></div>
+    <span class="card-num">#7</span>
+  </div>
+  <blockquote>OpenAI 发布 GPT-5.6 系列三款模型的有限预览版，分别面向不同场景优化。</blockquote>
+  <div class="detail">
+    <p>OpenAI 于 6 月下旬发布了 GPT-5.6 系列的有限预览，包含 Sol、Terra 和 Luna 三个变体，分别针对不同的推理和生成场景进行优化。Sol 被认为是最强通用版本，Terra 偏向多模态与长上下文，Luna 侧重轻量快速响应。</p>
+    <p>目前三款模型均处于有限预览阶段，尚未面向全部用户开放。这与 Fable 5 的出口管制争议形成对照，有观察者指出 GPT-5.6 的分阶段发布也可能是政府审批压力的产物。</p>
+  </div>
+  <div class="links">
+    <span class="label">相关链接</span>
+    <a href="https://openai.com/index/previewing-gpt-5-6-sol/" target="_blank">OpenAI 官方</a>
+    <a href="https://community.openai.com/t/introducing-gpt-5-6-series-sol-terra-and-luna/1384931" target="_blank">OpenAI 社区</a>
+    <a href="https://www.axios.com/2026/06/26/openai-gpt-sol-terra-luna-trump" target="_blank">Axios</a>
+  </div>
+</div>
+
+<div class="card" id="n8">
+  <div class="card-header">
+    <div class="card-title"><a href="https://seed.bytedance.com/en/seed2_1" target="_blank">字节跳动发布 Seed 2.1 Pro 和 Turbo</a></div>
+    <span class="card-num">#8</span>
+  </div>
+  <blockquote>字节跳动豆包团队推出 Seed 2.1 双版本：Pro 侧重深度推理，Turbo 侧重低延迟高效生成。</blockquote>
+  <div class="detail">
+    <p>6 月 24 日，字节跳动豆包团队发布 Seed 2.1 Pro 和 Seed 2.1 Turbo 两款闭源模型。Pro 版本在复杂推理和代码生成方面表现更强，Turbo 版本则以低延迟和高吞吐为核心卖点。</p>
+    <p>这两款模型进一步强化了字节在 AI 模型领域的布局，特别是在国内市场竞争中对抗 DeepSeek、智谱等对手。Seed 2.1 系列已可通过 API 调用。</p>
+  </div>
+  <div class="links">
+    <span class="label">相关链接</span>
+    <a href="https://seed.bytedance.com/en/seed2_1" target="_blank">ByteDance Seed 官方</a>
+    <a href="https://datanorth.ai/news/bytedance-releases-seed-2-1-pro-and-seed-2-1-turbo" target="_blank">DataNorth</a>
+  </div>
+</div>
+
+<div class="card" id="n9">
+  <div class="card-header">
+    <div class="card-title"><a href="https://z.ai/blog/glm-5.2" target="_blank">智谱 AI 开源 GLM-5.2，支持 100 万 Token 上下文</a></div>
+    <span class="card-num">#9</span>
+  </div>
+  <blockquote>智谱 AI 开源 GLM-5.2 模型，支持百万级 token 上下文窗口，在编码和长文本任务上表现突出。</blockquote>
+  <div class="detail">
+    <p>6 月 16 日，智谱 AI 开源发布 GLM-5.2，核心亮点是支持 100 万 token 的超长上下文窗口。该模型在编码和长文本处理任务上的表现号称超越了部分 Google 顶级模型，智谱股价在发布后大幅上涨。</p>
+    <p>GLM-5.2 采用开放权重发布，开发者可直接部署和微调。这使其成为当前开源社区中最具竞争力的长上下文模型之一。</p>
+  </div>
+  <div class="links">
+    <span class="label">相关链接</span>
+    <a href="https://z.ai/blog/glm-5.2" target="_blank">Z.ai 官方博客</a>
+    <a href="https://www.scmp.com/tech/tech-trends/article/3357115/zhipu-ais-stock-rockets-after-chinese-firm-makes-glm-52-open-source" target="_blank">南华早报</a>
+    <a href="https://aiweekly.co/alerts/zais-glm-52-brings-1m-token-context-to-open-weight-coding" target="_blank">AI Weekly</a>
+  </div>
+</div>
+
+<div class="card" id="n10">
+  <div class="card-header">
+    <div class="card-title"><a href="https://devops.com/moonshot-ais-kimi-k2-7-code-targets-token-efficiency-in-agentic-coding/" target="_blank">Moonshot AI 开源 Kimi K2.7 Code 编程模型</a></div>
+    <span class="card-num">#10</span>
+  </div>
+  <blockquote>月之暗面开源 Kimi K2.7 Code，万亿参数编程模型，主打 token 效率和 Agent 编码场景。</blockquote>
+  <div class="detail">
+    <p>6 月 12 日，月之暗面（Moonshot AI）开源发布 Kimi K2.7 Code，参数规模达万亿级别，是目前最大的开源编程专用模型之一。该模型的核心优势在于 token 效率优化，特别适合 Agent 编码场景中的长上下文和多轮交互需求。</p>
+    <p>Kimi K2.7 Code 已被多个开发者工具集成，被视为 Claude Code 在开源领域的有力竞争者。在出口管制解除之前，Anthropic 曾指出 Fable 5 的安全漏洞同样可被 K2.7 Code 复现。</p>
+  </div>
+  <div class="links">
+    <span class="label">相关链接</span>
+    <a href="https://devops.com/moonshot-ais-kimi-k2-7-code-targets-token-efficiency-in-agentic-coding/" target="_blank">DevOps.com</a>
+    <a href="https://flowtivity.ai/blog/kimi-k2-7-code-review/" target="_blank">Flowtivity 评测</a>
+  </div>
+</div>
+
+<div class="card" id="n11">
+  <div class="card-header">
+    <div class="card-title"><a href="https://cohere.com/blog/north-mini-code" target="_blank">Cohere 开源 North Mini Code 30B 编程模型</a></div>
+    <span class="card-num">#11</span>
+  </div>
+  <blockquote>Cohere 推出首款编程专用模型 North Mini Code，30B 参数，Apache 2.0 许可证，主打 Agent 编码。</blockquote>
+  <div class="detail">
+    <p>6 月 9 日，Cohere 发布其首款面向开发者的编程模型 North Mini Code 1.0。该模型参数规模为 30B，采用 Apache 2.0 开源许可证，专门针对 Agent 编码工作流优化，强调在有限资源下的高质量代码生成能力。</p>
+    <p>North Mini Code 已被发布在 Hugging Face，开发者可自由下载和商用。作为轻量级编程模型，它填补了中等规模开源编程模型的市场空白。</p>
+  </div>
+  <div class="links">
+    <span class="label">相关链接</span>
+    <a href="https://cohere.com/blog/north-mini-code" target="_blank">Cohere 官方博客</a>
+    <a href="https://huggingface.co/blog/CohereLabs/introducing-north-mini-code" target="_blank">Hugging Face Blog</a>
+    <a href="https://www.developersdigest.tech/blog/cohere-north-mini-code-open-weight-coding-model" target="_blank">Developer's Digest</a>
+  </div>
+</div>
+
+<!-- ==================== 产品应用 ==================== -->
+<div class="section-header product"><span class="dot"></span>产品应用</div>
+
+<div class="card" id="n12">
+  <div class="card-header">
+    <div class="card-title"><a href="https://www.cnbc.com/2026/07/01/palantir-karp-open-ai-anthropic-tokens.html" target="_blank">Palantir CEO 猛烈抨击 AI 按 Token 计费模式</a></div>
+    <span class="card-num">#12</span>
+  </div>
+  <blockquote>Alex Karp 批评 OpenAI、Anthropic 的 token 定价"完全错误"，企业客户需要可衡量的业务结果而非按量计费。</blockquote>
+  <div class="detail">
+    <p>7 月 1 日，Palantir CEO Alex Karp 公开批评当前主流 AI 公司的 token 计费模式，称其为"完全错误"的做法。他认为企业客户应该为可衡量的业务成果付费，而不是为处理的 token 数量付费。Business Insider 将其比喻为"tokenmaxxing"——一种对 token 消耗的不健康追求。</p>
+    <p>这番言论反映了企业 AI 应用中日益加深的定价分歧：AI 模型提供商倾向按量计费，而企业软件公司则主张按价值收费。这也暗示了 AI 商业化路径可能出现的分化。</p>
+  </div>
+  <div class="links">
+    <span class="label">相关链接</span>
+    <a href="https://www.cnbc.com/2026/07/01/palantir-karp-open-ai-anthropic-tokens.html" target="_blank">CNBC</a>
+    <a href="https://finance.yahoo.com/technology/ai/articles/palantir-ceo-alex-karp-criticizes-164506928.html" target="_blank">Yahoo Finance</a>
+  </div>
+</div>
+
+<div class="card" id="n13">
+  <div class="card-header">
+    <div class="card-title"><a href="https://www.reddit.com/r/ExperiencedDevs/comments/1k0nfgy/how_does_meta_approach_aiassisted_coding_tools/" target="_blank">Meta 禁止员工使用竞品 AI 编程助手</a></div>
+    <span class="card-num">#13</span>
+  </div>
+  <blockquote>Meta 制定严格内部政策，限制工程师使用外部 AI 编程工具，防止专有架构和训练数据被意外泄露。</blockquote>
+  <div class="detail">
+    <p>内部文件显示，Meta 已对工程师使用外部 AI 编程助手制定了严格限制。核心担忧在于"意外蒸馏"——即 Meta 的专有架构和训练数据可能通过外部 AI 工具被间接传递给竞争对手。</p>
+    <p>这一政策凸显了 AI 编程工具普及后出现的新安全挑战：企业不仅面临代码泄露风险，还可能通过 AI 工具的使用模式暴露技术栈细节。这在 Cursor、GitHub Copilot 等工具广泛使用的背景下尤为重要。</p>
+  </div>
+  <div class="links">
+    <span class="label">相关链接</span>
+    <a href="https://www.reddit.com/r/ExperiencedDevs/comments/1k0nfgy/how_does_meta_approach_aiassisted_coding_tools/" target="_blank">Reddit 讨论</a>
+    <a href="https://www.developersdigest.tech/blog/best-ai-coding-tools-june-2026-post-fable5" target="_blank">Developer's Digest</a>
+  </div>
+</div>
+
+<!-- ==================== 开发生态 ==================== -->
+<div class="section-header dev"><span class="dot"></span>开发生态</div>
+
+<div class="card" id="n14">
+  <div class="card-header">
+    <div class="card-title"><a href="https://investor.qualcomm.com/news-events/press-releases/news-details/2026/Qualcomm-to-Acquire-Modular/default.aspx" target="_blank">Qualcomm 39 亿美元收购 AI 软件公司 Modular</a></div>
+    <span class="card-num">#14</span>
+  </div>
+  <blockquote>Qualcomm 以 39 亿美元股票交易收购 AI 编译器基础设施公司 Modular，强化边缘 AI 软件栈。</blockquote>
+  <div class="detail">
+    <p>6 月 24 日，Qualcomm 宣布将以约 39 亿美元股票收购 AI 软件初创公司 Modular。Modular 由 LLVM 创始人 Chris Lattner 创立，专注于 AI 编译器和基础设施软件，其产品 Mojo 语言和 MAX 平台旨在优化 AI 模型的部署和推理。</p>
+    <p>此次收购将显著增强 Qualcomm 在边缘 AI 领域的软件能力，帮助其芯片更好地与 NVIDIA 的 CUDA 生态竞争。交易预计在未来数月完成。</p>
+  </div>
+  <div class="links">
+    <span class="label">相关链接</span>
+    <a href="https://investor.qualcomm.com/news-events/press-releases/news-details/2026/Qualcomm-to-Acquire-Modular/default.aspx" target="_blank">Qualcomm 官方公告</a>
+    <a href="https://www.reuters.com/business/qualcomm-buy-ai-startup-modular-2026-06-24/" target="_blank">Reuters</a>
+    <a href="https://www.cnbc.com/2026/06/24/qualcomm-ai-chip-modular-software.html" target="_blank">CNBC</a>
+  </div>
+</div>
+
+<div class="card" id="n15">
+  <div class="card-header">
+    <div class="card-title"><a href="https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/" target="_blank">MCP 协议发布 2026-07-28 候选版，聚焦 Agent 身份认证</a></div>
+    <span class="card-num">#15</span>
+  </div>
+  <blockquote>Model Context Protocol 发布新版本候选版，重点引入 AI Agent 身份认证机制，推动协议走向成熟。</blockquote>
+  <div class="detail">
+    <p>MCP（Model Context Protocol）发布了 2026-07-28 版本的候选规范，最核心的更新是引入了 AI Agent 身份认证框架。随着 MCP 被越来越多地用于 AI Agent 与外部工具/数据的连接，安全性成为必须解决的问题。</p>
+    <p>新版本还进一步规范了 Agent 权限管理和连接生命周期。AAIF（Agentic AI Foundation）指出 MCP 正在"走向成熟"，从早期的连接协议演变为完整的 Agent 基础设施层。</p>
+  </div>
+  <div class="links">
+    <span class="label">相关链接</span>
+    <a href="https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/" target="_blank">MCP 官方博客</a>
+    <a href="https://aaif.io/blog/mcp-is-growing-up/" target="_blank">AAIF Blog</a>
+    <a href="https://nhimg.org/community/agentic-ai-and-nhis/mcp-2026-07-28-what-changes-for-ai-agent-authentication/" target="_blank">NHIMG 分析</a>
+  </div>
+</div>
+
+<!-- ==================== 行业动态 ==================== -->
+<div class="section-header industry"><span class="dot"></span>行业动态</div>
+
+<div class="card" id="n16">
+  <div class="card-header">
+    <div class="card-title"><a href="https://nvidianews.nvidia.com/news/nvidia-and-corning-announce-long-term-partnership-to-strengthen-us-manufacturing-for-ai-infrastructure" target="_blank">NVIDIA 与 Corning 合作建设美国光工厂</a></div>
+    <span class="card-num">#16</span>
+  </div>
+  <blockquote>NVIDIA 与 Corning 建立长期合作，在德州和北卡建设三座光学工厂，投资约 5 亿美元，创造数千岗位。</blockquote>
+  <div class="detail">
+    <p>NVIDIA 与康宁宣布长期战略合作，将在美国德州和北卡罗来纳州建设三座先进光纤工厂，总投资约 5 亿美元。这些工厂将为 AI 数据中心提供关键的光纤互联基础设施，预计创造数千个制造业岗位。</p>
+    <p>这一合作证明了 AI 不仅影响软件和算法领域，物理基础设施同样面临巨大需求。光纤互联是大规模 AI 集群的核心瓶颈之一。</p>
+  </div>
+  <div class="links">
+    <span class="label">相关链接</span>
+    <a href="https://nvidianews.nvidia.com/news/nvidia-and-corning-announce-long-term-partnership-to-strengthen-us-manufacturing-for-ai-infrastructure" target="_blank">NVIDIA 官方新闻</a>
+    <a href="https://www.cnbc.com/2026/05/06/nvidia-corning-optical-factories-nc-texas-ai.html" target="_blank">CNBC</a>
+  </div>
+</div>
+
+<div class="card" id="n17">
+  <div class="card-header">
+    <div class="card-title"><a href="https://asia.nikkei.com/editor-s-picks/interview/blackstone-to-invest-30bn-in-japan-ai-data-centers-president" target="_blank">Blackstone 计划 300 亿美元投资日本 AI 数据中心</a></div>
+    <span class="card-num">#17</span>
+  </div>
+  <blockquote>黑石集团计划在日投资建设大规模 AI 数据中心集群，投资额达 300 亿美元。</blockquote>
+  <div class="detail">
+    <p>据日经新闻报道，全球最大另类资产管理公司 Blackstone（黑石集团）计划在日本投资 300 亿美元建设 AI 数据中心。黑石总裁 Jonathan Gray 表示，日本的技术生态和电力基础设施使其成为 AI 算力投资的理想目的地。</p>
+    <p>这是目前全球最大的 AI 基础设施单笔投资计划之一，反映了 AI 算力需求正在重塑全球数据中心地理格局。</p>
+  </div>
+  <div class="links">
+    <span class="label">相关链接</span>
+    <a href="https://asia.nikkei.com/editor-s-picks/interview/blackstone-to-invest-30bn-in-japan-ai-data-centers-president" target="_blank">Nikkei Asia</a>
+    <a href="https://www.reuters.com/business/blackstone-plans-30-billion-investment-japan-ai-data-centres-nikkei-reports-2026-06-23/" target="_blank">Reuters</a>
+  </div>
+</div>
+
+<div class="card" id="n18">
+  <div class="card-header">
+    <div class="card-title"><a href="https://english.shanghai.gov.cn/en-Events/20260624/9cc202d708504b56ba32f70fbd61ef79.html" target="_blank">2026 世界人工智能大会（WAIC）7 月上海举办</a></div>
+    <span class="card-num">#18</span>
+  </div>
+  <blockquote>2026 WAIC 将于 7 月在上海举办，超 300 款 AI 产品将全球首发，中国正加紧筹建世界人工智能合作组织。</blockquote>
+  <div class="detail">
+    <p>据新华社报道，2026 世界人工智能大会将于 7 月在上海举办，预计将有超过 300 款 AI 产品进行全球首发。同时，中国正在加紧筹建世界人工智能合作组织，推动全球 AI 治理合作。</p>
+    <p>本届 WAIC 将成为观察中国 AI 产业发展成果和国际合作方向的重要窗口，各大厂商预计将集中展示最新模型和应用。</p>
+  </div>
+  <div class="links">
+    <span class="label">相关链接</span>
+    <a href="https://english.shanghai.gov.cn/en-Events/20260624/9cc202d708504b56ba32f70fbd61ef79.html" target="_blank">上海市政府</a>
+    <a href="https://news.cctv.com/2026/06/17/ARTIsLfWMTkZMEIcS4SkjdmV260617.shtml" target="_blank">央视新闻</a>
+    <a href="https://www.worldaic.com.cn/" target="_blank">WAIC 官网</a>
+  </div>
+</div>
+
+<!-- ==================== 前瞻与传闻 ==================== -->
+<div class="section-header rumor"><span class="dot"></span>前瞻与传闻</div>
+
+<div class="card" id="n19">
+  <div class="card-header">
+    <div class="card-title"><a href="https://www.alphamatch.ai/blog/openai-gpt-5-6-jalapeno-chip-2026" target="_blank">OpenAI 发现算法优化可将推理成本减半 <span class="rumor-badge">未确认</span></a></div>
+    <span class="card-num">#19</span>
+  </div>
+  <blockquote>有报道称 OpenAI 发现算法层面的推理优化可使运营成本降低约 50%，与 Jalapeño 芯片叠加后效果更显著。</blockquote>
+  <div class="detail">
+    <p>据多家媒体报道，OpenAI 发现了一种算法层面的优化方法，可将推理运营成本降低约 50%。具体技术细节尚未完全公开，但如果与 Jalapeño 自研芯片的硬件节省叠加，综合效果将使 OpenAI 的推理单位经济发生质变。</p>
+    <p>分析人士估算，优化后的输出 token 价格可能降至约 $7.50 水平。这一进展如果落地，将在 OpenAI IPO 前显著改善其盈利前景。<strong>注意：具体的技术细节和实际降本幅度尚未经过官方完整披露。</strong></p>
+  </div>
+  <div class="links">
+    <span class="label">相关链接</span>
+    <a href="https://www.alphamatch.ai/blog/openai-gpt-5-6-jalapeno-chip-2026" target="_blank">AlphaMatch 分析</a>
+    <a href="https://www.spheron.network/blog/openai-jalapeno-chip-gpu-cloud-inference-2026/" target="_blank">Spheron 分析</a>
+  </div>
+</div>
+
+<div class="card" id="n20">
+  <div class="card-header">
+    <div class="card-title"><a href="https://www.reuters.com/business/world-at-work/companies-cutting-jobs-investments-shift-toward-ai-2026-06-29/" target="_blank">AI 驱动裁员浪潮持续扩大 <span class="rumor-badge">趋势观察</span></a></div>
+    <span class="card-num">#20</span>
+  </div>
+  <blockquote>Reuters 追踪显示，越来越多企业将 AI 自动化作为裁员理由，科技、金融、媒体等行业受影响最为严重。</blockquote>
+  <div class="detail">
+    <p>Reuters 于 6 月 29 日更新的追踪报道显示，以 AI 和自动化为由进行的企业裁员在 2026 年持续扩大。TechCrunch 维护的裁员清单也在不断增长，涵盖科技、金融、媒体等多个行业。</p>
+    <p>The Hill 的新分析指出，AI 驱动的岗位削减正在引发政策层面的关注。不过需要注意的是，部分企业可能将"AI 转型"作为裁员的公关话术，实际动因可能更加复杂。<strong>具体影响范围和长期趋势仍需持续观察。</strong></p>
+  </div>
+  <div class="links">
+    <span class="label">相关链接</span>
+    <a href="https://www.reuters.com/business/world-at-work/companies-cutting-jobs-investments-shift-toward-ai-2026-06-29/" target="_blank">Reuters</a>
+    <a href="https://techcrunch.com/2026/06/22/the-running-list-major-tech-layoffs-in-2026-where-employers-cited-ai/" target="_blank">TechCrunch 裁员清单</a>
+    <a href="https://thehill.com/policy/technology/5870898-ai-job-cuts-analysis-trump-admin/" target="_blank">The Hill 分析</a>
+  </div>
+</div>
+
+<footer>
+  AI 早报 · 由 QoderWork 自动生成 · 2026-07-03<br>
+  信息来源包括官方博客、Reuters、CNBC、TechCrunch、The Guardian、Bloomberg 等<br>
+  内容仅供参考，不构成投资或决策建议
+</footer>
+
+</div>
+</body>
+</html>

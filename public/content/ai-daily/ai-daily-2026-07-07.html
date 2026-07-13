@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 早报 2026-07-07</title>
+<style>
+  :root {
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #1a1a2e;
+    --text-secondary: #555;
+    --accent: #2563eb;
+    --accent-light: #dbeafe;
+    --border: #e5e7eb;
+    --tag-bg: #f1f5f9;
+    --quote-bg: #f0f4ff;
+    --quote-border: #2563eb;
+    --warn-bg: #fff7ed;
+    --warn-border: #f59e0b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0;
+  }
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+  }
+  header {
+    text-align: center;
+    padding: 48px 20px 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+  header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--text);
+  }
+  header .date {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 8px;
+  }
+  header .subtitle {
+    font-size: 13px;
+    color: #888;
+    margin-top: 4px;
+  }
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 36px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+  }
+  h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin: 20px 0 10px;
+  }
+  .overview {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 32px;
+  }
+  .overview ul {
+    list-style: none;
+    padding: 0;
+  }
+  .overview li {
+    padding: 5px 0;
+    font-size: 14px;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .overview li .tag {
+    background: var(--tag-bg);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 1px 7px;
+    border-radius: 4px;
+    white-space: nowrap;
+    font-family: monospace;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 16px;
+    transition: border-color 0.15s;
+  }
+  .card:hover {
+    border-color: #c5cad3;
+  }
+  .card-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .card-header .num {
+    background: var(--accent);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+    white-space: nowrap;
+  }
+  .card-header h4 {
+    font-size: 17px;
+    font-weight: 600;
+    flex: 1;
+  }
+  .card-header h4 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .card-header h4 a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .card blockquote {
+    background: var(--quote-bg);
+    border-left: 3px solid var(--quote-border);
+    padding: 8px 14px;
+    margin: 10px 0 12px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    border-radius: 0 6px 6px 0;
+  }
+  .card .detail {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.8;
+    margin-bottom: 12px;
+  }
+  .card .detail p {
+    margin-bottom: 8px;
+  }
+  .card .links {
+    font-size: 13px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .card .links a {
+    background: var(--tag-bg);
+    color: var(--accent);
+    padding: 3px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .card .links a:hover {
+    background: var(--accent-light);
+  }
+  .rumor-badge {
+    background: var(--warn-bg);
+    border: 1px solid var(--warn-border);
+    color: #b45309;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .section-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 36px 0;
+  }
+  footer {
+    text-align: center;
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  @media (max-width: 600px) {
+    .container { padding: 16px 14px 40px; }
+    header { padding: 32px 14px 24px; }
+    header h1 { font-size: 22px; }
+    .card { padding: 18px 18px; }
+    .overview { padding: 18px 18px; }
+    .card-header h4 { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>AI 早报 2026-07-07</h1>
+  <div class="date">2026 年 7 月 7 日 星期二</div>
+  <div class="subtitle">自动生成 &middot; 信息截至发布时刻 &middot; 共 19 条</div>
+</header>
+
+<!-- 概览 -->
+<h2>概览</h2>
+<div class="overview">
+
+<h3>要闻</h3>
+<ul>
+  <li>联合国日内瓦召开 AI 治理全球对话，169 国代表讨论前沿模型访问控制 <span class="tag">#1</span></li>
+  <li>白宫即将发布 AI 自愿标准框架，与主要实验室敲定安全基准 <span class="tag">#2</span></li>
+  <li>GPT-5.6 Sol 受限访问中，7 月 7-14 日或迎通用访问窗口 <span class="tag">#3</span></li>
+  <li>Anthropic Claude Fable 5 计费变更：7 月 7 日后转为信用制 <span class="tag">#4</span></li>
+  <li>Tesla Robotaxi 在迈阿密推出完全无监督自动驾驶服务 <span class="tag">#5</span></li>
+</ul>
+
+<h3>模型发布</h3>
+<ul>
+  <li>Google Gemini 3.5 Pro 仍在有限预览中，两次延期后进入企业 Beta <span class="tag">#6</span></li>
+  <li>Black Forest Labs 发布 FLUX.2 图像生成模型系列 <span class="tag">#7</span></li>
+  <li>ByteDance Seed 2.1 Pro 发布，性能对标 Claude Opus 4.6 <span class="tag">#8</span></li>
+</ul>
+
+<h3>产品应用</h3>
+<ul>
+  <li>Anthropic 发布 Claude Science Workbench — 科学研究 AI 工作台 <span class="tag">#9</span></li>
+  <li>Meta 发布 SWE-Together 编程基准 — 评估多轮交互式编程 Agent <span class="tag">#10</span></li>
+  <li>OpenAI 发布 GeneBench-Pro — 计算生物学评测基准 <span class="tag">#11</span></li>
+</ul>
+
+<h3>开发生态</h3>
+<ul>
+  <li>Claude Mythos 发现 Squidbleed 漏洞 — 29 年历史的 Squid 代理安全漏洞 <span class="tag">#12</span></li>
+  <li>仅 25% 组织达到 AI 规模化阶段 — 2026 State of AI for Business 报告 <span class="tag">#13</span></li>
+</ul>
+
+<h3>行业动态</h3>
+<ul>
+  <li>2026 世界人工智能大会 WAIC 将于 7 月 17-20 日在上海举行 <span class="tag">#14</span></li>
+  <li>AMD Advancing AI 2026 大会确认 7 月 22-23 日在旧金山举办 <span class="tag">#15</span></li>
+  <li>中国 AI 伴侣法 7 月 15 日生效，强制禁用持久记忆 Agent <span class="tag">#16</span></li>
+</ul>
+
+<h3>前瞻与传闻</h3>
+<ul>
+  <li><span class="rumor-badge">传闻</span> xAI Grok 5 训练中：7 个模型并行，参数规模达 10 万亿 <span class="tag">#17</span></li>
+  <li><span class="rumor-badge">未确认</span> GPT-5.6 Sol/Terra/Luna 全面开放时间窗口 <span class="tag">#18</span></li>
+  <li><span class="rumor-badge">传闻</span> DeepSeek 计划年底前发布 AI 智能体 <span class="tag">#19</span></li>
+</ul>
+
+</div>
+
+<!-- 详细内容 -->
+
+<!-- ===== 要闻 ===== -->
+<h2>要闻</h2>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#1</span>
+    <h4><a href="https://www.unesco.org/en/articles/global-dialogue-ai-governance-geneva-6-7-july">联合国日内瓦召开 AI 治理全球对话</a></h4>
+  </div>
+  <blockquote>169 国代表齐聚日内瓦，讨论"谁控制前沿 AI 访问，以何种条件"。</blockquote>
+  <div class="detail">
+    <p>联合国于 7 月 6-7 日在日内瓦召开全球 AI 治理对话，来自 169 个国家的代表参与讨论。核心议题围绕前沿模型的访问控制展开——近期出口管制措施引发了关于 AI 资源公平分配的激烈争议。美国、欧盟与全球南方在监管路径上存在明显分歧。</p>
+    <p>会议重点讨论 AI 作为发展资源的定位，以及如何在安全管控与开放获取之间取得平衡。这是继 2024 年 AI 安全峰会以来规模最大的多边 AI 治理对话。</p>
+  </div>
+  <div class="links">
+    <a href="https://news.un.org/en/story/2026/07/1167862">UN News</a>
+    <a href="https://www.unesco.org/en/articles/global-dialogue-ai-governance-geneva-6-7-july">UNESCO</a>
+    <a href="https://www.un.org/global-dialogue-ai-governance/en">UN 官方</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#2</span>
+    <h4><a href="https://aiweekly.co/alerts/white-house-nears-voluntary-frontier-model-deal-with-top-ai-labs">白宫即将发布 AI 自愿标准框架</a></h4>
+  </div>
+  <blockquote>美国政府与主要 AI 实验室即将敲定自愿协议，建立安全基准和发布前通知机制。</blockquote>
+  <div class="detail">
+    <p>据 Financial Times 报道，美国白宫正在与 OpenAI、Anthropic、Google 等主要 AI 实验室敲定一项自愿性框架。该框架将公布触发安全审查的能力阈值基准，并明确"哪些外国组织和个人可以访问受管控的前沿模型"的访问规则。</p>
+    <p>预计在 7 月 7-11 日期间正式发布。批评者认为当前的管控方式构成了"事实上的后门许可制度"，缺乏书面标准或国会授权。</p>
+  </div>
+  <div class="links">
+    <a href="https://finance.yahoo.com/technology/ai/articles/us-talks-ai-companies-voluntary-001646707.html">Yahoo Finance</a>
+    <a href="https://aiweekly.co/alerts/white-house-nears-voluntary-frontier-model-deal-with-top-ai-labs">AI Weekly</a>
+    <a href="https://smarterx.ai/smarterxblog/us-government-controls-gpt-5-6-access">SmarterX 分析</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#3</span>
+    <h4><a href="https://openai.com/index/previewing-gpt-5-6-sol/">GPT-5.6 Sol 受限访问中，通用窗口或在 7 月 7-14 日</a></h4>
+  </div>
+  <blockquote>OpenAI 最新旗舰模型仍处于受限测试阶段，广泛开放时间窗口为 7 月 7-14 日。</blockquote>
+  <div class="detail">
+    <p>OpenAI 于 6 月底发布了 GPT-5.6 Sol 的预览公告，但受美国政府要求，新模型目前仅向"受信合作伙伴"开放。TechCrunch 报道指出，OpenAI 自身也表态限制不应成为常态。</p>
+    <p>该模型连同 Terra、Luna 两个变体一并处于受限访问状态。预计在白宫框架落地后，7 月 7-14 日间可能迎来更广泛的公开访问。</p>
+  </div>
+  <div class="links">
+    <a href="https://openai.com/index/previewing-gpt-5-6-sol/">OpenAI 官方</a>
+    <a href="https://techcrunch.com/2026/06/26/openai-limits-gpt-5-6-rollout-after-government-request-says-restrictions-shouldnt-be-the-norm/">TechCrunch</a>
+    <a href="https://thehackernews.com/2026/06/openai-limits-gpt-56-rollout-as-sol.html">The Hacker News</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#4</span>
+    <h4><a href="https://www.anthropic.com/news/redeploying-fable-5">Anthropic Claude Fable 5 计费变更：7 月 7 日后转为信用制</a></h4>
+  </div>
+  <blockquote>7 月 7 日是 Anthropic 将 Fable 5 纳入标准订阅套餐的最后一天，之后需购买使用额度。</blockquote>
+  <div class="detail">
+    <p>Anthropic 宣布从 7 月 8 日起，Claude Fable 5 将通过信用额度（credits）计费，不再包含在 Pro、Max、Team 的标准订阅中。此前的 50% 周使用量包含额度于 7 月 7 日到期。</p>
+    <p>Anthropic 强调 Fable 5 并非永久离开订阅体系，后续仍可能调整方案。这一变化反映了旗舰模型推理成本对用户订阅模式的压力。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.anthropic.com/news/redeploying-fable-5">Anthropic 官方</a>
+    <a href="https://www.reddit.com/r/ClaudeAI/comments/1ukafrm/fable_available_for_plans_until_july_7th_after/">Reddit 讨论</a>
+    <a href="https://www.bleepingcomputer.com/news/artificial-intelligence/claude-fable-5-isnt-permanently-leaving-subscriptions-anthropic-says/">BleepingComputer</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#5</span>
+    <h4><a href="https://www.reuters.com/business/autos-transportation/tesla-rolls-out-robotaxi-service-miami-2026-07-03/">Tesla Robotaxi 在迈阿密推出完全无监督自动驾驶</a></h4>
+  </div>
+  <blockquote>Tesla 在第五个城市上线无人监督的自动驾驶出租车服务，是目前最大规模的无人类安全兜底的 AI 决策消费级部署。</blockquote>
+  <div class="detail">
+    <p>Reuters 报道，Tesla 于 7 月初在迈阿密正式推出 Robotaxi 服务，这是继德克萨斯和加州后第三个州。值得注意的是，迈阿密部署完全取消了人类安全监督，成为目前公共消费场景中最大规模的无监督 AI 决策应用。</p>
+    <p>迈阿密多雨的气候被视为对纯摄像头 FSD 方案的严苛考验。TechTimes 分析指出，这一部署标志着自动驾驶行业在监管和安全验证方面的重大转折。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.reuters.com/business/autos-transportation/tesla-rolls-out-robotaxi-service-miami-2026-07-03/">Reuters</a>
+    <a href="https://www.techtimes.com/articles/319711/20260704/tesla-robotaxi-arrives-miami-floridas-rain-hardest-test-yet-camera-only-fsd.htm">TechTimes</a>
+    <a href="https://www.theinformation.com/briefings/tesla-expands-robotaxi-service-miami">The Information</a>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ===== 模型发布 ===== -->
+<h2>模型发布</h2>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#6</span>
+    <h4><a href="https://www.businessinsider.com/google-3-5-pro-july-release-tokens-ai-agents-model-2026-6">Google Gemini 3.5 Pro 仍在有限预览中</a></h4>
+  </div>
+  <blockquote>两次延期后，Google 旗舰模型进入企业 Beta 测试，拥有 200 万 token 上下文窗口。</blockquote>
+  <div class="detail">
+    <p>Google Gemini 3.5 Pro 在两次错过发布日期后，目前以有限企业预览形式推出。据报道，延期源于三个工程挑战，包括早期测试者发现在长期 Agent 任务中"token 消耗远超预期"。</p>
+    <p>该模型具备 200 万 token 的上下文窗口，是目前所有生产级前沿模型中最大的。随着 7 月推进，企业 Beta 和开发者访问正在逐步扩展。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.businessinsider.com/google-3-5-pro-july-release-tokens-ai-agents-model-2026-6">Business Insider</a>
+    <a href="https://tech-insider.org/au/gemini-3-5-pro-delayed-july-2026/">Tech-Insider</a>
+    <a href="https://ofox.ai/blog/gemini-3-5-pro-release-date-expected-specs-2026/">Ofox AI</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#7</span>
+    <h4><a href="https://bfl.ai/models/flux-2">Black Forest Labs 发布 FLUX.2 图像生成模型系列</a></h4>
+  </div>
+  <blockquote>FLUX.2 系列更新包括 Fill Pro、Klein 和 Max 等多个变体，覆盖图像编辑和生成。</blockquote>
+  <div class="detail">
+    <p>Black Forest Labs 近日更新了其图像生成模型套件 FLUX.2 系列，包括 FLUX.1 Fill [pro]（图像填充）、Flux 2 Klein（轻量模型）和 Flux 2 Max（高质量生成）等多个变体。开源推理代码已在 GitHub 发布，Hugging Face 上也提供了模型权重。</p>
+    <p>NVIDIA 已宣布在 RTX AI Garage 和 ComfyUI 中集成 FLUX.2 支持，标志着该模型进入主流 GPU 生态。</p>
+  </div>
+  <div class="links">
+    <a href="https://bfl.ai/models/flux-2">BFL 官方</a>
+    <a href="https://github.com/black-forest-labs/flux2">GitHub</a>
+    <a href="https://huggingface.co/black-forest-labs/FLUX.2-dev">Hugging Face</a>
+    <a href="https://blogs.nvidia.com/blog/rtx-ai-garage-flux-2-comfyui/">NVIDIA Blog</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#8</span>
+    <h4><a href="https://seed.bytedance.com/en/blog/seed2-1-officially-released-advancing-ai-productivity">ByteDance Seed 2.1 Pro 发布</a></h4>
+  </div>
+  <blockquote>字节跳动豆包团队发布 Seed 2.1 Pro，性能对标 Claude Opus 4.6。</blockquote>
+  <div class="detail">
+    <p>字节跳动 Seed 团队正式发布 Seed 2.1 Pro 和 Seed 2.1 Turbo 两个版本。Pro 版在多个基准测试中表现与 Claude Opus 4.6 相当，尤其在生产力场景中表现突出。Turbo 版则侧重推理速度和成本效率。</p>
+    <p>该模型已在豆包平台上线，标志着字节跳动在通用大模型领域的持续追赶。</p>
+  </div>
+  <div class="links">
+    <a href="https://seed.bytedance.com/en/blog/seed2-1-officially-released-advancing-ai-productivity">ByteDance Seed 官方</a>
+    <a href="https://datanorth.ai/news/bytedance-releases-seed-2-1-pro-and-seed-2-1-turbo">DataNorth</a>
+    <a href="https://felloai.com/seed-2-1-pro/">Fello AI 评测</a>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ===== 产品应用 ===== -->
+<h2>产品应用</h2>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#9</span>
+    <h4><a href="https://www.anthropic.com/news/claude-science-ai-workbench">Anthropic 发布 Claude Science Workbench</a></h4>
+  </div>
+  <blockquote>面向科学研究的 AI 工作台，集成数十个科学数据库，支持多步工作流。</blockquote>
+  <div class="detail">
+    <p>Anthropic 推出 Claude Science，这是一款专为科研人员设计的 AI 工作台。它整合了数十个科学数据库，支持多步工作流——模型可以在单次会话中从多个数据库检索数据、执行分析并综合研究发现。</p>
+    <p>Forbes 报道，一位用户以 26 美元成本完成了以往需要数周的研究领域映射。TechCrunch 指出，Anthropic 的策略押注在工作流而非新模型上，以赢得科学用户。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.anthropic.com/news/claude-science-ai-workbench">Anthropic 官方</a>
+    <a href="https://techcrunch.com/2026/06/30/anthropics-claude-science-bets-on-workflow-not-a-new-model-to-win-over-scientists/">TechCrunch</a>
+    <a href="https://www.forbes.com/sites/johndrake/2026/06/30/anthropics-new-ai-workbench-mapped-my-field-for-26-now-imagine-it-aimed-at-the-rest-of-science/">Forbes</a>
+    <a href="https://www.marktechpost.com/2026/07/04/anthropic-launches-claude-science-beta/">MarkTechPost</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#10</span>
+    <h4><a href="https://arxiv.org/html/2606.29957v1">Meta 发布 SWE-Together 编程基准</a></h4>
+  </div>
+  <blockquote>新的开源基准评估多轮交互式编程 Agent，测试模型在真实开发会话中的纠偏能力。</blockquote>
+  <div class="detail">
+    <p>Meta 发布 SWE-Together，这是一个评估编程 Agent 在交互式多轮会话中表现的新基准。不同于单轮编程测试，它模拟了真实开发中的对话式编程场景，衡量模型需要多少"纠正性引导"才能完成复杂软件工程任务。</p>
+    <p>结果显示 Anthropic 的最新模型在复杂工程流程中"需要的纠正引导最少"。该基准已在 arXiv 发布论文，Hugging Face 上也提供了数据集。</p>
+  </div>
+  <div class="links">
+    <a href="https://arxiv.org/html/2606.29957v1">arXiv 论文</a>
+    <a href="https://huggingface.co/papers/2606.29957">Hugging Face</a>
+    <a href="https://www.alphaxiv.org/abs/2606.29957">AlphaXiv</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#11</span>
+    <h4><a href="https://openai.com/index/introducing-genebench-pro/">OpenAI 发布 GeneBench-Pro 计算生物学基准</a></h4>
+  </div>
+  <blockquote>测试 AI 在生物学研究中的多阶段统计推理能力，顶级模型得分仅 31.5%。</blockquote>
+  <div class="detail">
+    <p>OpenAI 推出 GeneBench-Pro，这是一个计算生物学基准，专门评估 AI 在专业科学研究中的判断力——包括多阶段统计推理和实验设计。即使是 OpenAI 自家最强预览模型，得分也仅为 31.5%，揭示了当前 AI 在专业科学领域的明显短板。</p>
+    <p>论文已发布在 bioRxiv 预印本服务器上。该基准为评估 AI 在垂直科学领域的能力提供了一个新的参考标准。</p>
+  </div>
+  <div class="links">
+    <a href="https://openai.com/index/introducing-genebench-pro/">OpenAI 官方</a>
+    <a href="https://www.biorxiv.org/content/10.64898/2026.06.29.735386v2">bioRxiv 论文</a>
+    <a href="https://www.resultsense.com/news/2026-07-01-openai-genebench-pro-biology-benchmark/">ResultSense</a>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ===== 开发生态 ===== -->
+<h2>开发生态</h2>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#12</span>
+    <h4><a href="https://www.theregister.com/security/2026/06/23/mythos-discovers-squidbleed-a-memory-leak-thats-gone-undetected-since-clinton-era/5260367">Claude Mythos 发现 Squidbleed 漏洞：29 年未被发现的安全隐患</a></h4>
+  </div>
+  <blockquote>AI 安全审计发现了 Squid 代理中 29 年历史的内存泄漏漏洞，可暴露用户凭证。</blockquote>
+  <div class="detail">
+    <p>CVE-2026-47729，昵称"Squidbleed"，是 Anthropic Claude Mythos 在安全审计中发现的一个存在于 Squid 代理服务器中长达 29 年的内存泄漏漏洞。该漏洞可导致用户凭证等敏感信息泄露。</p>
+    <p>Anthropic 此前宣布 Claude Mythos 已识别超过 10,000 个软件缺陷。The Register 称这一发现为"克林顿时代以来未被发现的漏洞"，突显了 AI 在安全审计领域的巨大潜力。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.theregister.com/security/2026/06/23/mythos-discovers-squidbleed-a-memory-leak-thats-gone-undetected-since-clinton-era/5260367">The Register</a>
+    <a href="https://www.securityweek.com/decades-old-squid-proxy-flaw-squidbleed-can-expose-user-data/">SecurityWeek</a>
+    <a href="https://aiweekly.co/alerts/califio-uses-claude-mythos-to-surface-29-year-old-squid-proxy-memory-leak">AI Weekly</a>
+    <a href="https://www.helpnetsecurity.com/2026/05/26/anthropic-project-glasswing-update/">Help Net Security</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#13</span>
+    <h4><a href="https://smarterx.ai/reports/2026-state-of-ai-for-business">仅 25% 组织达到 AI 规模化阶段</a></h4>
+  </div>
+  <blockquote>2026 State of AI for Business 报告显示，大多数企业仍在试点或学习 AI，仅四分之一实现了广泛部署和经济收益。</blockquote>
+  <div class="detail">
+    <p>最新发布的 2026 State of AI for Business 报告显示，尽管 AI 工具快速迭代，但只有 25% 的组织真正达到了"规模化阶段"（Scaling Phase）——即实现广泛的 AI 部署并产生可量化的经济回报。</p>
+    <p>NVIDIA 博客分析指出，53% 的职场人个人 AI 采用度领先于其所在公司的部署进度。这一差距揭示了组织层面 AI 落地仍面临流程、文化和技术栈整合的显著挑战。</p>
+  </div>
+  <div class="links">
+    <a href="https://smarterx.ai/reports/2026-state-of-ai-for-business">SmarterX 报告</a>
+    <a href="https://blogs.nvidia.com/blog/state-of-ai-report-2026/">NVIDIA Blog</a>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ===== 行业动态 ===== -->
+<h2>行业动态</h2>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#14</span>
+    <h4><a href="https://www.worldaic.com.cn/">2026 世界人工智能大会 WAIC 将于 7 月 17-20 日在上海举行</a></h4>
+  </div>
+  <blockquote>全球最大规模 AI 行业展会之一，上海市政府 7 月 7 日召开新闻发布会介绍详情。</blockquote>
+  <div class="detail">
+    <p>2026 世界人工智能大会（WAIC）确认于 7 月 17-20 日在上海举办。上海市政府已宣布将在 7 月 7 日召开新闻发布会介绍大会安排。作为全球最大规模的 AI 行业展会之一，WAIC 历年吸引全球顶级 AI 公司和研究机构参展。</p>
+    <p>PyTorch 等开源社区已确认参会。预计本届大会将聚焦大模型应用落地、AI Agent、具身智能等热点方向。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.worldaic.com.cn/">WAIC 官网</a>
+    <a href="http://sh.people.com.cn/n2/2026/0617/c134768-41613724.html">人民网</a>
+    <a href="https://www.tmtpost.com/8033010.html">钛媒体</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#15</span>
+    <h4><a href="https://www.amd.com/en/corporate/events/advancing-ai.html">AMD Advancing AI 2026 大会确认 7 月 22-23 日在旧金山举办</a></h4>
+  </div>
+  <blockquote>AMD 年度 AI 大会将于 7 月下旬在 Moscone Center 举办，预计发布新一代 AI 芯片。</blockquote>
+  <div class="detail">
+    <p>AMD 正式确认 Advancing AI 2026 大会将于 7 月 22-23 日在旧金山 Moscone Center 举办。作为 AMD 面向 AI 行业的旗舰活动，预计将展示新一代 AI 加速芯片和相关生态。</p>
+    <p>在 NVIDIA 持续主导 AI 芯片市场的背景下，AMD 此次大会被视为其追赶战略的关键节点。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.amd.com/en/corporate/events/advancing-ai.html">AMD 官方</a>
+    <a href="https://ir.amd.com/news-events/press-releases/detail/1283/amd-announces-advancing-ai-2026">AMD IR</a>
+    <a href="https://wccftech.com/amd-advancing-ai-2026-event-to-take-place-on-july-22-23-heres-what-to-expect/">WCCFTech</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#16</span>
+    <h4><a href="https://www.techtimes.com/articles/319703/20260704/china-ai-companion-law-arrives-july-15-doubao-qwen-agent-data-will-deleted.htm">中国 AI 伴侣法 7 月 15 日生效，强制禁用持久记忆 Agent</a></h4>
+  </div>
+  <blockquote>距 7 月 15 日生效仅剩 9 天，平台被迫关闭持久记忆功能，豆包、通义等产品受影响。</blockquote>
+  <div class="detail">
+    <p>中国即将于 7 月 15 日生效的新规要求 AI 平台禁用面向消费者的持久记忆 Agent 功能。TechTimes 报道称，监管方认为强制的防沉迷摩擦"与持久记忆 Agent 的运作方式根本不兼容"。豆包、通义等主流产品的相关功能面临下线或重大调整。</p>
+    <p>AISafetyChina 分析指出，该法规明确区分了 AI 工作者和 AI 伴侣——"AI 工作者留下，AI 伴侣离开"。字节跳动和阿里巴巴正在积极调整产品以符合新规。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.techtimes.com/articles/319703/20260704/china-ai-companion-law-arrives-july-15-doubao-qwen-agent-data-will-deleted.htm">TechTimes</a>
+    <a href="https://aisafetychina.substack.com/p/china-bans-ai-partners-for-minors">AI Safety China</a>
+    <a href="https://www.artificialintelligence-news.com/news/china-ai-companion-rules/">AI News</a>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ===== 前瞻与传闻 ===== -->
+<h2>前瞻与传闻</h2>
+
+<div class="card" style="border-left: 3px solid var(--warn-border);">
+  <div class="card-header">
+    <span class="num">#17</span>
+    <span class="rumor-badge">传闻</span>
+    <h4><a href="https://www.mindstudio.ai/blog/xai-grok-roadmap-7-models-training-grok-5-10-trillion">xAI Grok 5 训练中：参数规模达 10 万亿</a></h4>
+  </div>
+  <blockquote>据报道 xAI 目前有 7 个模型同时训练，Grok 5 参数规模可能达到 10 万亿。</blockquote>
+  <div class="detail">
+    <p>多个消息源报道 xAI 正同时训练 7 个模型，其中 Grok 5 的参数规模可能达到 6-10 万亿级别。此前 Grok 4.3 已于 5 月发布。xAI 在 1 月完成了 200 亿美元融资，为其大规模训练提供了资金支撑。</p>
+    <p>需要注意的是，关于参数规模和发布时间表的信息尚未得到 xAI 官方确认，部分报道数据存在差异。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.mindstudio.ai/blog/xai-grok-roadmap-7-models-training-grok-5-10-trillion">MindStudio</a>
+    <a href="https://www.nextbigfuture.com/2026/04/xai-training-10-trillion-parameter-model-likely-out-in-mid-2026.html">NextBigFuture</a>
+    <a href="https://x.ai/news">xAI News</a>
+  </div>
+</div>
+
+<div class="card" style="border-left: 3px solid var(--warn-border);">
+  <div class="card-header">
+    <span class="num">#18</span>
+    <span class="rumor-badge">未确认</span>
+    <h4><a href="https://explainx.ai/blog/when-will-gpt-5-6-sol-terra-luna-be-available-everyone-2026">GPT-5.6 Sol/Terra/Luna 全面开放时间窗口</a></h4>
+  </div>
+  <blockquote>多个分析预测 GPT-5.6 系列将在白宫框架发布后 1-2 周内全面开放。</blockquote>
+  <div class="detail">
+    <p>OpenAI 的 GPT-5.6 系列包含 Sol、Terra、Luna 三个变体，目前均处于受限访问状态。多个独立分析预计，在白宫自愿标准框架正式发布后（预计 7 月 7-11 日），这些模型将在 1-2 周内面向更广泛用户开放。</p>
+    <p>具体时间表尚未由 OpenAI 或美国政府官方确认。部署安全系统卡片已在 OpenAI Deployment Safety Hub 上线。</p>
+  </div>
+  <div class="links">
+    <a href="https://deploymentsafety.openai.com/gpt-5-6-preview">OpenAI 安全卡片</a>
+    <a href="https://explainx.ai/blog/when-will-gpt-5-6-sol-terra-luna-be-available-everyone-2026">ExplainX 分析</a>
+    <a href="https://qcode.cc/en/gpt-5-6-guide">QCode 指南</a>
+  </div>
+</div>
+
+<div class="card" style="border-left: 3px solid var(--warn-border);">
+  <div class="card-header">
+    <span class="num">#19</span>
+    <span class="rumor-badge">传闻</span>
+    <h4><a href="https://www.cls.cn/detail/2135725">DeepSeek 计划年底前发布 AI 智能体</a></h4>
+  </div>
+  <blockquote>财联社报道称 DeepSeek 计划在 2026 年底前推出 AI Agent 产品，公司暂无回应。</blockquote>
+  <div class="detail">
+    <p>据财联社报道，DeepSeek 计划在 2026 年底前发布 AI 智能体产品。此前 DeepSeek V4 已作为开源预览版发布，参数量达万亿级别。同时有报道称 DeepSeek 正在大规模招聘。</p>
+    <p>该消息尚未得到 DeepSeek 官方确认。DeepSeek 在 V4 开源后如何商业化一直是行业关注焦点，AI Agent 是其可能的落地方向之一。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.cls.cn/detail/2135725">财联社</a>
+    <a href="https://finance.sina.com.cn/chanjing/2026-06-26/doc-iniesvka5218338.shtml">新浪财经</a>
+    <a href="https://deepseek.ai/deepseek-v4">DeepSeek V4</a>
+  </div>
+</div>
+
+<footer>
+  <p>AI 早报 &middot; 自动生成于 2026-07-07 &middot; 信息来源包括官方博客、arXiv、Reuters、TechCrunch 等</p>
+  <p>内容仅供参考，不构成任何投资或决策建议。传闻和未确认信息已标注。</p>
+</footer>
+
+</div>
+</body>
+</html>

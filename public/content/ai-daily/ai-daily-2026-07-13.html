@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 早报 2026-07-13</title>
+<style>
+  :root {
+    --bg: #fafafa;
+    --card-bg: #ffffff;
+    --text: #1a1a1a;
+    --text-secondary: #555;
+    --text-muted: #888;
+    --border: #e5e5e5;
+    --accent: #2563eb;
+    --accent-light: #eff6ff;
+    --tag-bg: #f3f4f6;
+    --tag-text: #374151;
+    --quote-bg: #f9fafb;
+    --quote-border: #d1d5db;
+    --rumor-bg: #fefce8;
+    --rumor-border: #facc15;
+    --rumor-text: #854d0e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0;
+  }
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+  }
+  header {
+    text-align: center;
+    padding: 48px 0 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+  header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 40px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--text);
+    display: inline-block;
+  }
+  .overview {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin-bottom: 8px;
+  }
+  .overview h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 18px 0 8px;
+    color: var(--accent);
+  }
+  .overview h3:first-child { margin-top: 0; }
+  .overview ul {
+    list-style: none;
+    padding: 0;
+  }
+  .overview li {
+    font-size: 14px;
+    padding: 3px 0;
+    color: var(--text-secondary);
+  }
+  .overview li .tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin-bottom: 16px;
+    transition: border-color 0.15s;
+  }
+  .card:hover {
+    border-color: #ccc;
+  }
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .card-header .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    height: 28px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 6px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .card-header h3 {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .card-header h3 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .card-header h3 a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .card blockquote {
+    background: var(--quote-bg);
+    border-left: 3px solid var(--quote-border);
+    padding: 10px 14px;
+    margin: 10px 0 12px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    border-radius: 0 6px 6px 0;
+  }
+  .card .detail {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+  }
+  .card .detail p {
+    margin-bottom: 8px;
+  }
+  .card .links {
+    font-size: 13px;
+  }
+  .card .links a {
+    color: var(--accent);
+    text-decoration: none;
+    margin-right: 12px;
+  }
+  .card .links a:hover {
+    text-decoration: underline;
+  }
+  .rumor-badge {
+    display: inline-block;
+    background: var(--rumor-bg);
+    color: var(--rumor-text);
+    border: 1px solid var(--rumor-border);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .rumor-card {
+    border-left: 3px solid var(--rumor-border);
+  }
+  footer {
+    text-align: center;
+    padding: 40px 0 0;
+    font-size: 12px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+  }
+  @media (max-width: 600px) {
+    .container { padding: 16px 14px 40px; }
+    header { padding: 32px 0 24px; }
+    header h1 { font-size: 22px; }
+    .card { padding: 18px 18px; }
+    .overview { padding: 18px 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>AI 早报 2026-07-13</h1>
+  <div class="subtitle">自动生成于 2026-07-13 · 收录 22 条 AI 前沿信息</div>
+</header>
+
+<!-- ==================== 概览 ==================== -->
+<div class="overview">
+  <h3>要闻</h3>
+  <ul>
+    <li>Apple 起诉 OpenAI：指控窃取商业机密，挖走 400+ 员工 <span class="tag">#1</span></li>
+    <li>OpenAI 发布 GPT-5.6 系列：Sol / Terra / Luna 三款模型 <span class="tag">#2</span></li>
+    <li>SpaceXAI 推出 Grok 4.5：与 Cursor 联合训练的编程 Agent 模型 <span class="tag">#3</span></li>
+    <li>OpenAI 同步发布 GPT-Live 实时语音模型 <span class="tag">#4</span></li>
+    <li>OpenAI 筹备 $730B 估值 IPO，或成史上最大科技 IPO <span class="tag">#5</span></li>
+  </ul>
+  <h3>模型发布</h3>
+  <ul>
+    <li>GPT-5.6 编码评测：Sol 完成率 63.7%，三档定价覆盖全场景 <span class="tag">#6</span></li>
+    <li>Grok 4.5 编程成本仅为竞品 1/5，每任务 $2.49 <span class="tag">#7</span></li>
+    <li>Meta Muse Spark 1.1 开放 API 公测：Agent 编排 + 计算机使用 <span class="tag">#8</span></li>
+    <li>DeepSeek V4 正式版即将发布，旧模型 7/24 下线 <span class="tag">#9</span></li>
+  </ul>
+  <h3>产品应用</h3>
+  <ul>
+    <li>Google 搜索结果全面 AI 化：传统蓝色链接让位 Gemini 生成回答 <span class="tag">#10</span></li>
+    <li>Reuters 推出 MCP Server：新闻直达 AI Agent 工具链 <span class="tag">#11</span></li>
+    <li>美国 HHS 用 ChatGPT 审计 $2.1 万亿医疗支出中的欺诈行为 <span class="tag">#12</span></li>
+  </ul>
+  <h3>开发生态</h3>
+  <ul>
+    <li>MCP 协议 7/28 大版本更新：核心无状态化、新增 MCP Apps <span class="tag">#13</span></li>
+    <li>MCP 新增企业级集中认证（EMA）支持 <span class="tag">#14</span></li>
+    <li>AI 开发者工具密集发布：Qlane / Vibe-check / Archly 等 <span class="tag">#15</span></li>
+  </ul>
+  <h3>行业动态</h3>
+  <ul>
+    <li>SK Hynix 纳斯达克 IPO 融资 $26.5B，超购 7 倍 <span class="tag">#16</span></li>
+    <li>Meta Iris 自研 AI 芯片 9 月量产，目标 2027 算力翻倍 <span class="tag">#17</span></li>
+    <li>美联储任命 a16z 创始人 Andreessen 共同领导 AI 工作组 <span class="tag">#18</span></li>
+    <li>中国考虑限制国产顶级 AI 模型的海外 API 访问 <span class="tag">#19</span></li>
+    <li>人形机器人公司加速走向资本市场 <span class="tag">#20</span></li>
+  </ul>
+  <h3>前瞻与传闻</h3>
+  <ul>
+    <li>Gemini 3.5 Pro 据传 7 月 17 日发布，200 万 token 上下文 <span class="tag">#21</span></li>
+    <li>Grok 4.5 疑似使用 Cursor 用户编码会话训练，隐私争议 <span class="tag">#22</span></li>
+  </ul>
+</div>
+
+<!-- ==================== 要闻 ==================== -->
+<div class="section-title">要闻</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#1</span>
+    <h3><a href="https://www.nytimes.com/2026/07/10/technology/apple-openai-lawsuit.html" target="_blank">Apple 起诉 OpenAI：指控窃取商业机密，挖走 400+ 员工</a></h3>
+  </div>
+  <blockquote>Apple 在北加州联邦法院提起诉讼，指控 OpenAI 通过系统性挖角获取 Apple 内部技术机密。</blockquote>
+  <div class="detail">
+    <p>7 月 10 日，Apple 正式对 OpenAI 发起联邦诉讼，指控其窃取商业机密。诉讼称 OpenAI 在过去两年间挖走了超过 400 名 Apple 前员工，并利用这些员工携带的内部技术信息来训练和改进其 AI 模型。</p>
+    <p>这起诉讼标志着 AI 行业人才争夺战首次上升到联邦法律层面。此前 OpenAI 已探索过反制手段，但 Apple 选择先发制人。AI 行业的人才战争"终究会出现在法官面前"。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.nytimes.com/2026/07/10/technology/apple-openai-lawsuit.html" target="_blank">NYTimes</a>
+    <a href="https://www.cnn.com/2026/07/10/tech/apple-openai-devices-lawsuit" target="_blank">CNN</a>
+    <a href="https://techcrunch.com/2026/07/10/apple-sues-openai-over-alleged-trade-secret-theft/" target="_blank">TechCrunch</a>
+    <a href="https://www.bbc.com/news/articles/cy8w379e091o" target="_blank">BBC</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#2</span>
+    <h3><a href="https://openai.com/index/gpt-5-6/" target="_blank">OpenAI 发布 GPT-5.6 系列：Sol / Terra / Luna 三款模型</a></h3>
+  </div>
+  <blockquote>OpenAI 推出三档定位的新旗舰模型家族，均支持百万 token 上下文，知识截止到 2026 年初。</blockquote>
+  <div class="detail">
+    <p>7 月 9 日，OpenAI 正式发布 GPT-5.6 系列，包含 Sol（旗舰）、Terra（中档）、Luna（轻量）三个版本。Sol 面向复杂推理、长文档分析和多文件编程；Terra 是标准专业任务的"主力军"；Luna 优化了速度，适合高频简单任务。三款模型均支持百万 token 上下文窗口和"程序化工具调用"等新特性。</p>
+    <p>Sol API 定价 $5/$30 per M tokens，Terra $2.5/$15，Luna $1/$6。Sol 面向 Pro 用户全开，Terra 面向 Plus/Teams/Enterprise，Luna 对所有 API 用户和免费用户部分开放。</p>
+  </div>
+  <div class="links">
+    <a href="https://openai.com/index/gpt-5-6/" target="_blank">OpenAI 官方</a>
+    <a href="https://techcrunch.com/2026/07/09/openai-launches-its-new-family-of-models-with-gpt-5-6/" target="_blank">TechCrunch</a>
+    <a href="https://community.openai.com/t/introducing-gpt-5-6-series-sol-terra-and-luna-coming-july-9-10am-pt/1384931" target="_blank">OpenAI 社区</a>
+    <a href="https://simonwillison.net/2026/Jul/9/gpt-5-6/" target="_blank">Simon Willison</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#3</span>
+    <h3><a href="https://x.ai/news/grok-4-5" target="_blank">SpaceXAI 推出 Grok 4.5：与 Cursor 联合训练的编程 Agent 模型</a></h3>
+  </div>
+  <blockquote>原 xAI 更名 SpaceXAI 后的首款企业级产品，专为编码和 Agent 任务优化，80 tokens/s。</blockquote>
+  <div class="detail">
+    <p>7 月 8-9 日，SpaceXAI（原 xAI）发布 Grok 4.5，这是其与 Cursor 联合训练的首款编程优化模型。使用"数万亿 token 的 Cursor 数据"进行联合训练，包含真实开发者交互、代码库审查和调试行为。模型运行速度达 80 tokens/s。</p>
+    <p>定价 $2/$6 per M tokens，远低于竞品。目前已可通过 SpaceXAI 控制台、Grok Build 和 Cursor IDE 使用，欧洲市场预计 7 月中旬上线。</p>
+  </div>
+  <div class="links">
+    <a href="https://x.ai/news/grok-4-5" target="_blank">SpaceXAI 官方</a>
+    <a href="https://www.infoworld.com/article/4194895/spacexai-launches-grok-4-5-touts-lower-coding-task-costs-than-ai-rivals.html" target="_blank">InfoWorld</a>
+    <a href="https://www.axios.com/2026/07/08/spacexai-grok-new-model" target="_blank">Axios</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#4</span>
+    <h3><a href="https://openai.com/index/introducing-gpt-live/" target="_blank">OpenAI 同步发布 GPT-Live 实时语音模型</a></h3>
+  </div>
+  <blockquote>ChatGPT 语音模式全面升级：可边听边说、支持实时翻译，可在对话中委派后台任务。</blockquote>
+  <div class="detail">
+    <p>7 月 8 日，OpenAI 推出 GPT-Live 语音模型，替代此前 ChatGPT 的语音模式。新模型最显著的特性是"可以同时说话和听"，这是实时翻译的关键能力。GPT-Live 还可以在保持对话流畅性的同时将复杂任务委派到后台处理。</p>
+    <p>该模型将持续迭代优化，标志着 OpenAI 在实时多模态交互方向上的重要一步。</p>
+  </div>
+  <div class="links">
+    <a href="https://openai.com/index/introducing-gpt-live/" target="_blank">OpenAI 官方</a>
+    <a href="https://www.reuters.com/business/openai-launches-gpt-live-voice-models-that-listen-speak-simultaneously-2026-07-08/" target="_blank">Reuters</a>
+    <a href="https://techcrunch.com/2026/07/08/openai-releases-new-voice-models-for-more-natural-live-conversations/" target="_blank">TechCrunch</a>
+    <a href="https://simonwillison.net/2026/Jul/8/introducing-gptlive/" target="_blank">Simon Willison</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#5</span>
+    <h3><a href="https://fortune.com/2026/07/02/sam-altman-new-world-order-ai-openai-google-anthropic/" target="_blank">OpenAI 筹备 $730B 估值 IPO，或成史上最大科技 IPO</a></h3>
+  </div>
+  <blockquote>OpenAI 正筹划保密上市，目标估值约 $7300 亿。有趣的是，Anthropic 在营收上已超越 OpenAI。</blockquote>
+  <div class="detail">
+    <p>据 Fortune 报道，OpenAI 正在筹备一次保密 IPO，目标估值约 $7300 亿，如果成行将成为史上规模最大的科技公司 IPO。此前 OpenAI 已于 2026 年 2 月以 $730B 估值完成 $1100 亿融资。</p>
+    <p>值得关注的是，报道指出 OpenAI 最大竞争对手 Anthropic 在营收方面已反超 OpenAI，这为 IPO 的估值逻辑增添了不确定性。</p>
+  </div>
+  <div class="links">
+    <a href="https://fortune.com/2026/07/02/sam-altman-new-world-order-ai-openai-google-anthropic/" target="_blank">Fortune</a>
+    <a href="https://www.bloomberg.com/news/articles/2026-02-27/openai-finalizes-110-billion-funding-at-730-billion-valuation" target="_blank">Bloomberg</a>
+  </div>
+</div>
+
+<!-- ==================== 模型发布 ==================== -->
+<div class="section-title">模型发布</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#6</span>
+    <h3><a href="https://www.coderabbit.ai/blog/gpt-5-6-sol-and-terra-benchmark" target="_blank">GPT-5.6 编码评测：Sol 完成率 63.7%，三档定价覆盖全场景</a></h3>
+  </div>
+  <blockquote>Sol 在多语言编码任务中 63.7% 完成率、PR 缺陷检测 +7.4pp；Terra 被称为"最具颠覆性"的中间档。</blockquote>
+  <div class="detail">
+    <p>CodeRabbit 的基准测试显示，GPT-5.6 Sol 在多语言编码任务（100+ 仓库修改，Rust/Python/Go）中达到 63.7% 完成率，PR 缺陷检测发现率 69.7%（+7.4pp 超基线）。Sol 的 API 定价 $5/$30 per M tokens，低于 Fable 5 的 $10/$50，与 Opus 4.8 的 $5/$25 接近。</p>
+    <p>社区评测认为 Terra 是"三档中最具颠覆性的"——在成本与能力间取得了最佳平衡，适合绝大多数专业场景。Fable 5 更擅长架构讨论，Sol 更适合推进大量实现任务，Sonnet 5 精度更高适合注重评论质量的场景。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.coderabbit.ai/blog/gpt-5-6-sol-and-terra-benchmark" target="_blank">CodeRabbit</a>
+    <a href="https://www.mindstudio.ai/blog/what-is-gpt-5-6-soul-terra-luna-explained" target="_blank">MindStudio</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#7</span>
+    <h3><a href="https://www.infoworld.com/article/4194895/spacexai-launches-grok-4-5-touts-lower-coding-task-costs-than-ai-rivals.html" target="_blank">Grok 4.5 编程成本仅为竞品 1/5：每任务 $2.49</a></h3>
+  </div>
+  <blockquote>在 Artificial Analysis Coding Agent Index 上，Grok 4.5 每编程任务成本 $2.49，GPT-5.5 Codex $5.07，Fable 5 $11.80。</blockquote>
+  <div class="detail">
+    <p>Grok 4.5 在编码性能上与 GPT-5.5 Codex 水平相当，低于 Fable 5 in Claude Code，但其核心优势在于成本。每个编码任务平均成本仅 $2.49，不到 GPT-5.5 Codex 的一半、Fable 5 的五分之一。</p>
+    <p>分析师建议企业不应仅依赖公开基准，而应在内部代码仓库上测试，"按完成成本来评估实际 ROI"。Grok 4.5 适合混合模型策略中的高频重复性 Agent 任务。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.infoworld.com/article/4194895/spacexai-launches-grok-4-5-touts-lower-coding-task-costs-than-ai-rivals.html" target="_blank">InfoWorld</a>
+    <a href="https://aibusiness.com/agentic-ai/grok-4-5-spacexai-s-first-real-entry-into-enterprise" target="_blank">AI Business</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#8</span>
+    <h3><a href="https://ai.meta.com/blog/introducing-muse-spark-msl/" target="_blank">Meta Muse Spark 1.1 开放 API 公测：Agent 编排 + 计算机使用</a></h3>
+  </div>
+  <blockquote>Muse Spark 从推理模型进化为 Agent 基座模型，支持主+子 Agent 编排、1M 上下文压缩、桌面控制和零样本 MCP 兼容。</blockquote>
+  <div class="detail">
+    <p>7 月 9 日，Meta 将 Muse Spark 1.1 开放开发者 API 公测。相比 4 月版本，1.1 版本从纯推理引擎转型为"Agent 基座模型"：使用主 Agent 规划并委派并行子 Agent；1M token 上下文窗口支持主动压缩；新增桌面控制能力（可选择脚本自动化或点击 UI）；支持零样本 MCP 兼容和原生自定义技能。</p>
+    <p>早期合作伙伴包括 Replit、Cline 和 Box。消费者端可通过 Meta AI 应用和 meta.ai 的 Thinking 模式使用。API 提供 OpenAI 兼容端点，内置带引用的搜索、结构化输出和并行工具调用。</p>
+  </div>
+  <div class="links">
+    <a href="https://ai.meta.com/blog/introducing-muse-spark-msl/" target="_blank">Meta AI Blog</a>
+    <a href="https://www.reuters.com/business/meta-debuts-muse-spark-11-with-preview-open-developers-2026-07-09/" target="_blank">Reuters</a>
+    <a href="https://explainx.ai/blog/muse-spark-1-1-meta-model-api-july-2026" target="_blank">explainx.ai</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#9</span>
+    <h3><a href="https://api-docs.deepseek.com/news/news260424/" target="_blank">DeepSeek V4 正式版即将发布，旧模型 7/24 下线</a></h3>
+  </div>
+  <blockquote>DeepSeek V4 从预览版"毕业"进入正式发布，引入高峰定价机制，旧模型别名将于 7 月 24 日退役。</blockquote>
+  <div class="detail">
+    <p>DeepSeek V4 正式版预计 7 月中旬发布，结束自春季开始的测试阶段。正式发布后的主要变化是引入高峰定价：北京时间白天高峰时段 API 价格翻倍。Pro 级非高峰 ¥3/¥6 per M tokens（输入/输出），Flash 级 ¥1/¥2，高峰均翻倍。</p>
+    <p>技术规格不变：1M 上下文、384K 最大输出。Pro 级为 1.6T MoE 架构，Flash 级 284B/13B 活跃参数。旧模型别名将于 7 月 24 日退役。官方提到将有"更多功能优化和性能改进"。</p>
+  </div>
+  <div class="links">
+    <a href="https://api-docs.deepseek.com/news/news260424/" target="_blank">DeepSeek 官方</a>
+    <a href="https://explainx.ai/blog/deepseek-v4-official-release-peak-pricing-mid-july-2026" target="_blank">explainx.ai</a>
+    <a href="https://api-docs.deepseek.com/updates/" target="_blank">DeepSeek Changelog</a>
+  </div>
+</div>
+
+<!-- ==================== 产品应用 ==================== -->
+<div class="section-title">产品应用</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#10</span>
+    <h3><a href="https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-june-2026/" target="_blank">Google 搜索结果全面 AI 化：传统蓝色链接让位 Gemini 生成回答</a></h3>
+  </div>
+  <blockquote>Google 搜索结果页面正由 Gemini 3.5 Flash 驱动的 AI 生成回答页面取代传统搜索结果，从根本上改变了网络流量分配。</blockquote>
+  <div class="detail">
+    <p>Google 搜索结果页面正在经历根本性变化——传统的搜索结果（蓝色链接）正被 Gemini 3.5 Flash 驱动的 AI 生成回答页面所取代。这一变化被称为"自 Google 自身诞生以来互联网注意力分配方式最大的改变"。</p>
+    <p>这对整个 Web 生态（内容创作者、出版商、SEO 从业者）产生深远影响，标志着搜索范式从"链接导航"到"AI 直接回答"的转变。</p>
+  </div>
+  <div class="links">
+    <a href="https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-june-2026/" target="_blank">Google Blog</a>
+    <a href="https://blog.google/innovation-and-ai/technology/ai/google-io-2026-all-our-announcements/" target="_blank">I/O 2026 公告</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#11</span>
+    <h3><a href="https://www.reuters.com/media-center/reuters-launches-model-context-protocol-server-bring-trusted-news-directly-into-2026-07-08/" target="_blank">Reuters 推出 MCP Server：新闻直达 AI Agent 工具链</a></h3>
+  </div>
+  <blockquote>Reuters 成为首批推出 Model Context Protocol 服务器的主要新闻机构，让 AI Agent 可直接消费可信新闻内容。</blockquote>
+  <div class="detail">
+    <p>7 月 8 日，Reuters 宣布推出 MCP（Model Context Protocol）Server，让 AI 工具和 Agent 可以直接通过标准化协议获取和引用 Reuters 的可信新闻内容。这是主流新闻机构拥抱 MCP 生态的标志性事件。</p>
+    <p>MCP Server 使 AI 工具能在不依赖网页爬虫的情况下直接获取结构化新闻数据，并自带引用和溯源能力。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.reuters.com/media-center/reuters-launches-model-context-protocol-server-bring-trusted-news-directly-into-2026-07-08/" target="_blank">Reuters 官方</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#12</span>
+    <h3><a href="https://apnews.com/article/hhs-health-fraud-artificial-intelligence-48b1b1eaf29988808aa1a7f566433d30" target="_blank">美国 HHS 用 ChatGPT 审计 $2.1 万亿医疗支出中的欺诈行为</a></h3>
+  </div>
+  <blockquote>美国卫生与公众服务部将使用 ChatGPT 扫描各州 Medicare/Medicaid 审计报告，识别欺诈和浪费。</blockquote>
+  <div class="detail">
+    <p>美国卫生与公众服务部（HHS）宣布将使用 ChatGPT 来扫描各州审计报告，识别 Medicare 和 Medicaid 项目中的欺诈和浪费行为。涉及金额高达 $2.1 万亿。</p>
+    <p>这一举措引发了对 AI 幻觉风险的担忧。批评者指出"AI 发现直接进入执法流程就是一个诉讼工厂"，强调需要人工审核环节来确保准确性。</p>
+  </div>
+  <div class="links">
+    <a href="https://apnews.com/article/hhs-health-fraud-artificial-intelligence-48b1b1eaf29988808aa1a7f566433d30" target="_blank">AP News</a>
+    <a href="https://www.wsj.com/politics/policy/hhs-launches-crackdown-using-ai-to-detect-medicaid-fraud-and-waste-caf5ba18" target="_blank">WSJ</a>
+  </div>
+</div>
+
+<!-- ==================== 开发生态 ==================== -->
+<div class="section-title">开发生态</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#13</span>
+    <h3><a href="https://www.developersdigest.tech/blog/mcp-2026-07-28-breaking-changes" target="_blank">MCP 协议 7/28 大版本更新：核心无状态化、新增 MCP Apps</a></h3>
+  </div>
+  <blockquote>MCP 协议将于 7 月 28 日发布重大更新：核心协议无状态化，弃用 Roots/Sampling/Logging，新增 MCP Apps 和 Tasks 扩展。</blockquote>
+  <div class="detail">
+    <p>Model Context Protocol（MCP）将于 2026 年 7 月 28 日发布重大规范更新。核心变化：协议从无状态连接转向完全无状态化，每次请求必须独立，移除初始握手要求。Roots、Sampling 和 Logging 被弃用。工具输入要求完全符合 JSON Schema 2020-12。</p>
+    <p>新增功能包括 MCP Apps（服务端渲染 UI，提供更丰富的视觉输出）和 Tasks（作为一等扩展处理长时间后台任务）。安全方面增强了 OAuth/OIDC 规则，统一了可观测性键值。RC 版已于 7 月初发布，团队有不到一个月时间迁移。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.developersdigest.tech/blog/mcp-2026-07-28-breaking-changes" target="_blank">Developer's Digest</a>
+    <a href="https://www.infoq.com/news/2026/07/mcp-ema-enterprise-auth/" target="_blank">InfoQ</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#14</span>
+    <h3><a href="https://www.infoq.com/news/2026/07/mcp-ema-enterprise-auth/" target="_blank">MCP 新增企业级集中认证（EMA）支持</a></h3>
+  </div>
+  <blockquote>MCP 协议增加集中认证模块，为企业级部署提供统一的 OAuth/OIDC 身份验证和安全策略。</blockquote>
+  <div class="detail">
+    <p>MCP（Model Context Protocol）新增了企业级集中认证（Enterprise Managed Authentication，EMA）支持，解决了企业在部署 MCP 时面临的最大安全挑战之一。EMA 提供统一的 OAuth/OIDC 身份验证框架，允许企业集中管理 MCP Server 的访问权限和安全策略。</p>
+    <p>这对于需要合规审计和细粒度权限控制的企业环境尤为关键，是 MCP 从开发工具走向企业基础设施的重要一步。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.infoq.com/news/2026/07/mcp-ema-enterprise-auth/" target="_blank">InfoQ</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#15</span>
+    <h3><a href="https://startupcorners.com/digest/product-digest-2026-07-11" target="_blank">AI 开发者工具密集发布：Qlane / Vibe-check / Archly 等</a></h3>
+  </div>
+  <blockquote>7 月 11 日 Product Hunt 上多款 AI 开发工具上线，行业趋势从独立应用转向"嵌入现有工作流"。</blockquote>
+  <div class="detail">
+    <p>7 月 11 日 Product Hunt 多款 AI 开发工具上线：Qlane 通过 AI 驱动的全应用 QA 自动审批 PR；Vibe-check 在开发前阻止 AI 构建错误应用；Archly 提供面向 Lovable/Cursor/Claude Code 的生产级提示词；Sim 是构建和管理 AI Agent 的开源环境；PlugThis 用 AI 对话创建 Chrome 扩展。</p>
+    <p>当日行业趋势："将 AI 直接嵌入现有工作流"成为新产品的主要策略，独立 AI 应用逐渐让位于集成型工具。</p>
+  </div>
+  <div class="links">
+    <a href="https://startupcorners.com/digest/product-digest-2026-07-11" target="_blank">StartupCorners</a>
+  </div>
+</div>
+
+<!-- ==================== 行业动态 ==================== -->
+<div class="section-title">行业动态</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#16</span>
+    <h3><a href="https://www.reuters.com/world/asia-pacific/sk-hynix-us-listing-more-than-seven-times-oversubscribed-source-says-2026-07-09/" target="_blank">SK Hynix 纳斯达克 IPO 融资 $26.5B，超购 7 倍</a></h3>
+  </div>
+  <blockquote>高带宽内存（HBM）巨头 SK Hynix 完成美国 ADR 上市，$149 定价，超购 7 倍以上，创历史记录。</blockquote>
+  <div class="detail">
+    <p>7 月 9 日，韩国存储芯片制造商 SK Hynix 在纳斯达克完成 ADR 上市，融资 $265 亿，定价 $149/ADR，超购 7 倍以上。这是近年来规模最大的科技公司 IPO 之一。</p>
+    <p>SK Hynix 在 HBM（高带宽内存）领域的统治地位使其成为 AI 算力基础设施的关键供应商。Nvidia 市值也再次突破 $5 万亿。"模型制造头条，硬件制造金钱。"</p>
+  </div>
+  <div class="links">
+    <a href="https://www.reuters.com/world/asia-pacific/sk-hynix-us-listing-more-than-seven-times-oversubscribed-source-says-2026-07-09/" target="_blank">Reuters</a>
+    <a href="https://finance.yahoo.com/markets/stocks/articles/sk-hynixs-28-billion-nasdaq-162700620.html" target="_blank">Yahoo Finance</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#17</span>
+    <h3><a href="https://www.reuters.com/world/asia-pacific/meta-put-ai-chip-into-production-september-it-looks-double-computing-capacity-2026-07-09/" target="_blank">Meta Iris 自研 AI 芯片 9 月量产，目标 2027 算力翻倍</a></h3>
+  </div>
+  <blockquote>Meta 自研 AI 芯片 Iris 将于 9 月进入量产，目标是 2027 年前将公司计算能力翻倍。</blockquote>
+  <div class="detail">
+    <p>7 月 9 日，Reuters 独家报道 Meta 的自研 AI 芯片 Iris 将于 2026 年 9 月进入量产。Meta 计划通过 Iris 芯片在 2027 年前将公司计算能力翻倍，减少对 Nvidia 等外部芯片供应商的依赖。</p>
+    <p>这标志着 Meta 在 AI 基础设施自主化方面的重大投入。"算力翻倍不保证模型更好，但保证 Meta 留在牌桌上。"</p>
+  </div>
+  <div class="links">
+    <a href="https://www.reuters.com/world/asia-pacific/meta-put-ai-chip-into-production-september-it-looks-double-computing-capacity-2026-07-09/" target="_blank">Reuters</a>
+    <a href="https://www.cnbc.com/2026/07/09/meta-to-put-ai-chip-into-production-in-september-report.html" target="_blank">CNBC</a>
+    <a href="https://www.hpcwire.com/bigdatawire/2026/07/10/metas-custom-ai-chip-could-redefine-the-economics-of-ai/" target="_blank">HPCwire</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#18</span>
+    <h3><a href="https://www.washingtonpost.com/business/2026/07/09/federal-reserve-enlists-marc-andreessen-advise-ai-under-warsh/" target="_blank">美联储任命 a16z 创始人 Andreessen 共同领导 AI 工作组</a></h3>
+  </div>
+  <blockquote>美联储成立 AI 经济影响工作组，任命 a16z 联合创始人 Marc Andreessen 共同领导，引发利益冲突争议。</blockquote>
+  <div class="detail">
+    <p>7 月 9 日，美联储宣布成立一个专门研究 AI 经济影响的工作组，并任命 a16z（Andreessen Horowitz）联合创始人 Marc Andreessen 共同领导。这一任命引发了广泛的利益冲突争议——Andreessen 作为最大的 AI 投资者之一，其角色可能与工作组的中立性产生冲突。</p>
+    <p>"美联储的公信力取决于保持无聊和中立，而这项任命两者皆非。"</p>
+  </div>
+  <div class="links">
+    <a href="https://www.washingtonpost.com/business/2026/07/09/federal-reserve-enlists-marc-andreessen-advise-ai-under-warsh/" target="_blank">Washington Post</a>
+    <a href="https://cryptobriefing.com/fed-andreessen-ai-task-force/" target="_blank">CryptoBriefing</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#19</span>
+    <h3><a href="https://www.reuters.com/world/beijing-is-looking-curbing-overseas-access-chinas-top-ai-models-sources-say-2026-07-07/" target="_blank">中国考虑限制国产顶级 AI 模型的海外 API 访问</a></h3>
+  </div>
+  <blockquote>北京正在研究限制海外对中国顶级 AI 模型访问的方案，涉及阿里、字节等公司。</blockquote>
+  <div class="detail">
+    <p>7 月 7 日，Reuters 援引消息人士称，北京正在研究限制海外对中国顶级 AI 模型 API 访问的方案，涉及阿里巴巴、字节跳动等公司的先进模型。这可能是一种对美国 AI 芯片出口管制的对等反制措施。</p>
+    <p>如果实施，这将进一步加剧中美在 AI 领域的技术脱钩趋势，对依赖中国模型 API 的海外开发者产生直接影响。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.reuters.com/world/beijing-is-looking-curbing-overseas-access-chinas-top-ai-models-sources-say-2026-07-07/" target="_blank">Reuters</a>
+    <a href="https://time.com/article/2026/07/07/china-ai-models-alibaba-bytedance/" target="_blank">TIME</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#20</span>
+    <h3><a href="https://www.reuters.com/world/asia-pacific/unitree-plans-shanghai-ipo-testing-interest-humanoid-robots-2026-03-20/" target="_blank">人形机器人公司加速走向资本市场</a></h3>
+  </div>
+  <blockquote>Unitree 计划上海 IPO，Agility Robotics 和 Tesla Optimus 也在推进商业化，人形机器人从 Demo 时代走向量产。</blockquote>
+  <div class="detail">
+    <p>多家人形机器人公司正加速走向资本市场：Unitree（宇树科技）计划在上海进行 IPO，测试市场对人形机器人的投资兴趣；Agility Robotics 和 Tesla 的 Optimus 项目也在推进商业化。</p>
+    <p>"无论哪种结果都好过 Demo 视频时代。病毒式传播的短片什么也没告诉我们。"行业正从展示阶段转向可量化的生产和部署阶段。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.reuters.com/world/asia-pacific/unitree-plans-shanghai-ipo-testing-interest-humanoid-robots-2026-03-20/" target="_blank">Reuters</a>
+    <a href="https://www.forbes.com/sites/drewbernstein/2026/06/09/with-the-spacex-ipo-imminent-nvidia-tesla-unitree-and-the-global-race-for-physical-ai/" target="_blank">Forbes</a>
+  </div>
+</div>
+
+<!-- ==================== 前瞻与传闻 ==================== -->
+<div class="section-title">前瞻与传闻</div>
+
+<div class="card rumor-card">
+  <div class="card-header">
+    <span class="num">#21</span>
+    <h3><a href="https://www.techtimes.com/articles/319877/20260708/gemini-35-pro-targets-july-17-deepseeks-july-24-deadline-hits-developers-now.htm" target="_blank">Gemini 3.5 Pro 据传 7 月 17 日发布，200 万 token 上下文 <span class="rumor-badge">未确认</span></a></h3>
+  </div>
+  <blockquote>泄露信息显示 Google DeepMind 将于 7 月 17 日发布延迟已久的 Gemini 3.5 Pro，搭载 200 万 token 上下文窗口。</blockquote>
+  <div class="detail">
+    <p>多个泄露渠道（Reddit、TechTimes）指向 Google DeepMind 将在 7 月 17 日发布 Gemini 3.5 Pro，这恰好是 WAIC 2026 开幕日。该模型此前因故延迟，从原定时间推迟到 7 月。最引人注目的特性是 200 万 token 上下文窗口——"200 万 token 上下文是潜藏的核心特性"。</p>
+    <p>此消息尚未得到 Google 官方确认，请以官方公告为准。</p>
+  </div>
+  <div class="links">
+    <a href="https://www.techtimes.com/articles/319877/20260708/gemini-35-pro-targets-july-17-deepseeks-july-24-deadline-hits-developers-now.htm" target="_blank">TechTimes</a>
+    <a href="https://www.reddit.com/r/GeminiAI/comments/1umjmd0/gemini_35_pro_to_launch_around_july_17th_2_weeks/" target="_blank">Reddit</a>
+    <a href="https://www.businessinsider.com/google-3-5-pro-july-release-tokens-ai-agents-model-2026-6" target="_blank">Business Insider</a>
+  </div>
+</div>
+
+<div class="card rumor-card">
+  <div class="card-header">
+    <span class="num">#22</span>
+    <h3><a href="https://kie.ai/blog/grok-4-5-xai-cursor-1-5t-model-analysis" target="_blank">Grok 4.5 疑似使用 Cursor 用户编码会话训练，隐私争议 <span class="rumor-badge">传闻</span></a></h3>
+  </div>
+  <blockquote>分析称 Grok 4.5 使用了 1.5T token 的 Cursor 数据训练，引发开发者对编码会话隐私的讨论。</blockquote>
+  <div class="detail">
+    <p>Grok 4.5 被确认与 Cursor 联合训练，使用了"数万亿 token 的 Cursor 数据"。泄露的 canary 追踪信息显示模型规模约 1.5T 参数。这引发了开发者社区关于"我的编码会话是否被用来训练了 xAI 的模型"的隐私讨论。</p>
+    <p>SpaceXAI 和 Cursor 尚未就训练数据的具体来源和隐私保护措施做出详细公开说明。此消息部分基于社区分析和推测，尚未得到完整确认。</p>
+  </div>
+  <div class="links">
+    <a href="https://kie.ai/blog/grok-4-5-xai-cursor-1-5t-model-analysis" target="_blank">Kie.ai</a>
+    <a href="https://www.mindstudio.ai/blog/what-is-grok-4-5-xai-cursor-coding-model" target="_blank">MindStudio</a>
+  </div>
+</div>
+
+<footer>
+  <p>AI 早报 · 自动生成于 2026-07-13 · 共收录 22 条信息（含 2 条未确认传闻）</p>
+  <p>信息来源：官方博客、Reuters、TechCrunch、Bloomberg、Washington Post、AP News、Simon Willison 等</p>
+</footer>
+
+</div>
+</body>
+</html>

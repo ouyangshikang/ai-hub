@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 - 2026-06-24</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+    background: #f5f6f8;
+    color: #1a1a2e;
+    line-height: 1.7;
+    padding: 0;
+  }
+  .header {
+    background: #1a1a2e;
+    color: #fff;
+    padding: 48px 24px 40px;
+    text-align: center;
+  }
+  .header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 8px;
+  }
+  .header .subtitle {
+    font-size: 1rem;
+    color: #a0aec0;
+    font-weight: 400;
+  }
+  .header .date-badge {
+    display: inline-block;
+    margin-top: 16px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 6px 20px;
+    font-size: 0.875rem;
+    color: #cbd5e0;
+  }
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 32px 16px 64px;
+  }
+  .summary-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 28px;
+    justify-content: center;
+  }
+  .summary-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 4px 14px;
+    font-size: 0.8rem;
+    color: #4a5568;
+  }
+  .summary-tag .count {
+    background: #edf2f7;
+    border-radius: 10px;
+    padding: 1px 7px;
+    font-weight: 600;
+    font-size: 0.75rem;
+  }
+  .card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 28px 28px 24px;
+    margin-bottom: 20px;
+    transition: border-color 0.2s;
+  }
+  .card:hover {
+    border-color: #a0aec0;
+  }
+  .card-rank {
+    display: inline-block;
+    background: #1a1a2e;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  .card-rank.top3 {
+    background: linear-gradient(135deg, #f6ad55, #ed8936);
+  }
+  .card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    line-height: 1.5;
+    display: inline;
+    vertical-align: middle;
+  }
+  .card-tags {
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 12px;
+    letter-spacing: 0.02em;
+  }
+  .tag-model { background: #ebf4ff; color: #2b6cb0; }
+  .tag-agent { background: #f0fff4; color: #276749; }
+  .tag-tool { background: #fefcbf; color: #975a16; }
+  .tag-opensource { background: #fed7e2; color: #97266d; }
+  .tag-policy { background: #e9d8fd; color: #553c9a; }
+  .tag-multimodal { background: #feebc8; color: #c05621; }
+  .tag-security { background: #fed7d7; color: #9b2c2c; }
+  .tag-business { background: #e2e8f0; color: #2d3748; }
+  .tag-coding { background: #c6f6d5; color: #22543d; }
+  .tag-vision { background: #bee3f8; color: #2a4365; }
+  .section-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #718096;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 16px;
+    margin-bottom: 6px;
+  }
+  .card p {
+    font-size: 0.92rem;
+    color: #4a5568;
+    margin-bottom: 4px;
+  }
+  .card-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 0.82rem;
+    color: #3182ce;
+    text-decoration: none;
+    border-bottom: 1px dashed #bee3f8;
+    transition: border-color 0.2s;
+  }
+  .card-link:hover {
+    border-color: #3182ce;
+  }
+  .footer {
+    text-align: center;
+    padding: 32px 16px;
+    color: #a0aec0;
+    font-size: 0.8rem;
+  }
+  @media (max-width: 600px) {
+    .header { padding: 32px 16px 28px; }
+    .header h1 { font-size: 1.5rem; }
+    .container { padding: 20px 12px 48px; }
+    .card { padding: 20px 18px 18px; }
+    .card-title { font-size: 1.05rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>AI Daily Briefing</h1>
+  <div class="subtitle">AI 领域每日重要动态速览</div>
+  <div class="date-badge">2026 年 6 月 24 日 &middot; 过去 24 小时</div>
+</div>
+
+<div class="container">
+
+  <div class="summary-bar">
+    <span class="summary-tag">模型发布 <span class="count">5</span></span>
+    <span class="summary-tag">Agent <span class="count">3</span></span>
+    <span class="summary-tag">开发工具 <span class="count">4</span></span>
+    <span class="summary-tag">开源 <span class="count">4</span></span>
+    <span class="summary-tag">行业/政策 <span class="count">4</span></span>
+  </div>
+
+  <!-- #1 -->
+  <div class="card">
+    <span class="card-rank top3">1</span>
+    <span class="card-title">Anthropic 发布 Claude Sonnet 5，新一代决策层模型上线</span>
+    <div class="card-tags">
+      <span class="tag tag-model">模型发布</span>
+      <span class="tag tag-agent">Agent</span>
+    </div>
+    <div class="section-label">为什么重要</div>
+    <p>Claude Sonnet 5 是 Anthropic 最新的中等价位旗舰模型，推理速度和 Agent 能力大幅提升，上下文保持和多任务处理显著增强，编码能力号称超越 Opus 系列，而价格仅为 Opus 4.5 的一半。这进一步加剧了大模型市场的"性价比军备竞赛"。</p>
+    <div class="section-label">对我有什么用</div>
+    <p>对前端和后端开发者来说，这意味着更强的 Coding Agent 能力——可用于长时间自主编码工作流（如自动化重构、测试生成）。API 迁移成本值得关注，建议尽早在沙箱环境测试兼容性。</p>
+    <div class="section-label">可落地动作</div>
+    <p>注册 Anthropic API 等待列表，评估现有 Claude 集成项目的迁移计划；关注 Sonnet 5 在 SWE-bench 上的实际表现数据。</p>
+    <a class="card-link" href="https://wavespeed.ai/blog/posts/claude-sonnet-5-everything-we-know-about-anthropics-fennec-model/" target="_blank">WaveSpeed 详细报道 &rarr;</a>
+  </div>
+
+  <!-- #2 -->
+  <div class="card">
+    <span class="card-rank top3">2</span>
+    <span class="card-title">OpenAI 发布 GPT-5.5-Cyber 与 DayBreak 网络安全计划，启动 "Patch the Planet"</span>
+    <div class="card-tags">
+      <span class="tag tag-model">模型发布</span>
+      <span class="tag tag-security">安全</span>
+    </div>
+    <div class="section-label">为什么重要</div>
+    <p>OpenAI 推出专为网络安全场景优化的 GPT-5.5-Cyber 模型，并启动 DayBreak 计划下的 "Patch the Planet" 开源漏洞修复倡议。这标志着 AI 从通用助手向垂直安全领域深度渗透，是 AI+安全赛道的里程碑事件。</p>
+    <div class="section-label">对我有什么用</div>
+    <p>企业内部的代码安全审计、依赖漏洞扫描可借助 GPT-5.5-Cyber 大幅提升效率。前端/后端项目中的依赖安全问题有望通过 AI Agent 实现自动化修复。</p>
+    <div class="section-label">可落地动作</div>
+    <p>关注 OpenAI DayBreak 官网申请 Trusted Access 权限；评估将 GPT-5.5-Cyber 集成到 CI/CD 安全扫描流水线的可行性。</p>
+    <a class="card-link" href="https://openai.com/index/daybreak-securing-the-world/" target="_blank">OpenAI DayBreak 官网 &rarr;</a>
+  </div>
+
+  <!-- #3 -->
+  <div class="card">
+    <span class="card-rank top3">3</span>
+    <span class="card-title">Mistral 发布 OCR 4：文档智能 OCR 新标杆，支持 170 种语言</span>
+    <div class="card-tags">
+      <span class="tag tag-model">模型发布</span>
+      <span class="tag tag-tool">开发工具</span>
+    </div>
+    <div class="section-label">为什么重要</div>
+    <p>Mistral OCR 4 不仅做文字识别，更提供空间定位（bounding boxes）、区块分类和置信度评分，在 OlmOCRBench（85.20）和 OmniDocBench（93.07）上均创新高。支持 170 种语言、多格式文件，可单容器自托管。标准 API 仅 $4/千页。</p>
+    <div class="section-label">对我有什么用</div>
+    <p>企业内部系统处理合同、发票、报表等文档场景可直接接入。前端可做文档预览/标注集成，后端可批量处理扫描件。性价比远超传统 OCR 方案。</p>
+    <div class="section-label">可落地动作</div>
+    <p>在 Mistral 平台申请 API Key 进行测试；评估替换现有 OCR 服务（如 Tesseract、百度 OCR）的可行性和成本对比。</p>
+    <a class="card-link" href="https://mistral.ai/news/ocr-4/" target="_blank">Mistral OCR 4 官方公告 &rarr;</a>
+  </div>
+
+  <!-- #4 -->
+  <div class="card">
+    <span class="card-rank">4</span>
+    <span class="card-title">通义千问发布 Qwen3.6-35B-A3B：高效 MoE 开源模型，专为 Agent 场景优化</span>
+    <div class="card-tags">
+      <span class="tag tag-opensource">开源</span>
+      <span class="tag tag-model">模型发布</span>
+      <span class="tag tag-agent">Agent</span>
+    </div>
+    <div class="section-label">为什么重要</div>
+    <p>Qwen3.6-35B-A3B 采用 MoE 架构（35B 总参数，仅 3B 激活），在 vLLM 和 SGLang 上优化部署，专为真实世界 Agent 任务设计。这是目前性价比最高的可本地部署 Agent 模型之一。</p>
+    <div class="section-label">对我有什么用</div>
+    <p>可在企业内网私有化部署，用于构建内部 AI Agent、代码助手、知识库问答系统。3B 激活参数意味着消费级 GPU 即可运行，大幅降低企业 AI 部署门槛。</p>
+    <div class="section-label">可落地动作</div>
+    <p>从 ModelScope/HuggingFace 下载模型，用 vLLM 搭建本地推理服务；在内部 Coding Agent 或 RAG 系统中测试效果。</p>
+    <a class="card-link" href="https://github.com/QwenLM/Qwen3.6" target="_blank">GitHub 仓库 &rarr;</a>
+  </div>
+
+  <!-- #5 -->
+  <div class="card">
+    <span class="card-rank">5</span>
+    <span class="card-title">Sakana AI 发布 Fugu Ultra：多智能体编排框架，一个 API 调用多个前沿模型</span>
+    <div class="card-tags">
+      <span class="tag tag-agent">Agent</span>
+      <span class="tag tag-tool">开发工具</span>
+    </div>
+    <div class="section-label">为什么重要</div>
+    <p>Fugu Ultra 通过 TRINITY 和 Conductor 框架自动将复杂任务路由到最适合的底层模型（对比 Opus 4.8、Gemini 3.1 Pro、GPT-5.5），无需人工设计工作流。在 SWE Bench Pro、TerminalBench 2.1 等基准测试中超越单一前沿模型。</p>
+    <div class="section-label">对我有什么用</div>
+    <p>开发者无需再为不同任务选择不同模型——Fugu Ultra 自动编排。特别适合构建复杂的企业级 AI 工作流（如自动化研究、CAD 设计、多步推理），降低多模型集成的工程复杂度。</p>
+    <div class="section-label">可落地动作</div>
+    <p>注册 Fugu API（$20/月起），在现有项目中测试多 Agent 编排效果；评估是否可替代自建的模型路由层。</p>
+    <a class="card-link" href="https://sakana.ai/fugu/" target="_blank">Sakana Fugu 官网 &rarr;</a>
+  </div>
+
+  <!-- #6 -->
+  <div class="card">
+    <span class="card-rank">6</span>
+    <span class="card-title">百度开源 Unlimited OCR：一次性长文档解析，突破传统 OCR 分段限制</span>
+    <div class="card-tags">
+      <span class="tag tag-opensource">开源</span>
+      <span class="tag tag-tool">开发工具</span>
+    </div>
+    <div class="section-label">为什么重要</div>
+    <p>百度开源的 Unlimited OCR 实现了 "一次性长程解析"（one-shot long-horizon parsing），突破了传统 OCR 需要分段处理再拼接的瓶颈。在 Hacker News 上引发热议，被认为是文档理解领域的重大进步。</p>
+    <div class="section-label">对我有什么用</div>
+    <p>处理长文档（合同、论文、财报）时不再需要分段拼接，一次调用即可获取完整结构化内容。适合集成到企业知识库、RAG 系统的文档预处理管线。</p>
+    <div class="section-label">可落地动作</div>
+    <p>克隆 GitHub 仓库，在内部文档处理系统中进行 POC 测试；与 Mistral OCR 4 做对比评估。</p>
+    <a class="card-link" href="https://github.com/baidu/Unlimited-OCR" target="_blank">GitHub 仓库 &rarr;</a>
+  </div>
+
+  <!-- #7 -->
+  <div class="card">
+    <span class="card-rank">7</span>
+    <span class="card-title">字节跳动发布 Seedance 2.0 Mini：视频生成速度翻倍，成本减半</span>
+    <div class="card-tags">
+      <span class="tag tag-multimodal">多模态</span>
+      <span class="tag tag-model">模型发布</span>
+    </div>
+    <div class="section-label">为什么重要</div>
+    <p>Seedance 2.0 Mini 支持文本到视频、图片到视频和视频编辑的 Turbo 模式，生成速度是前代的 2 倍，成本降低 50%。视频生成赛道持续提速降价，商业化落地加速。</p>
+    <div class="section-label">对我有什么用</div>
+    <p>可用于生成产品演示视频、营销素材、培训教程。前端团队可集成视频生成能力到内容创作工具中；企业内部系统可自动化生成操作指南视频。</p>
+    <div class="section-label">可落地动作</div>
+    <p>通过字节跳动火山引擎 API 体验 Seedance 2.0 Mini；评估在内容生产管线中引入 AI 视频生成的 ROI。</p>
+    <a class="card-link" href="https://seed.bytedance.com/seedance2_0" target="_blank">ByteDance Seed 官网 &rarr;</a>
+  </div>
+
+  <!-- #8 -->
+  <div class="card">
+    <span class="card-rank">8</span>
+    <span class="card-title">VibeThinker-3B：3B 小模型用 SFT+GRPO 在推理任务上击败 Opus 4.5</span>
+    <div class="card-tags">
+      <span class="tag tag-opensource">开源</span>
+      <span class="tag tag-model">模型发布</span>
+    </div>
+    <div class="section-label">为什么重要</div>
+    <p>VibeThinker-3B 仅用 30 亿参数，通过新颖的 SFT+GRPO 训练方法，在可验证推理任务上击败了参数量大 200 倍的 Opus 4.5。这证明了训练方法和数据质量比模型规模更重要，为小模型在垂直场景的应用提供了强心针。</p>
+    <div class="section-label">对我有什么用</div>
+    <p>企业可以在边缘设备或低成本 GPU 上部署高推理能力模型。适合嵌入式 AI、离线推理助手、隐私敏感场景的本地部署。</p>
+    <div class="section-label">可落地动作</div>
+    <p>阅读论文了解 SFT+GRPO 训练方法；在内部推理任务上测试 3B 模型的表现；关注其在代码生成和逻辑推理上的实际应用效果。</p>
+    <a class="card-link" href="https://arxiv.org/abs/2606.16140" target="_blank">论文链接 &rarr;</a>
+  </div>
+
+  <!-- #9 -->
+  <div class="card">
+    <span class="card-rank">9</span>
+    <span class="card-title">Getty Images 与 OpenAI 签署多年授权协议，股价暴涨 145%</span>
+    <div class="card-tags">
+      <span class="tag tag-business">商业</span>
+      <span class="tag tag-multimodal">多模态</span>
+    </div>
+    <div class="section-label">为什么重要</div>
+    <p>OpenAI 与 Getty Images 达成 Display Partnership，将授权使用的高质量图片素材整合到 AI 搜索和产品功能中。这是 AI 公司与内容版权方达成大规模合作的标志性事件，为 AI 训练数据的合规化树立了新范式。</p>
+    <div class="section-label">对我有什么用</div>
+    <p>前端开发中涉及的 AI 图片生成/搜索功能可关注 OpenAI 未来开放的 Getty 素材接口。企业使用 AI 生成内容时的版权风险有望通过此类授权模式得到缓解。</p>
+    <div class="section-label">可落地动作</div>
+    <p>关注 OpenAI 后续是否开放 Getty 素材 API；评估企业内部 AI 生成内容的版权合规现状。</p>
+    <a class="card-link" href="https://newsroom.gettyimages.com/en/getty-images/getty-images-announces-display-partnership-with-openai" target="_blank">Getty Images 新闻稿 &rarr;</a>
+  </div>
+
+  <!-- #10 -->
+  <div class="card">
+    <span class="card-rank">10</span>
+    <span class="card-title">智谱 GLM-5.2 开源发布：专为长程任务设计，Agent 能力突出</span>
+    <div class="card-tags">
+      <span class="tag tag-opensource">开源</span>
+      <span class="tag tag-agent">Agent</span>
+    </div>
+    <div class="section-label">为什么重要</div>
+    <p>智谱 AI 发布的 GLM-5.2 专为长程（long-horizon）任务优化，在多项 Agent 基准测试中超越 Google 顶级模型。作为开源模型，为国内开发者提供了强大的 Agent 底座选择。</p>
+    <div class="section-label">对我有什么用</div>
+    <p>可用于构建需要多步推理和长时间自主执行的 AI Agent，如自动化运维、代码审查、数据分析管线。开源特性确保可私有化部署，满足数据安全要求。</p>
+    <div class="section-label">可落地动作</div>
+    <p>从 ModelScope 下载 GLM-5.2，在内部 Agent 框架中集成测试；关注其在 Coding Agent 场景的表现。</p>
+    <a class="card-link" href="https://z.ai/blog/glm-5.2" target="_blank">智谱官方博客 &rarr;</a>
+  </div>
+
+  <!-- #11 -->
+  <div class="card">
+    <span class="card-rank">11</span>
+    <span class="card-title">中国将 56 家美国企业列入黑名单，AI 供应链脱钩加速</span>
+    <div class="card-tags">
+      <span class="tag tag-policy">政策</span>
+      <span class="tag tag-business">商业</span>
+    </div>
+    <div class="section-label">为什么重要</div>
+    <p>作为对美国出口管制的回应，北京禁止 56 家美国企业参与政府采购。中美 AI 供应链脱钩进一步加剧，将影响国内外 AI 产品的市场格局和技术选型。</p>
+    <div class="section-label">对我有什么用</div>
+    <p>企业内部系统选型需关注地缘政治风险——使用美国 AI 服务（OpenAI、Anthropic）的企业可能面临合规不确定性。建议保持技术栈的灵活性，确保可快速切换国产替代方案。</p>
+    <div class="section-label">可落地动作</div>
+    <p>梳理现有技术栈中对美国 AI 服务的依赖程度；评估 Qwen、GLM、DeepSeek 等国产模型作为备选方案的成熟度。</p>
+    <a class="card-link" href="https://aitoolsrecap.com/Blog/AINewsJune2026.aspx" target="_blank">AIToolsRecap 综合报道 &rarr;</a>
+  </div>
+
+  <!-- #12 -->
+  <div class="card">
+    <span class="card-rank">12</span>
+    <span class="card-title">Kimi K2.7-Code 开源：月之暗面推出 1T 参数编码专用模型</span>
+    <div class="card-tags">
+      <span class="tag tag-coding">Coding</span>
+      <span class="tag tag-opensource">开源</span>
+    </div>
+    <div class="section-label">为什么重要</div>
+    <p>月之暗面（Moonshot AI）发布的 Kimi K2.7-Code 拥有 1T 参数，专注编码和 Agent 场景，在 token 效率上做了深度优化。作为开源模型，为 Coding Agent 提供了新的强力选择。</p>
+    <div class="section-label">对我有什么用</div>
+    <p>可用于搭建私有化 Coding Agent、代码审查助手、自动化测试生成系统。高 token 效率意味着更低的推理成本。</p>
+    <div class="section-label">可落地动作</div>
+    <p>在 SWE-bench 上对比 Kimi K2.7-Code 与其他编码模型的表现；评估在内部开发工具中集成的可行性。</p>
+    <a class="card-link" href="https://flowtivity.ai/blog/kimi-k2-7-code-review/" target="_blank">Kimi K2.7-Code 评测 &rarr;</a>
+  </div>
+
+  <!-- #13 -->
+  <div class="card">
+    <span class="card-rank">13</span>
+    <span class="card-title">OpenAI 加速淘汰旧模型：GPT-4.5 和 o3 将于 42 天内下线</span>
+    <div class="card-tags">
+      <span class="tag tag-model">模型发布</span>
+      <span class="tag tag-business">商业</span>
+    </div>
+    <div class="section-label">为什么重要</div>
+    <p>OpenAI 正式宣布淘汰 GPT-4.5 和 o3 系列，转向 42 天的旗舰模型部署周期。旧模型在继任者发布后仅数周即被弃用，迭代速度远超传统企业采购周期。</p>
+    <div class="section-label">对我有什么用</div>
+    <p>依赖特定 OpenAI 模型版本的企业系统面临突然断供风险。必须构建模型无关（model-agnostic）的抽象层，确保可快速切换底层模型。</p>
+    <div class="section-label">可落地动作</div>
+    <p>检查项目中使用的 OpenAI 模型版本，确认是否在淘汰名单中；设计统一的 LLM 抽象接口，降低模型切换成本。</p>
+    <a class="card-link" href="https://llm-stats.com/llm-updates" target="_blank">LLM Stats 模型追踪 &rarr;</a>
+  </div>
+
+  <!-- #14 -->
+  <div class="card">
+    <span class="card-rank">14</span>
+    <span class="card-title">Ultralytics 发布 YOLO26：统一实时视觉模型，面向边缘部署优化</span>
+    <div class="card-tags">
+      <span class="tag tag-vision">视觉</span>
+      <span class="tag tag-opensource">开源</span>
+    </div>
+    <div class="section-label">为什么重要</div>
+    <p>YOLO26 是 Ultralytics 最新的实时目标检测模型，统一了检测、分割、姿态估计等任务，专为边缘硬件部署优化。在 Hacker News 上获得广泛关注。</p>
+    <div class="section-label">对我有什么用</div>
+    <p>前端可在浏览器端集成更轻量的视觉 AI（如实时视频分析）；后端可在边缘服务器上部署高效视觉检测服务。适合 IoT、安防、质检等场景。</p>
+    <div class="section-label">可落地动作</div>
+    <p>通过 pip install ultralytics 体验 YOLO26；评估在现有视觉项目中的替换收益。</p>
+    <a class="card-link" href="https://blog.roboflow.com/yolo26/" target="_blank">Roboflow 介绍 &rarr;</a>
+  </div>
+
+  <!-- #15 -->
+  <div class="card">
+    <span class="card-rank">15</span>
+    <span class="card-title">Google Gemini 3.5 Pro 即将发布：2M 上下文窗口，深度推理能力</span>
+    <div class="card-tags">
+      <span class="tag tag-model">模型发布</span>
+    </div>
+    <div class="section-label">为什么重要</div>
+    <p>预测市场显示 Gemini 3.5 Pro 大概率在 6 月底发布，主打 200 万 token 上下文窗口和深度推理能力。高级推理功能将锁定 $250/月订阅层，标准 $20 层即可获得 2M 上下文。</p>
+    <div class="section-label">对我有什么用</div>
+    <p>2M 上下文意味着可一次性处理整个代码仓库或超大型文档。对 RAG 系统、代码分析工具、长文档处理系统有革命性意义——可能不再需要复杂的分块策略。</p>
+    <div class="section-label">可落地动作</div>
+    <p>关注 Google I/O 后续公告；提前设计支持超长上下文的 RAG 架构，准备在 Gemini 3.5 Pro 上线后第一时间测试。</p>
+    <a class="card-link" href="https://wavespeed.ai/blog/posts/june-2026-ai-launch-wave/" target="_blank">WaveSpeed 分析 &rarr;</a>
+  </div>
+
+  <!-- #16 -->
+  <div class="card">
+    <span class="card-rank">16</span>
+    <span class="card-title">Accenture 推出 Edge 部门：面向中型企业的 AI 落地服务</span>
+    <div class="card-tags">
+      <span class="tag tag-business">商业</span>
+      <span class="tag tag-tool">开发工具</span>
+    </div>
+    <div class="section-label">为什么重要</div>
+    <p>Accenture 成立专门的 Edge 部门，聚焦帮助中型企业落地 AI 和运营革新。这表明 AI 服务市场正从头部企业向中型企业下沉，"AI 普惠化"进入新阶段。</p>
+    <div class="section-label">对我有什么用</div>
+    <p>如果你在中型企业负责技术选型和 AI 落地，可以关注 Accenture Edge 提供的方法论和服务。企业内部系统提效不再只是大厂专属。</p>
+    <div class="section-label">可落地动作</div>
+    <p>了解 Accenture Edge 的服务范围和方法论；评估企业内部 AI 落地的成熟度和优先级。</p>
+    <a class="card-link" href="https://newsroom.accenture.com/news/2026/accenture-launches-accenture-edge-to-help-mid-market-companies-harness-ai-and-reinvent-how-they-operate" target="_blank">Accenture 新闻稿 &rarr;</a>
+  </div>
+
+  <!-- #17 -->
+  <div class="card">
+    <span class="card-rank">17</span>
+    <span class="card-title">白宫签署 AI 创新与安全行政令：建立联邦统一监管框架</span>
+    <div class="card-tags">
+      <span class="tag tag-policy">政策</span>
+    </div>
+    <div class="section-label">为什么重要</div>
+    <p>特朗普政府签署行政令，推动建立联邦层面的 AI 创新与安全监管框架，要求 AI 公司自愿提交模型安全评估。该行政令旨在统一各州碎片化的 AI 法规，为行业提供三年确定性窗口。</p>
+    <div class="section-label">对我有什么用</div>
+    <p>联邦统一监管降低了跨州合规成本，但也意味着更明确的安全审计要求。企业 AI 系统需要建立模型安全评估流程，尤其是面向海外市场的产品。</p>
+    <div class="section-label">可落地动作</div>
+    <p>阅读行政令全文，评估对企业 AI 产品合规的影响；建立内部 AI 安全评估清单。</p>
+    <a class="card-link" href="https://www.whitehouse.gov/presidential-actions/2026/06/promoting-advanced-artificial-intelligence-innovation-and-security/" target="_blank">白宫行政令全文 &rarr;</a>
+  </div>
+
+  <!-- #18 -->
+  <div class="card">
+    <span class="card-rank">18</span>
+    <span class="card-title">Claude Fable 5 恢复上线但限制更多：免费体验期结束</span>
+    <div class="card-tags">
+      <span class="tag tag-model">模型发布</span>
+      <span class="tag tag-security">安全</span>
+    </div>
+    <div class="section-label">为什么重要</div>
+    <p>Anthropic 的 Claude Fable 5 在因安全漏洞被暂停后恢复上线，但增加了更严格的安全过滤器和地理限制，免费访问窗口也已关闭。这反映了 AI 安全与可用性之间的持续张力。</p>
+    <div class="section-label">对我有什么用</div>
+    <p>依赖 Claude Fable 5 的项目需要适应新的限制策略。安全过滤器的加强可能影响某些创意类或安全研究类应用场景的输出。</p>
+    <div class="section-label">可落地动作</div>
+    <p>检查现有 Fable 5 集成是否受到新限制影响；评估是否需要调整 prompt 策略或切换到其他模型。</p>
+    <a class="card-link" href="https://www.anthropic.com/news/claude-fable-5-mythos-5" target="_blank">Anthropic 官方公告 &rarr;</a>
+  </div>
+
+  <!-- #19 -->
+  <div class="card">
+    <span class="card-rank">19</span>
+    <span class="card-title">FUTO 发布 Swipe 模型：隐私优先的 AI 滑动输入引擎</span>
+    <div class="card-tags">
+      <span class="tag tag-tool">开发工具</span>
+      <span class="tag tag-opensource">开源</span>
+    </div>
+    <div class="section-label">为什么重要</div>
+    <p>FUTO 发布了全新的 AI 滑动输入模型，数据集完全公开。该模型在本地运行，不依赖云端，是隐私优先 AI 应用的典范。在 Hacker News 上获得热捧。</p>
+    <div class="section-label">对我有什么用</div>
+    <p>移动端开发者可参考 FUTO 的架构，在应用中集成完全离线的 AI 输入能力。对隐私敏感场景（医疗、金融 App）有重要参考价值。</p>
+    <div class="section-label">可落地动作</div>
+    <p>体验 FUTO Keyboard 并研究其技术实现；评估在移动端项目中集成类似本地 AI 能力。</p>
+    <a class="card-link" href="https://swipe.futo.tech/" target="_blank">FUTO Swipe 官网 &rarr;</a>
+  </div>
+
+  <!-- #20 -->
+  <div class="card">
+    <span class="card-rank">20</span>
+    <span class="card-title">Anthropic Claude Fable 5 实现 9 小时连续自主 Agent 运行</span>
+    <div class="card-tags">
+      <span class="tag tag-agent">Agent</span>
+    </div>
+    <div class="section-label">为什么重要</div>
+    <p>学术研究者记录到 Claude Fable 5 在复杂任务上连续自主运行超过 9 小时的案例。这展示了当前 Agent 系统的持久力上限，但也暴露了长时间运行的成本问题——对多数团队而言仍不可持续。</p>
+    <div class="section-label">对我有什么用</div>
+    <p>长时 Agent 运行是未来自动化运维、持续代码审查、大规模数据处理的方向。当前需关注成本控制策略，如任务分段、检查点恢复等。</p>
+    <div class="section-label">可落地动作</div>
+    <p>设计 Agent 任务时引入检查点和分段机制；监控 Agent 运行的 token 消耗，建立成本预警机制。</p>
+    <a class="card-link" href="https://aitoolsrecap.com/Blog/AINewsJune2026.aspx" target="_blank">AIToolsRecap 综合报道 &rarr;</a>
+  </div>
+
+</div>
+
+<div class="footer">
+  AI Daily Briefing &middot; 数据来源：Hacker News, The Verge, WaveSpeed, AIToolsRecap, 机器之心, 量子位 等<br>
+  由 QoderWork 自动整理生成 &middot; 2026-06-24
+</div>
+
+</body>
+</html>

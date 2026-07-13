@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 早报 2026-06-26</title>
+<style>
+  :root {
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #1a1a2e;
+    --text-secondary: #555;
+    --accent: #2563eb;
+    --accent-light: #dbeafe;
+    --border: #e2e8f0;
+    --tag-bg: #f1f5f9;
+    --quote-bg: #f0f4ff;
+    --quote-border: #93b4f5;
+    --warn-bg: #fff7ed;
+    --warn-border: #fb923c;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0;
+  }
+  .header {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+    color: #fff;
+    padding: 48px 24px 40px;
+    text-align: center;
+  }
+  .header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .header .date {
+    font-size: 0.95rem;
+    opacity: 0.85;
+  }
+  .header .meta {
+    margin-top: 12px;
+    font-size: 0.85rem;
+    opacity: 0.7;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 16px 64px;
+  }
+  .overview {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 24px;
+    margin-bottom: 28px;
+  }
+  .overview h2 {
+    font-size: 1.25rem;
+    margin-bottom: 18px;
+    color: var(--accent);
+  }
+  .overview h3 {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 16px 0 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--border);
+  }
+  .overview ul {
+    list-style: none;
+    padding: 0;
+  }
+  .overview li {
+    padding: 5px 0;
+    font-size: 0.95rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .overview li .tag {
+    font-size: 0.75rem;
+    background: var(--accent-light);
+    color: var(--accent);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-left: 8px;
+  }
+  .section-title {
+    font-size: 1.1rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 32px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    font-weight: 700;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 18px;
+    transition: box-shadow 0.2s;
+  }
+  .card:hover {
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  .card-header h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    flex: 1;
+  }
+  .card-header h3 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .card-header h3 a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .card-number {
+    font-size: 0.8rem;
+    background: var(--accent);
+    color: #fff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-left: 12px;
+  }
+  .card blockquote {
+    background: var(--quote-bg);
+    border-left: 3px solid var(--quote-border);
+    padding: 10px 14px;
+    margin: 10px 0 14px;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+  }
+  .card .detail {
+    font-size: 0.93rem;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+  }
+  .card .detail p {
+    margin-bottom: 8px;
+  }
+  .card .links {
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+  }
+  .card .links a {
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 16px;
+    margin-bottom: 4px;
+  }
+  .card .links a:hover {
+    text-decoration: underline;
+  }
+  .card .links a::before {
+    content: "🔗 ";
+    font-size: 0.8rem;
+  }
+  .unconfirmed-badge {
+    display: inline-block;
+    background: var(--warn-bg);
+    border: 1px solid var(--warn-border);
+    color: #c2410c;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .footer {
+    text-align: center;
+    padding: 32px 16px;
+    font-size: 0.8rem;
+    color: #999;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+  @media (max-width: 600px) {
+    .header { padding: 32px 16px 28px; }
+    .header h1 { font-size: 1.5rem; }
+    .container { padding: 16px 12px 48px; }
+    .card { padding: 18px 16px; }
+    .card-header h3 { font-size: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>AI 早报</h1>
+  <div class="date">2026 年 6 月 26 日 · 星期四</div>
+  <div class="meta">自动采集 · 共 10 条 · 来源：官方博客、Reuters、BBC、CNBC 等</div>
+</div>
+
+<div class="container">
+
+  <!-- 概览 -->
+  <div class="overview">
+    <h2>概览</h2>
+
+    <h3>要闻</h3>
+    <ul>
+      <li>AlphaFold 之父 John Jumper 离开 Google DeepMind，加入 Anthropic <span class="tag">#1</span></li>
+      <li>Anthropic Fable 5 / Mythos 5 被美国政府全球禁用，即将与白宫会面 <span class="tag">#2</span></li>
+      <li>OpenAI 已秘密提交 IPO 申请，加速上市进程 <span class="tag">#3</span></li>
+    </ul>
+
+    <h3>模型发布</h3>
+    <ul>
+      <li>Anthropic 发布 Claude Fable 5 与 Mythos 5——随即被强制下架 <span class="tag">#4</span></li>
+    </ul>
+
+    <h3>产品应用</h3>
+    <ul>
+      <li>Claude Tag 上线 Slack——企业级 AI 协作新入口 <span class="tag">#5</span></li>
+      <li>Claude Code 2.1.191 发布，加入 /rewind 命令与性能优化 <span class="tag">#6</span></li>
+    </ul>
+
+    <h3>行业动态</h3>
+    <ul>
+      <li>SK Hynix 计划赴美上市，融资 294 亿美元扩大 AI 芯片产能 <span class="tag">#7</span></li>
+      <li>Anthropic 年化收入突破 300 亿美元，Q2 预计 109 亿 <span class="tag">#8</span></li>
+      <li>中美科技博弈：56 家美企被列入中方反制清单 <span class="tag">#9</span></li>
+    </ul>
+
+    <h3>前瞻与传闻</h3>
+    <ul>
+      <li>Anthropic IPO 窗口渐近，估值或冲击万亿美元 <span class="tag">#10</span></li>
+    </ul>
+  </div>
+
+  <!-- ========== 要闻 ========== -->
+  <div class="section-title">要闻</div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3><a href="https://www.reuters.com/technology/us-scientist-john-jumper-leave-google-deepmind-anthropic-2026-06-19/" target="_blank">AlphaFold 之父 John Jumper 离开 Google DeepMind，加入 Anthropic</a></h3>
+      <div class="card-number">#1</div>
+    </div>
+    <blockquote>诺贝尔化学奖得主、AlphaFold 联合创始人 John Jumper 在 Google DeepMind 工作近 9 年后，正式加入 Anthropic。</blockquote>
+    <div class="detail">
+      <p>Jumper 在声明中表示："在近九年之后，我决定离开 Google DeepMind 加入 Anthropic。" 这一人事变动与 Noam Shazeer 的离职一起，对 Alphabet 的市场估值产生了明显冲击。</p>
+      <p>这次跳槽反映了 AI 实验室之间日益激烈的人才争夺战。Anthropic 正在积极招募顶级研究人才，为其在科学发现和 AI 安全领域的布局增添重量级力量。Jumper 的结构生物学和蛋白质预测背景，暗示 Anthropic 可能在 AI for Science 方向上有更大动作。</p>
+    </div>
+    <div class="links">
+      <a href="https://www.reuters.com/technology/us-scientist-john-jumper-leave-google-deepmind-anthropic-2026-06-19/" target="_blank">Reuters 报道</a>
+      <a href="https://www.businessinsider.com/alphafold-john-jumper-leaves-google-deepmind-anthropic-demis-hassabis-nobel-2026-6" target="_blank">Business Insider</a>
+      <a href="https://aiweekly.co/alerts/google-deepminds-alphafold-lead-john-jumper-joins-anthropic" target="_blank">AI Weekly</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3><a href="https://www.bbc.com/news/articles/c9w2p7ykp8yo" target="_blank">Anthropic Fable 5 / Mythos 5 被美国政府全球禁用，即将与白宫会面</a></h3>
+      <div class="card-number">#2</div>
+    </div>
+    <blockquote>美国商务部以安全漏洞为由，要求 Anthropic 在全球范围内暂停 Fable 5 和 Mythos 5 的访问。Anthropic 认为这是一次"误解"。</blockquote>
+    <div class="detail">
+      <p>6 月 12 日，美国商务部向 Anthropic 发出出口管制指令，要求暂停所有外国国民对 Fable 5 和 Mythos 5 的访问。政府方面声称发现了一种可绕过安全限制的漏洞，但 Anthropic 评估后认为该漏洞只能暴露已有公开工具可发现的轻微缺陷，且没有任何红队测试者发现过"通用越狱"方案。</p>
+      <p>Anthropic CEO Dario Amodei 将与商务部长 Howard Lutnick 在华盛顿会面讨论此事。多家科技公司网络安全专家联名发表公开信（freefable.org），呼吁解除限制，警告"在没有充分理由的情况下剥夺防御者最强的能力是危险的"。目前两款模型对全球所有用户完全不可用。</p>
+    </div>
+    <div class="links">
+      <a href="https://www.bbc.com/news/articles/c9w2p7ykp8yo" target="_blank">BBC 报道</a>
+      <a href="https://www.forbes.com/sites/anishasircar/2026/06/16/anthropic-disabled-fable-5-and-mythos-5-after-a-us-export-control-order-heres-what-happened/" target="_blank">Forbes 深度分析</a>
+      <a href="https://www.anthropic.com/news/claude-fable-5-mythos-5" target="_blank">Anthropic 官方公告</a>
+      <a href="https://freefable.org/" target="_blank">公开信</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3><a href="https://www.cnbc.com/2026/06/08/openai-confidentially-files-for-ipo-prepping-wall-street-for-ai-debut.html" target="_blank">OpenAI 已秘密提交 IPO 申请，加速上市进程</a></h3>
+      <div class="card-number">#3</div>
+    </div>
+    <blockquote>OpenAI 于 6 月初秘密向 SEC 提交了 IPO 招股书，与 Anthropic、SpaceX 一同成为今年最受关注的上市候选。</blockquote>
+    <div class="detail">
+      <p>据 Reuters、WSJ、CNBC 等多家媒体报道，OpenAI 已于 6 月 8 日前后秘密提交了 IPO 草案。消息人士称 OpenAI 正在追求快速上市路径，目标是在 Wall Street 完成 AI 领域最具标志性的 IPO。</p>
+      <p>这与 Anthropic 的上市计划形成呼应——AI 领域两大头部公司几乎同时走向公开市场，反映出 AI 行业从融资烧钱阶段向公开市场验证商业模式的关键转折。</p>
+    </div>
+    <div class="links">
+      <a href="https://www.cnbc.com/2026/06/08/openai-confidentially-files-for-ipo-prepping-wall-street-for-ai-debut.html" target="_blank">CNBC</a>
+      <a href="https://www.theguardian.com/technology/2026/jun/08/openai-ipo-files-for-public-stock-market" target="_blank">The Guardian</a>
+      <a href="https://www.reuters.com/business/openai-preparing-file-ipo-soon-wsj-reports-2026-05-20/" target="_blank">Reuters</a>
+    </div>
+  </div>
+
+  <!-- ========== 模型发布 ========== -->
+  <div class="section-title">模型发布</div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3><a href="https://www.anthropic.com/news/claude-fable-5-mythos-5" target="_blank">Anthropic 发布 Claude Fable 5 与 Mythos 5——随即被强制下架</a></h3>
+      <div class="card-number">#4</div>
+    </div>
+    <blockquote>Anthropic 迄今最强模型组合：Fable 5 主打通用安全，Mythos 5 拥有"全球最强网络安全能力"。发布仅 3 天即被政府叫停。</blockquote>
+    <div class="detail">
+      <p>6 月 9 日正式发布的 Fable 5 被定位为"Mythos 级安全通用模型"，在编程、分析任务、视觉处理和科学发现基准测试中均居首位。它能仅凭视觉输入自主操控游戏，将大规模代码迁移压缩至数天完成，并加速药物设计。Mythos 5 共享同一底层架构但缺少特定安全护栏，被 Anthropic 描述为具有"世界上最强的网络安全能力"。</p>
+      <p>Fable 5 最初通过严格的安全分类器将敏感生物学和网络安全查询路由到较弱模型，以防止恶意使用。然而美国政府以出口管制为由，在 6 月 12 日强制要求全球下架。Anthropic 已发布详细的 System Card 文档，两款模型目前完全不可用。</p>
+    </div>
+    <div class="links">
+      <a href="https://www.anthropic.com/news/claude-fable-5-mythos-5" target="_blank">Anthropic 官方公告</a>
+      <a href="https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf" target="_blank">System Card (PDF)</a>
+      <a href="https://innovativegroup.io/blog/claude-fable-5-mythos-5-launch/" target="_blank">运营者解读</a>
+    </div>
+  </div>
+
+  <!-- ========== 产品应用 ========== -->
+  <div class="section-title">产品应用</div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3><a href="https://www.anthropic.com/news/introducing-claude-tag" target="_blank">Claude Tag 上线 Slack——企业级 AI 协作新入口</a></h3>
+      <div class="card-number">#5</div>
+    </div>
+    <blockquote>在 Slack 中 @Claude 即可调用 AI 处理上下文、生成代码、回答问题。Anthropic 内部 65% 的产品代码已由该工具生成。</blockquote>
+    <div class="detail">
+      <p>6 月 23 日，Anthropic 正式推出 Claude Tag 功能，允许企业用户在 Slack 频道中直接通过 @提及的方式调用 Claude。系统能够处理对话上下文，在频道内完成代码生成、问题回答等任务，无需切换应用。该功能在尊重数据访问控制的前提下，随时间推移逐步构建组织级上下文知识。</p>
+      <p>值得关注的是，Anthropic 透露其内部产品团队 65% 的代码已由内部版 Claude Tag 生成——这一数据本身就是 AI 辅助编程在专业团队中渗透率的有力指标。该产品直接对标 Microsoft 的 Teams + Copilot 集成方案。</p>
+    </div>
+    <div class="links">
+      <a href="https://www.anthropic.com/news/introducing-claude-tag" target="_blank">Anthropic 官方公告</a>
+      <a href="https://techcrunch.com/2026/06/23/anthropics-claude-tag-is-learning-your-company-one-slack-message-at-a-time/" target="_blank">TechCrunch</a>
+      <a href="https://www.reuters.com/technology/anthropic-launches-claude-tag-research-preview-slack-users-2026-06-23/" target="_blank">Reuters</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3><a href="https://code.claude.com/docs/en/changelog" target="_blank">Claude Code 2.1.191 发布，加入 /rewind 命令与性能优化</a></h3>
+      <div class="card-number">#6</div>
+    </div>
+    <blockquote>新版本引入 /rewind 命令，可在 /clear 后恢复对话上下文；同时修复后台进程自动重启 bug，降低长会话资源占用。</blockquote>
+    <div class="detail">
+      <p>6 月 25 日发布的 Claude Code 2.1.191 是一个实用性很强的更新。核心新功能是 /rewind 命令——用户可以在执行 /clear 清除对话后，通过 /rewind 恢复之前的对话脉络，避免上下文丢失。这在长时间编码会话中非常实用。</p>
+      <p>该版本还修复了一个后台进程被终止后会自动重启的 bug，并显著降低了流式传输和长会话期间的 CPU 与内存占用。此前几天（6 月 23-24 日）的版本还加入了沙箱凭据阻断、组织级模型限制、Agent Teams 隐式会话、MCP 服务器 CLI 认证等功能，更新节奏非常密集。</p>
+    </div>
+    <div class="links">
+      <a href="https://code.claude.com/docs/en/changelog" target="_blank">Claude Code Changelog</a>
+      <a href="https://releasebot.io/updates/anthropic/claude-code" target="_blank">Releasebot 汇总</a>
+    </div>
+  </div>
+
+  <!-- ========== 行业动态 ========== -->
+  <div class="section-title">行业动态</div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3><a href="https://www.reuters.com/world/asia-pacific/south-koreas-sk-hynix-says-raise-29-bln-us-adr-listing-2026-06-24/" target="_blank">SK Hynix 计划赴美上市，融资 294 亿美元扩大 AI 芯片产能</a></h3>
+      <div class="card-number">#7</div>
+    </div>
+    <blockquote>全球最大 HBM 内存芯片供应商 SK Hynix 宣布在美国交易所上市，7 月中旬开始交易，资金将用于扩大先进 AI 芯片制造能力。</blockquote>
+    <div class="detail">
+      <p>6 月 24 日，SK Hynix 正式宣布其美国 ADR 上市计划，目标融资 294 亿美元，将成为今年全球最大规模的 IPO 之一。所得资金将主要用于扩大 HBM（高带宽内存）技术的产能——这是当前 AI 训练和推理芯片最关键的组件之一。</p>
+      <p>值得注意的是，全球三大内存供应商目前都在财务层面支持 Anthropic，后者也在准备自己的 IPO。AI 算力供应链上下游的资本联动正在加速，芯片、内存、模型公司正在形成一个紧密的商业生态。</p>
+    </div>
+    <div class="links">
+      <a href="https://www.reuters.com/world/asia-pacific/south-koreas-sk-hynix-says-raise-29-bln-us-adr-listing-2026-06-24/" target="_blank">Reuters</a>
+      <a href="https://www.investors.com/news/sk-hynix-ai-chip-company-ipo/" target="_blank">Investor's Business Daily</a>
+      <a href="https://techcrunch.com/2026/03/27/memory-chip-giant-sk-hynix-could-help-end-rammageddon-with-blockbuster-us-ipo/" target="_blank">TechCrunch 早期分析</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3><a href="https://www.cnbc.com/2026/05/20/anthropic-revenue-explosive-growth-ipo-profitable-quarter.html" target="_blank">Anthropic 年化收入突破 300 亿美元，Q2 预计 109 亿</a></h3>
+      <div class="card-number">#8</div>
+    </div>
+    <blockquote>超过 1000 家企业客户年支出超百万美元，Anthropic 已成为 AI 行业营收增长最快的公司之一，并有望超越 OpenAI。</blockquote>
+    <div class="detail">
+      <p>据 CNBC 报道，Anthropic 预计 2026 年 Q2 收入将达到 109 亿美元。另有分析指出其年化经常性收入（ARR）已突破 300 亿美元大关，超过 1000 家企业的年度 API 消费达到七位数。企业级采用率是这一增长的核心驱动力。</p>
+      <p>不过，Fable 5 / Mythos 5 被禁用后高端 token 定价策略可能影响未来使用量。Anthropic 正试图在高端模型的溢价与用量之间找到平衡，同时为 IPO 准备更稳健的财务叙事。</p>
+    </div>
+    <div class="links">
+      <a href="https://www.cnbc.com/2026/05/20/anthropic-revenue-explosive-growth-ipo-profitable-quarter.html" target="_blank">CNBC</a>
+      <a href="https://www.the-ai-corner.com/p/anthropic-30b-arr-passed-openai-revenue-2026" target="_blank">The AI Corner</a>
+      <a href="https://enersys.co.th/en/insights/anthropic-30b-enterprise-ai-tipping-point-2026" target="_blank">Enterprise AI 分析</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3><a href="https://www.dw.com/zh/%E5%AA%92%E4%BD%93%E7%BE%8E%E5%9B%BD%E6%9A%82%E7%BC%93%E9%80%BE%E7%99%BE%E5%AE%B6%E4%BC%81%E4%B8%9A%E5%88%97%E9%BB%91%E5%90%8D%E5%8D%95-%E9%81%BF%E5%85%8D%E7%BE%8E%E4%B8%AD%E7%B4%A7%E5%BC%A0%E5%8D%87%E6%B8%A9/a-77586133" target="_blank">中美科技博弈：56 家美企被列入中方反制清单</a></h3>
+      <div class="card-number">#9</div>
+    </div>
+    <blockquote>中国将 56 家美国企业列入反制清单，作为对美方出口管制的回应。美国商务部尚未正式回应，科技贸易战持续升温。</blockquote>
+    <div class="detail">
+      <p>6 月 24 日，中国方面宣布将 56 家美国企业列入反制清单，这是对美方持续加码芯片出口管制和 AI 技术封锁的直接回应。与此同时，美方此前已将 188 家中国企业列入实体清单，试图遏制中国的 AI 芯片能力。</p>
+      <p>这一双向制裁升级正在深刻影响全球 AI 供应链格局。AI 公司不得不面对芯片供应、市场准入和合规层面的多重不确定性。目前美国商务部尚未对中方的反制措施做出正式回应。</p>
+    </div>
+    <div class="links">
+      <a href="https://www.dw.com/zh/%E5%AA%92%E4%BD%93%E7%BE%8E%E5%9B%BD%E6%9A%82%E7%BC%93%E9%80%BE%E7%99%BE%E5%AE%B6%E4%BC%81%E4%B8%9A%E5%88%97%E9%BB%91%E5%90%8D%E5%8D%95-%E9%81%BF%E5%85%8D%E7%BE%8E%E4%B8%AD%E7%B4%A7%E5%BC%A0%E5%8D%87%E6%B8%A9/a-77586133" target="_blank">DW 中文</a>
+      <a href="https://aitoolsrecap.com/Blog/ai-news-june-24-2026" target="_blank">AI Tools Recap</a>
+    </div>
+  </div>
+
+  <!-- ========== 前瞻与传闻 ========== -->
+  <div class="section-title">前瞻与传闻</div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3>Anthropic IPO 窗口渐近，估值或冲击万亿美元 <span class="unconfirmed-badge">传闻 · 未官方确认</span></h3>
+      <div class="card-number">#10</div>
+    </div>
+    <blockquote>多方消息称 Anthropic 正积极筹备 IPO，时间窗口可能在 2026 年下半年至 2027 年初，估值目标或达万亿美元级别。</blockquote>
+    <div class="detail">
+      <p>据 Financial Times、Yahoo Finance 等多家媒体报道，Anthropic 正在规划 IPO，最早可能在 2026 年启动。考虑到其年化收入已突破 300 亿美元、Q2 单季预计达 109 亿，以及全球三大内存供应商的财务背书，市场对 Anthropic 的估值预期不断推高。</p>
+      <p>不过，Fable 5 / Mythos 5 被禁用事件以及与白宫的紧张关系，可能为 IPO 进程增添不确定性。具体时间表和 S-1 文件尚未公开披露，以上信息均来自匿名消息人士，尚未获得 Anthropic 官方确认。</p>
+    </div>
+    <div class="links">
+      <a href="https://finance.yahoo.com/news/anthropic-plans-ipo-early-2026-004854547.html" target="_blank">Yahoo Finance (FT)</a>
+      <a href="https://www.useluminix.com/reports/company-overviews/what-do-we-know-about-the-anthropic-ipo" target="_blank">Luminix AI 分析</a>
+      <a href="https://www.zacks.com/featured-articles/761/anthropic-ipo" target="_blank">Zacks</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>本早报由 AI 自动采集整理 · 信息仅供参考，请以原始来源为准</p>
+    <p>生成时间：2026-06-26 · 数据来源截止至发稿时</p>
+  </div>
+
+</div>
+
+</body>
+</html>
