@@ -34,7 +34,7 @@ onMounted(ensureLoaded);
       <div class="hero__panel">
         <h1 class="hero__title">AI Hub</h1>
         <p class="hero__desc">
-          个人技术知识库 — 持续记录 AI 前沿动态、Java 学习笔记与前端技术趋势。
+          AI 自动收集生成的技术内容 — 涵盖 AI 前沿动态、给前端的 Java 学习笔记与前端技术趋势。
         </p>
         <div class="hero__stats">
           <div v-if="latestUpdate" class="hero__stat">
@@ -78,7 +78,7 @@ onMounted(ensureLoaded);
     </template>
   </main>
   <footer class="site-footer">
-    <p>AI Hub · 个人技术知识库 · 持续更新中</p>
+    <p>AI Hub · AI 自动收集生成的技术内容 · 持续更新中</p>
   </footer>
 </template>
 

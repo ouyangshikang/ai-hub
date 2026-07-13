@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ContentItem } from "../types/content";
+import type { ContentItem } from '../types/content';
 
 interface Props {
   moduleSlug: string;
@@ -40,8 +40,8 @@ defineProps<Props>();
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
-  max-width: calc(var(--content-width) + 248px);
-  margin: 48px auto 0;
+  max-width: none;
+  margin: 48px 0 0;
 }
 
 .page-nav__item {

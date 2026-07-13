@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed, onMounted } from "vue";
-import SiteHeader from "../components/site-header.vue";
-import { useContentIndex } from "../composables/use-content-index";
+import { computed, onMounted } from 'vue';
+import SiteHeader from '../components/site-header.vue';
+import { useContentIndex } from '../composables/use-content-index';
 
 const { index, ensureLoaded } = useContentIndex();
 const modules = computed(() => index.value?.modules ?? []);
@@ -17,6 +17,6 @@ onMounted(ensureLoaded);
     <RouterLink to="/">返回首页</RouterLink>
   </main>
   <footer class="site-footer">
-    <p>AI Hub · 个人技术知识库 · 持续更新中</p>
+    <p>AI Hub · AI 自动收集生成的技术内容 · 持续更新中</p>
   </footer>
 </template>

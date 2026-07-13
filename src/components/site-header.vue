@@ -118,7 +118,7 @@ defineProps<Props>();
 .site-header__nav {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 6px;
 }
 
 .site-header__link {

@@ -1,50 +1,43 @@
 <script setup lang="ts">
-import DOMPurify from "dompurify";
-import hljs from "highlight.js/lib/core";
-import bash from "highlight.js/lib/languages/bash";
-import css from "highlight.js/lib/languages/css";
-import java from "highlight.js/lib/languages/java";
-import javascript from "highlight.js/lib/languages/javascript";
-import json from "highlight.js/lib/languages/json";
-import sql from "highlight.js/lib/languages/sql";
-import typescript from "highlight.js/lib/languages/typescript";
-import xml from "highlight.js/lib/languages/xml";
-import yaml from "highlight.js/lib/languages/yaml";
-import MarkdownIt from "markdown-it";
-import {
-  computed,
-  nextTick,
-  onBeforeUnmount,
-  shallowRef,
-  useTemplateRef,
-  watch,
-} from "vue";
-import "highlight.js/styles/github.css";
+import DOMPurify from 'dompurify';
+import hljs from 'highlight.js/lib/core';
+import bash from 'highlight.js/lib/languages/bash';
+import css from 'highlight.js/lib/languages/css';
+import java from 'highlight.js/lib/languages/java';
+import javascript from 'highlight.js/lib/languages/javascript';
+import json from 'highlight.js/lib/languages/json';
+import sql from 'highlight.js/lib/languages/sql';
+import typescript from 'highlight.js/lib/languages/typescript';
+import xml from 'highlight.js/lib/languages/xml';
+import yaml from 'highlight.js/lib/languages/yaml';
+import MarkdownIt from 'markdown-it';
+import { computed, nextTick, onBeforeUnmount, shallowRef, useTemplateRef, watch } from 'vue';
+import 'highlight.js/styles/github-dark.css';
 
 interface Props {
   src: string;
 }
 
 const props = defineProps<Props>();
-const rendered = shallowRef("");
+const rendered = shallowRef('');
 const loading = shallowRef(false);
 const error = shallowRef<string | null>(null);
-const activeId = shallowRef("");
-const proseRef = useTemplateRef<HTMLElement>("prose");
+const activeId = shallowRef('');
+const proseRef = useTemplateRef<HTMLElement>('prose');
 
-hljs.registerLanguage("bash", bash);
-hljs.registerLanguage("shell", bash);
-hljs.registerLanguage("css", css);
-hljs.registerLanguage("java", java);
-hljs.registerLanguage("javascript", javascript);
-hljs.registerLanguage("js", javascript);
-hljs.registerLanguage("json", json);
-hljs.registerLanguage("sql", sql);
-hljs.registerLanguage("typescript", typescript);
-hljs.registerLanguage("ts", typescript);
-hljs.registerLanguage("xml", xml);
-hljs.registerLanguage("html", xml);
-hljs.registerLanguage("yaml", yaml);
+hljs.registerLanguage('bash', bash);
+hljs.registerLanguage('shell', bash);
+hljs.registerLanguage('css', css);
+hljs.registerLanguage('java', java);
+hljs.registerLanguage('javascript', javascript);
+hljs.registerLanguage('js', javascript);
+hljs.registerLanguage('json', json);
+hljs.registerLanguage('sql', sql);
+hljs.registerLanguage('typescript', typescript);
+hljs.registerLanguage('ts', typescript);
+hljs.registerLanguage('xml', xml);
+hljs.registerLanguage('html', xml);
+hljs.registerLanguage('yaml', yaml);
 
 const markdown = new MarkdownIt({
   html: false,
@@ -64,12 +57,12 @@ const slugCount = new Map<string, number>();
 
 function slugify(text: string): string {
   const slug = text
-    .replace(/<[^>]+>/g, "")
-    .replace(/[^\w\u4e00-\u9fff\s-]/g, "")
+    .replace(/<[^>]+>/g, '')
+    .replace(/[^\w\u4e00-\u9fff\s-]/g, '')
     .trim()
-    .replace(/\s+/g, "-")
+    .replace(/\s+/g, '-')
     .toLowerCase();
-  if (!slug) return "";
+  if (!slug) return '';
   const count = slugCount.get(slug) ?? 0;
   slugCount.set(slug, count + 1);
   return count === 0 ? slug : `${slug}-${count}`;
@@ -79,9 +72,9 @@ const defaultHeadingOpen = markdown.renderer.rules.heading_open;
 markdown.renderer.rules.heading_open = (tokens, index, options, env, self) => {
   const token = tokens[index];
   const contentToken = tokens[index + 1];
-  const text = contentToken?.content ?? "";
+  const text = contentToken?.content ?? '';
   const id = slugify(text);
-  if (id) token.attrSet("id", id);
+  if (id) token.attrSet('id', id);
   return defaultHeadingOpen
     ? defaultHeadingOpen(tokens, index, options, env, self)
     : self.renderToken(tokens, index, options);
@@ -89,8 +82,8 @@ markdown.renderer.rules.heading_open = (tokens, index, options, env, self) => {
 
 const defaultLinkOpen = markdown.renderer.rules.link_open;
 markdown.renderer.rules.link_open = (tokens, index, options, env, self) => {
-  tokens[index].attrSet("target", "_blank");
-  tokens[index].attrSet("rel", "noopener noreferrer");
+  tokens[index].attrSet('target', '_blank');
+  tokens[index].attrSet('rel', 'noopener noreferrer');
   return defaultLinkOpen
     ? defaultLinkOpen(tokens, index, options, env, self)
     : self.renderToken(tokens, index, options);
@@ -106,13 +99,13 @@ interface TocItem {
 const toc = computed<TocItem[]>(() => {
   if (!rendered.value) return [];
   const parser = new DOMParser();
-  const doc = parser.parseFromString(rendered.value, "text/html");
-  const headings = doc.querySelectorAll("h2, h3, h4");
+  const doc = parser.parseFromString(rendered.value, 'text/html');
+  const headings = doc.querySelectorAll('h2, h3, h4');
   return Array.from(headings)
     .filter((h) => h.id)
     .map((h) => ({
       id: h.id,
-      text: h.textContent ?? "",
+      text: h.textContent ?? '',
       level: Number(h.tagName[1]),
     }));
 });
@@ -138,7 +131,7 @@ function setupScrollSpy() {
         }
       }
     },
-    { rootMargin: "-80px 0px -70% 0px", threshold: 0 },
+    { rootMargin: '-80px 0px -70% 0px', threshold: 0 }
   );
 
   headingEls.forEach((el) => observer?.observe(el));
@@ -147,7 +140,7 @@ function setupScrollSpy() {
 function scrollToHeading(id: string) {
   const el = proseRef.value?.querySelector(`#${CSS.escape(id)}`);
   if (el) {
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     activeId.value = id;
   }
 }
@@ -165,19 +158,19 @@ watch(
       const res = await fetch(src, { signal: controller.signal });
       if (!res.ok) throw new Error(`加载失败: ${res.status}`);
       rendered.value = DOMPurify.sanitize(markdown.render(await res.text()), {
-        ADD_ATTR: ["target", "id"],
+        ADD_ATTR: ['target', 'id'],
       });
       await nextTick();
       setupScrollSpy();
     } catch (e) {
       if (controller.signal.aborted) return;
-      rendered.value = "";
-      error.value = e instanceof Error ? e.message : "加载失败";
+      rendered.value = '';
+      error.value = e instanceof Error ? e.message : '加载失败';
     } finally {
       if (!controller.signal.aborted) loading.value = false;
     }
   },
-  { immediate: true },
+  { immediate: true }
 );
 
 onBeforeUnmount(() => observer?.disconnect());
@@ -198,10 +191,7 @@ onBeforeUnmount(() => observer?.disconnect());
             v-for="item in toc"
             :key="item.id"
             class="toc__item"
-            :class="[
-              `toc__item--h${item.level}`,
-              { 'toc__item--active': activeId === item.id },
-            ]"
+            :class="[`toc__item--h${item.level}`, { 'toc__item--active': activeId === item.id }]"
           >
             <button class="toc__link" @click="scrollToHeading(item.id)">
               {{ item.text }}
@@ -225,7 +215,7 @@ onBeforeUnmount(() => observer?.disconnect());
   color: var(--danger);
 }
 
-/* ── Layout: TOC sidebar + content ── */
+/* ── Layout: content + TOC ── */
 .reader-layout {
   display: grid;
   grid-template-columns: minmax(0, var(--content-width)) 200px;
@@ -249,8 +239,8 @@ onBeforeUnmount(() => observer?.disconnect());
 }
 
 .toc__title {
-  margin: 0 0 10px;
-  padding: 0 12px;
+  margin: 0 0 12px;
+  padding: 0 14px;
   color: var(--subtle);
   font-size: 11px;
   font-weight: 600;
@@ -262,7 +252,7 @@ onBeforeUnmount(() => observer?.disconnect());
   list-style: none;
   margin: 0;
   padding: 0;
-  border-left: 1px solid var(--line);
+  border-left: 2px solid var(--line);
 }
 
 .toc__item {
@@ -272,7 +262,7 @@ onBeforeUnmount(() => observer?.disconnect());
 .toc__link {
   display: block;
   width: 100%;
-  padding: 5px 12px;
+  padding: 5px 14px;
   border: 0;
   background: none;
   color: var(--muted);
@@ -281,7 +271,6 @@ onBeforeUnmount(() => observer?.disconnect());
   line-height: 1.5;
   text-align: left;
   cursor: pointer;
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   transition:
     color 200ms ease,
     background 200ms ease;
@@ -296,12 +285,12 @@ onBeforeUnmount(() => observer?.disconnect());
 }
 
 .toc__item--h3 .toc__link {
-  padding-left: 24px;
+  padding-left: 26px;
   font-size: 12px;
 }
 
 .toc__item--h4 .toc__link {
-  padding-left: 36px;
+  padding-left: 38px;
   font-size: 12px;
   color: var(--subtle);
 }
@@ -317,9 +306,9 @@ onBeforeUnmount(() => observer?.disconnect());
 }
 
 .toc__item--active::before {
-  content: "";
+  content: '';
   position: absolute;
-  left: -1px;
+  left: -2px;
   top: 0;
   bottom: 0;
   width: 2px;
@@ -327,7 +316,9 @@ onBeforeUnmount(() => observer?.disconnect());
   border-radius: 999px;
 }
 
-/* ── Prose: 阅读优化排版 ── */
+/* ══════════════════════════════════════
+   Prose — 清新阅读排版
+   ══════════════════════════════════════ */
 .prose {
   max-width: var(--content-width);
   color: #374151;
@@ -335,7 +326,7 @@ onBeforeUnmount(() => observer?.disconnect());
   line-height: 1.85;
 }
 
-/* Headings */
+/* ── Headings ── */
 .prose :deep(h1),
 .prose :deep(h2),
 .prose :deep(h3),
@@ -349,7 +340,7 @@ onBeforeUnmount(() => observer?.disconnect());
 .prose :deep(h1) {
   margin: 0 0 0.6em;
   padding-bottom: 0.4em;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 2px solid var(--brand-soft);
   font-size: 30px;
   letter-spacing: -0.02em;
 }
@@ -359,7 +350,7 @@ onBeforeUnmount(() => observer?.disconnect());
 }
 
 .prose :deep(h2) {
-  margin: 1.8em 0 0.6em;
+  margin: 2em 0 0.7em;
   padding-bottom: 0.3em;
   border-bottom: 1px solid var(--line);
   font-size: 23px;
@@ -371,13 +362,25 @@ onBeforeUnmount(() => observer?.disconnect());
   font-size: 19px;
 }
 
+.prose :deep(h3)::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 10px;
+  background: var(--brand);
+  border-radius: 50%;
+  vertical-align: middle;
+  transform: translateY(-2px);
+}
+
 .prose :deep(h4) {
   margin: 1.4em 0 0.3em;
   font-size: 17px;
   color: var(--ink-soft);
 }
 
-/* Text */
+/* ── Text ── */
 .prose :deep(p) {
   margin: 0.75em 0;
 }
@@ -387,12 +390,12 @@ onBeforeUnmount(() => observer?.disconnect());
   color: var(--ink);
 }
 
-/* Links */
+/* ── Links ── */
 .prose :deep(a) {
   color: var(--brand);
   text-decoration: underline;
-  text-decoration-color: rgba(35, 84, 224, 0.3);
-  text-underline-offset: 2px;
+  text-decoration-color: rgba(35, 84, 224, 0.25);
+  text-underline-offset: 3px;
   transition: text-decoration-color 200ms ease;
 }
 
@@ -400,7 +403,7 @@ onBeforeUnmount(() => observer?.disconnect());
   text-decoration-color: var(--brand);
 }
 
-/* Lists */
+/* ── Lists ── */
 .prose :deep(ul),
 .prose :deep(ol) {
   margin: 0.75em 0;
@@ -408,21 +411,25 @@ onBeforeUnmount(() => observer?.disconnect());
 }
 
 .prose :deep(li) {
-  margin: 0.2em 0;
+  margin: 0.25em 0;
+}
+
+.prose :deep(li::marker) {
+  color: var(--brand-light);
 }
 
 .prose :deep(li > p) {
   margin: 0.15em 0;
 }
 
-/* Blockquote */
+/* ── Blockquote ── */
 .prose :deep(blockquote) {
-  margin: 1em 0;
-  padding: 10px 16px;
+  margin: 1.2em 0;
+  padding: 14px 18px;
   color: #4b5563;
-  background: var(--surface);
+  background: linear-gradient(135deg, var(--brand-soft) 0%, #f8faff 100%);
   border-left: 3px solid var(--brand);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
   font-size: 15px;
   line-height: 1.75;
 }
@@ -431,82 +438,83 @@ onBeforeUnmount(() => observer?.disconnect());
   margin: 0.15em 0;
 }
 
-/* Inline code */
+/* ── Inline code ── */
 .prose :deep(code) {
   font-family: var(--font-mono);
 }
 
 .prose :deep(:not(pre) > code) {
-  padding: 0.1em 0.35em;
-  background: #f3f4f6;
+  padding: 0.12em 0.4em;
+  background: #eef2ff;
   border-radius: 4px;
-  font-size: 0.85em;
-  color: #475569;
+  font-size: 0.86em;
+  font-weight: 500;
+  color: #4338ca;
 }
 
-/* Code blocks */
+/* ── Code blocks (github-dark theme) ── */
 .prose :deep(pre) {
-  margin: 1em 0;
-  padding: 14px 18px;
-  background: #f8fafc;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
+  margin: 1.2em 0;
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
   font-size: 14px;
   line-height: 1.65;
   overflow-x: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .prose :deep(pre code) {
   font-size: 14px;
   background: none;
   padding: 0;
-  color: inherit;
 }
 
-/* Tables */
+/* ── Tables ── */
 .prose :deep(table) {
   display: block;
   width: max-content;
   max-width: 100%;
-  margin: 1em 0;
+  margin: 1.2em 0;
   overflow-x: auto;
   border-collapse: collapse;
   border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   font-size: 14px;
 }
 
 .prose :deep(th),
 .prose :deep(td) {
-  padding: 8px 14px;
+  padding: 9px 14px;
   border: 1px solid var(--line);
   line-height: 1.55;
 }
 
 .prose :deep(th) {
-  background: var(--surface);
+  background: var(--brand-soft);
   font-weight: 600;
   text-align: left;
   color: var(--ink);
 }
 
 .prose :deep(tr:nth-child(even) td) {
-  background: rgba(248, 250, 252, 0.5);
+  background: #fafbfc;
 }
 
-/* Images */
+/* ── Images ── */
 .prose :deep(img) {
   max-width: 100%;
   height: auto;
-  margin: 1em 0;
-  border-radius: var(--radius-sm);
+  margin: 1.2em 0;
+  border-radius: var(--radius-md);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
-/* HR */
+/* ── HR ── */
 .prose :deep(hr) {
-  margin: 1.6em 0;
+  margin: 2em 0;
   border: 0;
-  border-top: 1px solid var(--line);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line), transparent);
 }
 
 /* ── Responsive ── */
@@ -534,14 +542,17 @@ onBeforeUnmount(() => observer?.disconnect());
   .prose :deep(h1) {
     font-size: 26px;
   }
+
   .prose :deep(h2) {
     font-size: 21px;
   }
+
   .prose :deep(h3) {
     font-size: 18px;
   }
+
   .prose :deep(pre) {
-    padding: 12px;
+    padding: 14px;
     font-size: 13px;
   }
 }

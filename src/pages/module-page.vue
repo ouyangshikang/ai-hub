@@ -40,7 +40,7 @@ onMounted(ensureLoaded);
     </section>
   </main>
   <footer class="site-footer">
-    <p>AI Hub · 个人技术知识库 · 持续更新中</p>
+    <p>AI Hub · AI 自动收集生成的技术内容 · 持续更新中</p>
   </footer>
 </template>
 
