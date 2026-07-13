@@ -1,43 +1,50 @@
 <script setup lang="ts">
-import DOMPurify from 'dompurify';
-import hljs from 'highlight.js/lib/core';
-import bash from 'highlight.js/lib/languages/bash';
-import css from 'highlight.js/lib/languages/css';
-import java from 'highlight.js/lib/languages/java';
-import javascript from 'highlight.js/lib/languages/javascript';
-import json from 'highlight.js/lib/languages/json';
-import sql from 'highlight.js/lib/languages/sql';
-import typescript from 'highlight.js/lib/languages/typescript';
-import xml from 'highlight.js/lib/languages/xml';
-import yaml from 'highlight.js/lib/languages/yaml';
-import MarkdownIt from 'markdown-it';
-import { computed, nextTick, onBeforeUnmount, shallowRef, useTemplateRef, watch } from 'vue';
-import 'highlight.js/styles/github.css';
+import DOMPurify from "dompurify";
+import hljs from "highlight.js/lib/core";
+import bash from "highlight.js/lib/languages/bash";
+import css from "highlight.js/lib/languages/css";
+import java from "highlight.js/lib/languages/java";
+import javascript from "highlight.js/lib/languages/javascript";
+import json from "highlight.js/lib/languages/json";
+import sql from "highlight.js/lib/languages/sql";
+import typescript from "highlight.js/lib/languages/typescript";
+import xml from "highlight.js/lib/languages/xml";
+import yaml from "highlight.js/lib/languages/yaml";
+import MarkdownIt from "markdown-it";
+import {
+  computed,
+  nextTick,
+  onBeforeUnmount,
+  shallowRef,
+  useTemplateRef,
+  watch,
+} from "vue";
+import "highlight.js/styles/github.css";
 
 interface Props {
   src: string;
 }
 
 const props = defineProps<Props>();
-const rendered = shallowRef('');
+const rendered = shallowRef("");
 const loading = shallowRef(false);
 const error = shallowRef<string | null>(null);
-const activeId = shallowRef('');
-const proseRef = useTemplateRef<HTMLElement>('prose');
+const activeId = shallowRef("");
+const proseRef = useTemplateRef<HTMLElement>("prose");
 
-hljs.registerLanguage('bash', bash);
-hljs.registerLanguage('shell', bash);
-hljs.registerLanguage('css', css);
-hljs.registerLanguage('java', java);
-hljs.registerLanguage('javascript', javascript);
-hljs.registerLanguage('js', javascript);
-hljs.registerLanguage('json', json);
-hljs.registerLanguage('sql', sql);
-hljs.registerLanguage('typescript', typescript);
-hljs.registerLanguage('ts', typescript);
-hljs.registerLanguage('xml', xml);
-hljs.registerLanguage('html', xml);
-hljs.registerLanguage('yaml', yaml);
+hljs.registerLanguage("bash", bash);
+hljs.registerLanguage("shell", bash);
+hljs.registerLanguage("css", css);
+hljs.registerLanguage("java", java);
+hljs.registerLanguage("javascript", javascript);
+hljs.registerLanguage("js", javascript);
+hljs.registerLanguage("json", json);
+hljs.registerLanguage("sql", sql);
+hljs.registerLanguage("typescript", typescript);
+hljs.registerLanguage("ts", typescript);
+hljs.registerLanguage("xml", xml);
+hljs.registerLanguage("html", xml);
+hljs.registerLanguage("yaml", yaml);
 
 const markdown = new MarkdownIt({
   html: false,
@@ -57,12 +64,12 @@ const slugCount = new Map<string, number>();
 
 function slugify(text: string): string {
   const slug = text
-    .replace(/<[^>]+>/g, '')
-    .replace(/[^\w\u4e00-\u9fff\s-]/g, '')
+    .replace(/<[^>]+>/g, "")
+    .replace(/[^\w\u4e00-\u9fff\s-]/g, "")
     .trim()
-    .replace(/\s+/g, '-')
+    .replace(/\s+/g, "-")
     .toLowerCase();
-  if (!slug) return '';
+  if (!slug) return "";
   const count = slugCount.get(slug) ?? 0;
   slugCount.set(slug, count + 1);
   return count === 0 ? slug : `${slug}-${count}`;
@@ -72,9 +79,9 @@ const defaultHeadingOpen = markdown.renderer.rules.heading_open;
 markdown.renderer.rules.heading_open = (tokens, index, options, env, self) => {
   const token = tokens[index];
   const contentToken = tokens[index + 1];
-  const text = contentToken?.content ?? '';
+  const text = contentToken?.content ?? "";
   const id = slugify(text);
-  if (id) token.attrSet('id', id);
+  if (id) token.attrSet("id", id);
   return defaultHeadingOpen
     ? defaultHeadingOpen(tokens, index, options, env, self)
     : self.renderToken(tokens, index, options);
@@ -82,8 +89,8 @@ markdown.renderer.rules.heading_open = (tokens, index, options, env, self) => {
 
 const defaultLinkOpen = markdown.renderer.rules.link_open;
 markdown.renderer.rules.link_open = (tokens, index, options, env, self) => {
-  tokens[index].attrSet('target', '_blank');
-  tokens[index].attrSet('rel', 'noopener noreferrer');
+  tokens[index].attrSet("target", "_blank");
+  tokens[index].attrSet("rel", "noopener noreferrer");
   return defaultLinkOpen
     ? defaultLinkOpen(tokens, index, options, env, self)
     : self.renderToken(tokens, index, options);
@@ -99,13 +106,13 @@ interface TocItem {
 const toc = computed<TocItem[]>(() => {
   if (!rendered.value) return [];
   const parser = new DOMParser();
-  const doc = parser.parseFromString(rendered.value, 'text/html');
-  const headings = doc.querySelectorAll('h2, h3, h4');
+  const doc = parser.parseFromString(rendered.value, "text/html");
+  const headings = doc.querySelectorAll("h2, h3, h4");
   return Array.from(headings)
     .filter((h) => h.id)
     .map((h) => ({
       id: h.id,
-      text: h.textContent ?? '',
+      text: h.textContent ?? "",
       level: Number(h.tagName[1]),
     }));
 });
@@ -131,7 +138,7 @@ function setupScrollSpy() {
         }
       }
     },
-    { rootMargin: '-80px 0px -70% 0px', threshold: 0 }
+    { rootMargin: "-80px 0px -70% 0px", threshold: 0 },
   );
 
   headingEls.forEach((el) => observer?.observe(el));
@@ -140,7 +147,7 @@ function setupScrollSpy() {
 function scrollToHeading(id: string) {
   const el = proseRef.value?.querySelector(`#${CSS.escape(id)}`);
   if (el) {
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
     activeId.value = id;
   }
 }
@@ -158,19 +165,19 @@ watch(
       const res = await fetch(src, { signal: controller.signal });
       if (!res.ok) throw new Error(`加载失败: ${res.status}`);
       rendered.value = DOMPurify.sanitize(markdown.render(await res.text()), {
-        ADD_ATTR: ['target', 'id'],
+        ADD_ATTR: ["target", "id"],
       });
       await nextTick();
       setupScrollSpy();
     } catch (e) {
       if (controller.signal.aborted) return;
-      rendered.value = '';
-      error.value = e instanceof Error ? e.message : '加载失败';
+      rendered.value = "";
+      error.value = e instanceof Error ? e.message : "加载失败";
     } finally {
       if (!controller.signal.aborted) loading.value = false;
     }
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 onBeforeUnmount(() => observer?.disconnect());
@@ -178,8 +185,11 @@ onBeforeUnmount(() => observer?.disconnect());
 
 <template>
   <p v-if="loading" class="reader-msg" role="status">正在加载文档…</p>
-  <p v-else-if="error" class="reader-msg reader-msg--error" role="alert">{{ error }}</p>
+  <p v-else-if="error" class="reader-msg reader-msg--error" role="alert">
+    {{ error }}
+  </p>
   <div v-else class="reader-layout">
+    <article ref="prose" class="prose" v-html="rendered" />
     <aside v-if="toc.length > 0" class="toc">
       <nav class="toc__nav" aria-label="目录">
         <p class="toc__title">目录</p>
@@ -188,7 +198,10 @@ onBeforeUnmount(() => observer?.disconnect());
             v-for="item in toc"
             :key="item.id"
             class="toc__item"
-            :class="[`toc__item--h${item.level}`, { 'toc__item--active': activeId === item.id }]"
+            :class="[
+              `toc__item--h${item.level}`,
+              { 'toc__item--active': activeId === item.id },
+            ]"
           >
             <button class="toc__link" @click="scrollToHeading(item.id)">
               {{ item.text }}
@@ -197,7 +210,6 @@ onBeforeUnmount(() => observer?.disconnect());
         </ul>
       </nav>
     </aside>
-    <article ref="prose" class="prose" v-html="rendered" />
   </div>
 </template>
 
@@ -216,7 +228,7 @@ onBeforeUnmount(() => observer?.disconnect());
 /* ── Layout: TOC sidebar + content ── */
 .reader-layout {
   display: grid;
-  grid-template-columns: 200px minmax(0, var(--content-width));
+  grid-template-columns: minmax(0, var(--content-width)) 200px;
   gap: 48px;
   max-width: calc(var(--content-width) + 248px);
   margin: 0 auto;
@@ -305,7 +317,7 @@ onBeforeUnmount(() => observer?.disconnect());
 }
 
 .toc__item--active::before {
-  content: '';
+  content: "";
   position: absolute;
   left: -1px;
   top: 0;

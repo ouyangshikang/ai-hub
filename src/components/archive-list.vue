@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import type { ContentItem } from '../types/content';
+import { computed } from "vue";
+import type { ContentItem } from "../types/content";
 
 interface Props {
   moduleSlug: string;
@@ -57,7 +57,7 @@ const groups = computed(() => {
 
 .archive__group {
   display: grid;
-  grid-template-columns: 160px 1fr;
+  grid-template-columns: 180px 1fr;
 }
 
 .archive__group + .archive__group {
@@ -68,21 +68,21 @@ const groups = computed(() => {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding: 20px;
+  padding: 24px;
   background: var(--surface);
   border-right: 1px solid var(--line);
 }
 
 .archive__group-label h3 {
   margin: 0;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--ink);
 }
 
 .archive__group-label span {
   color: var(--subtle);
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .archive__group-list {
@@ -92,11 +92,11 @@ const groups = computed(() => {
 
 .archive__item {
   display: grid;
-  grid-template-columns: 88px 1fr 14px;
+  grid-template-columns: 100px 1fr 16px;
   align-items: center;
   gap: 16px;
-  min-height: 44px;
-  padding: 8px 20px;
+  min-height: 48px;
+  padding: 10px 24px;
   text-decoration: none;
   transition: background 200ms ease;
 }
@@ -112,11 +112,11 @@ const groups = computed(() => {
 .archive__item time {
   color: var(--subtle);
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .archive__item strong {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   color: var(--ink);
   line-height: 1.5;
@@ -131,8 +131,8 @@ const groups = computed(() => {
 }
 
 .archive__item svg {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   fill: none;
   stroke: var(--subtle);
   stroke-linecap: round;
@@ -157,11 +157,11 @@ const groups = computed(() => {
     justify-content: space-between;
     border-right: 0;
     border-bottom: 1px solid var(--line);
-    padding: 12px 16px;
+    padding: 14px 16px;
   }
 
   .archive__item {
-    padding: 10px 16px;
+    padding: 12px 16px;
   }
 }
 </style>

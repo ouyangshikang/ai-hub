@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ContentItem } from '../types/content';
+import type { ContentItem } from "../types/content";
 
 interface Props {
   moduleSlug: string;

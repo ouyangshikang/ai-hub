@@ -98,10 +98,10 @@ select {
 /* ── Section Label ── */
 .section-label {
   display: inline-block;
-  margin: 0 0 8px;
+  margin: 0 0 10px;
   color: var(--brand);
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -114,7 +114,7 @@ select {
   gap: 6px;
   min-height: 40px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .breadcrumb a {
@@ -127,7 +127,7 @@ select {
 
 .breadcrumb__sep {
   color: var(--subtle);
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .breadcrumb__current {
@@ -144,7 +144,7 @@ select {
   background: var(--canvas);
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .status-message--error {
@@ -170,11 +170,11 @@ select {
 
 .empty-state a {
   display: inline-block;
-  padding: 8px 18px;
+  padding: 10px 22px;
   color: #fff;
   background: var(--brand);
   border-radius: var(--radius-md);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
 }
 
@@ -186,7 +186,7 @@ select {
   margin: 0 0 4px;
   color: var(--subtle);
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.08em;
 }
@@ -197,7 +197,7 @@ select {
   border-top: 1px solid var(--line);
   text-align: center;
   color: var(--subtle);
-  font-size: 12px;
+  font-size: 13px;
 }
 
 /* ── Scrollbar ── */

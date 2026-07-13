@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ContentItem } from '../types/content';
+import type { ContentItem } from "../types/content";
 
 interface ReleaseEntry {
   item: ContentItem;
@@ -25,7 +25,9 @@ defineProps<Props>();
     >
       <span class="release-row__icon">{{ entry.moduleMark }}</span>
       <span class="release-row__module">{{ entry.moduleTitle }}</span>
-      <time class="release-row__date" :datetime="entry.item.date">{{ entry.item.date }}</time>
+      <time class="release-row__date" :datetime="entry.item.date">{{
+        entry.item.date
+      }}</time>
       <span class="release-row__title">{{ entry.item.title }}</span>
       <svg class="release-row__arrow" viewBox="0 0 16 16" aria-hidden="true">
         <path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" />
@@ -44,11 +46,11 @@ defineProps<Props>();
 
 .release-row {
   display: grid;
-  grid-template-columns: 32px 100px 88px minmax(0, 1fr) 16px;
+  grid-template-columns: 36px 110px 100px minmax(0, 1fr) 16px;
   align-items: center;
   gap: 16px;
-  min-height: 52px;
-  padding: 8px 20px;
+  min-height: 56px;
+  padding: 10px 24px;
   color: var(--ink);
   text-decoration: none;
   transition: background 200ms ease;
@@ -64,21 +66,21 @@ defineProps<Props>();
 
 .release-row__icon {
   display: inline-flex;
-  width: 28px;
-  height: 24px;
+  width: 32px;
+  height: 28px;
   align-items: center;
   justify-content: center;
   color: var(--brand);
   background: var(--brand-soft);
   border-radius: var(--radius-sm);
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 700;
 }
 
 .release-row__module {
   color: var(--muted);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   white-space: nowrap;
 }
@@ -86,12 +88,12 @@ defineProps<Props>();
 .release-row__date {
   color: var(--subtle);
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .release-row__title {
   overflow: hidden;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   line-height: 1.5;
   text-overflow: ellipsis;
@@ -104,8 +106,8 @@ defineProps<Props>();
 }
 
 .release-row__arrow {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   fill: none;
   stroke: var(--subtle);
   stroke-linecap: round;
@@ -122,11 +124,11 @@ defineProps<Props>();
 
 @media (max-width: 760px) {
   .release-row {
-    grid-template-columns: 28px 1fr 14px;
+    grid-template-columns: 32px 1fr 16px;
     grid-template-rows: auto auto;
-    gap: 4px 10px;
+    gap: 4px 12px;
     min-height: auto;
-    padding: 12px 16px;
+    padding: 14px 16px;
   }
 
   .release-row__icon {

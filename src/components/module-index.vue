@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ContentModuleIndex } from '../types/content';
+import type { ContentModuleIndex } from "../types/content";
 
 interface Props {
   modules: readonly ContentModuleIndex[];
@@ -23,8 +23,12 @@ defineProps<Props>();
       <h3 class="module-card__title">{{ module.title }}</h3>
       <p class="module-card__desc">{{ module.description }}</p>
       <div class="module-card__foot">
-        <span v-if="module.latestDate" class="module-card__date">{{ module.latestDate }}</span>
-        <span v-else class="module-card__date module-card__date--empty">暂无内容</span>
+        <span v-if="module.latestDate" class="module-card__date">{{
+          module.latestDate
+        }}</span>
+        <span v-else class="module-card__date module-card__date--empty"
+          >暂无内容</span
+        >
         <svg class="module-card__arrow" viewBox="0 0 16 16" aria-hidden="true">
           <path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" />
         </svg>
@@ -37,13 +41,13 @@ defineProps<Props>();
 .module-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  gap: 16px;
 }
 
 .module-card {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 28px;
   background: var(--canvas);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
@@ -64,43 +68,43 @@ defineProps<Props>();
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .module-card__icon {
   display: inline-flex;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   align-items: center;
   justify-content: center;
   color: var(--brand);
   background: var(--brand-soft);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.04em;
 }
 
 .module-card__count {
   color: var(--subtle);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
 }
 
 .module-card__title {
   margin: 0;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   color: var(--ink);
 }
 
 .module-card__desc {
-  margin: 6px 0 0;
+  margin: 8px 0 0;
   color: var(--muted);
-  font-size: 13px;
-  line-height: 1.6;
+  font-size: 15px;
+  line-height: 1.65;
   flex: 1;
 }
 
@@ -108,13 +112,13 @@ defineProps<Props>();
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 16px;
+  margin-top: 24px;
 }
 
 .module-card__date {
   color: var(--subtle);
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .module-card__date--empty {
@@ -122,8 +126,8 @@ defineProps<Props>();
 }
 
 .module-card__arrow {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   fill: none;
   stroke: var(--subtle);
   stroke-linecap: round;

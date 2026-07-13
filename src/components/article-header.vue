@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ContentItem, ContentModuleIndex } from '../types/content';
+import type { ContentItem, ContentModuleIndex } from "../types/content";
 
 interface Props {
   module: ContentModuleIndex;
@@ -13,7 +13,7 @@ const emit = defineEmits<{
 }>();
 
 function onSelectDate(event: Event) {
-  emit('selectDate', (event.target as HTMLSelectElement).value);
+  emit("selectDate", (event.target as HTMLSelectElement).value);
 }
 </script>
 
@@ -31,7 +31,11 @@ function onSelectDate(event: Event) {
       <div class="article-head__actions">
         <label class="date-picker">
           <select :value="item.date" @change="onSelectDate">
-            <option v-for="entry in module.items" :key="entry.date" :value="entry.date">
+            <option
+              v-for="entry in module.items"
+              :key="entry.date"
+              :value="entry.date"
+            >
               {{ entry.date }}
             </option>
           </select>

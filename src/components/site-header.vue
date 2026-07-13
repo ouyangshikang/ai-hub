@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ContentModuleIndex } from '../types/content';
+import type { ContentModuleIndex } from "../types/content";
 
 interface Props {
   modules: readonly ContentModuleIndex[];
@@ -16,7 +16,14 @@ defineProps<Props>();
       <RouterLink class="site-header__brand" to="/">
         <span class="site-header__logo" aria-hidden="true">
           <svg viewBox="0 0 28 28" fill="none">
-            <rect x="2" y="2" width="24" height="24" rx="7" fill="currentColor" />
+            <rect
+              x="2"
+              y="2"
+              width="24"
+              height="24"
+              rx="7"
+              fill="currentColor"
+            />
             <path
               d="M9 18V10L14 7L19 10V18L14 21L9 18Z"
               stroke="#fff"
@@ -34,7 +41,11 @@ defineProps<Props>();
         <span class="site-header__name">AI Hub</span>
       </RouterLink>
       <nav class="site-header__nav" aria-label="内容模块">
-        <RouterLink class="site-header__link" :class="{ 'is-active': !activeSlug }" to="/">
+        <RouterLink
+          class="site-header__link"
+          :class="{ 'is-active': !activeSlug }"
+          to="/"
+        >
           首页
         </RouterLink>
         <RouterLink

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue';
-import SiteHeader from '../components/site-header.vue';
-import { useContentIndex } from '../composables/use-content-index';
+import { computed, onMounted } from "vue";
+import SiteHeader from "../components/site-header.vue";
+import { useContentIndex } from "../composables/use-content-index";
 
 const { index, ensureLoaded } = useContentIndex();
 const modules = computed(() => index.value?.modules ?? []);

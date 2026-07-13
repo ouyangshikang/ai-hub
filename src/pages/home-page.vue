@@ -21,6 +21,7 @@ const recentItems = computed(() =>
     .slice(0, 10)
 );
 const latestUpdate = computed(() => recentItems.value[0]?.item.date);
+const totalItems = computed(() => modules.value.reduce((sum, m) => sum + m.count, 0));
 
 onMounted(ensureLoaded);
 </script>
@@ -30,20 +31,28 @@ onMounted(ensureLoaded);
   <main id="main-content" class="site-shell">
     <!-- Hero -->
     <section class="hero">
-      <div class="hero__text">
-        <h1 class="hero__title">AI Hub</h1>
-        <p class="hero__desc">
-          个人技术知识库 — 持续记录 AI 前沿动态、Java 学习笔记与前端技术趋势。
-        </p>
-      </div>
-      <div v-if="latestUpdate" class="hero__stat">
-        <span class="hero__stat-label">最近更新</span>
-        <time class="hero__stat-value" :datetime="latestUpdate">{{ latestUpdate }}</time>
+      <h1 class="hero__title">AI Hub</h1>
+      <p class="hero__desc">个人技术知识库 — 持续记录 AI 前沿动态、Java 学习笔记与前端技术趋势。</p>
+      <div class="hero__stats">
+        <div v-if="latestUpdate" class="hero__stat">
+          <span class="hero__stat-value">{{ latestUpdate }}</span>
+          <span class="hero__stat-label">最近更新</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-value">{{ modules.length }}</span>
+          <span class="hero__stat-label">内容栏目</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-value">{{ totalItems }}</span>
+          <span class="hero__stat-label">期内容</span>
+        </div>
       </div>
     </section>
 
     <p v-if="loading" class="status-message" role="status">正在加载内容…</p>
-    <p v-else-if="error" class="status-message status-message--error" role="alert">{{ error }}</p>
+    <p v-else-if="error" class="status-message status-message--error" role="alert">
+      {{ error }}
+    </p>
     <template v-else>
       <!-- Modules -->
       <section class="section">
@@ -71,16 +80,12 @@ onMounted(ensureLoaded);
 
 <style scoped>
 .hero {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 32px;
-  padding: 40px 0 48px;
+  padding: 48px 0 0;
 }
 
 .hero__title {
   margin: 0;
-  font-size: clamp(36px, 5vw, 52px);
+  font-size: clamp(40px, 6vw, 64px);
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.04em;
@@ -88,45 +93,48 @@ onMounted(ensureLoaded);
 }
 
 .hero__desc {
-  margin: 12px 0 0;
+  margin: 16px 0 0;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 17px;
   line-height: 1.7;
-  max-width: 52ch;
+  max-width: 56ch;
+}
+
+.hero__stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 32px;
 }
 
 .hero__stat {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  text-align: right;
-  flex-shrink: 0;
+}
+
+.hero__stat-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+  font-family: var(--font-mono);
 }
 
 .hero__stat-label {
   color: var(--subtle);
-  font-size: 11px;
-  font-weight: 500;
-}
-
-.hero__stat-value {
-  color: var(--ink);
-  font-family: var(--font-mono);
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 13px;
 }
 
 .section {
-  margin-top: 40px;
+  margin-top: 48px;
 }
 
 .section__head {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .section__title {
   margin: 0;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--ink);
@@ -134,18 +142,20 @@ onMounted(ensureLoaded);
 
 @media (max-width: 760px) {
   .hero {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-    padding: 28px 0 36px;
+    padding: 32px 0 0;
   }
 
-  .hero__stat {
-    text-align: left;
+  .hero__stats {
+    gap: 24px;
+    flex-wrap: wrap;
   }
 
   .section {
-    margin-top: 32px;
+    margin-top: 36px;
+  }
+
+  .section__title {
+    font-size: 22px;
   }
 }
 </style>

@@ -1,6 +1,6 @@
-import { readonly, shallowRef } from 'vue';
-import type { ContentIndex } from '../types/content';
-import { loadContentIndex } from '../services/content-index';
+import { readonly, shallowRef } from "vue";
+import type { ContentIndex } from "../types/content";
+import { loadContentIndex } from "../services/content-index";
 
 const index = shallowRef<ContentIndex | null>(null);
 const loading = shallowRef(false);
@@ -17,7 +17,7 @@ async function ensureLoaded(): Promise<void> {
       index.value = value;
     })
     .catch((reason: unknown) => {
-      error.value = reason instanceof Error ? reason.message : '内容加载失败';
+      error.value = reason instanceof Error ? reason.message : "内容加载失败";
     })
     .finally(() => {
       loading.value = false;

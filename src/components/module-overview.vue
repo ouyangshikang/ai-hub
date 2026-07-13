@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ContentItem, ContentModuleIndex } from '../types/content';
+import type { ContentItem, ContentModuleIndex } from "../types/content";
 
 interface Props {
   module: ContentModuleIndex;
@@ -31,47 +31,53 @@ defineProps<Props>();
       class="module-hero__latest"
       :to="`/${module.slug}/${latestItem.date}`"
     >
-      <span class="module-hero__latest-label">最新一期</span>
-      <strong class="module-hero__latest-title">{{ latestItem.title }}</strong>
-      <span class="module-hero__latest-date">{{ latestItem.date }}</span>
-      <span class="module-hero__latest-cta">
-        阅读
-        <svg viewBox="0 0 16 16" aria-hidden="true">
-          <path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" />
-        </svg>
-      </span>
+      <div class="module-hero__latest-info">
+        <span class="module-hero__latest-label">最新一期</span>
+        <strong class="module-hero__latest-title">{{
+          latestItem.title
+        }}</strong>
+      </div>
+      <div class="module-hero__latest-meta">
+        <span class="module-hero__latest-date">{{ latestItem.date }}</span>
+        <span class="module-hero__latest-cta">
+          阅读
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" />
+          </svg>
+        </span>
+      </div>
     </RouterLink>
   </header>
 </template>
 
 <style scoped>
 .module-hero {
-  padding: 24px 0 0;
+  padding: 28px 0 0;
 }
 
 .module-hero__head {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .module-hero__icon {
   display: inline-flex;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   align-items: center;
   justify-content: center;
   color: var(--brand);
   background: var(--brand-soft);
   border-radius: var(--radius-md);
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
 }
 
 .module-hero__title {
   margin: 0;
-  font-size: clamp(32px, 4.5vw, 44px);
+  font-size: clamp(36px, 5vw, 48px);
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.03em;
@@ -79,27 +85,27 @@ defineProps<Props>();
 }
 
 .module-hero__desc {
-  margin: 12px 0 0;
+  margin: 16px 0 0;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.7;
-  max-width: 56ch;
+  max-width: 60ch;
 }
 
 .module-hero__stats {
   display: flex;
-  gap: 32px;
-  margin-top: 20px;
+  gap: 40px;
+  margin-top: 24px;
 }
 
 .module-hero__stat {
   display: flex;
   align-items: baseline;
-  gap: 4px;
+  gap: 6px;
 }
 
 .module-hero__stat-num {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 700;
   color: var(--ink);
   font-family: var(--font-mono);
@@ -107,15 +113,16 @@ defineProps<Props>();
 
 .module-hero__stat-label {
   color: var(--subtle);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .module-hero__latest {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-top: 24px;
-  padding: 16px 20px;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 28px;
+  padding: 20px 24px;
   background: var(--canvas);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
@@ -130,18 +137,23 @@ defineProps<Props>();
   box-shadow: var(--shadow-sm);
 }
 
+.module-hero__latest-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
 .module-hero__latest-label {
   color: var(--brand);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  flex-shrink: 0;
 }
 
 .module-hero__latest-title {
-  flex: 1;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--ink);
   overflow: hidden;
@@ -154,24 +166,29 @@ defineProps<Props>();
   color: var(--brand);
 }
 
+.module-hero__latest-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
 .module-hero__latest-date {
   color: var(--subtle);
   font-family: var(--font-mono);
-  font-size: 11px;
-  flex-shrink: 0;
+  font-size: 13px;
 }
 
 .module-hero__latest-cta {
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 6px 12px;
+  padding: 8px 16px;
   color: var(--brand);
   background: var(--brand-soft);
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
-  flex-shrink: 0;
   transition:
     background 200ms ease,
     color 200ms ease;
@@ -183,8 +200,8 @@ defineProps<Props>();
 }
 
 .module-hero__latest-cta svg {
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   fill: none;
   stroke: currentColor;
   stroke-linecap: round;
@@ -198,13 +215,19 @@ defineProps<Props>();
 
 @media (max-width: 640px) {
   .module-hero__latest {
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px;
   }
 
   .module-hero__latest-title {
-    flex: 1 1 100%;
     white-space: normal;
+  }
+
+  .module-hero__latest-meta {
+    width: 100%;
+    justify-content: space-between;
   }
 }
 </style>

@@ -17,8 +17,17 @@ function resize() {
   height.value = `${Math.max(doc.documentElement.scrollHeight, doc.body?.scrollHeight ?? 0)}px`;
 }
 
+function disableScroll() {
+  const doc = frame.value?.contentDocument;
+  if (!doc) return;
+  const style = doc.createElement('style');
+  style.textContent = 'html, body { overflow: hidden !important; }';
+  doc.head?.appendChild(style);
+}
+
 async function onLoad() {
   await nextTick();
+  disableScroll();
   resize();
   const body = frame.value?.contentDocument?.body;
   if (body && 'ResizeObserver' in window) {
