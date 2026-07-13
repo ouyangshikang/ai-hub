@@ -1,6 +1,6 @@
 # AI Hub
 
-AI Hub 是一个 Vue 3 + TypeScript 静态内容站点，用于归档 AI 早报、Java 学习、前端技术雷达及后续新增的 Markdown/HTML 模块。
+Markdown/HTML 静态内容站点
 
 ## 本地开发
 
@@ -14,11 +14,11 @@ pnpm dev
 
 ## 内容输入契约
 
-| 模块 | 目录 | 文件名 |
-| --- | --- | --- |
-| AI 早报 | `public/content/ai-daily` | `ai-daily-YYYY-MM-DD.html` |
-| Java 学习 | `public/content/java-learning` | `java学习-YYYY-MM-DD.md` |
-| 前端技术雷达 | `public/content/fe-radar` | `前端技术雷达-YYYY-MM-DD.md` |
+| 模块         | 目录                           | 文件名                       |
+| ------------ | ------------------------------ | ---------------------------- |
+| AI 早报      | `public/content/ai-daily`      | `ai-daily-YYYY-MM-DD.html`   |
+| Java 学习    | `public/content/java-learning` | `java学习-YYYY-MM-DD.md`     |
+| 前端技术雷达 | `public/content/fe-radar`      | `前端技术雷达-YYYY-MM-DD.md` |
 
 外部内容生成流程只需把文件写入对应目录。AI Hub 不创建或维护定时任务。
 
@@ -38,8 +38,6 @@ pnpm dev
 2. 运行本地验证。
 3. 由仓库所有者亲自暂存、提交并推送 `master`。
 4. GitHub Actions 自动构建并发布 GitHub Pages。
-
-项目脚本不会执行 `git add`、`git commit` 或 `git push`。
 
 ## 新增模块
 
