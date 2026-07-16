@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 早报 2026-07-16</title>
+<style>
+  :root {
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #1a1a2e;
+    --text-secondary: #555770;
+    --accent: #4361ee;
+    --accent-light: #eef1ff;
+    --border: #e2e4e9;
+    --tag-bg: #f0f1f3;
+    --warn-bg: #fff8e1;
+    --warn-border: #ffe082;
+    --rumor-bg: #fff3e0;
+    --rumor-text: #e65100;
+    --blockquote-border: #4361ee;
+    --blockquote-bg: #f5f7ff;
+    --link: #4361ee;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 40px 0 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .header .date {
+    color: var(--text-secondary);
+    font-size: 15px;
+  }
+  .header .subtitle {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 4px;
+  }
+
+  /* Overview */
+  .overview {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 24px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow);
+  }
+  .overview h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--accent);
+    color: var(--accent);
+  }
+  .overview .cat-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 18px 0 8px;
+  }
+  .overview .cat-title:first-of-type {
+    margin-top: 0;
+  }
+  .overview ul {
+    list-style: none;
+    padding: 0;
+  }
+  .overview li {
+    padding: 4px 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .overview li::before {
+    content: "";
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+  .overview .num {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    font-family: "SF Mono", "Fira Code", monospace;
+    flex-shrink: 0;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 36px;
+  }
+  .section-header {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    padding: 12px 0 8px;
+    margin-bottom: 16px;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-header .icon {
+    font-size: 20px;
+  }
+
+  /* Card */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.15s;
+  }
+  .card:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .card-num {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-light);
+    border-radius: 6px;
+    padding: 2px 8px;
+    flex-shrink: 0;
+    font-family: "SF Mono", "Fira Code", monospace;
+    line-height: 1.6;
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .card-title a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .card-title a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .card blockquote {
+    background: var(--blockquote-bg);
+    border-left: 3px solid var(--blockquote-border);
+    padding: 8px 14px;
+    margin: 10px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+  .card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin: 8px 0;
+  }
+  .card .links {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .card .links-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .card .links a {
+    display: block;
+    font-size: 13px;
+    color: var(--link);
+    text-decoration: none;
+    padding: 2px 0;
+    word-break: break-all;
+  }
+  .card .links a:hover {
+    text-decoration: underline;
+  }
+
+  /* Rumor tag */
+  .rumor-tag {
+    display: inline-block;
+    background: var(--rumor-bg);
+    color: var(--rumor-text);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 32px 0 16px;
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+  .footer p {
+    margin: 4px 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .container { padding: 16px 14px 40px; }
+    .header h1 { font-size: 22px; }
+    .card { padding: 16px 16px; }
+    .overview { padding: 20px 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1>AI 早报 2026-07-16</h1>
+  <div class="date">2026 年 7 月 16 日 星期四</div>
+  <div class="subtitle">收录 24 条 &middot; 6 个分类 &middot; 含 3 条未确认传闻</div>
+</div>
+
+<!-- Overview -->
+<div class="overview">
+  <h2>概览</h2>
+
+  <div class="cat-title">要闻</div>
+  <ul>
+    <li>OpenAI 发布 GPT-5.6 模型家族（Sol / Terra / Luna） <span class="num">#1</span></li>
+    <li>Gemini 3.5 Pro 预计明日（7/17）发布 <span class="rumor-tag">未确认</span> <span class="num">#2</span></li>
+    <li>Future of Life Institute AI 安全指数：全行业最高仅 C+ <span class="num">#3</span></li>
+    <li>纽约时报要求法院惩罚 OpenAI 隐匿训练数据证据 <span class="num">#4</span></li>
+    <li>美国 VC 上半年融资 $4127 亿，86% 流向 AI <span class="num">#5</span></li>
+  </ul>
+
+  <div class="cat-title">模型发布</div>
+  <ul>
+    <li>xAI 发布 Grok 4.5，主打代码和 Agent 任务 <span class="num">#6</span></li>
+    <li>腾讯混元 Hy3 开源（295B MoE，激活 21B） <span class="num">#7</span></li>
+    <li>OpenAI 发布 GPT-Live-1 语音模型 <span class="num">#8</span></li>
+  </ul>
+
+  <div class="cat-title">产品应用</div>
+  <ul>
+    <li>ChatGPT 自定义指令上限扩展至 5000 字符 <span class="num">#9</span></li>
+    <li>ChatGPT 上线统一搜索功能 <span class="num">#10</span></li>
+    <li>ChatGPT Work Agent 和 Sites 公测 <span class="num">#11</span></li>
+    <li>ChatGPT 回归 WhatsApp 欧洲经济区 <span class="num">#12</span></li>
+    <li>Nvidia + ServiceNow 推出 Project Arc 桌面 AI 助手 <span class="num">#13</span></li>
+    <li>Grok Build 开发环境密集更新 <span class="num">#14</span></li>
+  </ul>
+
+  <div class="cat-title">开发生态</div>
+  <ul>
+    <li>MCP Spec 2026-07-28 RC 发布：无状态化等六项破坏性变更 <span class="num">#15</span></li>
+    <li>DeepSeek V4 API 迁移截止日期：7 月 24 日 <span class="num">#16</span></li>
+    <li>Microsoft 365 Copilot 接入 GPT-5.6 <span class="num">#17</span></li>
+    <li>Codex 集成至 ChatGPT 桌面应用 <span class="num">#18</span></li>
+  </ul>
+
+  <div class="cat-title">行业动态</div>
+  <ul>
+    <li>韩国公布 $8800 亿 AI 与芯片十年投资计划 <span class="num">#19</span></li>
+    <li>Mews 裁员 15%，明确归因 AI <span class="num">#20</span></li>
+    <li>Unitree 发布 GD01 变形机甲，上海 IPO 获批 <span class="num">#21</span></li>
+    <li>Meta 推出企业级 AI Agent 平台 <span class="num">#22</span></li>
+  </ul>
+
+  <div class="cat-title">前瞻与传闻</div>
+  <ul>
+    <li>GPT-5.6 Sol 预览版发布，下一代旗舰方向初现 <span class="rumor-tag">未确认</span> <span class="num">#23</span></li>
+    <li>DeepSeek V4 完整版即将发布 <span class="rumor-tag">未确认</span> <span class="num">#24</span></li>
+  </ul>
+</div>
+
+<!-- ===== 要闻 ===== -->
+<div class="section">
+  <div class="section-header">要闻</div>
+
+  <!-- #1 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#1</span>
+      <div class="card-title"><a href="https://techcrunch.com/2026/07/09/openai-launches-its-new-family-of-models-with-gpt-5-6/" target="_blank">OpenAI 发布 GPT-5.6 模型家族（Sol / Terra / Luna）</a></div>
+    </div>
+    <blockquote>OpenAI 推出三级模型体系，旗舰 Sol 在智能和效率上创下新标准。</blockquote>
+    <p>OpenAI 于 7 月 9 日正式发布 GPT-5.6 系列，包含三个层级：Sol（旗舰级，适合复杂推理和 Agent 任务）、Terra（均衡型）和 Luna（成本优先型）。该系列引入了多 Agent 加速机制，可显著提升复杂工作流的执行效率。安全报告指出该系列在网络安全和生化风险方面被归类为"高能力"级别。</p>
+    <p>Microsoft 同步宣布 GPT-5.6 成为 Microsoft 365 Copilot 的首选模型，覆盖 Word、Excel、PowerPoint 和 Cowork。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://openai.com/index/gpt-5-6/" target="_blank">OpenAI 官方公告</a>
+      <a href="https://techcrunch.com/2026/07/09/openai-launches-its-new-family-of-models-with-gpt-5-6/" target="_blank">TechCrunch 报道</a>
+      <a href="https://www.mindstudio.ai/blog/what-is-gpt-5-6-openai-three-model-tiers" target="_blank">MindStudio 解读</a>
+    </div>
+  </div>
+
+  <!-- #2 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#2</span>
+      <div class="card-title"><a href="https://www.businessinsider.com/google-3-5-pro-july-release-tokens-ai-agents-model-2026-6" target="_blank">Google Gemini 3.5 Pro 预计明日（7/17）发布 <span class="rumor-tag">未确认</span></a></div>
+    </div>
+    <blockquote>多方消息指 Gemini 3.5 Pro 将于 7 月 17 日发布，但 Google 官方尚未确认，所有规格参数均为传闻。</blockquote>
+    <p>TechTimes 报道称该模型经历了一次"完全重建"，传闻可能具备 200 万 token 上下文窗口和 Deep Think 深度推理功能，定价极具竞争力。Business Insider 此前报道 Google 将 Gemini 3.5 Pro 的发布时间从 6 月推迟至 7 月。</p>
+    <p>如果如期发布，将与 GPT-5.6 Sol 形成直接竞争。但目前所有技术规格均未经 Google 官方确认。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.techtimes.com/articles/320308/20260713/gemini-35-pro-targets-july-17-after-full-rebuild-every-spec-remains-unconfirmed.htm" target="_blank">TechTimes 报道</a>
+      <a href="https://www.businessinsider.com/google-3-5-pro-july-release-tokens-ai-agents-model-2026-6" target="_blank">Business Insider</a>
+      <a href="https://smartchunks.com/google-deepmind-gemini-3-5-pro-2-million-token-context-window/" target="_blank">SmartChunks 分析</a>
+    </div>
+  </div>
+
+  <!-- #3 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#3</span>
+      <div class="card-title"><a href="https://futureoflife.org/ai-safety-index-summer-2026/" target="_blank">Future of Life Institute AI 安全指数：全行业最高仅 C+</a></div>
+    </div>
+    <blockquote>独立评估显示 AI 行业在风险管理和透明度方面表现平庸，Anthropic 获最高分 C+，xAI / DeepSeek / Mistral 不及格。</blockquote>
+    <p>Future of Life Institute 发布的 2026 夏季 AI 安全指数对九家主要 AI 公司进行了评分。Anthropic 以 C+ 领先，OpenAI 和 Google DeepMind 均为 C，Meta 为 D+，xAI、DeepSeek 和 Mistral 均为 F。报告指出头部公司正在"退缩此前的承诺"，灾难性风险管理是全行业最低分项，且军事 AI 应用已成为"新兴的现实危害"。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://futureoflife.org/ai-safety-index-summer-2026/" target="_blank">Future of Life Institute 报告</a>
+      <a href="https://quantumzeitgeist.com/ai-safety-future-of-life-institute-risk-mitigation/" target="_blank">QuantumZeitgeist 解读</a>
+    </div>
+  </div>
+
+  <!-- #4 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#4</span>
+      <div class="card-title"><a href="https://techcrunch.com/2026/07/09/new-york-times-says-openai-hid-evidence-in-chatgpt-copyright-trial/" target="_blank">纽约时报要求法院惩罚 OpenAI 隐匿训练数据证据</a></div>
+    </div>
+    <blockquote>出版商指控 OpenAI 在版权诉讼中隐瞒训练数据相关证据，要求法院予以处罚。</blockquote>
+    <p>纽约时报等多家出版商在针对 OpenAI 的版权侵权诉讼中，要求法官对 OpenAI 涉嫌隐瞒训练数据证据的行为进行处罚。此案结果可能从根本上影响 AI 模型使用网络抓取数据进行训练的法律框架，对整个 AI 行业具有深远意义。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://techcrunch.com/2026/07/09/new-york-times-says-openai-hid-evidence-in-chatgpt-copyright-trial/" target="_blank">TechCrunch 报道</a>
+      <a href="https://openai.com/new-york-times/" target="_blank">OpenAI 官方回应</a>
+    </div>
+  </div>
+
+  <!-- #5 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#5</span>
+      <div class="card-title"><a href="https://aiweekly.co/alerts/us-venture-hits-4127b-in-h1-2026-ai-takes-86" target="_blank">美国 VC 上半年融资 $4127 亿，86% 流向 AI</a></div>
+    </div>
+    <blockquote>2026 上半年美国风投总额突破 4127 亿美元，AI 占比创纪录的 86%。</blockquote>
+    <p>数据显示 2026 上半年美国创业融资达到前所未有的规模，其中绝大部分资金集中涌入 AI 领域。生物科技等其他行业的融资份额被大幅压缩。AI 领域的资本集中度已引发关于泡沫和行业失衡的讨论。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://valueaddvc.com/pulse/venture-half-ai-concentration-record-2026" target="_blank">ValueAdd VC 深度分析</a>
+      <a href="https://news.crunchbase.com/venture/record-breaking-funding-ai-global-q1-2026/" target="_blank">Crunchbase 报告</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 模型发布 ===== -->
+<div class="section">
+  <div class="section-header">模型发布</div>
+
+  <!-- #6 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#6</span>
+      <div class="card-title"><a href="https://releasebot.io/updates/xai" target="_blank">xAI 发布 Grok 4.5，主打代码和 Agent 任务</a></div>
+    </div>
+    <blockquote>xAI 发布"最智能模型"Grok 4.5，专为编程、Agent 任务和知识工作优化。</blockquote>
+    <p>Grok 4.5 于 7 月 8 日发布，支持可调节的推理强度（让用户在速度和质量间取舍）和快速生成。API 定价为输入 $2/百万 token、输出 $6/百万 token。训练基于大规模 NVIDIA 集群，采用高信号数据集和强化学习。已可通过 API、Grok Build 环境和 Cursor 访问。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://releasebot.io/updates/xai" target="_blank">xAI Release Notes</a>
+      <a href="https://aitoolranked.com/blog/grok-4-release-review-features-pricing-2026" target="_blank">Grok 4 评测</a>
+    </div>
+  </div>
+
+  <!-- #7 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#7</span>
+      <div class="card-title"><a href="https://github.com/Tencent-Hunyuan/Hy3-preview" target="_blank">腾讯混元 Hy3 开源（295B MoE，激活 21B）</a></div>
+    </div>
+    <blockquote>腾讯开源混元 Hy3 预览版，295B 参数 MoE 架构，推理和 Agent 能力对标主流闭源模型。</blockquote>
+    <p>腾讯于 7 月 6 日开源混元 Hy3 预览版，采用 Mixture of Experts 架构，总参数量 295B，激活参数 21B，在推理和 Agent 任务上表现突出。已上线 GitHub、Hugging Face 和 OpenRouter（含免费 API）。这是腾讯在开源大模型领域的重要一步。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://github.com/Tencent-Hunyuan/Hy3-preview" target="_blank">GitHub 仓库</a>
+      <a href="https://hy.tencent.com/research/hy3" target="_blank">Hy3 官网</a>
+      <a href="https://openrouter.ai/tencent/hy3:free" target="_blank">OpenRouter 免费 API</a>
+    </div>
+  </div>
+
+  <!-- #8 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#8</span>
+      <div class="card-title"><a href="https://openai.com/index/introducing-gpt-live/" target="_blank">OpenAI 发布 GPT-Live-1 语音模型</a></div>
+    </div>
+    <blockquote>ChatGPT Voice 底层模型升级为 GPT-Live-1，对话体验更自然流畅。</blockquote>
+    <p>OpenAI 于 7 月 8 日为 ChatGPT Voice 部署了全新底层语音模型 GPT-Live-1。付费用户使用完整版 GPT-Live-1，免费用户使用 GPT-Live-1 mini。新模型显著提升了语音对话的自然度和响应质量。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://openai.com/index/introducing-gpt-live/" target="_blank">OpenAI 官方介绍</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 产品应用 ===== -->
+<div class="section">
+  <div class="section-header">产品应用</div>
+
+  <!-- #9 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#9</span>
+      <div class="card-title"><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes" target="_blank">ChatGPT 自定义指令上限扩展至 5000 字符</a></div>
+    </div>
+    <blockquote>Plus、Pro、Enterprise、Business 和 Education 用户的自定义指令空间从 1500 字符提升至 5000 字符。</blockquote>
+    <p>OpenAI 于 7 月 15 日扩展了 ChatGPT 的自定义指令容量。此前 1500 字符的限制让很多高级用户难以设定足够详细的行为偏好，现在 5000 字符的空间允许更精细的个性化配置。这是近期 ChatGPT 体验优化中最受好评的改动之一。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes" target="_blank">ChatGPT Release Notes</a>
+    </div>
+  </div>
+
+  <!-- #10 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#10</span>
+      <div class="card-title"><a href="https://releasebot.io/updates/openai/chatgpt" target="_blank">ChatGPT 上线统一搜索功能</a></div>
+    </div>
+    <blockquote>跨内容统一搜索让用户在一个入口快速查找历史对话、项目、图片和文档。</blockquote>
+    <p>7 月 14 日上线的新功能允许用户通过侧边栏或筛选器，在 Web、iOS 和 Android 端统一搜索过往对话记录、项目内容、生成的图片和文档。此前用户需要手动翻找不同标签页，统一搜索大幅提升了信息检索效率。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://releasebot.io/updates/openai/chatgpt" target="_blank">ChatGPT Updates</a>
+    </div>
+  </div>
+
+  <!-- #11 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#11</span>
+      <div class="card-title"><a href="https://9to5mac.com/2026/07/09/openai-announcing-the-next-chapter-for-chatgpt-today-watch-here/" target="_blank">ChatGPT Work Agent 和 Sites 公测</a></div>
+    </div>
+    <blockquote>ChatGPT Work 处理长任务，Sites 让轻量 Web 应用一键发布，两大功能同步进入公测。</blockquote>
+    <p>ChatGPT Work 于 7 月 9 日上线，是一个专为复杂、长耗时任务设计的 Agent，能自主调研并输出专业交付物。同时 ChatGPT Sites 进入公开 Beta，允许用户基于 ChatGPT 的输出创建交互式 Web 仪表盘和轻量页面。原 App Directory 已更名为 Plugin Directory。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://9to5mac.com/2026/07/09/openai-announcing-the-next-chapter-for-chatgpt-today-watch-here/" target="_blank">9to5Mac 报道</a>
+      <a href="https://help.openai.com/en/articles/20001339-creating-and-managing-chatgpt-sites" target="_blank">Sites 使用指南</a>
+    </div>
+  </div>
+
+  <!-- #12 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#12</span>
+      <div class="card-title"><a href="https://releasebot.io/updates/openai/chatgpt" target="_blank">ChatGPT 回归 WhatsApp 欧洲经济区</a></div>
+    </div>
+    <blockquote>ChatGPT 重新上线 WhatsApp 欧洲经济区，支持图片、语音和多语言对话。</blockquote>
+    <p>7 月 13 日 ChatGPT 恢复了在欧洲经济区（EEA）的 WhatsApp 集成，支持图片分析、语音消息和多语言聊天。此前因合规问题暂时下线。同期还新增了韩国和 Viber 平台支持。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://releasebot.io/updates/openai/chatgpt" target="_blank">ChatGPT Updates</a>
+    </div>
+  </div>
+
+  <!-- #13 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#13</span>
+      <div class="card-title"><a href="https://newsroom.servicenow.com/press-releases/details/2026/ServiceNow-extends-agentic-AI-governance-from-desktops-to-data-centers-with-NVIDIA/default.aspx" target="_blank">Nvidia + ServiceNow 推出 Project Arc 桌面 AI 助手</a></div>
+    </div>
+    <blockquote>持久化桌面 AI 助手，能连续保持用户上下文而非每次重置，企业级安全。</blockquote>
+    <p>Nvidia 和 ServiceNow 合作推出的 Project Arc 是一个持久化桌面 AI 助手，区别于传统聊天机器人的单轮对话，它能跨会话保持对用户工作上下文的理解。该工具面向企业场景设计，具备安全合规保障，代表了桌面 AI 助手从"问答工具"向"工作伙伴"演进的方向。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://newsroom.servicenow.com/press-releases/details/2026/ServiceNow-extends-agentic-AI-governance-from-desktops-to-data-centers-with-NVIDIA/default.aspx" target="_blank">ServiceNow 新闻稿</a>
+      <a href="https://enterprisedna.co/resources/news/servicenow-nvidia-project-arc-desktop-ai-agent-2026/" target="_blank">Enterprise DNA 解读</a>
+    </div>
+  </div>
+
+  <!-- #14 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#14</span>
+      <div class="card-title"><a href="https://releasebot.io/updates/xai" target="_blank">Grok Build 开发环境密集更新</a></div>
+    </div>
+    <blockquote>Grok Build CLI 在两周内从 v0.2.89 迭代到 v0.2.101，加入语音识别、Vim 快捷键和 Agent 工作流优化。</blockquote>
+    <p>xAI 的编码环境 Grok Build 近期密集更新：新增多行文本输入、Vim 键盘快捷键、斜杠命令目标设定、会话历史浏览，以及从竞品编码助手恢复工作流的功能。Linux 语音识别、API Key 会话的语音支持、Agent 多步授权管理和 macOS 图片粘贴优化均已上线。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://releasebot.io/updates/xai" target="_blank">xAI Release Notes</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 开发生态 ===== -->
+<div class="section">
+  <div class="section-header">开发生态</div>
+
+  <!-- #15 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#15</span>
+      <div class="card-title"><a href="https://modelcontextprotocol.io/specification/draft/changelog" target="_blank">MCP Spec 2026-07-28 RC 发布：六项破坏性变更</a></div>
+    </div>
+    <blockquote>MCP 协议迎来最大规模更新——协议层无状态化、OAuth 2.1 安全、扩展系统和两个官方扩展（Apps + Tasks）。</blockquote>
+    <p>Model Context Protocol 发布了 7 月 28 日正式版前的 Release Candidate。核心变化包括：协议层彻底去除状态管理（initialize 握手和 Mcp-Session-Id header 均被移除）、Roots 被 Resource URIs 替代、日志和采样从主标准中剥离。新增方面：路由使用 Mcp-Method/Mcp-Name 标识、强制 OAuth 2.0 Protected Resource Metadata、推出官方扩展系统及两个首发扩展（MCP Apps 渲染交互界面、Tasks 处理异步长任务），工具定义支持完整 JSON Schema 2020-12。开发者有 10 周迁移窗口。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://modelcontextprotocol.io/specification/draft/changelog" target="_blank">MCP Changelog</a>
+      <a href="https://workos.com/blog/mcp-2026-spec-agent-authentication" target="_blank">WorkOS 解读</a>
+      <a href="https://blog.modelcontextprotocol.io/posts/2026-mcp-roadmap/" target="_blank">2026 MCP Roadmap</a>
+      <a href="https://chatforest.com/builders-log/mcp-spec-2026-07-28-release-candidate-stateless-breaking-changes-builder-guide/" target="_blank">Builder Guide</a>
+    </div>
+  </div>
+
+  <!-- #16 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#16</span>
+      <div class="card-title"><a href="https://deepseekv4pro.com/guides/deepseek-chat-to-v4-migration" target="_blank">DeepSeek V4 API 迁移截止日期：7 月 24 日</a></div>
+    </div>
+    <blockquote>DeepSeek 将于 7 月 24 日下线 deepseek-chat 旧别名，开发者需尽快迁移到 V4 API。</blockquote>
+    <p>DeepSeek 设定了 7 月 24 日作为旧版 deepseek-chat 别名的最终截止日期。届时未迁移的应用将无法正常调用。迁移主要涉及 API endpoint 和参数格式的调整，多数场景可在 10 分钟内完成。已有多份社区迁移指南发布。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://rohitraj.tech/en/notes/deepseek-v4-api-migration-guide-2026" target="_blank">迁移指南</a>
+      <a href="https://flatkey.ai/blog/deepseek-v4-migration-checklist" target="_blank">迁移 Checklist</a>
+      <a href="https://byteiota.com/deepseek-api-migration-july-2026/" target="_blank">ByteIota 解读</a>
+    </div>
+  </div>
+
+  <!-- #17 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#17</span>
+      <div class="card-title"><a href="https://releasebot.io/updates/openai" target="_blank">Microsoft 365 Copilot 接入 GPT-5.6</a></div>
+    </div>
+    <blockquote>GPT-5.6 成为 Microsoft 365 Copilot 首选模型，覆盖 Word、Excel、PowerPoint 和 Cowork。</blockquote>
+    <p>微软于 7 月 9 日宣布将 GPT-5.6 集成为 Microsoft 365 Copilot 的首选模型。此次升级覆盖 Word（文档生成和编辑）、Excel（数据分析）、PowerPoint（演示文稿创建）和 Cowork（协作工具），标志着 OpenAI 和微软的企业级合作进一步深化。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://releasebot.io/updates/openai" target="_blank">OpenAI Release Notes</a>
+    </div>
+  </div>
+
+  <!-- #18 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#18</span>
+      <div class="card-title"><a href="https://releasebot.io/updates/openai" target="_blank">Codex 集成至 ChatGPT 桌面应用</a></div>
+    </div>
+    <blockquote>编程 Agent Codex 合并入 ChatGPT 桌面应用，支持代码编辑、行内注释和 GitHub PR 审查。</blockquote>
+    <p>7 月 9 日 Codex 正式合并入 ChatGPT 桌面应用，带来直接的 Markdown 和代码编辑、行内注释功能，并集成 GitHub Pull Request 审查能力。CLI 版本同步迭代至 v0.144.x，修复了 macOS 安装可靠性、Guardian 自动审查行为和多个稳定性问题。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://releasebot.io/updates/openai" target="_blank">OpenAI Release Notes</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 行业动态 ===== -->
+<div class="section">
+  <div class="section-header">行业动态</div>
+
+  <!-- #19 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#19</span>
+      <div class="card-title"><a href="https://www.bbc.com/news/articles/c9q2pwzngjqo" target="_blank">韩国公布 $8800 亿 AI 与芯片十年投资计划</a></div>
+    </div>
+    <blockquote>三星和 SK 海力士领衔，韩国十年投入约 8800 亿美元押注存储芯片、数据中心和人形机器人。</blockquote>
+    <p>韩国政府公布了一项为期十年的大规模投资计划，总额约 8800 亿美元，由三星和 SK 海力士主导。计划覆盖存储芯片产能扩张、数据中心基础设施建设和人形机器人市场主导地位（目标 2028 年）。这是全球范围内单一国家在 AI 相关产业的最大规模投资承诺之一。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.bbc.com/news/articles/c9q2pwzngjqo" target="_blank">BBC 报道</a>
+      <a href="https://arstechnica.com/ai/2026/06/south-korea-to-spend-1t-on-more-memory-chip-production-and-humanoid-robots/" target="_blank">Ars Technica</a>
+      <a href="https://en.yna.co.kr/view/AEN20260629006151315" target="_blank">韩联社</a>
+    </div>
+  </div>
+
+  <!-- #20 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#20</span>
+      <div class="card-title"><a href="https://skift.com/2026/07/07/mews-layoffs-restructuring-ai/" target="_blank">Mews 裁员 15%，明确归因 AI</a></div>
+    </div>
+    <blockquote>酒店软件公司 Mews 裁减约 170 个岗位，管理层直言 AI 让个人可完成原来整个团队的工作。</blockquote>
+    <p>Mews 在最新一轮重组中裁减了约 15% 的员工（约 170 人），管理层明确表示原因是 AI 能力提升。这是 2026 年科技行业因 AI 裁员潮中的典型案例。据统计，2026 年全球科技行业已裁减超过 45000 个岗位，其中越来越多公司在裁员声明中直接提及 AI。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://skift.com/2026/07/07/mews-layoffs-restructuring-ai/" target="_blank">Skift 报道</a>
+      <a href="https://finance.yahoo.com/technology/ai/articles/running-list-major-tech-layoffs-012755703.html" target="_blank">Yahoo 裁员清单</a>
+    </div>
+  </div>
+
+  <!-- #21 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#21</span>
+      <div class="card-title"><a href="https://thenextweb.com/news/unitree-gd01-mecha-humanoid-robot-ipo" target="_blank">Unitree 发布 GD01 变形机甲，上海 IPO 获批</a></div>
+    </div>
+    <blockquote>宇树科技发布售价 65 万美元的 GD01 变形机甲机器人，同时获得上海科创板 IPO 批准（目标估值 62 亿美元）。</blockquote>
+    <p>宇树科技在 IPO 获批之际发布了 GD01 变形机甲机器人，这是一款面向展示和营销的高端产品。此前 Unitree 在人形机器人销量上已超越特斯拉的 Optimus。上海科创板 IPO 目标融资约 6.19 亿美元，估值约 62 亿美元，反映出中国资本市场对机器人赛道的极高热情。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://thenextweb.com/news/unitree-gd01-mecha-humanoid-robot-ipo" target="_blank">The Next Web</a>
+      <a href="https://economictimes.indiatimes.com/tech/technology/chinese-robot-maker-unitree-wins-approval-for-619-million-shanghai-ipo/articleshow/132153599.cms" target="_blank">Economic Times</a>
+    </div>
+  </div>
+
+  <!-- #22 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#22</span>
+      <div class="card-title"><a href="https://aibusiness.com/agentic-ai/meta-rolls-out-ai-agent-enterprises-globally" target="_blank">Meta 推出企业级 AI Agent 平台</a></div>
+    </div>
+    <blockquote>Meta 面向全球企业推出 AI Agent 部署平台和云基础设施服务，利用数十亿条现有对话数据构建可扩展工具。</blockquote>
+    <p>Meta 发布了面向企业的 AI Agent 部署平台，允许企业在 Meta 的即时通讯生态上构建和部署自动化代理。同时推出新的云基础设施服务。该战略的核心是 leveragin WhatsApp、Messenger 等平台上数十亿条现有对话数据，将其转化为可扩展的企业工具能力。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://aibusiness.com/agentic-ai/meta-rolls-out-ai-agent-enterprises-globally" target="_blank">AI Business</a>
+      <a href="https://siliconangle.com/2026/07/03/openai-offers-feds-stake-anthropic-gets-ai-model-jail-meta-wants-neocloud/" target="_blank">SiliconANGLE</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 前瞻与传闻 ===== -->
+<div class="section">
+  <div class="section-header">前瞻与传闻</div>
+
+  <!-- #23 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#23</span>
+      <div class="card-title"><a href="https://openai.com/index/previewing-gpt-5-6-sol/" target="_blank">GPT-5.6 Sol 预览版发布，下一代旗舰方向初现 <span class="rumor-tag">未确认</span></a></div>
+    </div>
+    <blockquote>OpenAI 发布 GPT-5.6 Sol 的"预览"页面，暗示可能有超越当前 Sol 版本的更强模型在研发中。</blockquote>
+    <p>OpenAI 官网上出现了一个名为"Previewing GPT-5.6 Sol: a next-generation model"的页面，暗示 Sol 系列可能还有更高级的版本正在开发。具体能力参数和发布时间均未公布。目前社区对此页面的解读分歧较大，有人认为只是当前 Sol 的市场宣传，也有人认为指向后续升级。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://openai.com/index/previewing-gpt-5-6-sol/" target="_blank">OpenAI 页面</a>
+    </div>
+  </div>
+
+  <!-- #24 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#24</span>
+      <div class="card-title"><a href="https://blog.laozhang.ai/en/posts/deepseek-v4" target="_blank">DeepSeek V4 完整版即将发布 <span class="rumor-tag">未确认</span></a></div>
+    </div>
+    <blockquote>DeepSeek 在 7 月 24 日旧 API 下线前可能发布 V4 完整版模型，但目前没有官方时间表。</blockquote>
+    <p>在 DeepSeek V4 API 迁移截止日期（7/24）临近之际，社区猜测 DeepSeek 可能同步发布 V4 的完整版模型。此前 DeepSeek V4 已在昇腾芯片上首发演示。但目前 DeepSeek 官方没有公布任何 V4 完整版的发布时间表，此条信息为社区推测，尚未得到官方确认。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://blog.laozhang.ai/en/posts/deepseek-v4" target="_blank">LaoZhang AI Blog</a>
+      <a href="https://explore.n1n.ai/blog/deepseek-v4-api-migration-guide-2026-04-25" target="_blank">N1N 迁移指南</a>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>AI 早报 &middot; 2026-07-16</p>
+  <p>收录 24 条信息 &middot; 要闻 5 / 模型发布 3 / 产品应用 6 / 开发生态 4 / 行业动态 4 / 前瞻与传闻 2</p>
+  <p>含 2 条未确认传闻（#2 Gemini 3.5 Pro 发布日期、#23-24 未发布模型信息）</p>
+  <p style="margin-top: 12px; color: #999;">信息来源于公开渠道，仅供参考。传闻类信息已明确标注，不构成事实。</p>
+</div>
+
+</div>
+</body>
+</html>
