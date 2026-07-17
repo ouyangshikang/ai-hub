@@ -10,13 +10,15 @@ onMounted(ensureLoaded);
 </script>
 
 <template>
-  <SiteHeader :modules="modules" />
-  <main id="main-content" class="site-shell empty-state">
-    <p class="eyebrow">404</p>
-    <h1>页面不存在</h1>
-    <RouterLink to="/">返回首页</RouterLink>
-  </main>
-  <footer class="site-footer">
-    <p>AI Hub · AI 自动收集生成的技术内容 · 持续更新中</p>
-  </footer>
+  <div class="page">
+    <SiteHeader :modules="modules" />
+    <main id="main-content" class="site-shell empty-state">
+      <p class="eyebrow">404</p>
+      <h1>页面不存在</h1>
+      <RouterLink to="/">返回首页</RouterLink>
+    </main>
+    <footer class="site-footer">
+      <p>AI Hub · AI 自动收集生成的技术内容 · 持续更新中</p>
+    </footer>
+  </div>
 </template>

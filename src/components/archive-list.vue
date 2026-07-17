@@ -69,7 +69,7 @@ const groups = computed(() => {
   flex-direction: column;
   gap: 4px;
   padding: 24px;
-  background: #f5f6f8;
+  background: var(--surface);
   border-right: 1px solid var(--line);
 }
 
@@ -161,6 +161,7 @@ const groups = computed(() => {
   }
 
   .archive__item {
+    min-height: 52px;
     padding: 12px 16px;
   }
 }

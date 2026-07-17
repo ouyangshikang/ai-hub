@@ -54,6 +54,15 @@ defineProps<Props>();
     box-shadow 200ms ease,
     transform 200ms ease;
   overflow: hidden;
+  animation: fade-up 480ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+.module-card:nth-child(2) {
+  animation-delay: 70ms;
+}
+
+.module-card:nth-child(3) {
+  animation-delay: 140ms;
 }
 
 .module-card::before {
@@ -100,6 +109,11 @@ defineProps<Props>();
   font-weight: 700;
   letter-spacing: 0.04em;
   box-shadow: 0 4px 12px rgba(35, 84, 224, 0.25);
+  transition: transform 200ms ease;
+}
+
+.module-card:hover .module-card__icon {
+  transform: scale(1.08);
 }
 
 .module-card__count {

@@ -89,6 +89,14 @@ markdown.renderer.rules.link_open = (tokens, index, options, env, self) => {
     : self.renderToken(tokens, index, options);
 };
 
+const defaultImage = markdown.renderer.rules.image;
+markdown.renderer.rules.image = (tokens, index, options, env, self) => {
+  tokens[index].attrSet('loading', 'lazy');
+  return defaultImage
+    ? defaultImage(tokens, index, options, env, self)
+    : self.renderToken(tokens, index, options);
+};
+
 // ── Extract TOC from rendered HTML ──
 interface TocItem {
   id: string;
@@ -145,6 +153,11 @@ function scrollToHeading(id: string) {
   }
 }
 
+function onMobileTocClick(id: string, event: MouseEvent) {
+  scrollToHeading(id);
+  (event.currentTarget as HTMLElement | null)?.closest('details')?.removeAttribute('open');
+}
+
 // ── Load content ──
 watch(
   () => props.src,
@@ -158,7 +171,7 @@ watch(
       const res = await fetch(src, { signal: controller.signal });
       if (!res.ok) throw new Error(`加载失败: ${res.status}`);
       rendered.value = DOMPurify.sanitize(markdown.render(await res.text()), {
-        ADD_ATTR: ['target', 'id'],
+        ADD_ATTR: ['target', 'id', 'loading'],
       });
       await nextTick();
       setupScrollSpy();
@@ -177,11 +190,41 @@ onBeforeUnmount(() => observer?.disconnect());
 </script>
 
 <template>
-  <p v-if="loading" class="reader-msg" role="status">正在加载文档…</p>
+  <div v-if="loading" class="reader-skeleton" role="status" aria-label="正在加载文档">
+    <div class="skeleton skeleton--title" />
+    <div v-for="i in 5" :key="i" class="skeleton skeleton--text" />
+    <div class="skeleton skeleton--text reader-skeleton__short" />
+  </div>
   <p v-else-if="error" class="reader-msg reader-msg--error" role="alert">
     {{ error }}
   </p>
   <div v-else class="reader-layout">
+    <details v-if="toc.length > 0" class="toc-mobile">
+      <summary class="toc-mobile__summary">
+        <span>目录</span>
+        <svg viewBox="0 0 16 16" aria-hidden="true">
+          <path
+            d="M4 6l4 4 4-4"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </summary>
+      <nav class="toc-mobile__nav" aria-label="目录">
+        <button
+          v-for="item in toc"
+          :key="item.id"
+          class="toc-mobile__link"
+          :class="`toc-mobile__link--h${item.level}`"
+          @click="onMobileTocClick(item.id, $event)"
+        >
+          {{ item.text }}
+        </button>
+      </nav>
+    </details>
     <article ref="prose" class="prose" v-html="rendered" />
     <aside v-if="toc.length > 0" class="toc">
       <nav class="toc__nav" aria-label="目录">
@@ -213,6 +256,103 @@ onBeforeUnmount(() => observer?.disconnect());
 
 .reader-msg--error {
   color: var(--danger);
+}
+
+/* ── Loading Skeleton ── */
+.reader-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 16px 0;
+}
+
+.reader-skeleton__short {
+  width: 60%;
+}
+
+/* ── Mobile TOC (≤1100px) ── */
+.toc-mobile {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .toc-mobile {
+    display: block;
+    margin-bottom: 20px;
+    background: var(--canvas);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+  }
+
+  .toc-mobile__summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 44px;
+    padding: 8px 16px;
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .toc-mobile__summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .toc-mobile__summary svg {
+    width: 14px;
+    height: 14px;
+    color: var(--muted);
+    transition: transform 200ms ease;
+  }
+
+  .toc-mobile[open] .toc-mobile__summary svg {
+    transform: rotate(180deg);
+  }
+
+  .toc-mobile__nav {
+    display: flex;
+    flex-direction: column;
+    max-height: 50vh;
+    padding: 6px 8px 10px;
+    border-top: 1px solid var(--line);
+    overflow-y: auto;
+  }
+
+  .toc-mobile__link {
+    display: block;
+    width: 100%;
+    min-height: 44px;
+    padding: 6px 10px;
+    color: var(--muted);
+    background: none;
+    border: 0;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .toc-mobile__link:hover {
+    color: var(--ink);
+    background: var(--surface);
+  }
+
+  .toc-mobile__link--h3 {
+    padding-left: 24px;
+    font-size: 13px;
+  }
+
+  .toc-mobile__link--h4 {
+    padding-left: 38px;
+    font-size: 13px;
+    color: var(--subtle);
+  }
 }
 
 /* ── Layout: content + TOC ── */
@@ -520,8 +660,13 @@ onBeforeUnmount(() => observer?.disconnect());
 /* ── Responsive ── */
 @media (max-width: 1100px) {
   .reader-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0;
+  }
+
+  .prose,
+  .toc-mobile {
+    min-width: 0;
   }
 
   .toc {

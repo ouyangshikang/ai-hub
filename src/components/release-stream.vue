@@ -43,6 +43,7 @@ defineProps<Props>();
 }
 
 .release-row {
+  position: relative;
   display: grid;
   grid-template-columns: 36px 110px 100px minmax(0, 1fr) 16px;
   align-items: center;
@@ -54,12 +55,28 @@ defineProps<Props>();
   transition: background 200ms ease;
 }
 
+.release-row::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background: var(--brand);
+  transform: scaleY(0);
+  transition: transform 200ms ease;
+}
+
 .release-row + .release-row {
   border-top: 1px solid var(--line);
 }
 
 .release-row:hover {
   background: var(--brand-soft);
+}
+
+.release-row:hover::before {
+  transform: scaleY(1);
 }
 
 .release-row__icon {
@@ -123,36 +140,36 @@ defineProps<Props>();
 
 @media (max-width: 760px) {
   .release-row {
-    grid-template-columns: 32px 1fr 16px;
-    grid-template-rows: auto auto;
+    grid-template-columns: 32px minmax(0, 1fr) auto 16px;
+    grid-template-areas:
+      'icon module date arrow'
+      'icon title title arrow';
     gap: 4px 12px;
     min-height: auto;
     padding: 14px 16px;
   }
 
   .release-row__icon {
-    grid-row: 1 / 3;
+    grid-area: icon;
+    align-self: center;
   }
 
   .release-row__module {
-    grid-column: 2;
-    grid-row: 1;
+    grid-area: module;
   }
 
   .release-row__date {
-    grid-column: 2;
-    grid-row: 1;
+    grid-area: date;
     justify-self: end;
   }
 
   .release-row__title {
-    grid-column: 2;
-    grid-row: 2;
+    grid-area: title;
     white-space: normal;
   }
 
   .release-row__arrow {
-    grid-row: 1 / 3;
+    grid-area: arrow;
     align-self: center;
   }
 }

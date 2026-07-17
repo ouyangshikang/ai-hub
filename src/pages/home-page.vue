@@ -27,59 +27,69 @@ onMounted(ensureLoaded);
 </script>
 
 <template>
-  <SiteHeader :modules="modules" />
-  <main id="main-content" class="site-shell">
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero__panel">
-        <h1 class="hero__title">AI Hub</h1>
-        <p class="hero__desc">
-          AI 自动收集生成的技术内容 — 涵盖 AI 前沿动态、给前端的 Java 学习笔记与前端技术趋势。
-        </p>
-        <div class="hero__stats">
-          <div v-if="latestUpdate" class="hero__stat">
-            <span class="hero__stat-value">{{ latestUpdate }}</span>
-            <span class="hero__stat-label">最近更新</span>
-          </div>
-          <div class="hero__stat">
-            <span class="hero__stat-value">{{ modules.length }}</span>
-            <span class="hero__stat-label">内容栏目</span>
-          </div>
-          <div class="hero__stat">
-            <span class="hero__stat-value">{{ totalItems }}</span>
-            <span class="hero__stat-label">期内容</span>
+  <div class="page">
+    <SiteHeader :modules="modules" />
+    <main id="main-content" class="site-shell">
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero__panel fade-up">
+          <h1 class="hero__title">AI Hub</h1>
+          <p class="hero__desc">
+            AI 自动收集生成的技术内容 — 涵盖 AI 前沿动态、给前端的 Java 学习笔记与前端技术趋势。
+          </p>
+          <div class="hero__stats">
+            <div v-if="latestUpdate" class="hero__stat">
+              <span class="hero__stat-value">{{ latestUpdate }}</span>
+              <span class="hero__stat-label">最近更新</span>
+            </div>
+            <div class="hero__stat">
+              <span class="hero__stat-value">{{ modules.length }}</span>
+              <span class="hero__stat-label">内容栏目</span>
+            </div>
+            <div class="hero__stat">
+              <span class="hero__stat-value">{{ totalItems }}</span>
+              <span class="hero__stat-label">期内容</span>
+            </div>
           </div>
         </div>
+      </section>
+
+      <div v-if="loading" class="home-skeleton" role="status" aria-label="正在加载内容">
+        <div class="skeleton home-skeleton__hero" />
+        <div class="home-skeleton__grid">
+          <div v-for="i in 3" :key="`card-${i}`" class="skeleton skeleton--card" />
+        </div>
+        <div class="home-skeleton__rows">
+          <div v-for="i in 5" :key="`row-${i}`" class="skeleton home-skeleton__row" />
+        </div>
       </div>
-    </section>
+      <p v-else-if="error" class="status-message status-message--error" role="alert">
+        {{ error }}
+      </p>
+      <template v-else>
+        <!-- Modules -->
+        <section class="section fade-up">
+          <header class="section__head">
+            <p class="section-label">栏目</p>
+            <h2 class="section__title">内容栏目</h2>
+          </header>
+          <ModuleIndex :modules="modules" />
+        </section>
 
-    <p v-if="loading" class="status-message" role="status">正在加载内容…</p>
-    <p v-else-if="error" class="status-message status-message--error" role="alert">
-      {{ error }}
-    </p>
-    <template v-else>
-      <!-- Modules -->
-      <section class="section">
-        <header class="section__head">
-          <p class="section-label">栏目</p>
-          <h2 class="section__title">内容栏目</h2>
-        </header>
-        <ModuleIndex :modules="modules" />
-      </section>
-
-      <!-- Latest -->
-      <section class="section">
-        <header class="section__head">
-          <p class="section-label">最新</p>
-          <h2 class="section__title">最新发布</h2>
-        </header>
-        <ReleaseStream :entries="recentItems" />
-      </section>
-    </template>
-  </main>
-  <footer class="site-footer">
-    <p>AI Hub · AI 自动收集生成的技术内容 · 持续更新中</p>
-  </footer>
+        <!-- Latest -->
+        <section class="section fade-up">
+          <header class="section__head">
+            <p class="section-label">最新</p>
+            <h2 class="section__title">最新发布</h2>
+          </header>
+          <ReleaseStream :entries="recentItems" />
+        </section>
+      </template>
+    </main>
+    <footer class="site-footer">
+      <p>AI Hub · AI 自动收集生成的技术内容 · 持续更新中</p>
+    </footer>
+  </div>
 </template>
 
 <style scoped>
@@ -88,10 +98,38 @@ onMounted(ensureLoaded);
 }
 
 .hero__panel {
+  position: relative;
+  overflow: hidden;
   padding: 40px 36px;
-  background: linear-gradient(135deg, #2354e0 0%, #3b6ff0 50%, #5b7ef0 100%);
+  background: var(--brand-gradient);
   border-radius: var(--radius-lg);
   box-shadow: 0 8px 32px rgba(35, 84, 224, 0.18);
+}
+
+.hero__panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.2), transparent 45%),
+    radial-gradient(circle at 10% 95%, rgba(255, 255, 255, 0.12), transparent 40%);
+  pointer-events: none;
+}
+
+.hero__panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.18) 1px, transparent 1px);
+  background-size: 22px 22px;
+  -webkit-mask-image: linear-gradient(115deg, rgba(0, 0, 0, 0.55), transparent 60%);
+  mask-image: linear-gradient(115deg, rgba(0, 0, 0, 0.55), transparent 60%);
+  pointer-events: none;
+}
+
+.hero__panel > * {
+  position: relative;
+  z-index: 1;
 }
 
 .hero__title {
@@ -145,6 +183,44 @@ onMounted(ensureLoaded);
   margin-top: 40px;
 }
 
+.section.fade-up {
+  animation-delay: 120ms;
+}
+
+.section.fade-up + .section.fade-up {
+  animation-delay: 220ms;
+}
+
+/* ── Loading Skeleton ── */
+.home-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.home-skeleton__hero {
+  height: 220px;
+  border-radius: var(--radius-lg);
+}
+
+.home-skeleton__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.home-skeleton__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.home-skeleton__row {
+  height: 56px;
+  border-radius: var(--radius-md);
+}
+
 .section__head {
   margin-bottom: 24px;
 }
@@ -158,6 +234,10 @@ onMounted(ensureLoaded);
 }
 
 @media (max-width: 760px) {
+  .home-skeleton__grid {
+    grid-template-columns: 1fr;
+  }
+
   .hero {
     padding: 20px 0 0;
   }

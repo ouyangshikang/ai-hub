@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { onBeforeUnmount, onMounted, shallowRef } from 'vue';
 import type { ContentModuleIndex } from '../types/content';
 
 interface Props {
@@ -7,11 +8,24 @@ interface Props {
 }
 
 defineProps<Props>();
+
+const scrolled = shallowRef(false);
+
+function onScroll() {
+  scrolled.value = window.scrollY > 8;
+}
+
+onMounted(() => {
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+});
+
+onBeforeUnmount(() => window.removeEventListener('scroll', onScroll));
 </script>
 
 <template>
   <a class="skip-link" href="#main-content">跳到主要内容</a>
-  <header class="site-header">
+  <header class="site-header" :class="{ 'is-scrolled': scrolled }">
     <div class="site-header__inner">
       <RouterLink class="site-header__brand" to="/">
         <span class="site-header__logo" aria-hidden="true">
@@ -79,12 +93,17 @@ defineProps<Props>();
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
+  transition: box-shadow 200ms ease;
+}
+
+.site-header.is-scrolled {
+  box-shadow: var(--shadow-sm);
 }
 
 .site-header__inner {
   display: flex;
   width: min(var(--page-width), calc(100% - 40px));
-  min-height: 56px;
+  min-height: var(--header-height);
   margin: 0 auto;
   align-items: center;
   justify-content: space-between;
@@ -147,17 +166,20 @@ defineProps<Props>();
 
 @media (max-width: 640px) {
   .site-header__inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-    padding: 8px 0;
+    width: calc(100% - 24px);
+    gap: 12px;
+  }
+
+  .site-header__brand {
+    flex-shrink: 0;
   }
 
   .site-header__nav {
-    width: 100%;
+    flex: 1;
+    min-width: 0;
+    justify-content: flex-end;
     overflow-x: auto;
     scrollbar-width: none;
-    padding-bottom: 4px;
   }
 
   .site-header__nav::-webkit-scrollbar {
@@ -165,6 +187,7 @@ defineProps<Props>();
   }
 
   .site-header__link {
+    min-height: 36px;
     padding: 0 10px;
   }
 }

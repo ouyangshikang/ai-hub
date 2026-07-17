@@ -128,12 +128,14 @@ defineProps<Props>();
   text-decoration: none;
   transition:
     border-color 200ms ease,
-    box-shadow 200ms ease;
+    box-shadow 200ms ease,
+    transform 200ms ease;
 }
 
 .module-hero__latest:hover {
   border-color: var(--brand-light);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 
 .module-hero__latest-info {
