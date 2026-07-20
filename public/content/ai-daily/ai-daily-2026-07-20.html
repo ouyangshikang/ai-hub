@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 早报 2026-07-20</title>
+<style>
+  :root {
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #1a1a2e;
+    --text-secondary: #555770;
+    --accent: #4361ee;
+    --accent-light: #eef1ff;
+    --border: #e2e4e9;
+    --tag-bg: #f0f1f3;
+    --warn-bg: #fff8e1;
+    --warn-border: #ffe082;
+    --rumor-bg: #fff3e0;
+    --rumor-text: #e65100;
+    --blockquote-border: #4361ee;
+    --blockquote-bg: #f5f7ff;
+    --link: #4361ee;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    --weekend-bg: #f5f7ff;
+    --weekend-border: #c7d2fe;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 40px 0 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .header .date {
+    color: var(--text-secondary);
+    font-size: 15px;
+  }
+  .header .subtitle {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 4px;
+  }
+
+  /* Weekend review */
+  .weekend {
+    background: var(--weekend-bg);
+    border: 1px solid var(--weekend-border);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-bottom: 32px;
+  }
+  .weekend h2 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .weekend .wk-note {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+  }
+  .weekend ul {
+    list-style: none;
+    padding: 0;
+  }
+  .weekend li {
+    padding: 5px 0;
+    font-size: 14px;
+    color: var(--text);
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .weekend li::before {
+    content: "▸";
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .weekend .num {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    font-family: "SF Mono", "Fira Code", monospace;
+    flex-shrink: 0;
+  }
+
+  /* Overview */
+  .overview {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 24px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow);
+  }
+  .overview h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--accent);
+    color: var(--accent);
+  }
+  .overview .cat-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 18px 0 8px;
+  }
+  .overview .cat-title:first-of-type {
+    margin-top: 0;
+  }
+  .overview ul {
+    list-style: none;
+    padding: 0;
+  }
+  .overview li {
+    padding: 4px 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .overview li::before {
+    content: "";
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+  .overview .num {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    font-family: "SF Mono", "Fira Code", monospace;
+    flex-shrink: 0;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 36px;
+  }
+  .section-header {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    padding: 12px 0 8px;
+    margin-bottom: 16px;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-header .icon {
+    font-size: 20px;
+  }
+
+  /* Card */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.15s;
+  }
+  .card:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .card-num {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-light);
+    border-radius: 6px;
+    padding: 2px 8px;
+    flex-shrink: 0;
+    font-family: "SF Mono", "Fira Code", monospace;
+    line-height: 1.6;
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .card-title a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .card-title a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .card blockquote {
+    background: var(--blockquote-bg);
+    border-left: 3px solid var(--blockquote-border);
+    padding: 8px 14px;
+    margin: 10px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+  .card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin: 8px 0;
+  }
+  .card .links {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .card .links-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .card .links a {
+    display: block;
+    font-size: 13px;
+    color: var(--link);
+    text-decoration: none;
+    padding: 2px 0;
+    word-break: break-all;
+  }
+  .card .links a:hover {
+    text-decoration: underline;
+  }
+
+  /* Rumor tag */
+  .rumor-tag {
+    display: inline-block;
+    background: var(--rumor-bg);
+    color: var(--rumor-text);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 32px 0 16px;
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+  .footer p {
+    margin: 4px 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .container { padding: 16px 14px 40px; }
+    .header h1 { font-size: 22px; }
+    .card { padding: 16px 16px; }
+    .overview { padding: 20px 16px; }
+    .weekend { padding: 18px 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1>AI 早报 2026-07-20</h1>
+  <div class="date">2026 年 7 月 20 日 星期一</div>
+  <div class="subtitle">收录 16 条 &middot; 6 个分类 &middot; 含 3 条未确认传闻 &middot; 周一加宽至 72 小时</div>
+</div>
+
+<!-- Weekend review -->
+<div class="weekend">
+  <h2>🗓️ 周末回顾</h2>
+  <div class="wk-note">本期为周一加宽版，覆盖 7 月 17 日晚至 20 日（WAIC 2026 全程）。以下为周末最值得关注的动态：</div>
+  <ul>
+    <li>WAIC 2026 进入收官日，官方勾勒"大模型到智能体"等三大发展主线 <span class="num">#1</span></li>
+    <li>华为昇腾 950 超节点真机首秀：1024 卡、FP8 算力 1 EFLOPS <span class="num">#2</span></li>
+    <li>全国产十万卡 AI 超集群"曙光 8000（登峰）"全球首展 <span class="num">#3</span></li>
+    <li>中国气象局启动"风和"千亿参数气象大模型全球开源计划 <span class="num">#4</span></li>
+    <li>美国爆发首次全国联动反数据中心行动，至少 125 处地点参与 <span class="num">#5</span></li>
+  </ul>
+</div>
+
+<!-- Overview -->
+<div class="overview">
+  <h2>概览</h2>
+
+  <div class="cat-title">要闻</div>
+  <ul>
+    <li>WAIC 2026 今日收官，官方勾勒三大发展主线 <span class="num">#1</span></li>
+    <li>华为昇腾 950 超节点真机首秀，业界最大 1024 卡超节点 <span class="num">#2</span></li>
+    <li>全国产十万卡 AI 超集群"曙光 8000（登峰）"全球首展 <span class="num">#3</span></li>
+  </ul>
+
+  <div class="cat-title">模型发布</div>
+  <ul>
+    <li>中国气象局启动"风和"千亿参数气象大模型全球开源计划 <span class="num">#4</span></li>
+  </ul>
+
+  <div class="cat-title">产品应用</div>
+  <ul>
+    <li>智元机器人 WAIC 集中发布五款新品，远征 A3 Ultra 获"镇馆之宝" <span class="num">#5</span></li>
+    <li>洞察时空首公开"数算一体 AI 星座"，576 颗卫星"一天一次全球扫描" <span class="num">#6</span></li>
+    <li>WAIC 具身智能爆发：超 200 家企业参展，"骑行机器人"开启全球预订 <span class="num">#7</span></li>
+  </ul>
+
+  <div class="cat-title">开发生态</div>
+  <ul>
+    <li>WAIC"从大模型到智能体：迈向自主智能新纪元"论坛举办 <span class="num">#8</span></li>
+    <li>WAIC 超节点密集登场，国产 AI 基础设施迈向系统级竞争 <span class="num">#9</span></li>
+  </ul>
+
+  <div class="cat-title">行业动态</div>
+  <ul>
+    <li>美国反数据中心运动蔓延全国，纽约州率先暂停大型算力设施 <span class="num">#10</span></li>
+    <li>媒体称白宫计划控制美国公司获取新 AI 模型 <span class="rumor-tag">未确认</span> <span class="num">#11</span></li>
+    <li>智谱市值首破万亿港元，GLM-5.2 跻身全球 AI 编程第一梯队 <span class="num">#12</span></li>
+    <li>太空算力服务 AI：洞察时空"数算一体 AI 星座"亮相 <span class="num">#13</span></li>
+  </ul>
+
+  <div class="cat-title">前瞻与传闻</div>
+  <ul>
+    <li>MiniMax 拟年内开源 2.7 万亿参数大模型 <span class="rumor-tag">未确认</span> <span class="num">#14</span></li>
+    <li>传 xAI Grok 5 参数规模达 10 万亿，多模型在训 <span class="rumor-tag">未确认</span> <span class="num">#15</span></li>
+    <li>DeepSeek V4 正式版发布时间未定，预览版已开源 <span class="num">#16</span></li>
+  </ul>
+</div>
+
+<!-- ===== 要闻 ===== -->
+<div class="section">
+  <div class="section-header"><span class="icon">📰</span> 要闻</div>
+
+  <!-- #1 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#1</span>
+      <div class="card-title"><a href="http://jjckb.xinhuanet.com/20260720/2cf7be4112ea414c836dad4f46bbfed4/c.html" target="_blank">WAIC 2026 今日收官，官方勾勒三大发展主线</a></div>
+    </div>
+    <blockquote>2026 世界人工智能大会进入最后一日（7 月 20 日），官方报道将会展核心议题归纳为三条发展主线。</blockquote>
+    <p>为期四天（7 月 17—20 日）的 WAIC 2026 在上海迎来收官日。经济参考报将会展脉络归纳为三大发展主线，核心是从"大模型"向"智能体（Agent）"与"自主智能"演进，并延伸至具身智能、智能算力等方向。本届大会参展企业超 1100 家，展览面积首次突破 10 万平方米。</p>
+    <p>对开发者与团队而言，"智能体站上 C 位"是本届最明确的信号——产业链正从单点模型能力比拼，转向面向真实场景的系统级交付。Kimi K3、曙光 8000、昇腾 950 超节点等重磅发布均集中在本周（详见本期各条及 7 月 17 日早报）。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="http://jjckb.xinhuanet.com/20260720/2cf7be4112ea414c836dad4f46bbfed4/c.html" target="_blank">经济参考报 / 新华网</a>
+      <a href="https://cn.chinadaily.com.cn/a/202607/19/WS6a5cb114a310d709c2fbe529.html" target="_blank">中国日报：从大模型到智能体论坛</a>
+      <a href="https://www.worldaic.com.cn/" target="_blank">WAIC 官网</a>
+    </div>
+  </div>
+
+  <!-- #2 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#2</span>
+      <div class="card-title"><a href="https://m.21jingji.com/article/20260718/85181bc53e5d222a6932ebed42e387f2.html" target="_blank">华为昇腾 950 超节点真机首秀，业界最大 1024 卡超节点</a></div>
+    </div>
+    <blockquote>华为昇腾 950 超节点真机在 WAIC 首次公开展出，支持 1024 张加速卡，FP8 算力达 1 EFLOPS。</blockquote>
+    <p>据 21 世纪经济报道（7 月 18 日），华为昇腾 950 超节点真机在 WAIC 2026 首次亮相。该超节点支持 1024 张加速卡，FP8 算力 1 EFLOPS、FP4 算力 2 EFLOPS，统一内存寻址 256TB，互联具备 TB 级带宽与约 3μs RTT。完整部署包含 128 个计算柜、32 个互联柜共 160 个机柜，占地约 1000 平方米，内置 8192 颗昇腾 950DT 芯片，预计 2026 年第四季度推出。</p>
+    <p>文中同时披露，昇腾 384 超节点已商用落地 750 多套，现场还展出 Atlas 850E 风冷超节点服务器。超节点（SuperPod）正成为国产算力从"单卡堆叠"走向"系统级交付"的关键形态，直接关系大模型训练与高并发推理的成本结构。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://m.21jingji.com/article/20260718/85181bc53e5d222a6932ebed42e387f2.html" target="_blank">21 世纪经济报道</a>
+      <a href="http://field.10jqka.com.cn/20260717/c678257365.shtml" target="_blank">同花顺：昇腾 950 超节点真机现身</a>
+      <a href="https://www.stcn.com/article/detail/4027913.html" target="_blank">证券时报：超节点密集登场</a>
+    </div>
+  </div>
+
+  <!-- #3 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#3</span>
+      <div class="card-title"><a href="https://news.cnr.cn/native/gd/20260718/t20260718_527716876.shtml" target="_blank">全国产十万卡 AI 超集群"曙光 8000（登峰）"全球首展</a></div>
+    </div>
+    <blockquote>我国首个全国产十万卡 AI 超集群"曙光 8000（登峰）"在 WAIC 全球首展，被评为"镇馆之宝"之一。</blockquote>
+    <p>据央广网（7 月 18 日）报道，我国首个全国产十万卡 AI 超集群"曙光 8000（登峰）"在 WAIC 2026 完成全球首展，并被多家媒体称为本届"镇馆之宝"之一。该集群强调"全国产"路线，即从芯片、互联到系统软件栈均采用国产方案，面向超大规模模型训练与科学计算。</p>
+    <p>结合昇腾 950 超节点，本届 WAIC 集中展示了国产算力在"十万卡级"系统交付上的进展。对国内大模型团队来说，全国产集群的成熟意味着训练资源的可获得性与合规性提升，是后续模型迭代的重要基础设施变量。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://news.cnr.cn/native/gd/20260718/t20260718_527716876.shtml" target="_blank">央广网</a>
+      <a href="https://tech.ifeng.com/c/8upkXtedgpk" target="_blank">凤凰科技</a>
+      <a href="http://www.eeo.com.cn/2026/0717/962723.shtml" target="_blank">经济观察网</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 模型发布 ===== -->
+<div class="section">
+  <div class="section-header"><span class="icon">🧠</span> 模型发布</div>
+
+  <!-- #4 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#4</span>
+      <div class="card-title"><a href="https://m.sohu.com/a/1051508247_114760" target="_blank">中国气象局启动"风和"千亿参数气象大模型全球开源计划</a></div>
+    </div>
+    <blockquote>中国气象局在 WAIC 相关会议上推出"风和"气象大语言模型，并启动全球开源计划，称为全球首个千亿参数级气象模型。</blockquote>
+    <p>据搜狐（7 月 17 日）等报道，中国气象局在 WAIC 2026 气象专题会议上推出"风和"人工智能气象服务系统，被称为"全球首个千亿参数级"气象大模型，定位用于气象服务、灾害风险应对及可持续发展目标。现场同步启动"风和"全球开源计划，主张开放共享，邀请开发者、研究机构与国际合作方共建生态。</p>
+    <p>需要说明的是，现有报道未披露具体的开源许可证、代码仓库与权重发布安排，"千亿参数"的口径也以官方宣传为主，技术细节仍待后续正式文档确认。垂直领域（气象、水文、医疗）大模型正成为国产开源模型差异化竞争的新战场。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://m.sohu.com/a/1051508247_114760" target="_blank">搜狐：风和模型全球开源计划启动</a>
+      <a href="https://www.sohu.com/a/1051638417_121400326" target="_blank">搜狐：全球首个千亿参数级</a>
+      <a href="https://china.hket.com/article/4162623/" target="_blank">香港经济日报</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 产品应用 ===== -->
+<div class="section">
+  <div class="section-header"><span class="icon">🚀</span> 产品应用</div>
+
+  <!-- #5 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#5</span>
+      <div class="card-title"><a href="https://wap.eastmoney.com/a/202607173811263195.html" target="_blank">智元机器人 WAIC 集中发布五款新品，远征 A3 Ultra 获"镇馆之宝"</a></div>
+    </div>
+    <blockquote>智元在 WAIC 2026 一次性发布五款具身智能新品，其中远征 A3 Ultra 获评大会"镇馆之宝"。</blockquote>
+    <p>据科创板日报（7 月 17 日）报道，智元在 WAIC 2026 集中发布五款新品：远征 A3 Ultra、精灵 G2 Max、灵犀 X2 EDU 版、临界点 OmniHand 3 Ultra-M，以及定位"世界首个骑行机器人"的酷拓。其中远征 A3 Ultra 获评 WAIC"镇馆之宝"，硬件上新增具身处理器（700 TOPS）、激光雷达、多部位鱼眼相机与高自由度灵巧手。</p>
+    <p>除四款产品原文未展开更多参数外，酷拓"骑行机器人"最高时速 15km/h、承重 75kg、续航 20km、爬坡 25 度，计划 9 月小批量交付。具身智能正从"展台演示"加速走向"真实场景部署"，本体形态也在快速分化。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://wap.eastmoney.com/a/202607173811263195.html" target="_blank">东方财富 / 科创板日报</a>
+      <a href="https://www.jfdaily.com/news/detail?id=1146227" target="_blank">解放日报</a>
+      <a href="https://www.36kr.com/p/3883529657462790" target="_blank">36 氪：具身智能万台量产、路线归一</a>
+    </div>
+  </div>
+
+  <!-- #6 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#6</span>
+      <div class="card-title"><a href="https://www.cls.cn/detail/2430269" target="_blank">洞察时空首公开"数算一体 AI 星座"，576 颗卫星"一天一次全球扫描"</a></div>
+    </div>
+    <blockquote>洞察时空在 WAIC 首次公开"数算一体 AI 星座"方案，规划 576 颗卫星，目标实现"一天一次全球扫描"，为 AI 智能体提供"地球真值"数据。</blockquote>
+    <p>据财联社、上证报（7 月 18—19 日）报道，洞察时空在 WAIC 2026 首次公开其"数算一体 AI 星座"方案，规划由 576 颗卫星组成，目标实现"一天一次全球扫描"，将数据采集与在轨算力结合，为 AI 智能体提供近实时的"地球真值"数据。</p>
+    <p>该方案把"数据"与"算力"同时搬到太空，思路是让遥感数据在轨处理、就近下发，降低回传与地面处理延迟。卫星组网与落地节奏仍存在不确定性，实际部署规模与时间表以官方后续公告为准。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.cls.cn/detail/2430269" target="_blank">财联社</a>
+      <a href="https://www.cnstock.com/commonDetail/747199" target="_blank">中国证券网</a>
+      <a href="https://finance.sina.com.cn/money/bond/2026-07-19/doc-iniiirzk5003120.shtml" target="_blank">新浪财经</a>
+    </div>
+  </div>
+
+  <!-- #7 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#7</span>
+      <div class="card-title"><a href="https://www.36kr.com/p/3883529657462790" target="_blank">WAIC 具身智能爆发：超 200 家企业参展，"骑行机器人"开启全球预订</a></div>
+    </div>
+    <blockquote>本届 WAIC 超 200 家具身智能企业集中亮相，行业关键词从"展示"转向"万台量产、路线归一"。</blockquote>
+    <p>据 36 氪等报道，WAIC 2026 具身智能板块超 200 家企业参展，"万台量产""路线归一"成为高频词，反映行业正从技术演示走向规模化交付。展会上，智元酷拓"骑行机器人"等多款本体开启全球预订，计划年内小批量交付。</p>
+    <p>具身智能与物理世界的交互（如现场"开门见猫"等演示）凸显了数字 AI 与真实环境感知之间的差距，也意味着感知、控制与数据闭环仍是下一阶段竞争重点。本体形态分化（人形、四足、骑行、灵巧手）正在加速。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.36kr.com/p/3883529657462790" target="_blank">36 氪</a>
+      <a href="http://m.zqrb.cn/gscy/qiyexinxi/2026-07-18/A1784314293506.html" target="_blank">证券日报</a>
+      <a href="https://huacheng.gz-cmc.com/pages/2026/07/17/f7ca3a80a3fc4168ad1aa1f7d030ebc3.html" target="_blank">花城：智元"秀肌肉"</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 开发生态 ===== -->
+<div class="section">
+  <div class="section-header"><span class="icon">🛠️</span> 开发生态</div>
+
+  <!-- #8 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#8</span>
+      <div class="card-title"><a href="https://www.stdaily.com/web/gdxw/2026-07/19/content_549708.html" target="_blank">WAIC"从大模型到智能体：迈向自主智能新纪元"论坛举办</a></div>
+    </div>
+    <blockquote>WAIC 2026 于 7 月 19 日举办"从大模型到智能体"论坛，聚焦自主智能（Autonomous Intelligence）的演进路径。</blockquote>
+    <p>据科技日报、中国日报（7 月 19 日）报道，WAIC 2026"从大模型到智能体：迈向自主智能新纪元"论坛于 7 月 19 日举办，议题围绕大模型如何向具备规划、工具调用与长程任务能力的智能体演进展开。"智能体（Agent）"是本届大会贯穿始终的核心叙事。</p>
+    <p>对开发者而言，这意味着工程重心正从"提示词 + 单轮推理"转向"上下文工程 + 工具链 + 评测闭环"。结合本周多家国产模型在编程与 Agent 基准上的发力，智能体相关的框架、评测与部署工具链值得持续关注。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.stdaily.com/web/gdxw/2026-07/19/content_549708.html" target="_blank">科技日报</a>
+      <a href="https://cn.chinadaily.com.cn/a/202607/19/WS6a5cb114a310d709c2fbe529.html" target="_blank">中国日报</a>
+      <a href="https://www.wiconggress.org.cn/zbh/system/2026/07/17/030001937.shtml" target="_blank">智博会：智能体站上 C 位</a>
+    </div>
+  </div>
+
+  <!-- #9 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#9</span>
+      <div class="card-title"><a href="https://www.c114.com.cn/news/16/a1314164.html" target="_blank">WAIC 超节点密集登场，国产 AI 基础设施迈向系统级竞争</a></div>
+    </div>
+    <blockquote>本届 WAIC 多家厂商集中展出"超节点"形态，国产 AI 基础设施竞争从单卡性能转向系统级整合。</blockquote>
+    <p>据 C114、证券时报等报道，WAIC 2026 上"超节点（SuperPod）"密集登场，华为昇腾 950、曙光 8000 等均以系统级形态亮相。报道认为，国产 AI 基础设施正从"单卡算力比拼"迈向"系统级竞争"，互联带宽、内存统一寻址、机柜级整合与软件栈成为新的竞争维度。</p>
+    <p>系统级竞争直接影响训练效率与推理成本。对工程团队来说，评估算力不再只看单卡 FLOPS，而要综合考量集群通信、故障恢复与软硬协同——这也是上下文工程之外，决定 Agent 规模化部署成本的另一条主线。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.c114.com.cn/news/16/a1314164.html" target="_blank">C114 通信网</a>
+      <a href="https://jnz.cs.com.cn/app/html/jnz/179daa0f80e6e84c4e8b5f488ade765f.html" target="_blank">中证报</a>
+      <a href="https://finance.sina.cn/stock/jdts/2026-07-19/detail-iniiifme1120049.d.html" target="_blank">新浪财经</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 行业动态 ===== -->
+<div class="section">
+  <div class="section-header"><span class="icon">📊</span> 行业动态</div>
+
+  <!-- #10 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#10</span>
+      <div class="card-title"><a href="https://finance.sina.com.cn/stock/t/2026-07-19/doc-iniihuvp3627723.shtml" target="_blank">美国反数据中心运动蔓延全国，纽约州率先暂停大型算力设施</a></div>
+    </div>
+    <blockquote>美国爆发首次全国联动的反数据中心行动，至少 125 处地点参与；纽约州率先对 50 兆瓦及以上新建大型算力设施按下暂停键。</blockquote>
+    <p>据新浪财经（7 月 19 日）报道，由"人类优先（HumansFirst）"牵头的反对行动于当地周六在至少 125 处地点展开，批评 AI 数据中心"不受监督"的扩张。至 2025 年末，全美已有逾 1400 座 AI 数据中心落成或取得建设许可；今年一季度，民间组织已促使至少 75 个相关项目延后或终止，涉及资金规模逾 1300 亿美元。纽约州率先立法，一年内不得建设使用 50 兆瓦及以上电力的新建大型算力设施。</p>
+    <p>报道列出得克萨斯州 16 场、佐治亚州 11 场，加利福尼亚、佛罗里达、宾夕法尼亚各 7 场，红蓝州均有参与。居民主要担忧电费上涨、水资源消耗与污染，以及项目享受补贴却审批不透明、社区收益与问责不足。算力扩张的能源与社会成本，正成为 AI 基建不可忽视的变量。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://finance.sina.com.cn/stock/t/2026-07-19/doc-iniihuvp3627723.shtml" target="_blank">新浪财经 / 财联社</a>
+      <a href="https://www.gelonghui.com/p/4714813" target="_blank">格隆汇：全美 24 个州爆发抗议</a>
+      <a href="https://www.rfi.fr/cn/%E4%B8%93%E6%A0%8F%E6%A3%80%E7%B4%A2/%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%8F%91%E5%B1%95/20260221-%E4%BB%BB%E9%82%B5%E7%A3%8A-%E7%BE%8E%E5%9B%BD%E5%BB%BA%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E9%9D%A2%E4%B8%B4%E4%B8%89%E5%A4%A7%E6%8C%91%E6%88%98" target="_blank">RFI：美国建数据中心面临三大挑战</a>
+    </div>
+  </div>
+
+  <!-- #11 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#11</span>
+      <div class="card-title"><a href="https://sputniknews.cn/20260719/1072383643.html" target="_blank">媒体称白宫计划控制美国公司获取新 AI 模型 <span class="rumor-tag">未确认</span></a></div>
+    </div>
+    <blockquote>有媒体称白宫计划对美国公司获取新 AI 模型施加控制，相关细节尚未得到官方确认。</blockquote>
+    <p>据俄罗斯卫星通讯社（7 月 19 日）报道，白宫计划控制美国公司获取新的人工智能模型。复旦大学发展研究院的评论文章将其解读为一种"自愿"框架下的政策折中与安全回摆。另有报道称白宫已与谷歌、微软、xAI 等签订协议，涉及获取未发布模型的安排。</p>
+    <p>需要强调：上述说法目前主要来自媒体报道与评论，具体行政令文本、适用范围与执行机制均未见官方正式公布，"控制获取"的表述是否准确仍待核实。建议以白宫或相关公司官方公告为准，本条按"未确认"处理。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://sputniknews.cn/20260719/1072383643.html" target="_blank">俄罗斯卫星通讯社（未确认）</a>
+      <a href="https://fddi.fudan.edu.cn/f0/39/c18965a782393/page.htm" target="_blank">复旦发展研究院：政策折中与安全回摆</a>
+      <a href="https://www.cls.cn/detail/2363367" target="_blank">财联社：白宫与三家科技巨头签订协议</a>
+    </div>
+  </div>
+
+  <!-- #12 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#12</span>
+      <div class="card-title"><a href="https://m.cls.cn/detail/2405992" target="_blank">智谱市值首破万亿港元，GLM-5.2 跻身全球 AI 编程第一梯队</a></div>
+    </div>
+    <blockquote>智谱总市值首次突破 1 万亿港元；其开源旗舰 GLM-5.2 在 Code Arena 评测中位列全球可用模型第一。</blockquote>
+    <p>据财联社报道，智谱股价大幅上涨，总市值首次突破 1 万亿港元，收盘达约 1.07 万亿港元，较首发市值半年内涨幅超过约 20 倍。其旗舰模型 GLM-5.2 于 6 月 17 日发布并开源，侧重 100 万 token 长上下文与长程任务，已完成 8 个国产算力平台的"Day0 适配"，并在 Code Arena 评测中位列全球可用模型第一，获得"Opus 平替"口碑。</p>
+    <p>说明：GLM-5.2 发布与市值破万亿为 6 月事件，此处作为本周 WAIC"北京大模型双星"（月之暗面 Kimi K3、智谱 GLM-5.2）讨论的背景补充。卖方观点认为其正推动国产"Coding 御三家"格局，对编程与 Agent 开发者具有实际参考价值。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://m.cls.cn/detail/2405992" target="_blank">财联社</a>
+      <a href="https://www.qbitai.com/2026/06/436085.html" target="_blank">量子位：GLM-5.2 拿下 AI 编程第一</a>
+      <a href="https://docs.bigmodel.cn/cn/guide/models/text/glm-5.2" target="_blank">智谱 GLM-5.2 文档</a>
+    </div>
+  </div>
+
+  <!-- #13 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#13</span>
+      <div class="card-title"><a href="https://www.shobserver.cn/news/detail?id=1146716" target="_blank">太空算力服务 AI：洞察时空"数算一体 AI 星座"亮相</a></div>
+    </div>
+    <blockquote>WAIC 期间，"数算一体 AI 星座"作为太空算力服务 AI 的新形态亮相，目标为 AI 智能体提供近实时"地球真值"数据。</blockquote>
+    <p>据上观新闻等报道，WAIC 2026 期间，太空算力作为服务 AI 的新基础设施受到关注。洞察时空公开的"数算一体 AI 星座"将卫星数据采集与在轨算力结合，目标"一天一次全球扫描"，为 AI 智能体提供近实时的"地球真值"数据。工信部中小企业发展促进中心亦成立太空计算服务相关专委会。</p>
+    <p>把算力与数据布局到太空，核心是降低遥感数据回传与地面处理延迟、提升时效性。该方向仍处早期，组网规模、在轨算力能力与商业化节奏存在较大不确定性，落地进展以官方后续披露为准（与 #6 为同一事件的不同视角）。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.shobserver.cn/news/detail?id=1146716" target="_blank">上观新闻</a>
+      <a href="https://wap.eastmoney.com/a/202607183811715330.html" target="_blank">东方财富</a>
+      <a href="https://m.sohu.com/a/1052158879_121857546" target="_blank">搜狐</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 前瞻与传闻 ===== -->
+<div class="section">
+  <div class="section-header"><span class="icon">🔮</span> 前瞻与传闻</div>
+
+  <!-- #14 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#14</span>
+      <div class="card-title"><a href="https://www.ebrun.com/20260710/686243.shtml" target="_blank">MiniMax 拟年内开源 2.7 万亿参数大模型 <span class="rumor-tag">未确认</span></a></div>
+    </div>
+    <blockquote>有报道称 MiniMax 计划年内开源 2.7 万亿参数大模型，规模将超过国内现有开源产品；官方尚未正式确认时间表。</blockquote>
+    <p>据亿邦动力（7 月 10 日）等报道，MiniMax 拟于年内开源 2.7 万亿参数大模型，规模将超过国内现有开源产品。MiniMax 官方近期主推 M2.7"自我进化"模型，但 2.7 万亿参数开源版本的具体发布时间、架构与许可证均未见官方正式公告。</p>
+    <p>若属实，这将是继 Kimi K3（2.8 万亿）之后又一"万亿参数级"国产开源模型，开源权重的竞争烈度将进一步升级。本条按"未确认"处理，建议以 MiniMax 官方发布为准。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.ebrun.com/20260710/686243.shtml" target="_blank">亿邦动力（未确认）</a>
+      <a href="https://es.tradingview.com/news/panews:659c1be3be3f9:0/" target="_blank">PANews</a>
+      <a href="https://www.minimaxi.com/news/minimax-m27-zh" target="_blank">MiniMax M2.7 官方公告</a>
+    </div>
+  </div>
+
+  <!-- #15 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#15</span>
+      <div class="card-title"><a href="https://www.mindstudio.ai/blog/xai-grok-roadmap-7-models-training-grok-5-10-trillion" target="_blank">传 xAI Grok 5 参数规模达 10 万亿，多模型在训 <span class="rumor-tag">未确认</span></a></div>
+    </div>
+    <blockquote>有博客与社区消息称 xAI 正训练多款模型，其中 Grok 5 参数规模或达 10 万亿；xAI 官方未确认具体规格。</blockquote>
+    <p>据 MindStudio 博客及多方社区消息，xAI 目前有 7 款模型在训练，其中 Grok 5 参数规模或达 10 万亿（10T）。此前 xAI 已于 7 月 9 日公开发布 Grok 4.5，但关于 Grok 5 的参数规模、发布时间与能力定位，均无官方正式信息。</p>
+    <p>万亿参数级模型的训练传闻反映头部实验室仍在持续加码规模，但具体规格与时间表高度不确定，本条按"未确认"处理，请以 xAI 官方公告为准。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.mindstudio.ai/blog/xai-grok-roadmap-7-models-training-grok-5-10-trillion" target="_blank">MindStudio 博客（未确认）</a>
+      <a href="https://www.techinasia.com/news/xai-release-grok-45-publicly-july-9" target="_blank">Tech in Asia：Grok 4.5 已于 7 月 9 日发布</a>
+      <a href="https://www.nxcode.io/resources/news/grok-5-release-date-latest-news-2026" target="_blank">NxCode：Grok 5 release 追踪</a>
+    </div>
+  </div>
+
+  <!-- #16 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#16</span>
+      <div class="card-title"><a href="https://www.ithome.com/0/942/955.htm" target="_blank">DeepSeek V4 正式版发布时间未定，预览版已开源</a></div>
+    </div>
+    <blockquote>DeepSeek V4 预览版已上线并同步开源、支持百万上下文，但正式版（含 Pro 版本）发布时间尚未官方明确。</blockquote>
+    <p>据 IT 之家、腾讯云开发者社区等报道，DeepSeek-V4 预览版已正式上线并同步开源，主打百万 token 上下文的"普惠化"，距上一代发布已等待约 15 个月。多方解读认为其在长上下文与推理成本上具有竞争力。</p>
+    <p>需要说明：V4 预览版发布为较早事件，本周并无 DeepSeek 重大新动态；正式版（含传闻中的 V4 Pro，1.6 万亿参数）发布时间仍未见官方明确。本条用于说明 DeepSeek 当前状态，正式版时间表以官方公告为准。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.ithome.com/0/942/955.htm" target="_blank">IT 之家：DeepSeek-V4 预览版上线并开源</a>
+      <a href="https://api-docs.deepseek.com/zh-cn/updates/" target="_blank">DeepSeek 官方更新日志</a>
+      <a href="https://zhuanlan.zhihu.com/p/2030976449436456853" target="_blank">知乎：V4 预览版全面解读</a>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>AI 早报 2026-07-20 &middot; 由 QoderWork 自动整理生成</p>
+  <p>信息来源以官方公告、主流媒体与可信开发者渠道为主；标注"未确认"的条目为传闻或媒体报道，请以官方信息为准。</p>
+  <p>本期为周一加宽版（覆盖 7 月 17 日晚—20 日），与 2026-07-17 早报互为补充，避免重复收录。</p>
+</div>
+
+</div>
+</body>
+</html>
