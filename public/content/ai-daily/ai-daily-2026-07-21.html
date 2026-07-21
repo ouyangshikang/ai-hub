@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 早报 2026-07-21</title>
+<style>
+  :root {
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #1a1a2e;
+    --text-secondary: #555770;
+    --accent: #4361ee;
+    --accent-light: #eef1ff;
+    --border: #e2e4e9;
+    --tag-bg: #f0f1f3;
+    --warn-bg: #fff8e1;
+    --warn-border: #ffe082;
+    --rumor-bg: #fff3e0;
+    --rumor-text: #e65100;
+    --blockquote-border: #4361ee;
+    --blockquote-bg: #f5f7ff;
+    --link: #4361ee;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+  }
+  .header {
+    text-align: center;
+    padding: 40px 0 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .header .date {
+    color: var(--text-secondary);
+    font-size: 15px;
+  }
+  .header .subtitle {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 4px;
+  }
+  .overview {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 24px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow);
+  }
+  .overview h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--accent);
+    color: var(--accent);
+  }
+  .overview .cat-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 18px 0 8px;
+  }
+  .overview .cat-title:first-of-type {
+    margin-top: 0;
+  }
+  .overview ul {
+    list-style: none;
+    padding: 0;
+  }
+  .overview li {
+    padding: 4px 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .overview li::before {
+    content: "";
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+  .overview .num {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    font-family: "SF Mono", "Fira Code", monospace;
+    flex-shrink: 0;
+  }
+  .section {
+    margin-bottom: 36px;
+  }
+  .section-header {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    padding: 12px 0 8px;
+    margin-bottom: 16px;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-header .icon {
+    font-size: 20px;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.15s;
+  }
+  .card:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .card-num {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-light);
+    border-radius: 6px;
+    padding: 2px 8px;
+    flex-shrink: 0;
+    font-family: "SF Mono", "Fira Code", monospace;
+    line-height: 1.6;
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .card-title a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .card-title a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .card blockquote {
+    background: var(--blockquote-bg);
+    border-left: 3px solid var(--blockquote-border);
+    padding: 8px 14px;
+    margin: 10px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+  .card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin: 8px 0;
+  }
+  .card .links {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .card .links-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .card .links a {
+    display: block;
+    font-size: 13px;
+    color: var(--link);
+    text-decoration: none;
+    padding: 2px 0;
+    word-break: break-all;
+  }
+  .card .links a:hover {
+    text-decoration: underline;
+  }
+  .rumor-tag {
+    display: inline-block;
+    background: var(--rumor-bg);
+    color: var(--rumor-text);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .footer {
+    text-align: center;
+    padding: 32px 0 16px;
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+  .footer p {
+    margin: 4px 0;
+  }
+  @media (max-width: 600px) {
+    .container { padding: 16px 14px 40px; }
+    .header h1 { font-size: 22px; }
+    .card { padding: 16px 16px; }
+    .overview { padding: 20px 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1>AI 早报 2026-07-21</h1>
+  <div class="date">2026年7月21日 星期二</div>
+  <div class="subtitle">收录 24 条 · 覆盖 6 个分类 · 中英文双语信源</div>
+</div>
+
+<!-- Overview -->
+<div class="overview">
+  <h2>概览</h2>
+
+  <div class="cat-title">要闻</div>
+  <ul>
+    <li>WAIC 2026 闭幕：WAICO 成立，351 款产品全球首发 <span class="num">#1</span></li>
+    <li>Kimi K3 上线两天被"挤爆"，暂停 C 端新用户订阅 <span class="num">#2</span></li>
+    <li>Anthropic Claude Fable 5 免费窗口关闭，IPO 传闻持续 <span class="num">#3</span></li>
+  </ul>
+
+  <div class="cat-title">模型发布</div>
+  <ul>
+    <li>Kimi K3 登顶编程排行榜，7 月 27 日开放权重 <span class="num">#4</span></li>
+    <li>字节跳动上线音频创作模型 Seed Audio 1.0 <span class="num">#5</span></li>
+    <li>MiniMax 首发多模态旗舰 M3，曝光生成模型 H3 <span class="num">#6</span></li>
+    <li>Google Gemini 3.5 Pro 第三次跳票，Alphabet 股价下挫 <span class="num">#7</span></li>
+  </ul>
+
+  <div class="cat-title">产品应用</div>
+  <ul>
+    <li>腾讯混元 3D 世界模型 2.0 亮相 WAIC <span class="num">#8</span></li>
+    <li>百川智能 M4 医疗专科进入真实临床 <span class="num">#9</span></li>
+    <li>微软筹备 "Project Perception" 多模型 AI 安全产品 <span class="num">#10</span></li>
+    <li>Google NotebookLM 更名 Gemini Notebook <span class="num">#11</span></li>
+    <li>OpenAI 确认 GPT-5.6 可能误删文件 <span class="num">#12</span></li>
+  </ul>
+
+  <div class="cat-title">开发生态</div>
+  <ul>
+    <li>NVIDIA SIGGRAPH：MCP 接入主流创意工具，发布 Cosmos 3 Edge <span class="num">#13</span></li>
+    <li>MCP 规范 2026-07-28 版本进入 RC：核心变为无状态 <span class="num">#14</span></li>
+    <li>Claude Code 悄然切换至 Bun 的 Rust 重写版本 <span class="num">#15</span></li>
+    <li>BigMoeOnEdge：中端安卓手机 CPU 跑 120B MoE 模型 <span class="num">#16</span></li>
+    <li>Bothread：多 AI 编码代理共享仓库协作框架 <span class="num">#17</span></li>
+  </ul>
+
+  <div class="cat-title">行业动态</div>
+  <ul>
+    <li>EU 要求 Google 向竞争 AI 助手开放 Android <span class="num">#18</span></li>
+    <li>Oracle 计划裁员 3 万人，资金转投 AI 数据中心 <span class="num">#19</span></li>
+    <li>华为 Atlas 950 SuperPoD 首秀：宣称 8 ExaFLOPS <span class="num">#20</span></li>
+    <li>全国产十万卡集群"曙光 8000（登峰）"真机首秀 <span class="num">#21</span></li>
+    <li>零一万物宣布计划 2027 年赴港 IPO <span class="num">#22</span></li>
+    <li>SAP 完成收购 Prior Labs，投建欧洲前沿 AI 实验室 <span class="num">#23</span></li>
+  </ul>
+
+  <div class="cat-title">前瞻与传闻</div>
+  <ul>
+    <li>DeepSeek V4"满血版"本周发布，旧 API 7/24 停用 <span class="num">#24</span></li>
+  </ul>
+</div>
+
+<!-- 要闻 -->
+<div class="section">
+  <div class="section-header"><span class="icon">📰</span> 要闻</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#1</span>
+      <div class="card-title"><a href="https://english.news.cn/20260720/e2550c55ecfd413188eb965e304c8be2/c.html" target="_blank">WAIC 2026 闭幕：WAICO 成立，351 款产品全球首发，意向采购约 203.6 亿元</a></div>
+    </div>
+    <blockquote>2026 世界人工智能大会 7 月 20 日在上海闭幕，同期成立世界人工智能合作组织（WAICO），29 国参与。</blockquote>
+    <p>WAIC 2026 于 7 月 17-20 日举办，超 1100 家企业参展、3000 余件展品亮相。闭幕当天集中发布成果：351 款产品全球首发，预计达成意向采购金额约 203.6 亿元（较上届大幅增长），现场观众累计超 40 万人次，32 个 AI 重点项目签约。上海物理智能与机器人研究院同日揭牌。</p>
+    <p>大会期间正式成立 WAICO（World Artificial Intelligence Cooperation Organization），总部设于上海，29 个创始成员国包括巴基斯坦、俄罗斯、哈萨克斯坦等。这是中国主导的全球 AI 治理机制的重要一步，后续需关注章程细节和成员扩展。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://english.news.cn/20260720/e2550c55ecfd413188eb965e304c8be2/c.html" target="_blank">新华社英文 - WAIC 闭幕报道</a>
+      <a href="https://www.news.cn/tech/20260721/36ec2df68e0d41b8b6f80763bcbe4783/c.html" target="_blank">新华网 - WAIC 超 40 万人次参观</a>
+      <a href="https://finance.sina.com.cn/tech/digi/2026-07-20/doc-iniimzhh5030264.shtml" target="_blank">新浪科技 - 351 款产品首发</a>
+      <a href="https://www.reuters.com/world/asia-pacific/chinas-xi-promotes-chinas-commitment-ai-access-speech-shanghai-conference-2026-07-17/" target="_blank">Reuters - 大会开幕报道</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#2</span>
+      <div class="card-title"><a href="https://finance.sina.com.cn/stock/t/2026-07-20/doc-iniimeam3013498.shtml" target="_blank">Kimi K3 上线两天被"挤爆"，月之暗面暂停 C 端新用户订阅</a></div>
+    </div>
+    <blockquote>Kimi K3 发布后请求量远超预估，月之暗面 7 月 20 日宣布暂停新用户订阅以保障现有用户体验。</blockquote>
+    <p>7 月 16 日月之暗面发布 2.8 万亿参数的 Kimi K3 后，用户请求量暴增导致算力严重紧缺。7 月 20 日 Kimi 官方宣布即日起暂停 C 端新用户订阅，将全部算力投入服务已订阅用户，并致歉称"算力挑战始料未及"。</p>
+    <p>这一事件反映了国产大模型在商业化进程中面临的算力瓶颈。Kimi K3 发布后其他大模型公司股价下挫，市场认为这标志着国产大模型迎来商业化拐点。暂停订阅虽为短期举措，但凸显了用户快速增长时的基础设施压力。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://finance.sina.com.cn/stock/t/2026-07-20/doc-iniimeam3013498.shtml" target="_blank">新浪财经 - Kimi 暂停订阅</a>
+      <a href="https://m.jstv.com/news/2026/7/20/1528681217051398144.html" target="_blank">荔枝新闻 - 新模型上线两天被挤爆</a>
+      <a href="https://techstartups.com/2026/07/20/chinas-kimi-k3-ai-model-halts-new-subscriptions-after-demand-overwhelms-capacity/" target="_blank">TechStartups - Kimi K3 halts subscriptions</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#3</span>
+      <div class="card-title"><a href="https://timesofindia.indiatimes.com/technology/tech-news/anthropics-claude-fable-5-free-offer-extended-till-july-19-all-you-need-to-know/articleshow/132356840.cms" target="_blank">Anthropic Claude Fable 5 免费窗口 7 月 19 日关闭，IPO 传闻持续</a></div>
+    </div>
+    <blockquote>Anthropic 最强模型 Claude Fable 5 的免费体验窗口于 7 月 19 日到期关闭，下一步动向和 IPO 时间成为关注焦点。</blockquote>
+    <p>Anthropic 此前多次延长 Claude Fable 5 的免费高级访问窗口（先延至 7 月 12 日，再延至 7 月 19 日）。该窗口现已关闭，可能的后续动作包括 Opus 5 发布、再次延期或转为积分制。与此同时，据报道 Anthropic 已私下提交 IPO 文件，并获高安全评级。</p>
+    <p>值得关注的是，Kimi K3 将于 7 月 27 日开放免费权重，与 Anthropic 的收费模式形成直接竞争压力。AI 安全领域方面，Anthropic 的 Project Glasswing 安全计划已覆盖 15 个国家 150 个组织。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://timesofindia.indiatimes.com/technology/tech-news/anthropics-claude-fable-5-free-offer-extended-till-july-19-all-you-need-to-know/articleshow/132356840.cms" target="_blank">Times of India - Fable 5 免费窗口</a>
+      <a href="https://www.thestreet.com/technology/anthropic-ipo-fable5-mythos-safety-classifier-block-jailbreak" target="_blank">TheStreet - Anthropic IPO 与安全</a>
+    </div>
+  </div>
+</div>
+
+<!-- 模型发布 -->
+<div class="section">
+  <div class="section-header"><span class="icon">🚀</span> 模型发布</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#4</span>
+      <div class="card-title"><a href="https://thenewstack.io/kimi-k3-open-weight-coding/" target="_blank">Kimi K3 登顶编程排行榜，7 月 27 日开放完整权重</a></div>
+    </div>
+    <blockquote>月之暗面 2.8 万亿参数开源模型 Kimi K3 在 Arena 编程排行榜超越 Claude Fable 5，完整权重将于 7 月 27 日发布。</blockquote>
+    <p>Kimi K3 的 API 于 7 月 16 日上线后迅速登顶 Arena 编程排行榜，击败 Anthropic Claude Fable 5——这是中国开源模型首次在编程领域超越美国前沿模型。不过其综合对话排名仅约第 9 位，定位为编程/Agent 专用模型而非全能型。API 定价约为每百万输出 token 0.44 美元。</p>
+    <p>7 月 27 日的开源权重发布被视为可能颠覆付费模型定价的关键事件。结合 DeepSeek V4 正式版 7 月 24 日发布，七月最后一周被称为"AI 历史上最大的开源权重发布窗口"。开发者可关注自托管成本与 API 调用的经济性对比。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://thenewstack.io/kimi-k3-open-weight-coding/" target="_blank">The New Stack - Kimi K3 编程能力</a>
+      <a href="https://devcove.dev/en/articles/kimi-k3-release-and-coding-benchmarks/" target="_blank">DevCove - Kimi K3 基准测试</a>
+      <a href="https://finance.sina.com.cn/jjxw/2026-07-17/doc-iniiccva1448043.shtml" target="_blank">新浪财经 - Kimi K3 发布报道</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#5</span>
+      <div class="card-title"><a href="https://www.nbd.com.cn/articles/2026-07-20/4483933.html" target="_blank">字节跳动上线音频创作模型 Seed Audio 1.0</a></div>
+    </div>
+    <blockquote>字节跳动发布一体化 AI 音频创作模型 Seed Audio 1.0，支持一条 Prompt 直出影视级成品音效。</blockquote>
+    <p>7 月 20 日，字节跳动正式上线音频创作模型 Seed Audio 1.0，实现从"会说"到"会创作"的跨越。该模型支持文生音频全模态 AI 创作闭环，一条 Prompt 即可直出影视级成品音效，定位为高质量、超低延迟的音频生成。</p>
+    <p>这是继视频生成模型 Seedance、图像生成模型 Seedream 之后，字节在多模态生成领域的又一布局。至此字节在文本、图像、视频、音频四大模态上均具备自研生成模型能力，进一步巩固其多模态 AI 全面布局。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.nbd.com.cn/articles/2026-07-20/4483933.html" target="_blank">每日经济新闻 - Seed Audio 1.0</a>
+      <a href="https://www.hkcd.com.hk/hkcdweb/content/2026/07/20/content_8765689.html" target="_blank">香港商报 - 字节音频创作模型</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#6</span>
+      <div class="card-title"><a href="https://m.thepaper.cn/newsDetail_forward_33608331?from=sohu" target="_blank">MiniMax 首发多模态旗舰 M3，曝光新一代生成模型 H3</a></div>
+    </div>
+    <blockquote>MiniMax 在 WAIC 2026 首发多模态旗舰模型 M3，同时曝光新一代多模态生成模型 H3，展示全模态产品矩阵。</blockquote>
+    <p>MiniMax 在 WAIC 2026 期间携 M3、H3 等全模态模型及产品亮相。M3 是新一代多模态旗舰模型，在大会期间首发；H3 则是新一代多模态生成模型，据内部人士透露能力"很强"，目前处于预热阶段。</p>
+    <p>MiniMax 于今年 1 月港股上市，上市首日高开 42.67%，但 7 月初面临大规模解禁压力。此次 WAIC 展示全模态产品矩阵，被视为向市场证明技术实力和商业化能力的关键节点。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://m.thepaper.cn/newsDetail_forward_33608331?from=sohu" target="_blank">澎湃新闻 - MiniMax M3/H3 亮相 WAIC</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#7</span>
+      <div class="card-title"><a href="https://9to5google.com/2026/07/16/gemini-3-5-pro-delays/" target="_blank">Google Gemini 3.5 Pro 第三次跳票，Alphabet 股价下挫 4-5%</a></div>
+    </div>
+    <blockquote>Google 旗舰模型 Gemini 3.5 Pro 因编码和推理性能不达标第三次错过发布日期，据报道已推翻原始基座模型重新预训练。</blockquote>
+    <p>报道称 Gemini 3.5 Pro 原定的 7 月 17 日目标再次落空，这是第三次延期。原始 6 月基座模型已被废弃并重启预训练。Google 据报正考虑先发布较小的过渡模型（可能命名为"Gemini 3.6 Flash"），而完整版继续重训。目前无官方基准测试、定价或新发布日期。</p>
+    <p>受此消息及 EU Android 裁决叠加影响，Alphabet 股价在 7 月 17-18 日下跌约 4-5%，蒸发数十亿美元市值。竞争对手 OpenAI GPT-5.6、Anthropic Claude Fable 5、xAI Grok 4.5 和 Kimi K3 被视为受益方。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://9to5google.com/2026/07/16/gemini-3-5-pro-delays/" target="_blank">9to5Google - Gemini 3.5 Pro 延期</a>
+      <a href="https://www.techtimes.com/articles/320736/20260716/rebuilt-gemini-35-pro-misses-third-deadline-google-eyes-stopgap-release.htm" target="_blank">TechTimes - 重建与过渡方案</a>
+      <a href="https://finance.yahoo.com/technology/ai/articles/alphabet-stock-falls-report-gemini-184859374.html" target="_blank">Yahoo Finance - 股价下跌</a>
+    </div>
+  </div>
+</div>
+
+<!-- 产品应用 -->
+<div class="section">
+  <div class="section-header"><span class="icon">💡</span> 产品应用</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#8</span>
+      <div class="card-title"><a href="http://jjckb.xinhuanet.com/20260719/2ee8acde4a024a38a1de5aa9931d3204/c.html" target="_blank">腾讯混元 3D 世界模型 2.0 亮相 WAIC，支持一键生成可交互 3D 世界</a></div>
+    </div>
+    <blockquote>腾讯在 WAIC 2026 展出混元 3D 世界模型 2.0，支持一键生成可交互 3D 世界场景，无缝对接游戏开发工作流。</blockquote>
+    <p>7 月 19 日，腾讯智能体在 WAIC 2026 集中亮相。其中混元 3D 世界模型 2.0 是大会亮点之一，该模型支持一键生成可交互的 3D 世界场景，可无缝对接游戏开发工作流，标志着腾讯在 3D 生成和世界模型方向的持续深耕。</p>
+    <p>此外，腾讯在 WAIC 现场官宣了微信官方 AI 大赛，进一步开放微信生态的 AI 能力。腾讯 AI 应用创新论坛聚焦 AI 在社交、内容、游戏等场景的落地应用。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="http://jjckb.xinhuanet.com/20260719/2ee8acde4a024a38a1de5aa9931d3204/c.html" target="_blank">经济参考报 - 腾讯智能体亮相 WAIC</a>
+      <a href="https://news.qq.com/rain/a/20260717V09GYL00" target="_blank">腾讯新闻 - 混元 3D 世界模型 2.0</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#9</span>
+      <div class="card-title"><a href="http://www.news.cn/finance/20260720/afe5e4b84b454d88a6141ea23ac64e12/c.html" target="_blank">百川智能 M4 医疗专科能力首秀：肿瘤、儿科 AI 进入真实临床</a></div>
+    </div>
+    <blockquote>百川智能在 WAIC 首次展示 M4 模型在肿瘤、儿科等专科场景的落地成果，HealthBench 评测得分位列世界第一。</blockquote>
+    <p>百川智能在 WAIC 2026 期间首次公开展示新一代医疗增强大模型 Baichuan-M4 的专科能力。M4 在肿瘤、儿科等专科场景中已走进真实临床环境，在 HealthBench 医疗 AI 评测中得分位列世界第一。</p>
+    <p>王小川此前表示百川智能手握 30 亿现金、计划 2027 年 IPO。相比通用大模型，百川选择深耕医疗垂直领域，以临床价值为核心构建差异化壁垒，此次 M4 的专科落地展示进一步验证了"AI+医疗"战略的可行性。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="http://www.news.cn/finance/20260720/afe5e4b84b454d88a6141ea23ac64e12/c.html" target="_blank">新华网 - 百川 M4 专科能力</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#10</span>
+      <div class="card-title"><a href="https://www.techtimes.com/articles/320958/20260719/microsoft-project-perception-ai-bug-hunter-set-rival-mythos-wider-access-lower-cost.htm" target="_blank">微软筹备 "Project Perception"：多模型 AI 安全产品</a></div>
+    </div>
+    <blockquote>微软正在构建结合 Microsoft、OpenAI 和 Anthropic 模型的 AI 安全系统，持续扫描企业代码和云环境漏洞。</blockquote>
+    <p>据 7 月 19 日报道，微软正在开发代号 "Project Perception" 的 AI 安全系统。该系统将简单分诊任务路由至低成本模型、复杂推理交给前沿模型，使持续漏洞扫描对更多组织变得可负担。它检查企业代码、云环境和终端，解释风险并提出修复建议。</p>
+    <p>该产品定位为 Anthropic "Mythos" 级安全计划（Project Glasswing）的竞品。微软 7 月 Patch Tuesday 已借助 AI 修复了创纪录的 570 个漏洞。定价和可用性尚未确认。背景：2026 上半年 AI 安全收购从 10 起增至 29 起。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.techtimes.com/articles/320958/20260719/microsoft-project-perception-ai-bug-hunter-set-rival-mythos-wider-access-lower-cost.htm" target="_blank">TechTimes - Project Perception</a>
+      <a href="https://www.techrepublic.com/article/news-microsoft-project-perception-ai-security-tool/" target="_blank">TechRepublic - 微软 AI 安全工具</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#11</span>
+      <div class="card-title"><a href="https://blog.google/innovation-and-ai/products/gemini-notebook/notebooklm-gemini-notebook/" target="_blank">Google NotebookLM 更名 "Gemini Notebook"，新增云端代码执行</a></div>
+    </div>
+    <blockquote>Google 将 NotebookLM 品牌整合至 Gemini 旗下，新增安全云计算机执行笔记本代码，用户已超 3000 万。</blockquote>
+    <p>约 7 月 17 日，Google 宣布将 NotebookLM 更名为 "Gemini Notebook"，作为 Gemini 品牌整合战略的一部分。新功能包括"安全云计算机"——可在云端执行笔记本中的代码。同时 Search 中的 AI Mode 扩展了 Instacart、Canva 和 YouTube Music 集成。</p>
+    <p>NotebookLM/Gemini Notebook 目前拥有超 3000 万用户和 60 万组织。在前沿模型 Gemini 3.5 Pro 延期的背景下，Google 选择通过产品品牌统一和渐进式功能更新维持市场存在感。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://blog.google/innovation-and-ai/products/gemini-notebook/notebooklm-gemini-notebook/" target="_blank">Google Blog - Gemini Notebook</a>
+      <a href="https://workspaceupdates.googleblog.com/2026/07/notebooklm-now-gemini-notebook.html" target="_blank">Google Workspace Updates</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#12</span>
+      <div class="card-title"><a href="https://developers.slashdot.org/story/26/07/19/0129228/openai-acknowledges-gpt-56-may-accidentally-delete-files-calls-it-honest-mistake" target="_blank">OpenAI 确认 GPT-5.6 可能误删文件，称之为"诚实的错误"</a></div>
+    </div>
+    <blockquote>OpenAI 承认 GPT-5.6 在执行文件操作任务时可能意外删除文件，再次凸显 AI Agent 操作文件系统的安全防护需求。</blockquote>
+    <p>OpenAI 于 7 月 19 日确认 GPT-5.6 在文件操作任务中存在误删文件问题，官方将其定性为 "honest mistake"（诚实的错误）。事件在开发者社区引发广泛讨论：当 AI 编码代理拥有文件系统写入权限时，如何设计有效防护机制防止不可逆操作。</p>
+    <p>对开发者的警示：随着 AI Agent 越来越多地执行实际代码操作，sandbox 设计和权限控制至关重要。使用任何 AI 编码工具时应确保有版本控制保护、操作确认机制和回滚能力。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://developers.slashdot.org/story/26/07/19/0129228/openai-acknowledges-gpt-56-may-accidentally-delete-files-calls-it-honest-mistake" target="_blank">Slashdot - GPT-5.6 误删文件</a>
+    </div>
+  </div>
+</div>
+
+<!-- 开发生态 -->
+<div class="section">
+  <div class="section-header"><span class="icon">🛠️</span> 开发生态</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#13</span>
+      <div class="card-title"><a href="https://blogs.nvidia.com/blog/siggraph-news-2026/" target="_blank">NVIDIA SIGGRAPH 2026：MCP 接入 Adobe/Blender/UE 等创意工具，发布 Cosmos 3 Edge</a></div>
+    </div>
+    <blockquote>NVIDIA 宣布 MCP 协议正式接入主流创意应用，同时发布面向边缘设备的 4B 参数世界模型 Cosmos 3 Edge。</blockquote>
+    <p>7 月 20 日 NVIDIA 在 SIGGRAPH 2026 上公布：Model Context Protocol（MCP）正式接入 Adobe、Affinity by Canva、Blender、Boris FX Silhouette、Foundry Griptape、SideFX Houdini 22 和 Unreal Engine，使这些工具变为 "agent-ready"——AI 代理可通过标准化协议直接调用创意工具能力。</p>
+    <p>同时发布的 Cosmos 3 Edge 是 4B 参数世界模型，采用 mixture-of-transformers 架构，支持文本、图像、视频、环境音频和动作输入，专为边缘硬件上的物理 AI 任务设计，已在 Hugging Face 和 GitHub 开源。此外还发布了 NVIDIA Agent Toolkit、NemoClaw 等开发者工具。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://blogs.nvidia.com/blog/siggraph-news-2026/" target="_blank">NVIDIA Blog - SIGGRAPH 2026</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#14</span>
+      <div class="card-title"><a href="https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/" target="_blank">MCP 规范 2026-07-28 版本进入 RC：协议核心变为无状态</a></div>
+    </div>
+    <blockquote>MCP 协议即将发布重大版本更新：核心架构变为无状态设计，新增 MCP Apps 和 Tasks 扩展，废弃 Roots/Sampling/Logging。</blockquote>
+    <p>MCP 官方博客已发布 2026-07-28 版本的 Release Candidate（正式版定于 7 月 28 日发布）。此次是 MCP 自发布以来最大的架构变更：协议核心变为无状态（stateless），取消初始化和会话跟踪机制，请求可由任意实例处理；客户端/版本信息移入逐请求元数据。</p>
+    <p>新特性包括：扩展机制正式化，"MCP Apps" 允许在沙箱 iframe 中渲染 HTML UI；重新设计的 "Tasks" 扩展支持长时操作。授权机制强化了 issuer 验证和凭证绑定。工具 Schema 采用 JSON Schema 2020-12。Roots、Sampling、Logging 被标记为废弃。无状态设计大幅简化了 MCP 服务器的水平扩展和负载均衡部署。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/" target="_blank">MCP Blog - 2026-07-28 RC</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#15</span>
+      <div class="card-title"><a href="https://simonwillison.net/2026/Jul/19/claude-code-in-bun-in-rust/" target="_blank">Claude Code 悄然切换至 Bun 的 Rust 重写版本</a></div>
+    </div>
+    <blockquote>Anthropic 将 Claude Code 运行时切换为 Bun 的 Rust 移植版，Linux 启动速度提升 10%，标志 Rust 在 AI 工具链中的渗透。</blockquote>
+    <p>据 Simon Willison 7 月 19 日博文披露，Bun 作者 Jarred Sumner 确认 Claude Code v2.1.181 及之后版本已使用 Bun 的 Rust 移植版作为运行时。Willison 检查自己的安装后确认发现了 "Bun v1.4.0 (macOS arm64)" 及大量 Rust 源文件路径。</p>
+    <p>性能方面 Linux 上启动速度提升约 10%，其他平台变化不大，"几乎没人注意到"。这一无感迁移验证了 Bun 从 Zig 到 Rust 的大规模重写（96 万行代码，由 Claude 辅助完成）已具备生产级稳定性，也反映了 AI 编码工具向 Rust 生态靠拢的趋势。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://simonwillison.net/2026/Jul/19/claude-code-in-bun-in-rust/" target="_blank">Simon Willison - Claude Code in Bun in Rust</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#16</span>
+      <div class="card-title"><a href="https://github.com/Helldez/BigMoeOnEdge" target="_blank">BigMoeOnEdge：中端安卓手机 CPU 上运行 120B 参数 MoE 模型</a></div>
+    </div>
+    <blockquote>开源项目 BigMoeOnEdge 实现仅用 CPU 在中端安卓手机上推理 120B 参数 MoE 模型，展示端侧大模型部署新可能。</blockquote>
+    <p>开发者 Helldez 在 GitHub 发布 BigMoeOnEdge 项目，使用 llama.cpp 在中端安卓手机纯 CPU 环境下运行 120B 参数 MoE 模型。该项目利用 MoE 架构的稀疏激活特性（实际激活参数远小于总参数量），结合激进量化策略，将超大模型压缩到移动设备可承受范围。</p>
+    <p>虽然推理速度较慢，但对离线场景、隐私敏感场景和边缘计算应用具有重要参考价值。结合 NVIDIA 同日发布 Cosmos 3 Edge（4B 世界模型面向边缘设备），端侧 AI 部署正从"小模型"向"大模型"快速演进。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://github.com/Helldez/BigMoeOnEdge" target="_blank">GitHub - BigMoeOnEdge</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#17</span>
+      <div class="card-title"><a href="https://github.com/AdamACE9/bothread" target="_blank">Bothread：多 AI 编码代理共享代码仓库的协作框架</a></div>
+    </div>
+    <blockquote>开源项目 Bothread 让多个 AI 编码代理在同一代码仓库中协作对话并协调修改，解决多 Agent 并行编码的合并冲突问题。</blockquote>
+    <p>Bothread 允许多个 AI 编码代理在同一代码仓库中进行对话式协作，各自承担不同任务的同时协调代码修改，避免产生合并冲突。这解决了当前多 Agent 编码工作流中的核心痛点：多个 Agent 并行修改同一代码库时如何保持一致性。</p>
+    <p>多 Agent 协作编码正成为 2026 年重要趋势（微软 Agent Framework、Meta Muse Spark 1.1 的并行子代理委派等都指向这一方向）。Bothread 提供了轻量级开源方案，适合希望实验多 Agent 软件工程工作流的开发者。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://github.com/AdamACE9/bothread" target="_blank">GitHub - Bothread</a>
+    </div>
+  </div>
+</div>
+
+<!-- 行业动态 -->
+<div class="section">
+  <div class="section-header"><span class="icon">📊</span> 行业动态</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#18</span>
+      <div class="card-title"><a href="https://digital-markets-act.ec.europa.eu/commission-provides-guidance-google-ai-interoperability-android-and-sharing-google-search-data-under-2026-07-16_en" target="_blank">EU 要求 Google 向竞争 AI 助手开放 Android，共享搜索数据</a></div>
+    </div>
+    <blockquote>欧盟委员会依据 DMA 发布约束性要求，强制 Google 向竞争 AI 助手开放 Android 语音和跨应用功能，并共享匿名化搜索数据。</blockquote>
+    <p>7 月 16 日发布的约束性措施要求 Google 在认证和用户批准后，向竞争 AI 助手提供对 11 个 Android 功能组（包括语音激活和应用任务功能）的对等访问。Google 还必须向符合条件的搜索服务（包括具有搜索功能的 AI 聊天机器人）以公平定价提供匿名化排名、查询、点击和浏览数据。</p>
+    <p>截止日期：搜索数据访问 2027 年 1 月开始，Android 全面合规 2027 年 7 月。Google 政策主管 Kent Walker 警告该规则可能削弱隐私和安全保障。这对 Gemini vs ChatGPT/Claude 在 Android 上的分发格局影响深远。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://digital-markets-act.ec.europa.eu/commission-provides-guidance-google-ai-interoperability-android-and-sharing-google-search-data-under-2026-07-16_en" target="_blank">EU Commission - 官方公告</a>
+      <a href="https://www.aa.com.tr/en/europe/eu-orders-google-to-open-android-ai-features-share-search-data-under-blocs-digital-rules/4000485" target="_blank">Anadolu Agency - 报道</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#19</span>
+      <div class="card-title"><a href="https://hrexecutive.com/oracles-potential-mass-layoff-signals-an-ai-trade-off/" target="_blank">Oracle 计划裁员多达 3 万人，资金转投 AI 数据中心建设</a></div>
+    </div>
+    <blockquote>据报道 Oracle 正裁减最多 3 万名员工（约 18%），每年释放 80-100 亿美元现金用于 Stargate 等 AI 数据中心项目。</blockquote>
+    <p>7 月 18-20 日流传的报道称，Oracle 裁员涉及 Oracle Health、云基础设施和咨询团队，而数据中心招聘仍在继续。节省的资金用于 Oracle 在 Stargate 项目（与 OpenAI 和 SoftBank 合作）中的角色，及其 3000 亿美元五年期 OpenAI 云协议（覆盖 4.5GW 容量，约 300 亿美元年收入）。</p>
+    <p>背景：CNBC 6 月 23 日报道 Oracle 过去一年已裁减 2.1 万个岗位。这反映了大型科技公司用现有运营资金为 AI 资本支出融资的趋势——Meta 今年支出 1250-1450 亿美元，TSMC 两次上调资本支出指引。Oracle 尚未官方确认 3 万人这一完整数字。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://hrexecutive.com/oracles-potential-mass-layoff-signals-an-ai-trade-off/" target="_blank">HR Executive - Oracle 裁员分析</a>
+      <a href="https://www.cnbc.com/2026/06/23/oracle-ai-job-cuts-layoffs-21000.html" target="_blank">CNBC - 此前裁员报道</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#20</span>
+      <div class="card-title"><a href="https://pandaily.com/huawei-atlas-950-superpod-waic-ai-computing-jul2026" target="_blank">华为 Atlas 950 SuperPoD 首秀：宣称 8 ExaFLOPS，最多 8192 张 NPU 卡互联</a></div>
+    </div>
+    <blockquote>华为在 WAIC 2026 首次公开展示 Atlas 950 SuperPoD AI 算力系统，宣称 FP8 算力达 8 ExaFLOPS，预计 Q4 量产。</blockquote>
+    <p>Atlas 950 SuperPoD 通过华为灵衢协议连接最多 8192 张 NPU 卡（每机柜 64 卡），总内存 1152 TB，互联带宽 16.3 PB/s。华为宣称在特定指标上分别以 6.7 倍、15 倍和 62 倍超越 comparable Nvidia NVL144 系统。量产出货预计 2026 年 Q4，据报道字节跳动和阿里为早期客户。</p>
+    <p>这是中国在美国持续出口管制下推进国产替代的重要展示。需注意：性能数据为华为自行宣称，尚未经独立验证。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://pandaily.com/huawei-atlas-950-superpod-waic-ai-computing-jul2026" target="_blank">Pandaily - Atlas 950 SuperPoD</a>
+      <a href="https://www.huawei.com/en/news/2026/3/mwc-superpod-computing" target="_blank">华为官方 - SuperPoD 产品组合</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#21</span>
+      <div class="card-title"><a href="https://news.cnr.cn/native/gd/20260718/t20260718_527716876.shtml" target="_blank">全国产十万卡 AI 超集群"曙光 8000（登峰）"真机全球首秀</a></div>
+    </div>
+    <blockquote>中科曙光打造的全国产十万卡 AI 超集群在 WAIC 完成真机首秀，实现从芯片到软件栈全链条国产化。</blockquote>
+    <p>"曙光 8000（登峰）"被称为本届 WAIC "镇馆之宝"，是我国首个达到十万卡规模的全国产 AI 算力集群，实现了从芯片、互联到软件栈的全链条国产化。本届大会上国产 AI 芯片全阵容亮相，华为、海光、寒武纪等主要厂商集中展示。</p>
+    <p>据分析，2026 年国产 AI 芯片正从"推理"走向"训练"，跨越此前被认为不可逾越的技术天堑。国产算力告别"单芯片内卷"，进入系统级集群竞争的新阶段。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://news.cnr.cn/native/gd/20260718/t20260718_527716876.shtml" target="_blank">央广网 - 曙光 8000 首秀</a>
+      <a href="https://m.36kr.com/p/3696839539338881" target="_blank">36氪 - 国产 AI 芯片跨越天堑</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#22</span>
+      <div class="card-title"><a href="https://www.ithome.com/0/979/051.htm" target="_blank">零一万物宣布计划 2027 年赴港 IPO，Pre-IPO 轮融资同步推进</a></div>
+    </div>
+    <blockquote>李开复在 WAIC 期间宣布零一万物计划 2027 年赴港上市，约一半业务来自海外市场，核心方向为企业级多智能体。</blockquote>
+    <p>7 月 20 日，零一万物创始人李开复在 WAIC 2026 期间正式宣布公司计划于 2027 年赴港交所上市，Pre-IPO 轮融资正在同步推进。李开复透露零一万物目前约一半业务来自海外市场，企业级多智能体产品"万智"是核心商业化方向。</p>
+    <p>零一万物此前已明确放弃超大基座模型竞赛，转向企业级 Agent 和多智能体赛道。这是继智谱今年初登陆港交所后，又一家中国 AI 大模型公司明确港股上市计划，反映出资本市场对 AI 赛道的持续看好。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.ithome.com/0/979/051.htm" target="_blank">IT之家 - 零一万物 IPO 计划</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#23</span>
+      <div class="card-title"><a href="https://news.sap.com/2026/07/sap-completes-prior-labs-acquisition/" target="_blank">SAP 完成收购 Prior Labs，投建欧洲前沿 AI 实验室</a></div>
+    </div>
+    <blockquote>SAP 完成对成立仅 18 个月的德国 AI 初创 Prior Labs 的收购，承诺四年投入超 10 亿欧元建设欧洲前沿 AI 实验室。</blockquote>
+    <p>约 7 月 17 日完成的收购使 SAP 获得了 TabPFN 背后的团队——这是一系列发表在 Nature 上的"表格基础模型"，无需逐任务训练即可在结构化数据基准上超越传统 ML。Prior Labs（由 Frank Hutter 等人在弗莱堡创立）将保持独立运营。</p>
+    <p>SAP 的核心论点是：结构化业务数据（表格、账本、库存、交易）是 AI 的巨大未开发领域。这是欧洲 AI 领域最快的创始人到退出时间线之一（18 个月），也标志着企业软件巨头在欧洲构建主权 AI 能力。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://news.sap.com/2026/07/sap-completes-prior-labs-acquisition/" target="_blank">SAP News - 官方公告</a>
+      <a href="https://tech.eu/2026/07/17/sap-acquires-prior-labs-just-18-months-after-launch-in-eur1b-deal/" target="_blank">Tech.eu - 收购报道</a>
+    </div>
+  </div>
+</div>
+
+<!-- 前瞻与传闻 -->
+<div class="section">
+  <div class="section-header"><span class="icon">🔮</span> 前瞻与传闻</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#24</span>
+      <div class="card-title"><a href="https://www.zaobao.com/news/china/story20260719-9387305" target="_blank">DeepSeek V4"满血版"本周发布，旧 API 7/24 停用 <span class="rumor-tag">未完全确认</span></a></div>
+    </div>
+    <blockquote>多方消息称 DeepSeek V4 正式版最快 7 月 20 日推出，Agent 能力大幅强化；旧接口名称确认 7 月 24 日停用。</blockquote>
+    <p>据 36 氪、联合早报、华尔街见闻等多家媒体报道，DeepSeek V4"满血版"（正式 GA 版本）最快于 7 月 20 日发布。新版在整体性能上进一步优化，Agent 相关能力大幅强化，3D 和 SVG 生成能力显著提升。新版本引入"峰谷计费"机制——每日高峰时段实行翻倍收费，但整体费用仍远低于海外头部模型（约为其 1/70）。</p>
+    <p>对开发者的直接影响：旧接口名称 deepseek-chat 和 deepseek-reasoner 将于 7 月 24 日正式停用，替换为 deepseek-v4-flash 的非思考与思考模式。新版本支持 1M 上下文、384K 最大输出、thinking mode 和 tool calls。需注意：另有消息称正式版可能延至 7 月 27 日，具体发布日期尚未获官方最终确认。开发者应尽快完成 API 迁移准备。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.zaobao.com/news/china/story20260719-9387305" target="_blank">联合早报 - DeepSeek V4 报道</a>
+      <a href="https://wallstreetcn.com/articles/3777339" target="_blank">华尔街见闻 - V4 满血版曝光</a>
+      <a href="https://www.36kr.com/p/3902097586800259" target="_blank">36氪 - DeepSeek V4 详情</a>
+      <a href="https://technode.com/2026/06/30/deepseek-to-launch-v4-in-mid-july-with-new-peak-time-api-pricing/" target="_blank">TechNode - V4 峰谷定价</a>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>AI 早报 · 2026-07-21 · 自动生成</p>
+  <p>信息来源：新华社、Reuters、新浪财经、每日经济新闻、36氪、IT之家、澎湃新闻、央广网、TechCrunch、9to5Google、NVIDIA Blog 等</p>
+  <p>传闻与未确认信息已明确标注，不构成投资或决策建议</p>
+</div>
+
+</div>
+</body>
+</html>
