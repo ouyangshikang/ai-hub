@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 早报 2026-08-06</title>
+<style>
+  :root {
+    --bg: #fafafa;
+    --card-bg: #ffffff;
+    --text: #1a1a1a;
+    --text-secondary: #555;
+    --accent: #2563eb;
+    --accent-light: #eff6ff;
+    --border: #e5e7eb;
+    --tag-bg: #f3f4f6;
+    --quote-bg: #f8fafc;
+    --quote-border: #3b82f6;
+    --rumor-bg: #fffbeb;
+    --rumor-border: #f59e0b;
+    --section-title: #111827;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0;
+  }
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+  }
+  header {
+    text-align: center;
+    padding: 40px 0 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+  header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--section-title);
+    letter-spacing: -0.5px;
+  }
+  header .meta {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 8px;
+  }
+  header .note {
+    font-size: 13px;
+    color: #888;
+    margin-top: 4px;
+  }
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--section-title);
+    margin: 36px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+  }
+  h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--accent);
+    margin: 16px 0 8px;
+  }
+  .overview {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin-bottom: 32px;
+  }
+  .overview h3 {
+    margin-top: 14px;
+    margin-bottom: 6px;
+  }
+  .overview h3:first-child { margin-top: 0; }
+  .overview ul {
+    list-style: none;
+    padding: 0;
+  }
+  .overview li {
+    padding: 4px 0;
+    font-size: 14px;
+    color: var(--text);
+  }
+  .overview li .num {
+    display: inline-block;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 1px 7px;
+    border-radius: 4px;
+    margin-left: 6px;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+  .card:hover {
+    border-color: #d1d5db;
+  }
+  .card.rumor {
+    background: var(--rumor-bg);
+    border-color: var(--rumor-border);
+  }
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .card-header .num {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+  .card-header h4 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--section-title);
+    line-height: 1.4;
+  }
+  .card-header h4 a {
+    color: var(--section-title);
+    text-decoration: none;
+  }
+  .card-header h4 a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .rumor-tag {
+    display: inline-block;
+    background: #fef3c7;
+    color: #92400e;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  blockquote {
+    background: var(--quote-bg);
+    border-left: 3px solid var(--quote-border);
+    padding: 10px 16px;
+    margin: 10px 0 14px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    border-radius: 0 6px 6px 0;
+  }
+  .card-body {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.75;
+  }
+  .card-body p {
+    margin-bottom: 10px;
+  }
+  .links {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .links span {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .links ul {
+    list-style: none;
+    padding: 4px 0 0;
+  }
+  .links li {
+    padding: 2px 0;
+  }
+  .links a {
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .links a:hover {
+    text-decoration: underline;
+  }
+  .section-divider {
+    margin: 40px 0 0;
+  }
+  footer {
+    text-align: center;
+    padding: 40px 0 20px;
+    font-size: 13px;
+    color: #999;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+  }
+  @media (max-width: 600px) {
+    .container { padding: 16px 14px 40px; }
+    header h1 { font-size: 22px; }
+    .card { padding: 18px 16px; }
+    .overview { padding: 18px 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>AI 早报 2026-08-06</h1>
+  <div class="meta">周四 &middot; 覆盖过去 24 小时（8 月 5 日 - 8 月 6 日）</div>
+  <div class="note">共收录 19 条（含 2 条未确认传闻） &middot; 自动生成于 2026-08-06</div>
+</header>
+
+<!-- 概览 -->
+<div class="overview">
+<h2 style="margin-top:0;">概览</h2>
+
+<h3>要闻</h3>
+<ul>
+  <li>Google AI 管理层大重组：Hassabis 卸任 DeepMind CEO，Jeff Dean 离职创业<span class="num">#1</span></li>
+  <li>Anthropic 确认自建芯片设计团队，为 Claude 定制算力<span class="num">#2</span></li>
+  <li>黑石拟募集至少 360 亿美元债务融资，支持 Anthropic 采购 Google 芯片<span class="num">#3</span></li>
+</ul>
+
+<h3>模型发布</h3>
+<ul>
+  <li>Meta 发布首个专用编程智能体 Muse Code 与 Muse Spark 1.2 编程模型<span class="num">#4</span></li>
+</ul>
+
+<h3>产品应用</h3>
+<ul>
+  <li>Google Assistant 将于 9 月 4 日从 Android 手机退场<span class="num">#5</span></li>
+  <li>Reddit 引入 AI 版主工具，降低新用户 Karma 门槛<span class="num">#6</span></li>
+  <li>Spotify 与 Merlin 达成授权协议，AI 翻唱/混音向 3 万家独立厂牌开放<span class="num">#7</span></li>
+</ul>
+
+<h3>开发生态</h3>
+<ul>
+  <li>腾讯云开源 TencentDB-Agent-Memory：团队级 Agent 记忆中枢登上 GitHub 趋势榜<span class="num">#8</span></li>
+  <li>Gemini Enterprise Agent 平台更新：Agent 工具沙盒与连接器调用链追踪<span class="num">#9</span></li>
+  <li>苹果限制漏洞报告提交数量：遭 AI 生成垃圾报告淹没<span class="num">#10</span></li>
+</ul>
+
+<h3>行业动态</h3>
+<ul>
+  <li>白宫敲定自愿 AI 测试框架但不打算公开，开源模型被排除在外<span class="num">#11</span></li>
+  <li>特朗普政府拟禁用中国数据中心设备，光模块首当其冲<span class="num">#12</span></li>
+  <li>界面：英伟达急寻中国 6G AI-RAN 基站供应商，端侧算力组网提上日程<span class="num">#13</span></li>
+  <li>三星发布下一代 AI 存储路线图：zHBM 与 400 层以上 V10 NAND<span class="num">#14</span></li>
+  <li>马斯克称 SpaceX AI 服务将独家采用英伟达 Vera Rubin，拟部署太空数据中心<span class="num">#15</span></li>
+  <li>MiniMax 今日起纳入港股通，并与无问芯穹达成战略合作<span class="num">#16</span></li>
+  <li>宇树科技开启科创板 IPO 询价，8 月 7 日网上路演<span class="num">#17</span></li>
+</ul>
+
+<h3>前瞻与传闻</h3>
+<ul>
+  <li>DeepSeek V4 满血版仍未上线，市场持续观望发布窗口<span class="num">#18</span></li>
+  <li>传月之暗面 8 月启动 Pre-IPO 融资，目标估值最高 500 亿美元<span class="num">#19</span></li>
+</ul>
+
+</div>
+
+<!-- 详细内容 -->
+<h2 class="section-divider" style="margin-top:0;">详细内容</h2>
+
+<h3>要闻</h3>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#1</span>
+    <h4><a href="https://fortune.com/2026/08/05/demis-hassabis-steps-down-google-deepmind-ai-shakeup/" target="_blank">Google AI 管理层大重组：Hassabis 卸任 DeepMind CEO，Jeff Dean 离职创业</a></h4>
+  </div>
+  <blockquote>Google 对 AI 最高管理层进行罕见重组：Demis Hassabis 不再执掌 Google DeepMind，转任 DeepMind 董事长兼 Alphabet 首席科学家。</blockquote>
+  <div class="card-body">
+    <p>据 Fortune、Reuters 与 Bloomberg 8 月 5 日报道，DeepMind CTO Koray Kavukcuoglu 将出任 Google DeepMind 高级副总裁，负责日常运营并直接向 Sundar Pichai 汇报，主导 Gemini 相关工作。Hassabis 表示「AGI 已近在眼前」，未来将把更多时间投入 Isomorphic Labs 与长期 AI 科学研究。此外，资深高管 Jeff Dean 将离开 Google，与 Sanjay Ghemawat、Oriol Vinyals、Quoc Le 共同创立一家名为 Discovery Loop 的公益公司（public benefit corporation）。</p>
+    <p>重组的背景同样值得关注：报道称 Gemini 3.5 Pro 进度落后，此前 Noam Shazeer 已转投 OpenAI，AlphaFold 核心人物 John Jumper 加入 Anthropic。在模型竞争最激烈的阶段，Google 选择以「管理层换阵」应对压力，后续 Gemini 的研发节奏是观察重点。财新 T 早报亦以「谷歌 AI 人事大重组」为题跟进报道。</p>
+  </div>
+  <div class="links">
+    <span>相关链接</span>
+    <ul>
+      <li><a href="https://www.reuters.com/business/google-shakes-up-ai-leadership-deepmind-chief-shifts-role-2026-08-05/" target="_blank">Reuters：Google shakes up AI leadership as DeepMind chief shifts role</a></li>
+      <li><a href="https://www.bloomberg.com/news/articles/2026-08-05/google-deepmind-boss-hassabis-moves-to-chair-role-in-shakeup" target="_blank">Bloomberg：Google DeepMind boss Hassabis moves to chair role in shakeup</a></li>
+      <li><a href="https://www.nytimes.com/2026/08/05/technology/google-ai-leadership.html" target="_blank">NYT：Google Shakes Up A.I. Leadership</a></li>
+      <li><a href="https://companies.caixin.com/2026-08-06/102471641.html" target="_blank">财新 T 早报：谷歌 AI 人事大重组</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#2</span>
+    <h4><a href="https://www.reuters.com/business/anthropic-build-in-house-chip-design-team-claude-hire-engineers-2026-08-05/" target="_blank">Anthropic 确认自建芯片设计团队，为 Claude 定制算力</a></h4>
+  </div>
+  <blockquote>Anthropic 向媒体确认正在组建自研芯片设计团队，目标是「硬件与模型协同设计」，为 Claude 系列模型定制算力。</blockquote>
+  <div class="card-body">
+    <p>Reuters 8 月 5 日报道，Anthropic 计划招聘芯片设计工程师，建立内部硅片团队。这是继 Google（TPU）、OpenAI（与 Broadcom 合作）之后，又一家前沿模型公司走向自研算力。The Verge 同日报道称 Anthropic 已确认自研芯片计划，理由是「协同设计硬件与模型」可以在推理成本与性能上获得结构性优势。</p>
+    <p>这一动作与 Anthropic 近期的算力布局相互呼应：公司一边与 Google/TPU 深度绑定（见 #3 黑石融资）、一边筹备自研路线，双轨并行以降低对单一供应商的依赖。芯片从设计到流片周期较长，短期内不会改变 Anthropic 的算力结构，但信号意义重大。</p>
+  </div>
+  <div class="links">
+    <span>相关链接</span>
+    <ul>
+      <li><a href="https://www.businessinsider.com/anthropic-in-house-silicon-chip-team-claude-2026-8" target="_blank">Business Insider：Anthropic Is Building an in-House Chip Team</a></li>
+      <li><a href="https://www.theverge.com/ai-artificial-intelligence" target="_blank">The Verge：Anthropic is developing custom AI chips for Claude</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#3</span>
+    <h4><a href="https://finance.yahoo.com/technology/ai/articles/blackstone-pitched-mega-debt-package-142054823.html" target="_blank">黑石拟募集至少 360 亿美元债务融资，支持 Anthropic 采购 Google 芯片</a></h4>
+  </div>
+  <blockquote>黑石正就第二轮巨额债务融资征询投资者意向，规模可能不低于 360 亿美元，用于支持 Anthropic 使用 Google 芯片的安排。</blockquote>
+  <div class="card-body">
+    <p>据 Bloomberg 消息（8 月 4 日），黑石正在测试投资者对「第二轮超大债务包」的兴趣，构想中的借款规模至少 360 亿美元，将超过此前一笔 350 亿美元、用于支持 Anthropic 芯片租赁的交易。目前交易结构与牵头安排尚未确定，讨论仍处于初步阶段，存在变化可能。财新 AI 早报 8 月 6 日亦报道了这一消息。</p>
+    <p>这类「债务融资买算力」的模式正在成为 AI 基建的主流金融工具：芯片采购由私募基金以债务形式承接，模型公司以长期服务协议偿还。它放大了 AI 公司的算力获取能力，也把更多风险转移到了信贷市场，值得持续跟踪。</p>
+  </div>
+  <div class="links">
+    <span>相关链接</span>
+    <ul>
+      <li><a href="https://finance.eastmoney.com/a/202608063833204354.html" target="_blank">东方财富 AI 早报：黑石筹划巨额融资支持 Anthropic 芯片交易</a></li>
+      <li><a href="https://www.citybiz.co/article/884139/blackstone-explores-36-billion-debt-financing-for-anthropics-google-chip-expansion/" target="_blank">CityBiz：Blackstone Explores $36 Billion Debt Financing for Anthropic</a></li>
+    </ul>
+  </div>
+</div>
+
+<h3>模型发布</h3>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#4</span>
+    <h4><a href="https://techcrunch.com/2026/08/05/meta-launches-muse-code-an-ai-agent-for-large-code-bases/" target="_blank">Meta 发布首个专用编程智能体 Muse Code 与 Muse Spark 1.2 编程模型</a></h4>
+  </div>
+  <blockquote>Meta 超级智能实验室（MSL）推出终端编程智能体 Muse Code（beta），主打大型代码库上的复杂工程任务，底层为新的 Muse Spark 1.2 编程模型。</blockquote>
+  <div class="card-body">
+    <p>Muse Code 于 8 月 5 日以 beta 形式发布，官方定位为「一个编程模型 + 为运行它而构建的智能体」：支持规划、编写与检查代码的完整闭环，面向大型代码库的复杂任务，提供 macOS 与 Linux 的终端体验。这是 Meta 在 7 月以 Muse Spark 1.1 进入 AI 编程市场后的快速迭代，也是其首个专用编程 Agent 产品，直接对标 Anthropic 与 OpenAI 的编程工具线。</p>
+    <p>值得注意的是 Meta 的路线差异：Muse 系列并未开源，而是通过 Meta AI 平台与开发者渠道提供。编程赛道目前由 Claude Code、Codex 与一批开源 Agent 占据心智，Muse Code 能否凭大型代码库处理能力打开局面，仍需开发者社区实测检验。</p>
+  </div>
+  <div class="links">
+    <span>相关链接</span>
+    <ul>
+      <li><a href="https://developer.meta.com/ai/resources/blog/build-with-muse-code/" target="_blank">Meta 开发者博客：Meet Muse Spark 1.2 and Muse Code</a></li>
+      <li><a href="https://www.marktechpost.com/2026/08/05/meta-superintelligence-labs-releases-muse-code/" target="_blank">MarkTechPost：Meta Superintelligence Labs Releases Muse Code</a></li>
+      <li><a href="https://9to5mac.com/2026/08/05/meta-launches-muse-code-ai-coding-agent-for-macos-and-linux/" target="_blank">9to5Mac：Muse Code 登陆 macOS 与 Linux</a></li>
+    </ul>
+  </div>
+</div>
+
+<h3>产品应用</h3>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#5</span>
+    <h4><a href="https://www.seroundtable.com/google-assistant-shutting-down-41822.html" target="_blank">Google Assistant 将于 9 月 4 日从 Android 手机退场</a></h4>
+  </div>
+  <blockquote>Google 确认 Assistant 移动端将于 9 月 4 日停止服务，Android 手机与平板上的默认助手全面转向 Gemini。</blockquote>
+  <div class="card-body">
+    <p>The Verge 8 月 5 日报道，Google Assistant 将在下个月从 Android 手机上「消失」。多家媒体获得的公告显示，移动端服务终止日期为 9 月 4 日，此后相关入口将由 Gemini 接管，包括语音唤醒、快捷指令与智能家居联动等场景的迁移安排。</p>
+    <p>这标志着 Google 消费级语音助手产品线正式并入 Gemini 时代。对普通用户而言是入口与习惯的变化；对开发者而言，原 Assistant 的 Action 生态如何迁移到 Gemini 能力体系，将决定大量存量集成方案的命运。</p>
+  </div>
+  <div class="links">
+    <span>相关链接</span>
+    <ul>
+      <li><a href="https://www.sammyfans.com/2026/08/05/google-assistant-to-be-removed-from-android-on-september-4/" target="_blank">SammyFans：Google Assistant to be removed from Android on September 4</a></li>
+      <li><a href="https://www.inc.com/georgia-fearn/google-is-finally-shutting-down-the-google-assistant-heres-what-android-users-need-to-know/91385340" target="_blank">Inc.：Google Is Finally Shutting Down the Google Assistant</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#6</span>
+    <h4><a href="https://techcrunch.com/2026/08/05/reddit-aims-to-make-karma-less-important-for-first-time-posters-with-shift-to-ai-moderation-tools/" target="_blank">Reddit 引入 AI 版主工具，降低新用户 Karma 门槛</a></h4>
+  </div>
+  <blockquote>Reddit 宣布引入 AI 驱动的社区审核工具，首次发帖者的 Karma 门槛将被弱化，审核压力由 AI 接管。</blockquote>
+  <div class="card-body">
+    <p>TechCrunch 8 月 5 日报道，Reddit 正在推进审核体系现代化：一方面引入 AI 版主（AI moderator）承担内容审核，另一方面降低 Karma 积分对新用户发帖的限制，让首次发帖者更容易参与。Reddit 官方同日发布了基础设施与审核工具现代化的说明。</p>
+    <p>背景是 Reddit 正同时应对 AI 垃圾内容、SEO 灌水与爬虫抓取的多重压力。用 AI 审核替代「用 Karma 熬资历」的人工防线，是社区平台在 AI 内容洪流下的典型应对，其效果与副作用（误伤正常用户）将是后续观察点。</p>
+  </div>
+  <div class="links">
+    <span>相关链接</span>
+    <ul>
+      <li><a href="https://redditinc.com/news/modernizing-reddits-infrastructure-and-moderation-tools" target="_blank">Reddit 官方：Modernizing Reddit's Infrastructure and Moderation Tools</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#7</span>
+    <h4><a href="https://newsroom.spotify.com/2026-08-04/merlin-spotify-licensing-agreements-fan-made-covers-remixes/" target="_blank">Spotify 与 Merlin 达成授权协议，AI 翻唱/混音向 3 万家独立厂牌开放</a></h4>
+  </div>
+  <blockquote>Spotify 与独立音乐版权代理 Merlin 签署授权协议，粉丝可用官方 AI 工具对授权曲目制作翻唱与混音，艺人可选择是否参与。</blockquote>
+  <div class="card-body">
+    <p>Spotify 官方 8 月 4 日宣布与 Merlin 达成为粉丝创作（fan-made covers &amp; remixes）的授权协议。Merlin 代表超过 3 万家独立厂牌与发行商，此前 Spotify 已与环球音乐达成类似安排。该 AI 工具为付费产品，独立艺人拥有「选择加入」的权利，收益按协议分配。</p>
+    <p>这是音乐行业为生成式 AI 建立正版授权通道的又一进展：从被动应对侵权，转向以授权框架把 AI 创作变成收入来源。对创作者生态而言，「可合法二创」的曲库规模将显著扩大。</p>
+  </div>
+  <div class="links">
+    <span>相关链接</span>
+    <ul>
+      <li><a href="https://techcrunch.com/2026/08/04/spotify-adds-merlin-to-its-ai-music-remix-and-covers-effort/" target="_blank">TechCrunch：Spotify adds Merlin to its AI music remix and covers effort</a></li>
+    </ul>
+  </div>
+</div>
+
+<h3>开发生态</h3>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#8</span>
+    <h4><a href="https://github.com/TencentCloud/TencentDB-Agent-Memory" target="_blank">腾讯云开源 TencentDB-Agent-Memory：团队级 Agent 记忆中枢登上 GitHub 趋势榜</a></h4>
+  </div>
+  <blockquote>腾讯云开源的「团队级 Agent 记忆中枢」本周冲上 GitHub 趋势榜（周增约 5400 star），主打多 Agent 共享的分层记忆层。</blockquote>
+  <div class="card-body">
+    <p>该项目把对话、文档与代码沉淀为 Chat Memory、Skill、LLM-Wiki、Code-Graph 四类资产，采用 L0 对话 → L1 原子 → L2 场景 → L3 人格的分层记忆结构，检索侧结合 BM25、向量检索与 RRF 融合排序，并提供可见性控制（private / team / restricted / agent）。Agent 通过标准工具接口（/v3/tools/list、/v3/tools/call）发现与调用记忆能力。</p>
+    <p>项目文档显示其已适配 OpenClaw、Hermes、Claude Code、CodeBuddy 等编程 Agent 生态，并提供 SDK。团队版（Team Memory Beta）仍在快速迭代。在多 Agent 协作场景中，「共享记忆」是当前工程落地的明显短板，大厂下场做标准化记忆层值得关注。</p>
+  </div>
+  <div class="links">
+    <span>相关链接</span>
+    <ul>
+      <li><a href="https://github.com/trending?since=weekly" target="_blank">GitHub Trending（weekly）</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#9</span>
+    <h4><a href="https://releasebot.io/updates/google" target="_blank">Gemini Enterprise Agent 平台更新：Agent 工具沙盒与连接器调用链追踪</a></h4>
+  </div>
+  <blockquote>Google Cloud 企业级 Agent 平台连续两日更新：新增 Agent 执行工具的沙盒预览，并为连接器调用加入链路追踪。</blockquote>
+  <div class="card-body">
+    <p>根据 Google Cloud 发布记录，8 月 3 日 Gemini Enterprise Agent Platform 预览版引入了对 Agent 运行工具的沙盒隔离与后台 CLI 更新检查；8 月 4 日 Gemini Enterprise 增加连接器追踪能力，可展示工具执行与连接器调用的 span。</p>
+    <p>两项更新都指向企业 Agent 落地的核心顾虑：安全边界与可观测性。沙盒降低 Agent 执行任意工具的风险，调用链追踪则让企业能够审计 Agent 的每一步外部调用，这与近期行业对 Agent 安全的关注（如英国 AISI 测试结论）方向一致。</p>
+  </div>
+  <div class="links">
+    <span>相关链接</span>
+    <ul>
+      <li><a href="https://docs.cloud.google.com/release-notes" target="_blank">Google Cloud Release Notes</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#10</span>
+    <h4><a href="https://www.theverge.com/tech/974958/apples-limiting-bug-report-submissions-after-getting-flooded-with-ai-slop" target="_blank">苹果限制漏洞报告提交数量：遭 AI 生成垃圾报告淹没</a></h4>
+  </div>
+  <blockquote>苹果开始限制漏洞赏金报告的提交数量，原因是收到了大量 AI 生成的低质量「AI slop」报告。</blockquote>
+  <div class="card-body">
+    <p>The Verge 与 MacRumors 8 月 4 日报道，苹果安全漏洞报告渠道被 AI 生成的垃圾报告淹没，公司不得不为提交数量设限，并重新聚焦于审核真实有效的漏洞。报道提到，部分报告由自动化脚本批量生成，内容重复且缺乏可复现细节。</p>
+    <p>这是「AI 降低提交门槛」反噬平台治理的典型案例：当写报告的成本趋近于零，审核侧成为瓶颈。可以预期更多漏洞赏金平台、开源项目与客服渠道将引入类似的速率限制或 AI 预筛机制。</p>
+  </div>
+  <div class="links">
+    <span>相关链接</span>
+    <ul>
+      <li><a href="https://www.macrumors.com/2026/08/04/aple-bug-bounty-limits-ai/" target="_blank">MacRumors：Apple Limits Bug Bounty Submissions After Flood of AI Slop</a></li>
+      <li><a href="https://appleinsider.com/articles/26/08/04/ai-slop-security-reports-are-clogging-up-apples-bug-bounty-program" target="_blank">AppleInsider：AI slop security reports clog Apple's bug bounty program</a></li>
+    </ul>
+  </div>
+</div>
+
+<h3>行业动态</h3>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#11</span>
+    <h4><a href="https://www.inkl.com/glance/news/white-house-completes-new-ai-framework-its-rules-are-still-not-public" target="_blank">白宫敲定自愿 AI 测试框架但不打算公开，开源模型被排除在外</a></h4>
+  </div>
+  <blockquote>Axios 报道，白宫已完成针对前沿 AI 模型的自愿测试框架定稿，但不计划对外公开具体内容，且开放权重模型不在测试范围之内。</blockquote>
+  <div class="card-body">
+    <p>据报道，特朗普政府已向主要 AI 公司通报该框架，测试聚焦高级能力的安全评估，采取自愿参与模式。Axios 称框架文本不会公开发布；另有消息称开放权重模型被排除在测试对象之外。The Verge 8 月 5 日评论认为，这套测试计划「范围有限且模糊」。</p>
+    <p>该框架是近期美国 AI 治理密集动作的一部分：此前白宫刚推迟了对华开放权重模型的限制动议，并安排与 OpenAI、Anthropic、Google、Meta 等公司会面。不公开的测试标准能否形成实际约束力，业界普遍存疑。</p>
+  </div>
+  <div class="links">
+    <span>相关链接</span>
+    <ul>
+      <li><a href="https://www.newsquawk.com/headlines/white-house-is-excluding-open-models-from-its-framework-to-test-advanced-ai-capabilities-according-to-axios" target="_blank">Newsquawk：White House is excluding open-models from its framework（引 Axios）</a></li>
+      <li><a href="https://www.reuters.com/world/us-finalizes-voluntary-ai-safety-tests-white-house-official-says-2026-08-03/" target="_blank">Reuters：US finalizes voluntary AI safety tests</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#12</span>
+    <h4><a href="https://www.reuters.com/world/trump-administration-drafting-ban-chinese-data-center-devices-sources-say-2026-08-04/" target="_blank">特朗普政府拟禁用中国数据中心设备，光模块首当其冲</a></h4>
+  </div>
+  <blockquote>Reuters 独家：特朗普政府正在起草针对中国产数据中心设备的禁令，FCC 拟禁止新型中国产光模块（optical transceivers）进入美国数据中心。</blockquote>
+  <div class="card-body">
+    <p>报道援引消息人士称，禁令草案覆盖中国产数据中心关键设备，其中 FCC 对新型中国产光收发模块的限制已进入讨论阶段。The Guardian 与 Tom's Hardware 跟进报道称，白宫希望在今年内落地限制；中方回应称，若美方采取措施，中方将在必要时反制。</p>
+    <p>光模块是中国厂商在全球数据中心供应链中份额最高的环节之一（中际旭创、新易盛等）。若禁令落地，美国 AI 数据中心的建设成本与交付周期将直接受影响，供应链转移也需要时间，值得持续跟踪落地节奏。</p>
+  </div>
+  <div class="links">
+    <span>相关链接</span>
+    <ul>
+      <li><a href="https://www.theguardian.com/technology/2026/aug/04/fcc-ban-china-datacenter-devices" target="_blank">The Guardian：Trump administration reportedly drafting ban on Chinese datacenter devices</a></li>
+      <li><a href="https://www.tomshardware.com/tech-industry/data-centers/us-mulling-ban-on-key-chinese-networking-tech-in-data-center-component-crackdown-white-house-wants-to-impose-restrictions-in-2026-china-says-it-will-respond-if-necessary" target="_blank">Tom's Hardware：US mulling ban on key Chinese networking tech</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#13</span>
+    <h4><a href="https://finance.sina.com.cn/jjxw/2026-08-06/doc-inimiqxp4754694.shtml" target="_blank">界面：英伟达急寻中国 6G AI-RAN 基站供应商，端侧算力组网提上日程</a></h4>
+  </div>
+  <blockquote>界面新闻独家报道，英伟达正接触中国基站厂商开发「6G AI-RAN 基站」，让基站同时承担无线连接与网络边缘 AI 计算，明后年启动端侧算力组网。</blockquote>
+  <div class="card-body">
+    <p>报道称，英伟达自 2025 年起与深圳佳贤通信接触，双方已成立工作组，英伟达方有十余人分布在新加坡、香港与中国内地；佳贤方面表示，与英伟达合作的 AI 基站样机预计今年年底出炉。通宇通讯已公告拟出资 3 亿元收购佳贤通信约 25% 股权。英伟达不直接生产整机，而是提供 GPU 与 CUDA 软件生态，由基站厂商围绕其开发产品。</p>
+    <p>英伟达的判断是：AI 算力将从大型数据中心向终端与网络边缘扩展，无线节点将成为承载者；中国拥有集中且成本更优的基站制造与射频产业链。时间规划上，目标是 2027 或 2028 年进入试验网。以上为界面新闻基于信源的独家报道，英伟达官方尚未公开确认。</p>
+  </div>
+  <div class="links">
+    <span>相关链接</span>
+    <ul>
+      <li><a href="https://m.sohu.com/a/1059363517_313745" target="_blank">界面新闻（搜狐转载）：英伟达急寻中国 AI 基站供应商</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#14</span>
+    <h4><a href="https://news.samsung.com/global/samsung-unveils-next-gen-3d-memory-vision-at-fms-2026-charting-the-future-of-ai-infrastructure" target="_blank">三星发布下一代 AI 存储路线图：zHBM 与 400 层以上 V10 NAND</a></h4>
+  </div>
+  <blockquote>三星在 FMS 2026 未来存储峰会上公布下一代 3D 存储路线图，面向 AI 基础设施推出 zHBM、zNAND-O 与 400 层以上的 V10 BV-NAND。</blockquote>
+  <div class="card-body">
+    <p>三星提出的 zHBM 概念通过垂直堆叠 HBM 提升带宽密度，V10 BV-NAND 层数超过 400 层，目标是在性能、密度与能效三方面同时改进，以匹配 AI 训练与推理基础设施的需求。界面新闻等中文媒体今日亦跟进报道了该路线图。</p>
+    <p>存储是当前 AI 算力供给的关键瓶颈之一，HBM 的产能与堆叠方式直接影响 GPU 出货节奏。三星选择在此时公布完整路线图，意在争夺 AI 存储话语权，与 SK 海力士、美光的竞争将进一步升温。</p>
+  </div>
+  <div class="links">
+    <span>相关链接</span>
+    <ul>
+      <li><a href="https://www.jiemian.com/article/14875358.html" target="_blank">界面新闻：三星发布下一代 AI 存储路线图</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#15</span>
+    <h4><a href="https://finance.eastmoney.com/a/202608063833204354.html" target="_blank">马斯克称 SpaceX AI 服务将独家采用英伟达 Vera Rubin，拟部署太空数据中心</a></h4>
+  </div>
+  <blockquote>据马斯克表态，SpaceX 的 AI 服务将独家采用英伟达 Vera Rubin 系统，并规划地面与太空的数据中心部署，相关系统还将用于 Starmind 卫星项目。</blockquote>
+  <div class="card-body">
+    <p>东方财富 AI 早报（8 月 6 日）汇总称，马斯克表示 SpaceX 的 AI 计算将「只用英伟达 Vera Rubin 系统」，部署计划覆盖地面与太空场景。这与英伟达今年 3 月公布的 Vera Rubin Space-1 轨道数据中心方向相互印证，SpaceX 的星舰运力与 Starlink 网络是其独特优势。</p>
+    <p>需要说明：目前该消息主要来自马斯克个人表态与二手报道，英伟达与 SpaceX 尚未发布联合官方公告，具体规模与时间表不确定。太空数据中心仍处在早期验证阶段，商业化路径有待观察。</p>
+  </div>
+  <div class="links">
+    <span>相关链接</span>
+    <ul>
+      <li><a href="https://www.cnbc.com/2026/03/16/nvidia-chips-orbital-data-centers-space-ai.html" target="_blank">CNBC：Nvidia announces Vera Rubin Space-1 for orbital data centers（3 月背景）</a></li>
+      <li><a href="https://x.com/rohanpaul_ai/status/2084873314007441750" target="_blank">X：相关讨论帖</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#16</span>
+    <h4><a href="https://companies.caixin.com/2026-08-06/102471641.html" target="_blank">MiniMax 今日起纳入港股通，并与无问芯穹达成战略合作</a></h4>
+  </div>
+  <blockquote>财新 T 早报：MiniMax 自 8 月 6 日起纳入港股通；同日无问芯穹宣布与 MiniMax 达成战略合作，覆盖推理效能、Token 服务与 AI 基础设施。</blockquote>
+  <div class="card-body">
+    <p>纳入港股通意味着内地投资者可直接交易 MiniMax 股票，流动性与关注度都将提升——这也是港股大模型公司的重要里程碑事件。同日，AI 基础设施公司无问芯穹（Infinigence）宣布与 MiniMax 战略合作，合作方向包括推理效能优化、Token 服务与 AI 基础设施，并已完成对 MiniMax 开源全模态模型 H3 的 Day 0 适配。</p>
+    <p>H3 于 8 月 3 日正式开源（权重已上线 Hugging Face 与魔搭），被媒体称为视频模型的「DeepSeek 时刻」。开源模型 + 国产推理基础设施的快速绑定，显示中国 AI 生态在「模型开源—算力适配」环节的协同正在提速。</p>
+  </div>
+  <div class="links">
+    <span>相关链接</span>
+    <ul>
+      <li><a href="https://companies.caixin.com/2026-08-06/102471641.html" target="_blank">财新 T 早报（2026-08-06）</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="num">#17</span>
+    <h4><a href="https://companies.caixin.com/2026-08-06/102471641.html" target="_blank">宇树科技开启科创板 IPO 询价，8 月 7 日网上路演</a></h4>
+  </div>
+  <blockquote>机器人公司宇树科技开启科创板 IPO 询价，网上路演定于 8 月 7 日举行；财新英文报道标题显示，投标隐含估值最高约 550 亿元人民币。</blockquote>
+  <div class="card-body">
+    <p>根据发行安排，宇树科技拟发行新股约 4044.64 万股，约占发行后总股本的 10%，网上路演时间为 8 月 7 日 14:00-17:00。宇树以四足与人形机器人著称，是具身智能赛道最受关注的公司之一，其上市进程被视为中国机器人产业链资本化的风向标。</p>
+    <p>「AI + 机器人」的具身智能叙事正获得资本市场定价，宇树的发行估值与认购热度，将为后续同类公司提供参照。</p>
+  </div>
+  <div class="links">
+    <span>相关链接</span>
+    <ul>
+      <li><a href="https://finance.eastmoney.com/a/202608063833204354.html" target="_blank">东方财富 AI 早报：宇树科技网上路演安排</a></li>
+    </ul>
+  </div>
+</div>
+
+<h3>前瞻与传闻</h3>
+
+<div class="card rumor">
+  <div class="card-header">
+    <span class="num">#18</span>
+    <h4><a href="https://api-docs.deepseek.com/zh-cn/updates/" target="_blank">DeepSeek V4 满血版仍未上线，市场持续观望发布窗口</a><span class="rumor-tag">未确认</span></h4>
+  </div>
+  <blockquote>截至发稿，DeepSeek 官方更新日志中仍只有 V4-Flash 于 7 月 31 日上线公测的记录，V4-Pro 满血正式版尚未发布，官方也未确认任何时间表。</blockquote>
+  <div class="card-body">
+    <p>DeepSeek V4 满血版的发布时间已被市场猜测了数周：此前推理平台硅基流动的价格调整（V4 Pro 缓存命中价上调 10 倍）曾被视为发布信号，多个信源先后给出「7 月下旬」「8 月初」等窗口，均未兑现。目前线上为 V4-Flash 正式版与 V4-Pro 灰度。</p>
+    <p>需要明确：以上时间窗口均为第三方猜测，DeepSeek 官方从未确认。考虑到 V4-Flash 已登顶成本效率榜单，满血版的性能与定价将直接影响国内外闭源模型的定价体系，值得继续跟踪官方渠道。</p>
+  </div>
+  <div class="links">
+    <span>相关链接</span>
+    <ul>
+      <li><a href="https://api-docs.deepseek.com/zh-cn/updates/" target="_blank">DeepSeek API 官方更新日志</a></li>
+      <li><a href="https://hub.baai.ac.cn/view/56478" target="_blank">BAAI：DeepSeek V4「满血版」曝光（此前报道）</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="card rumor">
+  <div class="card-header">
+    <span class="num">#19</span>
+    <h4><a href="https://www.guancha.cn/economy/2026_07_22_824690.shtml" target="_blank">传月之暗面 8 月启动 Pre-IPO 融资，目标估值最高 500 亿美元</a><span class="rumor-tag">传闻</span></h4>
+  </div>
+  <blockquote>多家媒体报道，月之暗面（Kimi）计划于 8 月启动 Pre-IPO 轮融资洽谈，目标估值最高 500 亿美元；公司尚未官方确认细节。</blockquote>
+  <div class="card-body">
+    <p>观察者网、腾讯新闻等 7 月下旬援引消息称，月之暗面拟在 8 月启动上市前最后一轮融资，目标估值最高 500 亿美元；7 月 30 日有报道称该轮融资「或提前完成」，公司正加速推进上市进程。此前针对「拟本月递交港股 IPO 申请、募资约 30 亿美元」的报道，月之暗面曾回应「消息不实」。</p>
+    <p>背景是 Kimi K3 开源后获得较高关注，公司 C 端注册仍采取限额策略、优先维护付费用户体验。以上融资与上市安排均为媒体报道，未经公司官方确认，具体轮次、估值与时间表存在变数。</p>
+  </div>
+  <div class="links">
+    <span>相关链接</span>
+    <ul>
+      <li><a href="https://finance.sina.com.cn/stock/vcpe/2026-07-30/doc-inikphnz2239143.shtml" target="_blank">新浪财经：Pre-IPO 融资或提前完成，月之暗面加速冲击上市</a></li>
+      <li><a href="https://news.qq.com/rain/a/20260721A0BTEY00" target="_blank">腾讯新闻：月之暗面拟 8 月启动 Pre-IPO 融资</a></li>
+    </ul>
+  </div>
+</div>
+
+<footer>
+  AI 早报 &middot; 自动生成于 2026-08-06 &middot; 内容基于公开来源整理，请以原文为准<br>
+  信息覆盖：过去 24 小时为主，个别背景事件略早 &middot; 传闻类内容已明确标注
+</footer>
+
+</div>
+</body>
+</html>
