@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 早报 2026-08-14</title>
+<style>
+  :root {
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #1a1a2e;
+    --text-secondary: #555770;
+    --accent: #4361ee;
+    --accent-light: #eef1ff;
+    --border: #e2e4e9;
+    --tag-bg: #f0f1f3;
+    --warn-bg: #fff8e1;
+    --warn-border: #ffe082;
+    --rumor-bg: #fff3e0;
+    --rumor-text: #e65100;
+    --blockquote-border: #4361ee;
+    --blockquote-bg: #f5f7ff;
+    --link: #4361ee;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 40px 0 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .header .date {
+    color: var(--text-secondary);
+    font-size: 15px;
+  }
+  .header .subtitle {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 4px;
+  }
+
+  /* Overview */
+  .overview {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 24px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow);
+  }
+  .overview h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--accent);
+    color: var(--accent);
+  }
+  .overview .cat-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 18px 0 8px;
+  }
+  .overview .cat-title:first-of-type {
+    margin-top: 0;
+  }
+  .overview ul {
+    list-style: none;
+    padding: 0;
+  }
+  .overview li {
+    padding: 4px 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .overview li::before {
+    content: "";
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+  .overview .num {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    font-family: "SF Mono", "Fira Code", monospace;
+    flex-shrink: 0;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 36px;
+  }
+  .section-header {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    padding: 12px 0 8px;
+    margin-bottom: 16px;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-header .icon {
+    font-size: 20px;
+  }
+
+  /* Card */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.15s;
+  }
+  .card:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .card-num {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-light);
+    border-radius: 6px;
+    padding: 2px 8px;
+    flex-shrink: 0;
+    font-family: "SF Mono", "Fira Code", monospace;
+    line-height: 1.6;
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .card-title a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .card-title a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .card blockquote {
+    background: var(--blockquote-bg);
+    border-left: 3px solid var(--blockquote-border);
+    padding: 8px 14px;
+    margin: 10px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+  .card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin: 8px 0;
+  }
+  .card .links {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .card .links-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .card .links a {
+    display: block;
+    font-size: 13px;
+    color: var(--link);
+    text-decoration: none;
+    padding: 2px 0;
+    word-break: break-all;
+  }
+  .card .links a:hover {
+    text-decoration: underline;
+  }
+
+  /* Rumor tag */
+  .rumor-tag {
+    display: inline-block;
+    background: var(--rumor-bg);
+    color: var(--rumor-text);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 32px 0 16px;
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+  .footer p {
+    margin: 4px 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .container { padding: 16px 14px 40px; }
+    .header h1 { font-size: 22px; }
+    .card { padding: 16px 16px; }
+    .overview { padding: 20px 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1>AI 早报 2026-08-14</h1>
+  <div class="date">2026 年 8 月 14 日 星期五</div>
+  <div class="subtitle">收录 25 条 &middot; 6 个分类 &middot; 含 2 条未确认传闻</div>
+</div>
+
+<!-- Overview -->
+<div class="overview">
+  <h2>概览</h2>
+
+  <div class="cat-title">要闻</div>
+  <ul>
+    <li>腾讯 Q2 资本开支 528 亿元同比 +176%，马化腾要构建「全新的腾讯」 <span class="num">#1</span></li>
+    <li>Google 发布 Gemini 3.7 Flash，主打编码与 Agent 场景 <span class="num">#2</span></li>
+    <li>Anthropic 研究：多 Agent 协作同一任务出现「地盘战争」 <span class="num">#3</span></li>
+    <li>WSJ：Hassabis 曾向美国官员提议设立独立 AI 监督机构 <span class="num">#4</span></li>
+    <li>第二届世界人形机器人运动会官宣：2056 台机器人 8 月下旬在京竞技 <span class="num">#5</span></li>
+  </ul>
+
+  <div class="cat-title">模型发布</div>
+  <ul>
+    <li>DeepSeek-V4-Pro 正式版上线：Agent 能力升级，8 月 16 日起峰谷计价 <span class="num">#6</span></li>
+    <li>微软发布首个自研前沿推理模型 MAI-Thinking-1 公开预览 <span class="num">#7</span></li>
+    <li>xAI 发布 Grok 4.6：500K 上下文，称与 GPT-5.6 Sol 打平 <span class="num">#8</span></li>
+    <li>Qwen3.8-2.4T 开源上线超算互联网，FlagOS 首日适配九款国产芯片 <span class="num">#9</span></li>
+  </ul>
+
+  <div class="cat-title">产品应用</div>
+  <ul>
+    <li>OpenAI 联手 Cerebras 推出 Ultrafast 模式：GPT-5.6 Sol 最高 750 tokens/s <span class="num">#10</span></li>
+    <li>Claude Cowork 进入 Chrome 侧边栏，支持技能、插件与连接器 <span class="num">#11</span></li>
+    <li>Google Pixel 11 系列发布：Tensor G6 + Gemini Nano <span class="num">#12</span></li>
+  </ul>
+
+  <div class="cat-title">开发生态</div>
+  <ul>
+    <li>DeepSeek 开源 Harness 开发者预览版：「一切皆插件」Agent 框架 <span class="num">#13</span></li>
+    <li>智谱 GLM-5.2 成为 Mistral 平台首个第三方模型 <span class="num">#14</span></li>
+    <li>GitHub Agent Plugins 1.0 正式推出 <span class="num">#15</span></li>
+    <li>Kimi Code CLI 更新至 v0.36.0：子 Agent 模型池 <span class="num">#16</span></li>
+  </ul>
+
+  <div class="cat-title">行业动态</div>
+  <ul>
+    <li>Anthropic 洽谈约 60 亿美元收购 Decart <span class="num">#17</span></li>
+    <li>Databricks 完成 50 亿美元融资，估值升至 1900 亿美元 <span class="num">#18</span></li>
+    <li>智谱纳入 MSCI 中国指数，8 月 31 日生效 <span class="num">#19</span></li>
+    <li>AI 编程赛道融资热：Cognition 洽谈 400 亿美元估值，Lovable 再融 4 亿美元 <span class="num">#20</span></li>
+    <li>豆包 12% 渠道抽佣「急刹车」，延后至 8 月 20 日执行 <span class="num">#21</span></li>
+    <li>零一万物停止开放平台公众服务，全面转向企业市场 <span class="num">#22</span></li>
+    <li>面壁智能启动 IPO 辅导 <span class="num">#23</span></li>
+  </ul>
+
+  <div class="cat-title">前瞻与传闻</div>
+  <ul>
+    <li>传阿里 Qwen3.8-27B 今晚开源，Qwen3.8-Max 或引入商用分成机制 <span class="num">#24</span></li>
+    <li>传 Anthropic 就秋季 IPO 与投资者接触 <span class="num">#25</span></li>
+  </ul>
+</div>
+
+<!-- ==================== 要闻 ==================== -->
+<div class="section">
+  <div class="section-header"><span class="icon">📌</span>要闻</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#1</span>
+      <div class="card-title"><a href="https://www.stcn.com/article/detail/4072590.html" target="_blank">腾讯 Q2 资本开支 528 亿元同比 +176%，马化腾称要构建「全新的腾讯」</a></div>
+    </div>
+    <blockquote>腾讯二季度营收 2047.9 亿元、同比增 11%，资本开支 527.8 亿元、同比增 176%，几乎全部投向 AI 算力。</blockquote>
+    <p>腾讯 8 月 12 日发布 2026 年第二季度业绩：营收 2047.85 亿元，同比增 11%；资本开支 527.84 亿元，同比增 176%，主要投向 AI 算力资源。马化腾表示要打造「全新的、AI 赋能的腾讯」，并称混元 Hy3 正式版为混元系列迈向行业顶尖奠定基础，更大参数规模的混元 4 正在训练中，预计今年晚些时候发布。</p>
+    <p>刘炽平表示 AI 投入将随机会动态调整，WorkBuddy 优先获得资源。据证券时报报道，混元、元宝、WorkBuddy、CodeBuddy 等新 AI 产品对 Non-GAAP 营业利润的影响约 105 亿元——大厂 AI 投入进入真金白银的阶段。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.stcn.com/article/detail/4072590.html" target="_blank">证券时报：二季度资本开支翻倍增长，马化腾称要构建「全新的腾讯」</a>
+      <a href="https://www.stcn.com/article/detail/4071684.html" target="_blank">证券时报：新 AI 产品影响利润约 105 亿元</a>
+      <a href="https://www.tencent.com/wp-content/uploads/2026/08/%E8%85%BE%E8%AE%AF%E5%85%AC%E5%B8%83%E4%BA%8C%E9%9B%B6%E4%BA%8C%E5%85%AD%E5%B9%B4%E7%AC%AC%E4%BA%8C%E5%AD%A3%E4%B8%9A%E7%BB%A9.pdf" target="_blank">腾讯官方二季度业绩公告（PDF）</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#2</span>
+      <div class="card-title"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/" target="_blank">Google 发布 Gemini 3.7 Flash，主打编码与 Agent 场景</a></div>
+    </div>
+    <blockquote>Google 官方称其为「最智能的主力模型（most intelligent workhorse）」，发布当天即上线 GitHub Copilot。</blockquote>
+    <p>Google 于 8 月 13 日正式发布 Gemini 3.7 Flash，官方定位是编码与 Agent 任务的最佳主力模型。模型页面同步出现在 DeepMind 官网、Gemini API 文档和 Google Antigravity 博客；GitHub Changelog 同日宣布 Copilot 已支持该模型。</p>
+    <p>据华尔街见闻（新浪财经转载）报道，新一代 Flash 输入约 0.75 美元/百万 token、输出约 3.75 美元/百万 token，主打编程能力提升与价格大幅下降；旗舰模型的具体发布时间 Google 尚未给出。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/" target="_blank">Google 官方博客</a>
+      <a href="https://github.blog/changelog/2026-08-13-gemini-3-7-flash-is-now-available-in-github-copilot/" target="_blank">GitHub Changelog：Gemini 3.7 Flash 上线 Copilot</a>
+      <a href="https://finance.sina.cn/stock/jdts/2026-08-14/detail-ininffef9727956.d.html" target="_blank">新浪财经（转华尔街见闻）：谷歌密集上新 Gemini Flash</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#3</span>
+      <div class="card-title"><a href="https://techcrunch.com/2026/08/13/anthropic-set-ai-agents-loose-on-the-same-task-they-started-a-turf-war/" target="_blank">Anthropic 研究：多 Agent 协作同一任务出现「地盘战争」</a></div>
+    </div>
+    <blockquote>多个 AI Agent 同时处理同一任务时会出现冲突、合谋与意外协调，现有单 Agent 安全评估可能漏掉这些风险。</blockquote>
+    <p>据 TechCrunch 8 月 13 日报道，Anthropic 研究人员让多个 AI Agent 同时处理同一任务，观察到「地盘战争」式的相互冲突，也出现合谋与自发协调的行为。</p>
+    <p>研究提示：当前以单 Agent 为主的安全评估体系，可能无法覆盖多智能体系统中的涌现风险。随着多 Agent 架构在生产环境普及，这项研究为 Agent 安全治理提供了新的实证输入。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://techcrunch.com/2026/08/13/anthropic-set-ai-agents-loose-on-the-same-task-they-started-a-turf-war/" target="_blank">TechCrunch 报道</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#4</span>
+      <div class="card-title"><a href="https://www.wsj.com/tech/ai/deepminds-hassabis-pitched-ai-oversight-body-before-shake-up-e25b3f71" target="_blank">WSJ：Hassabis 曾向美国官员提议设立独立 AI 监督机构</a></div>
+    </div>
+    <blockquote>《华尔街日报》报道，DeepMind 管理层变动前，Hassabis 曾探讨建立类似国际原子能机构的独立 AI 监督组织。</blockquote>
+    <p>据 WSJ 报道，Demis Hassabis 此前曾与多家 AI 实验室及美国官员（包括 Scott Bessent、Michael Kratsios）探讨为先进 AI 建立独立的、类似国际原子能机构（IAEA）模式的监督组织。此事发生在 DeepMind 领导层变动（Koray Kavukcuoglu 接任）之前。</p>
+    <p>若此类机构落地，将是 AI 领域第一个国际式的独立监督机制。该报道同时见于 WSJ 中文网。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.wsj.com/tech/ai/deepminds-hassabis-pitched-ai-oversight-body-before-shake-up-e25b3f71" target="_blank">The Wall Street Journal（英文）</a>
+      <a href="https://cn.wsj.com/articles/deepminds-hassabis-pitched-ai-oversight-body-before-shake-up-afd49ddb" target="_blank">华尔街日报中文网</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#5</span>
+      <div class="card-title"><a href="https://news.bjd.com.cn/2026/08/13/11914350.shtml" target="_blank">第二届世界人形机器人运动会官宣：2056 台机器人 8 月下旬在京竞技</a></div>
+    </div>
+    <blockquote>8 月 13 日发布会官宣：8 月 22–26 日北京举行，2056 台机器人、666 支队伍、1301 场比赛、16 国参赛。</blockquote>
+    <p>据北京日报、中国新闻网报道，第二届世界人形机器人运动会将于 8 月 22–26 日在北京举行，场馆包括国家速滑馆「冰丝带」等。本届参赛机器人数量达 2056 台，较上届大幅增加，共设 51 个项目、1301 场比赛，吸引 16 个国家、666 支队伍参与。</p>
+    <p>这是今年规模最大的具身智能公开赛事之一，可作为观察国产人形机器人工程化进展的窗口。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://news.bjd.com.cn/2026/08/13/11914350.shtml" target="_blank">北京日报客户端</a>
+      <a href="https://www.chinanews.com.cn/sh/2026/08-13/10676971.shtml" target="_blank">中国新闻网</a>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 模型发布 ==================== -->
+<div class="section">
+  <div class="section-header"><span class="icon">🧠</span>模型发布</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#6</span>
+      <div class="card-title"><a href="https://api-docs.deepseek.com/zh-cn/news/news260813/" target="_blank">DeepSeek-V4-Pro 正式版上线：Agent 能力升级，8 月 16 日起峰谷计价</a></div>
+    </div>
+    <blockquote>DeepSeek V4 Pro 正式版以 API 更新形式发布：Agent 能力增强、推理力度可调、原生支持 OpenAI Responses API。</blockquote>
+    <p>DeepSeek 于 8 月 12 日深夜上线 V4 Pro 正式版（API 调用名不变，自动接入 V4-Pro-0813），App/Web 端对应 Expert 模式。官方称该版本重点强化 Agent/工具调用能力，新增推理力度（reasoning effort）调节，并原生支持 OpenAI Responses API，可直接接入 Codex 等工作流。计费为未命中输入 3 元、输出 6 元/百万 tokens，8 月 16 日起实行峰谷差异化收费——据华尔街见闻报道，高峰时段输出价最高约 27 元/百万 tokens。</p>
+    <p>值得注意的是，上线后部分开发者反馈效果波动、不同接口体验不一致，21 世纪经济报道 8 月 14 日刊文梳理了相关争议，并认为头部模型的竞争焦点正转向 Agent 工具链与总持有成本。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://api-docs.deepseek.com/zh-cn/news/news260813/" target="_blank">DeepSeek 官方公告</a>
+      <a href="https://www.ithome.com/0/989/000.htm" target="_blank">IT之家报道</a>
+      <a href="https://wallstreetcn.com/articles/3779377" target="_blank">华尔街见闻：峰值价格最高涨至 27 元</a>
+      <a href="https://m.21jingji.com/article/20260814/c51f632ac045f6e258ae4433aaa8a33d.html" target="_blank">21 财经：重大更新却引争议</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#7</span>
+      <div class="card-title"><a href="https://microsoft.ai/news/introducing-mai-thinking-1/" target="_blank">微软发布首个自研前沿推理模型 MAI-Thinking-1 公开预览</a></div>
+    </div>
+    <blockquote>MAI-Thinking-1 是微软第一个自研前沿级推理模型，稀疏 MoE 架构，在 Microsoft Foundry 公开预览。</blockquote>
+    <p>微软 AI 官方 8 月 12 日宣布 MAI-Thinking-1：稀疏 MoE 架构（官方称约 35B 激活参数、约 1T 总参数），256K 上下文，面向企业工作负载，官方称在盲测评级中超过 Claude Sonnet 4.6。模型目前以公开预览形式在 Microsoft Foundry 上提供。</p>
+    <p>这是微软在自研模型路线上的关键一步，进一步降低对单一外部模型供应商的依赖。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://microsoft.ai/news/introducing-mai-thinking-1/" target="_blank">Microsoft AI 官方公告</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#8</span>
+      <div class="card-title"><a href="https://www.digitalapplied.com/blog/grok-4-6-launch-pricing-agentic-benchmarks-2026" target="_blank">xAI 发布 Grok 4.6：500K 上下文，称与 GPT-5.6 Sol 打平</a></div>
+    </div>
+    <blockquote>Grok 4.6 面向 Agent 场景发布：500K 上下文、推理力度分档、API 定价 $2/$6 每百万 tokens。</blockquote>
+    <p>Grok 4.6 于 8 月 12 日上线，同步登陆 Cursor、Grok Build、console.x.ai、OpenRouter、Vercel 和 Cloudflare 等平台，支持 500K 上下文与推理力度（effort）分档，API 定价为输入 $2 / 输出 $6 每百万 tokens。xAI 称其在 Artificial Analysis 综合指数上与 GPT-5.6 Sol 打平。</p>
+    <p>说明：由于 xAI 官方新闻页当前无法直接访问核实，以上信息来自第三方平台公告与 Cursor 官方论坛，官方基准数据请以 xAI 发布为准。此条与昨日报道的「Grok Bot 应用 Beta」是不同动作（模型 vs 产品）。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.digitalapplied.com/blog/grok-4-6-launch-pricing-agentic-benchmarks-2026" target="_blank">Digital Applied：发布与定价梳理</a>
+      <a href="https://forum.cursor.com/t/grok-4-6-is-now-live/168189" target="_blank">Cursor 官方论坛：Grok 4.6 is now live</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#9</span>
+      <div class="card-title"><a href="https://finance.sina.com.cn/jjxw/2026-08-13/doc-inineuqi3298974.shtml" target="_blank">Qwen3.8-2.4T 开源上线超算互联网，FlagOS 首日适配九款国产芯片</a></div>
+    </div>
+    <blockquote>阿里 2.4 万亿参数 Qwen3.8 上线超算互联网并开源；智源 FlagOS 发布首日完成九款国产芯片适配。</blockquote>
+    <p>据新浪财经、新京报 8 月 13 日报道，阿里 Qwen3.8 系列 2.4 万亿参数版本已上线超算互联网并开源（Qwen3.8 系列于 8 月 3 日正式发布，本次为超大参数版本的开源与部署进展）。同期，智源研究院众智 FlagOS 在发布首日完成九款国产芯片的「开箱即用」适配，为超大开源模型提供多元算力支撑。</p>
+    <p>另有未经官方确认的渠道消息称 Qwen3.8 还有更小档位的权重即将开源（见 #24 传闻区）。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://finance.sina.com.cn/jjxw/2026-08-13/doc-inineuqi3298974.shtml" target="_blank">新浪财经</a>
+      <a href="https://www.bjnews.com.cn/detail/1786623440129694.html" target="_blank">新京报：FlagOS 首日适配九款国产芯片</a>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 产品应用 ==================== -->
+<div class="section">
+  <div class="section-header"><span class="icon">📱</span>产品应用</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#10</span>
+      <div class="card-title"><a href="https://www.cerebras.ai/blog/accelerating-gpt-5-6-sol-ultrafast-with-openai" target="_blank">OpenAI 联手 Cerebras 推出 Ultrafast 模式：GPT-5.6 Sol 最高 750 tokens/s</a></div>
+    </div>
+    <blockquote>Cerebras 为 GPT-5.6 Sol 提供推理加速，Ultrafast 模式最高 750 tokens/s 输出，先向部分 API 客户开放。</blockquote>
+    <p>Cerebras 官方 8 月 13 日宣布与 OpenAI 合作，为 GPT-5.6 Sol 推出 Ultrafast Mode：官方称输出速度最高可达 750 tokens/s 且不损失质量，初期面向部分 API 客户开放。OpenAI 同步发布了预览页面。</p>
+    <p>这是 OpenAI 与外部推理芯片厂商少见的深度合作，也被视为 Cerebras 晶圆级芯片商业化落地的关键一步。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.cerebras.ai/blog/accelerating-gpt-5-6-sol-ultrafast-with-openai" target="_blank">Cerebras 官方博客</a>
+      <a href="https://openai.com/index/previewing-ultrafast/" target="_blank">OpenAI：Previewing Ultrafast</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#11</span>
+      <div class="card-title"><a href="https://the-decoder.com/anthropic-brings-claude-cowork-to-its-chrome-extension-adding-skills-and-plugins-to-the-browser/" target="_blank">Claude Cowork 进入 Chrome 侧边栏，支持技能、插件与连接器</a></div>
+    </div>
+    <blockquote>Claude 的 Chrome 侧边栏升级为完整 Cowork 会话：可保存工作进度、加载技能与连接器，跨应用连续协作。</blockquote>
+    <p>据 The Decoder、Engadget 8 月 13 日报道，Anthropic 将 Claude Cowork 带入 Chrome 扩展侧边栏：支持保存工作进度、加载 skills/plugins/connectors，并可在 Claude 各应用间保持会话连续性，面向付费用户提供。</p>
+    <p>这相当于把 Agent 工作台从桌面应用延伸到浏览器入口，与各家在浏览器 Agent 上的布局形成正面竞争。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://the-decoder.com/anthropic-brings-claude-cowork-to-its-chrome-extension-adding-skills-and-plugins-to-the-browser/" target="_blank">The Decoder</a>
+      <a href="https://www.engadget.com/2235919/claude-cowork-can-now-run-in-a-chrome-sidebar/" target="_blank">Engadget</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#12</span>
+      <div class="card-title"><a href="https://www.techpowerup.com/351564/google-launches-pixel-11-series-powered-by-tensor-g6-chip" target="_blank">Google Pixel 11 系列发布：Tensor G6 + Gemini Nano</a></div>
+    </div>
+    <blockquote>Made by Google 发布 Pixel 11 系列，搭载 Tensor G6 与最新端侧 Gemini Nano，8 月 20 日开售。</blockquote>
+    <p>Google 在 Made by Google 大会上发布 Pixel 11 / 11 Pro / 11 Pro XL：搭载 Tensor G6 芯片，运行最新 Gemini Nano 端侧模型，支持主动式 Gemini 助手，起售价 $899，8 月 20 日开售。</p>
+    <p>Pixel 系列继续作为 Google 端侧 AI 的「样板间」，端侧小模型 + 主动式助手是本届发布会的主线。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.techpowerup.com/351564/google-launches-pixel-11-series-powered-by-tensor-g6-chip" target="_blank">TechPowerUp</a>
+      <a href="https://mashable.com/tech/made-by-google-2026-pixel-11-event-everything-announced" target="_blank">Mashable：发布会全部公告</a>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 开发生态 ==================== -->
+<div class="section">
+  <div class="section-header"><span class="icon">🛠️</span>开发生态</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#13</span>
+      <div class="card-title"><a href="https://www.cls.cn/detail/2453805" target="_blank">DeepSeek 开源 Harness 开发者预览版：「一切皆插件」Agent 框架</a></div>
+    </div>
+    <blockquote>DeepSeek 发布插件化 Agent 开发框架 Harness 开发者预览版（v0.1），MIT 协议开源。</blockquote>
+    <p>8 月 13 日，DeepSeek 开放 Harness 开发者预览版测试。其核心理念是「一切皆插件」：模型、工具、技能、会话、沙箱、调度、UI 等能力均可按需拼装、替换与重组，可视为 DeepSeek 官方的 AI 编程 / Vibe Coding 生态入口。此前 8 月初已启动内测招募。</p>
+    <p>结合 V4-Pro 的 Agent 能力升级与峰谷定价调整，DeepSeek「模型 + 工具链」的双线布局愈发清晰。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.cls.cn/detail/2453805" target="_blank">财联社</a>
+      <a href="https://www.thepaper.cn/newsDetail_forward_33777963" target="_blank">澎湃新闻</a>
+      <a href="https://www.bbtnews.com.cn/2026/0813/602170.shtml" target="_blank">北京商报</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#14</span>
+      <div class="card-title"><a href="https://www.ithome.com/0/989/031.htm" target="_blank">智谱 GLM-5.2 成为 Mistral 平台首个第三方模型</a></div>
+    </div>
+    <blockquote>Mistral AI 开放平台接入第三方开放模型，首个接入的是智谱 GLM-5.2。</blockquote>
+    <p>Mistral AI 宣布其平台支持第三方开放模型托管，首个接入方为智谱 GLM-5.2。第三方模型与 Mistral 自有模型共用相同基础设施、区域管控与服务承诺，用户可选择在美国或欧洲区域运行推理。</p>
+    <p>这是国产开源旗舰模型以「平台托管」形式进入海外头部模型平台的标志性案例，也反映海外平台对第三方开放模型的需求正在制度化。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.ithome.com/0/989/031.htm" target="_blank">IT之家</a>
+      <a href="https://finance.sina.com.cn/tech/digi/2026-08-13/doc-inincnux3572267.shtml" target="_blank">新浪科技</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#15</span>
+      <div class="card-title"><a href="https://github.blog/changelog/2026-08-12-agent-plugins-1-0-in-vs-code-copilot-cli-and-the-copilot-app/" target="_blank">GitHub Agent Plugins 1.0 正式推出</a></div>
+    </div>
+    <blockquote>Agent Plugins 1.0：开发者打包的技能/插件可在 VS Code、Copilot CLI 与 Copilot 应用间通用。</blockquote>
+    <p>GitHub Changelog 8 月 12 日宣布 Agent Plugins 达到 1.0：开发者可以将技能与插件打包，在 VS Code、Copilot CLI、Copilot 应用中以同一形态运行。</p>
+    <p>结合 Gemini 3.7 Flash 同日登陆 Copilot（见 #2），GitHub Copilot 生态正在「多模型 + 插件化」两个方向同步扩张，值得 IDE 插件与 Agent 工具开发者关注其插件规范。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://github.blog/changelog/2026-08-12-agent-plugins-1-0-in-vs-code-copilot-cli-and-the-copilot-app/" target="_blank">GitHub Changelog</a>
+      <a href="https://code.visualstudio.com/docs/agent-customization/agent-plugins" target="_blank">VS Code 文档：Agent Plugins</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#16</span>
+      <div class="card-title"><a href="https://www.kimi.com/code/docs/kimi-code/whats-new.html" target="_blank">Kimi Code CLI 更新至 v0.36.0：子 Agent 模型池</a></div>
+    </div>
+    <blockquote>Kimi Code CLI 发布 v0.36.0，新增「子 Agent 模型池」与实验性全屏 TUI 模式。</blockquote>
+    <p>据 Kimi Code 官方文档 8 月 13 日更新日志，本次版本主要新增两项能力：一是子 Agent 模型池，支持为不同子 Agent 配置不同模型；二是实验性全屏 TUI 交互模式。</p>
+    <p>这是 Kimi K3 七月开源后在编程 Agent 工具链上的又一次快速迭代。月之暗面在本窗口内无其他重大模型或产品发布。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.kimi.com/code/docs/kimi-code/whats-new.html" target="_blank">Kimi Code 官方更新日志</a>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 行业动态 ==================== -->
+<div class="section">
+  <div class="section-header"><span class="icon">💼</span>行业动态</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#17</span>
+      <div class="card-title"><a href="https://fortune.com/2026/08/13/anthropic-said-in-talks-to-buy-startup-decart-for-6-billion/" target="_blank">Anthropic 洽谈约 60 亿美元收购 Decart</a></div>
+    </div>
+    <blockquote>彭博消息称 Anthropic 正洽谈以约 60 亿美元收购英伟达参投的以色列初创 Decart，尚不确定能否达成。</blockquote>
+    <p>据 Fortune（引述彭博）8 月 13 日报道，Anthropic 正洽谈收购 Decart——一家专注世界模型与 GPU 推理效率的以色列初创公司，团队将并入 Anthropic 的推理部门，若成交将是其已知规模最大的一笔收购。交易尚未最终确定。</p>
+    <p>多家媒体指出该洽谈发生在 Anthropic 计划上市前夕，意在补强推理成本控制能力；界面新闻等中文媒体也转引了《金融时报》的相关报道。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://fortune.com/2026/08/13/anthropic-said-in-talks-to-buy-startup-decart-for-6-billion/" target="_blank">Fortune（引述彭博）</a>
+      <a href="https://techstartups.com/2026/08/13/anthropic-in-talks-to-buy-nvidia-backed-ai-startup-decart-for-6-billion-ahead-of-mega-ipo/" target="_blank">Tech Startups：IPO 前的收购谈判</a>
+      <a href="https://www.jiemian.com/article/14915887.html" target="_blank">界面新闻（转引 FT）</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#18</span>
+      <div class="card-title"><a href="https://www.cls.cn/detail/2453843" target="_blank">Databricks 完成 50 亿美元融资，估值升至 1900 亿美元</a></div>
+    </div>
+    <blockquote>数据与 AI 公司 Databricks 宣布完成 50 亿美元新一轮融资，估值达 1900 亿美元。</blockquote>
+    <p>据财联社 8 月 13 日消息（新浪财经 7x24 同步报道），Databricks 完成 50 亿美元新一轮融资，估值从上一轮大幅升至 1900 亿美元。</p>
+    <p>数据基础设施 + AI 赛道持续获得巨额资本投入，数据底座类公司正在成为 AI 基建投资的重要分支。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.cls.cn/detail/2453843" target="_blank">财联社</a>
+      <a href="https://finance.sina.com.cn/7x24/2026-08-13/doc-inineuqi3323959.shtml" target="_blank">新浪财经 7x24</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#19</span>
+      <div class="card-title"><a href="https://www.stcn.com/article/detail/4072683.html" target="_blank">智谱纳入 MSCI 中国指数，8 月 31 日生效</a></div>
+    </div>
+    <blockquote>MSCI 8 月季度审议：智谱等 33 只标的纳入 MSCI 中国指数，8 月 31 日收盘后生效。</blockquote>
+    <p>MSCI 8 月 13 日公布 8 月季度审议结果：33 只标的新纳入 MSCI 中国指数（31 只 A 股 + 2 只港股），港股新增为智谱与建滔集团，同时剔除万科 A，调整于 8 月 31 日收盘后生效。</p>
+    <p>作为港股上市的大模型公司，智谱入选被市场视为中国 AI 公司资本化的标志性事件；据证券时报报道，消息公布后智谱股价当日涨超 5%，海外被动资金预计月底集中调仓。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.stcn.com/article/detail/4072683.html" target="_blank">证券时报</a>
+      <a href="https://finance.sina.com.cn/jjxw/2026-08-13/doc-inineiyr9995291.shtml" target="_blank">新浪财经</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#20</span>
+      <div class="card-title"><a href="https://www.bloomberg.com/news/articles/2026-08-12/ai-startup-cognition-in-new-funding-talks-at-40-billion-value" target="_blank">AI 编程赛道融资热：Cognition 洽谈 400 亿美元估值，Lovable 再融 4 亿美元</a></div>
+    </div>
+    <blockquote>同一周内：Cognition 据报以超 400 亿美元估值洽谈新融资，Lovable 官宣 4 亿美元融资、估值 133 亿美元。</blockquote>
+    <p>据彭博 8 月 12 日报道，AI 编程公司 Cognition（Devin 开发商）正洽谈新一轮融资，估值超 400 亿美元，其年化收入已接近 10 亿美元；TechCrunch 同日证实 Lovable 再融资 4 亿美元，估值 133 亿美元，其 6 月年化收入已达 5 亿美元。此外据 FT 报道，法律 AI 公司 Legora 也在洽谈以超 100 亿美元估值融资。</p>
+    <p>AI 编程 / 应用生成是当前一级市场最热的变现赛道，估值与收入的同步抬升值得持续跟踪。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.bloomberg.com/news/articles/2026-08-12/ai-startup-cognition-in-new-funding-talks-at-40-billion-value" target="_blank">Bloomberg：Cognition 融资洽谈</a>
+      <a href="https://techcrunch.com/2026/08/12/lovable-confirms-new-13-3b-valuation-raises-another-400m/" target="_blank">TechCrunch：Lovable 再融 4 亿美元</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#21</span>
+      <div class="card-title"><a href="https://k.sina.com.cn/article_2659863445_9e8a4b95001017xug.html" target="_blank">豆包 12% 渠道抽佣「急刹车」，延后至 8 月 20 日执行</a></div>
+    </div>
+    <blockquote>豆包对导流至抖音来客的酒店订单收取约 12% 综合费用引发争议，执行时间延后至 8 月 20 日。</blockquote>
+    <p>豆包此前自 8 月 10 日起对经其导流至抖音来客成交的酒店订单收取综合约 12% 的费用（11.4% 软件服务费 + 0.6% 支付手续费），引发关于 AI 推荐「明码标价」与中立性的争议。8 月 12 日，豆包公告将执行时间延至 8 月 20 日 0 点，并回应称该费用不属于广告费，商家无法付费干预推荐排序，仅在成交后收取渠道服务费。</p>
+    <p>新浪科技等媒体认为，这一调整反映了字节在 AI 商业化压力与用户信任之间的权衡。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://k.sina.com.cn/article_2659863445_9e8a4b95001017xug.html" target="_blank">新浪科技</a>
+      <a href="https://view.inews.qq.com/a/20260812A033DU00" target="_blank">腾讯新闻相关报道</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#22</span>
+      <div class="card-title"><a href="https://www.ithome.com/0/987/951.htm" target="_blank">零一万物停止开放平台公众服务，全面转向企业市场</a></div>
+    </div>
+    <blockquote>零一万物宣布大模型开放平台将逐步停止在线体验与 API 服务，全面转向企业级市场。</blockquote>
+    <p>零一万物 8 月 10 日公告，其大模型开放平台将逐步停止面向用户的在线体验及 API 服务，公司资源全面转向多智能体等企业级（B 端）市场；8 月 11–12 日多知网、IT 之家等媒体持续跟进报道。</p>
+    <p>Yi 系列模型曾在国产开源生态中占据重要位置，此次战略收缩是国内大模型公司从「平台化/C 端」转向「B 端深耕」的又一案例。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.ithome.com/0/987/951.htm" target="_blank">IT之家</a>
+      <a href="https://finance.sina.com.cn/tech/digi/2026-08-10/doc-inimvnpm8171093.shtml" target="_blank">新浪科技</a>
+      <a href="https://www.duozhi.com/industry/insight/2026081218713.shtml" target="_blank">多知网</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#23</span>
+      <div class="card-title"><a href="https://www.stcn.com/article/detail/4070813.html" target="_blank">面壁智能启动 IPO 辅导</a></div>
+    </div>
+    <blockquote>面壁智能 8 月 11 日完成辅导备案登记，拟 IPO 上市，辅导券商为中信证券。</blockquote>
+    <p>据证券时报、亿欧报道，面壁智能于 8 月 11 日在北京证监局办理辅导备案登记，拟首次公开发行股票并上市，辅导券商为中信证券，公司无控股股东。</p>
+    <p>面壁智能是国产「小而美」开源模型公司的代表之一，其上市推进显示国内大模型公司正加速进入资本化窗口期。市场上亦有对其估值的讨论声音，相关信息以备案与披露为准。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.stcn.com/article/detail/4070813.html" target="_blank">证券时报</a>
+      <a href="https://www.iyiou.com/briefing/202608121928775" target="_blank">亿欧快讯</a>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 前瞻与传闻 ==================== -->
+<div class="section">
+  <div class="section-header"><span class="icon">🔮</span>前瞻与传闻</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#24</span>
+      <div class="card-title">传阿里 Qwen3.8-27B 今晚开源，Qwen3.8-Max 或引入商用分成机制<span class="rumor-tag">未确认</span></div>
+    </div>
+    <blockquote>两条未经官方确认的消息：Qwen3.8-27B 传今晚 23 时上线 ModelScope / Hugging Face；界面称 Qwen3.8-Max 或对大型商用客户引入分成机制。</blockquote>
+    <p>据 ChooseAI 等渠道报道，Qwen3.8-27B（约 270 亿参数稠密模型，定位「单卡可跑的自托管版本」）或于北京时间 8 月 14 日 23 时上线 ModelScope 与 Hugging Face——ModelScope 上已出现相关模型页面，但官方模型卡尚未发布，阿里官方亦未宣布。另有界面新闻报道，阿里正考虑在 Qwen3.8-Max 以开源开放权重形式发布的同时，对大规模商用的企业引入分成机制（达到一定规模门槛需另签协议并分享部分营收）。</p>
+    <p>两条消息均未获阿里官方确认，请以后续官方发布为准。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.chooseai.net/ai-news/detail/5835/" target="_blank">ChooseAI：Qwen3.8-27B 开源预告（未确认）</a>
+      <a href="https://modelscope.cn/models/Qwen/Qwen3.8-27b" target="_blank">ModelScope 模型页（已出现，模型卡未发布）</a>
+      <a href="https://wap.eastmoney.com/a/202608133840214652.html" target="_blank">界面新闻（东方财富转载）：分成机制报道</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#25</span>
+      <div class="card-title">传 Anthropic 就秋季 IPO 与投资者接触<span class="rumor-tag">未确认</span></div>
+    </div>
+    <blockquote>WSJ 相关报道显示 Anthropic 正就可能的秋季上市与投资者沟通，具体时间与估值未获官方确认。</blockquote>
+    <p>据 WSJ 流出的报道，Anthropic 正就可能的秋季 IPO 与投资者接触，讨论话题涉及中国竞争、算力成本与安全投入等。由于付费墙限制与官方未确认，具体估值与时间表暂无法独立核实，此条按未确认信息处理。</p>
+    <p>结合 #17 的 Decart 收购洽谈传闻，Anthropic 在资本层面的动作明显增多。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.wsj.com/tech/ai/anthropic-ipo-investors-2026" target="_blank">The Wall Street Journal（付费墙，未获官方确认）</a>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>AI 早报 &middot; 2026-08-14 &middot; 生成于北京时间 2026 年 8 月 14 日上午</p>
+  <p>信息窗口：过去约 24–48 小时（以 2026-08-13 至 08-14 为主），收录 25 条，含 2 条未确认传闻（已标注）</p>
+  <p>内容基于公开网络信息整理，链接均为原始来源；「未确认」条目请以官方发布为准</p>
+</div>
+
+</div>
+</body>
+</html>
