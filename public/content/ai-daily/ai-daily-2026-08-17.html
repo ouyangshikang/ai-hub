@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 早报 2026-08-17</title>
+<style>
+  :root {
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #1a1a2e;
+    --text-secondary: #555770;
+    --accent: #4361ee;
+    --accent-light: #eef1ff;
+    --border: #e2e4e9;
+    --tag-bg: #f0f1f3;
+    --warn-bg: #fff8e1;
+    --warn-border: #ffe082;
+    --rumor-bg: #fff3e0;
+    --rumor-text: #e65100;
+    --blockquote-border: #4361ee;
+    --blockquote-bg: #f5f7ff;
+    --link: #4361ee;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 40px 0 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .header .date {
+    color: var(--text-secondary);
+    font-size: 15px;
+  }
+  .header .subtitle {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 4px;
+  }
+
+  /* Overview */
+  .overview {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 24px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow);
+  }
+  .overview h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--accent);
+    color: var(--accent);
+  }
+  .overview .cat-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 18px 0 8px;
+  }
+  .overview .cat-title:first-of-type {
+    margin-top: 0;
+  }
+  .overview ul {
+    list-style: none;
+    padding: 0;
+  }
+  .overview li {
+    padding: 4px 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .overview li::before {
+    content: "";
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+  .overview .num {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    font-family: "SF Mono", "Fira Code", monospace;
+    flex-shrink: 0;
+  }
+
+  /* Weekend recap */
+  .weekend {
+    background: var(--warn-bg);
+    border: 1px solid var(--warn-border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+  }
+  .weekend h2 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .weekend ul {
+    list-style: none;
+    padding: 0;
+  }
+  .weekend li {
+    padding: 3px 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+  .weekend .num {
+    font-size: 12px;
+    color: var(--rumor-text);
+    font-weight: 600;
+    font-family: "SF Mono", "Fira Code", monospace;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 36px;
+  }
+  .section-header {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    padding: 12px 0 8px;
+    margin-bottom: 16px;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-header .icon {
+    font-size: 20px;
+  }
+
+  /* Card */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.15s;
+  }
+  .card:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .card-num {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-light);
+    border-radius: 6px;
+    padding: 2px 8px;
+    flex-shrink: 0;
+    font-family: "SF Mono", "Fira Code", monospace;
+    line-height: 1.6;
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .card-title a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .card-title a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .card blockquote {
+    background: var(--blockquote-bg);
+    border-left: 3px solid var(--blockquote-border);
+    padding: 8px 14px;
+    margin: 10px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+  .card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin: 8px 0;
+  }
+  .card .links {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .card .links-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .card .links a {
+    display: block;
+    font-size: 13px;
+    color: var(--link);
+    text-decoration: none;
+    padding: 2px 0;
+    word-break: break-all;
+  }
+  .card .links a:hover {
+    text-decoration: underline;
+  }
+
+  /* Rumor tag */
+  .rumor-tag {
+    display: inline-block;
+    background: var(--rumor-bg);
+    color: var(--rumor-text);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 32px 0 16px;
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+  .footer p {
+    margin: 4px 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .container { padding: 16px 14px 40px; }
+    .header h1 { font-size: 22px; }
+    .card { padding: 16px 16px; }
+    .overview { padding: 20px 16px; }
+    .weekend { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1>AI 早报 2026-08-17</h1>
+  <div class="date">2026 年 8 月 17 日 星期一</div>
+  <div class="subtitle">收录 18 条 &middot; 6 个分类 &middot; 含 3 条未确认传闻 &middot; 周一加宽版（覆盖过去 72 小时：8 月 14 日—17 日）</div>
+</div>
+
+<!-- Weekend Recap -->
+<div class="weekend">
+  <h2>周末回顾（8 月 15 日—16 日）</h2>
+  <ul>
+    <li>Anthropic Q2 营收超 115 亿美元，被报道实现首次季度盈利 <span class="num">详见 #1</span></li>
+    <li>AI 辅助证明森多夫猜想，陶哲轩发现其同时解决更强的 Phelps-Rodriguez 猜想 <span class="num">详见 #3</span></li>
+    <li>Qwen3.8 系列权重周五晚正式开源，周末持续刷屏 <span class="num">详见 #7</span></li>
+    <li>Claude 周六出现约 40 分钟服务中断 <span class="num">详见 #8</span></li>
+    <li>OpenAI 通知本月起在欧洲向免费与 Go 用户展示广告 <span class="num">详见 #9</span></li>
+    <li>路透：Alphabet、Amazon、Meta 今年已为 AI 基建借款近 2200 亿美元 <span class="num">详见 #14</span></li>
+  </ul>
+</div>
+
+<!-- Overview -->
+<div class="overview">
+  <h2>概览</h2>
+
+  <div class="cat-title">要闻</div>
+  <ul>
+    <li>Anthropic Q2 营收超 115 亿美元，同比约 14 倍，被报道首次季度盈利 <span class="num">#1</span></li>
+    <li>路透：苹果与阿里巴巴合作训练中国专用大模型，Apple Intelligence 拟数月内入华 <span class="num">#2</span></li>
+    <li>AI 辅助证明森多夫猜想，陶哲轩发现隐藏的更强结果 <span class="num">#3</span></li>
+    <li>黄仁勋携手六大华尔街资管巨头：推动 AI 算力成为独立资产类别 <span class="num">#4</span></li>
+    <li>Anthropic 8 月风险报告：上调 misalignment 风险评级，内部模型 Model 2 暂无对外发布计划 <span class="num">#5</span></li>
+  </ul>
+
+  <div class="cat-title">模型发布</div>
+  <ul>
+    <li>智谱正式发布 GLM-5.3：称「编程能力最强开源模型」，权重两周内开源 <span class="num">#6</span></li>
+    <li>阿里 Qwen3.8 系列权重正式开放：27B 多模态 + 2.4 万亿 Max，Apache 2.0 <span class="num">#7</span></li>
+  </ul>
+
+  <div class="cat-title">产品应用</div>
+  <ul>
+    <li>Claude 周六宕机约 40 分钟，波及网页、Code 与 Cowork <span class="num">#8</span></li>
+    <li>OpenAI：本月起欧洲 ChatGPT 免费与 Go 用户将看到上下文广告 <span class="num">#9</span></li>
+    <li>Google 今日下线 Imagen 4 API，开发者需迁移至 Gemini 图像接口 <span class="num">#10</span></li>
+  </ul>
+
+  <div class="cat-title">开发生态</div>
+  <ul>
+    <li>Hugging Face 发布「State of Open Models 2026 夏季观察」：中国实验室主导开源前沿 <span class="num">#11</span></li>
+    <li>Google 开源 HEIR 同态加密推理工具链：让模型在加密数据上推理 <span class="num">#12</span></li>
+    <li>新京报 AI 研究院实测 DeepSeek Harness：Agent 运行时的「乐高式」拼装 <span class="num">#13</span></li>
+  </ul>
+
+  <div class="cat-title">行业动态</div>
+  <ul>
+    <li>路透：Alphabet、Amazon、Meta 今年为 AI 基建借款合计近 2200 亿美元 <span class="num">#14</span></li>
+    <li>具身智能公司 INFIFORCE 完成近 10 亿元 A+A+ 轮，敦鸿资产领投 <span class="num">#15</span></li>
+  </ul>
+
+  <div class="cat-title">前瞻与传闻</div>
+  <ul>
+    <li>传月之暗面 8 月启动上市前新一轮融资 <span class="num">#16</span></li>
+    <li>传小红书团队 280B MoE 模型 dots3-note 处于预览阶段 <span class="num">#17</span></li>
+    <li>Stripe 收购 OpenRouter 传闻再起：金额口径 70—100 亿美元，双方未官宣 <span class="num">#18</span></li>
+  </ul>
+</div>
+
+<!-- ==================== 要闻 ==================== -->
+<div class="section">
+  <div class="section-header"><span class="icon">📌</span>要闻</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#1</span>
+      <div class="card-title"><a href="https://www.cnbc.com/2026-08-15/anthropic-revenue-jumps-to-over-11point5-billion-in-q2-report.html" target="_blank">Anthropic Q2 营收超 115 亿美元，同比约 14 倍，被报道首次季度盈利</a></div>
+    </div>
+    <blockquote>The Information 与 CNBC 援引报道称，Anthropic 二季度营收超 115 亿美元、同比大增，并录得首次季度（调整后）经营盈利。</blockquote>
+    <p>The Information 8 月 15 日率先报道 Anthropic 二季度营收同比增长约 14 倍；CNBC 同日援引该报道称营收超过 115 亿美元，公司实现首次季度盈利（调整后经营口径）。这一数字明显高于此前市场报道的预期（约 109 亿美元）。</p>
+    <p>需要说明：Anthropic 并未正式披露财报，以上均为媒体援引消息人士的说法。结合此前路透报道的「2026 年年化营收接近三倍增长」目标与秋季 IPO 传闻，这份未经官方确认的业绩数据仍被视为其上市前的关键信号。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.cnbc.com/2026-08-15/anthropic-revenue-jumps-to-over-11point5-billion-in-q2-report.html" target="_blank">CNBC：Anthropic revenue jumps to over $11.5 billion in Q2: report</a>
+      <a href="https://www.theinformation.com/briefings/anthropic-revenue-jumped-14-times-second-quarter" target="_blank">The Information：Anthropic Revenue Jumped 14 Times in Second Quarter</a>
+      <a href="https://finance.yahoo.com/technology/ai/articles/anthropic-revenue-surges-over-11-210857853.html" target="_blank">Yahoo Finance：Anthropic Revenue Surges to Over $11.5 Billion</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#2</span>
+      <div class="card-title"><a href="https://www.solidot.org/story?sid=85095" target="_blank">路透：苹果与阿里巴巴合作训练中国专用大模型，Apple Intelligence 拟数月内入华</a></div>
+    </div>
+    <blockquote>据路透社消息，苹果与阿里巴巴合作为中国市场训练了专用大模型，Apple Intelligence 有望数月内随 iOS 更新在中国大陆上线。</blockquote>
+    <p>据路透社报道（Solidot、cnBeta、钜亨网等 8 月 14 日转引），苹果在阿里巴巴支持下为中国市场训练专属 AI 模型，计划借助本土合作方模型向中国大陆发售的 iPhone 等终端提供生成式 AI 能力。报道还提到，相关监管登记为服务首次进入国行设备奠定了基础。</p>
+    <p>分析普遍认为，此举是苹果应对华为等本土 AI 手机竞争的关键一步。截至发稿，苹果与阿里巴巴均未公开发布正式公告，具体上线时间与模型形态以官方信息为准。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.solidot.org/story?sid=85095" target="_blank">Solidot：苹果与阿里巴巴合作为中国市场训练专用大模型</a>
+      <a href="https://m.cnbeta.com.tw/view/1573208.htm" target="_blank">cnBeta：知情人士称苹果在阿里巴巴支持下为中国市场训练专属 AI 模型</a>
+      <a href="https://cn.tradingview.com/news/reuters.com,2026:newsml_L6S44B0AH:0/" target="_blank">路透社（TradingView 转载）：苹果专为中国市场训练一款 AI 模型</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#3</span>
+      <div class="card-title"><a href="https://k.sina.com.cn/article_5952915720_162d2490806704owhc.html?from=tech" target="_blank">AI 辅助证明森多夫猜想，陶哲轩发现隐藏的更强结果</a></div>
+    </div>
+    <blockquote>一项悬置约 70 年的数学猜想（Sendov 猜想）被宣布在 GPT-5.6 Pro 辅助下完成证明，陶哲轩参与简化后发现其同时解决更强的 Phelps-Rodriguez 猜想。</blockquote>
+    <p>据机器之心 8 月 16 日报道，初创公司负责人 Lech Mazur 宣布在 GPT-5.6 Pro 协助下完成森多夫猜想的证明（主张对所有次数 n≥2 的多项式成立），并提交约 9 万行 Lean 4 形式化代码。陶哲轩随后借助 AI 对证明进行梳理、精简与改写，得到约 1.5 万行的版本，并发现该论证同时解决了更强的 Phelps-Rodriguez 猜想，他评价「证明令人惊讶地初等」。</p>
+    <p>这是继今年早些时候 GPT-5.2 Pro 参与证明数论猜想之后，AI 辅助数学研究的又一标志性事件。需要说明：该证明的形式化验证与同行评议仍在推进中，数学界的最终确认尚需时间。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://k.sina.com.cn/article_5952915720_162d2490806704owhc.html?from=tech" target="_blank">新浪科技（转机器之心）：AI 宣布森多夫猜想告破！陶哲轩发现它隐藏的更强结果</a>
+      <a href="https://www.zhihu.com/question/2071680380755785039" target="_blank">知乎讨论：怎么看森多夫猜想已被 AI 与 Lech Mazur 证明</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#4</span>
+      <div class="card-title"><a href="https://stock.jrj.com.cn/2026-08-17081858133740.shtml" target="_blank">黄仁勋携手六大华尔街资管巨头：推动 AI 算力成为独立资产类别</a></div>
+    </div>
+    <blockquote>据央视财经报道，黄仁勋与六位华尔街资管巨头共同支持将 AI 算力打造为独立资产类别，AI 竞争延伸到资本层面。</blockquote>
+    <p>金融界 8 月 17 日援引央视财经报道，「近日黄仁勋携手六位华尔街资管巨头」共同支持将 AI 算力打造为独立资产类别。黄仁勋回应外界对「循环融资」与债务风险的担忧时称，英伟达可能为单个投资项目提供最高 25% 的残值支持机制，并会谨慎评估项目。</p>
+    <p>报道同时提到，英伟达已把相关 OpenAI 数据中心担保额度由约 2500 亿美元降到不足 1200 亿美元。算力资产的金融化正在加速，但投资者对杠杆与循环担保的警惕也在同步上升。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://stock.jrj.com.cn/2026-08-17081858133740.shtml" target="_blank">金融界（援引央视财经）：黄仁勋、六大资管巨头：将 AI 算力打造为独立资产类别</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#5</span>
+      <div class="card-title"><a href="https://www.techi.com/anthropic-model-2-risk-report-misalignment-estimate/" target="_blank">Anthropic 8 月风险报告：上调 misalignment 风险评级，内部模型 Model 2 暂无对外发布计划</a></div>
+    </div>
+    <blockquote>Anthropic 将高风险场景中「misalignment 导致灾难性伤害」的定性评级从 very low 上调为 low，并披露内部新模型 Model 2 已在内部使用但无对外发布计划。</blockquote>
+    <p>据 techi 对 Anthropic 2026 年 8 月风险报告的解读（8 月 14 日）：评级上调的原因是网络安全评测事件披露带来的「整体不确定性上升」，并非 Model 2 被证实未通过安全测试；公司认为原有论证仍可能支持更低评级，并强调该评级是定性判断而非测量概率。</p>
+    <p>报告披露的内部模型 Model 2「能力略强于 Mythos 5」，已用于编码、数据生成、研究与工程等内部任务；预部署评估尚未完成，内部上线遵循「先强限制、再逐步扩大」的路径，目前没有对外发布的时间表。TechTimes 补充称，此次调整也发生在关键安全基准趋于饱和的背景下。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.techi.com/anthropic-model-2-risk-report-misalignment-estimate/" target="_blank">Techi：Anthropic's Model 2 Is Stronger. That Isn't Why the Risk Label Changed</a>
+      <a href="https://www.techtimes.com/articles/324573/20260815/anthropic-upgrades-misalignment-risk-key-safety-benchmarks-saturate.htm" target="_blank">TechTimes：Anthropic Upgrades Misalignment Risk as Key Safety Benchmarks Saturate</a>
+      <a href="https://www.anthropic.com/transparency" target="_blank">Anthropic Transparency Hub（官方）</a>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 模型发布 ==================== -->
+<div class="section">
+  <div class="section-header"><span class="icon">🚀</span>模型发布</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#6</span>
+      <div class="card-title"><a href="https://finance.sina.com.cn/tech/digi/2026-08-14/doc-ininhhrs2630952.shtml" target="_blank">智谱正式发布 GLM-5.3：称「编程能力最强开源模型」，权重两周内开源</a></div>
+    </div>
+    <blockquote>智谱 8 月 14 日发布 GLM-5.3，称编程能力较 GLM-5.2 提升 50%，完整模型权重将在完成安全加固后两周内开源。</blockquote>
+    <p>据新浪科技报道，GLM-5.3 的基座模型与 GLM-5.2 相同，提升主要来自后训练 Scaling——数十倍的长程任务环境、更丰富的环境类型与更长的后训练时间。智谱自研评测称其达到 31.4% 准确率，超过 Claude Opus 4.8 最高档位的 29.5%；且每项任务平均输出约 5 万 tokens（Opus 4.8 需约 12 万 tokens），编程体感「接近 Claude Fable 5」。</p>
+    <p>发布同时，智谱上线官方编程工具 ZCode 与效率工具 AutoClaw，并面向 GLM Coding Plan 全量用户开放。官方表示 API 很快上线，完整权重将在两周内开源（需先完成安全加固）。若按期开源，GLM-5.3 将成为国产编程开源模型的又一重磅选项。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://finance.sina.com.cn/tech/digi/2026-08-14/doc-ininhhrs2630952.shtml" target="_blank">新浪科技：智谱正式发布 GLM-5.3：编程能力最强开源模型</a>
+      <a href="https://docs.bigmodel.cn/cn/guide/models/text/glm-5.3" target="_blank">智谱开放平台文档：GLM-5.3</a>
+      <a href="https://zhuanlan.zhihu.com/p/2071887076933506487" target="_blank">知乎：智谱发布 GLM-5.3，编程能力更强</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#7</span>
+      <div class="card-title"><a href="https://wap.eastmoney.com/a/202608153842412261.html" target="_blank">阿里 Qwen3.8 系列权重正式开放：27B 多模态 + 2.4 万亿 Max，Apache 2.0</a></div>
+    </div>
+    <blockquote>8 月 14 日晚，阿里正式开放 Qwen3.8 系列模型权重，开发者与企业可免费获取、部署和使用。</blockquote>
+    <p>据东方财富、财联社 8 月 15 日报道，千问团队 8 月 14 日晚开放 Qwen3.8 系列模型，允许开发者、科研单位与企业免费获取、部署和使用。其中 Qwen3.8-27B 是约 270 亿参数的稠密多模态模型，支持图片/视频输入与 262K 上下文（社区汇总口径），采用 Apache 2.0 许可，整体表现超过前代更大的 Qwen3.7-Plus，在编程与办公任务中表现突出；Qwen3.8-Max（2.4 万亿参数 MoE）的权重此前已经开放。</p>
+    <p>上期早报中「Qwen3.8-27B 将开源」的传闻正式落地。Hugging Face 同期发布的开放模型报告显示，Qwen 衍生模型数量已超过 15 万个，是社区最主要的开源基座家族（详见 #11）。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://wap.eastmoney.com/a/202608153842412261.html" target="_blank">东方财富：阿里千问开源 Qwen3.8-27B</a>
+      <a href="https://www.cls.cn/detail/2455055" target="_blank">财联社：阿里千问开源 Qwen3.8 系列模型</a>
+      <a href="https://www.orcarouter.ai/zh-CN/blog/qwen3-8-27b-open-weights-drop" target="_blank">OrcaRouter：Qwen3.8 开放权重——2.4T-A95B 与 27B 细节</a>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 产品应用 ==================== -->
+<div class="section">
+  <div class="section-header"><span class="icon">📱</span>产品应用</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#8</span>
+      <div class="card-title"><a href="https://status.claude.com/" target="_blank">Claude 周六宕机约 40 分钟，波及网页、Code 与 Cowork</a></div>
+    </div>
+    <blockquote>据官方状态页与新闻汇总，8 月 16 日 Claude 出现约 42 分钟的中断，网页、Claude Code 与 Cowork 受影响，API 大体可用。</blockquote>
+    <p>8 月 16 日（周六），Claude 出现一次服务中断：新闻汇总称持续约 42 分钟，影响范围包括 claude.ai 网页端、Claude Code 与 Cowork 产品，面向企业的 API 大体保持可用。有媒体报道称这是 24 小时内的第二次异常。</p>
+    <p>Anthropic 尚未发布针对本次中断的详细根因说明。对在生产环境中依赖 Claude Code / Agent 工作流的团队，建议关注官方状态页并配置故障转移策略。具体时长与影响范围以官方状态页记录为准。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://status.claude.com/" target="_blank">Claude 官方状态页</a>
+      <a href="https://aiweekly.co/ai-news-today" target="_blank">AI Weekly 实时新闻页（宕机汇总条目）</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#9</span>
+      <div class="card-title"><a href="https://ppc.land/chatgpt-free-and-go-users-in-europe-face-ads-from-later-this-month/" target="_blank">OpenAI：本月起欧洲 ChatGPT 免费与 Go 用户将看到上下文广告</a></div>
+    </div>
+    <blockquote>OpenAI 通知欧洲免费与 Go 档用户：本月底之前将开始展示基于对话上下文的相关广告，付费档位保持无广告。</blockquote>
+    <p>据 8 月 15 日报道，OpenAI 已向欧洲用户发出通知：免费版与低价 Go 档（约 8 美元/月的新订阅层）将在本月内开始展示上下文广告；Plus 及以上付费档位继续保持无广告体验。</p>
+    <p>OpenAI 此前已在美国启动 ChatGPT 广告测试，欧洲是广告商业化的下一站。结合其 10 亿级活跃用户规模与 IPO 前的盈利压力，广告收入正成为 OpenAI 商业模型中越来越明确的一块拼图。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://ppc.land/chatgpt-free-and-go-users-in-europe-face-ads-from-later-this-month/" target="_blank">PPC Land：ChatGPT Free and Go users in Europe face ads from later this month</a>
+      <a href="https://www.cnet.com/tech/services-and-software/chatgpt-ads-coming-soon-for-free-and-new-8-go-tier-users/" target="_blank">CNET：ChatGPT Ads Coming Soon for Free and New $8 Go Tier Users</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#10</span>
+      <div class="card-title"><a href="https://firebase.google.com/docs/ai-logic/imagen-models-migration" target="_blank">Google 今日下线 Imagen 4 API，开发者需迁移至 Gemini 图像接口</a></div>
+    </div>
+    <blockquote>三个 Imagen 4 API 端点于 8 月 17 日正式停止服务，开发者需要迁移到 Gemini 图像模型并重新测试。</blockquote>
+    <p>按照 Google 公布的模型生命周期安排，Imagen 4 的三个 API 端点于今日（8 月 17 日）下线。官方迁移文档指引开发者切换到 Gemini 图像模型（「Nano Banana」系列接口），并提示生成参数与输出特性存在差异，需要重新测试。</p>
+    <p>这是 Google 将图像生成能力统一并入 Gemini 模型家族的一部分；此前 Imagen 4 已在 Gemini API 与 AI Studio 中提供过渡入口。依赖 Imagen 4 做图像流水线的团队请尽快完成迁移，避免生产中断。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://firebase.google.com/docs/ai-logic/imagen-models-migration" target="_blank">Firebase 官方迁移文档：Migrate from Imagen to a Gemini Image model</a>
+      <a href="https://ai.google.dev/gemini-api/docs/imagen" target="_blank">Gemini API 文档：Generate images using Imagen</a>
+      <a href="https://kingy.ai/ai-launch-tracker/google-will-shut-down-three-imagen-4-api-models-august-17/" target="_blank">Kingy AI：Google Imagen 4 API shutdown window: August 17, 2026</a>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 开发生态 ==================== -->
+<div class="section">
+  <div class="section-header"><span class="icon">🛠️</span>开发生态</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#11</span>
+      <div class="card-title"><a href="https://huggingface.co/blog/state-of-open-models-summer-2026" target="_blank">Hugging Face 发布「State of Open Models 2026 夏季观察」：中国实验室主导开源前沿</a></div>
+    </div>
+    <blockquote>基于 2026 年 1—8 月 Hub 数据的报告：中国实验室在多数月份发布更大规模的开放模型，Qwen 衍生模型超 15 万个，Agent 首次成为 Hub「第一类用户」。</blockquote>
+    <p>8 月 14 日发布的报告要点：① 2026 年多数月份中，中国实验室发布的最大开放模型规模超过美国实验室（月度参数上限约 754B—2.78T，美国多数月份低于 130B）；② Qwen 衍生模型达 151,448 个，约为 Meta 总量的 2.6 倍、Llama 的 4.7 倍；③ 下载量仍集中在小模型——1B 以下模型占历史下载量的 83%，「点赞反映兴奋点，下载反映真实使用」；④ Agent 流量格局高度不稳：Claude Code 占 7 月 agent 流量的 44.4%，但曾从 4 月的 67.8% 跌至 5 月的 6.4%。</p>
+    <p>报告还披露了 2026 年 7 月疑似首例由自主 agent 主动发起的持续入侵事件（攻击代码最终用量化的 GLM-5.2 完成分析），并介绍了为 agent 用户建设的基础设施：机器可读论文、agents.md 端点、MCP 工具与安全沙箱等。对关注开源选型与 Agent 工程的开发者，这份报告值得通读。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://huggingface.co/blog/state-of-open-models-summer-2026" target="_blank">Hugging Face Blog：State of Open Models — Summer 2026 Observations</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#12</span>
+      <div class="card-title"><a href="https://github.com/google/heir" target="_blank">Google 开源 HEIR 同态加密推理工具链：让模型在加密数据上推理</a></div>
+    </div>
+    <blockquote>据周末新闻汇总，Google 发布面向加密 AI 推理的 HEIR 编译工具链，服务器在推理过程中不可见原始数据。</blockquote>
+    <p>HEIR（Homomorphic Encryption Intermediate Representation）是 Google 发起的开源同态加密编译器项目，本周末的更新面向 AI 推理场景：模型可以直接在加密输入上完成推理，服务端全程接触不到明文数据。汇总报道列举的潜在场景包括隐私推荐、欺诈检测与网络异常检测等。</p>
+    <p>需要提醒：同态加密的计算成本仍然很高，距离大规模生产尚有距离。本条基于周末新闻汇总与项目页面信息，具体能力边界以 Google 官方说明为准。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://github.com/google/heir" target="_blank">GitHub：google/heir 项目主页</a>
+      <a href="https://www.aidapted.ro/en/articles/ai-news-august-16-2026-openai-deepseek-europe/" target="_blank">Aidapted：AI News August 16, 2026（含 HEIR 条目）</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#13</span>
+      <div class="card-title"><a href="https://k.sina.com.cn/article_7857201856_1d45362c001908jo8a.html?from=tech" target="_blank">新京报 AI 研究院实测 DeepSeek Harness：Agent 运行时的「乐高式」拼装</a></div>
+    </div>
+    <blockquote>DeepSeek Harness 开发者预览版上周开源后，新京报 AI 研究院实测评价：插件化、轨迹可追踪，像拼乐高一样组装智能体。</blockquote>
+    <p>Harness 的开发者预览版 8 月 13 日开源（上期早报已收录）。新京报 AI 研究院 8 月 14—15 日试用后给出实测结论：Harness 将 Agent 系统拆为模型、工具、沙箱、循环、界面五层，组件可互换、模型无关，允许高度自定义——「类似可拼装的积木或可加载模组的游戏」。</p>
+    <p>对于构建长时运行 Agent 的团队，这种「一切皆插件」的运行时设计降低了更换模型与工具链的成本，值得跟进其后续版本。开源社区盘点同时提到，Harness 的 YAML 配置方式让各层组件的组合与复现更直接。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://k.sina.com.cn/article_7857201856_1d45362c001908jo8a.html?from=tech" target="_blank">新浪 AI 热点小时报（8 月 16 日）：实测 DeepSeek Harness——梁文锋把智能体拼成乐高</a>
+      <a href="https://www.tianliaos.com/post/open-source-ai-roundup-august-2026-deepseek-qwen-glm" target="_blank">2026 年 8 月开源 AI 热点盘点（含 Harness 架构解析）</a>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 行业动态 ==================== -->
+<div class="section">
+  <div class="section-header"><span class="icon">🏢</span>行业动态</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#14</span>
+      <div class="card-title"><a href="https://www.aidapted.ro/en/articles/ai-news-august-16-2026-openai-deepseek-europe/" target="_blank">路透：Alphabet、Amazon、Meta 今年为 AI 基建借款合计近 2200 亿美元</a></div>
+    </div>
+    <blockquote>路透 8 月 14 日报道，科技巨头为 AI 基础设施的大规模借款开始影响金融市场。</blockquote>
+    <p>据周末新闻汇总转引路透报道：Alphabet、Amazon 与 Meta 在 2026 年合计借款接近 2200 亿美元，主要投向 AI 算力与数据中心建设；报道指出，若融资成本继续上升，可能反过来约束 AI 基础设施的扩张节奏。</p>
+    <p>结合本期 #4（黄仁勋与资管巨头推动算力资产化、英伟达收缩对 OpenAI 数据中心的担保额度），资本端对 AI 投入的风险意识正在上升——「AI 基建靠发债」的模式能持续多久，将成为下半年的关键议题。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.aidapted.ro/en/articles/ai-news-august-16-2026-openai-deepseek-europe/" target="_blank">Aidapted：AI News August 16, 2026（转引路透 8 月 14 日报道）</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#15</span>
+      <div class="card-title"><a href="https://autonews.gasgoo.com/articles/market-industry/another-embodied-intelligence-company-secures-funding-infiforce-closes-nearly-rmb-1-billion-series-aa-round-2088201248296951808" target="_blank">具身智能公司 INFIFORCE 完成近 10 亿元 A+A+ 轮，敦鸿资产领投</a></div>
+    </div>
+    <blockquote>据盖世汽车 8 月 14 日报道，INFIFORCE 完成 A 轮与 A+ 轮合计近 10 亿元人民币融资，投向因果世界模型与机器人规模化交付。</blockquote>
+    <p>本轮融资由敦鸿资产领投，浙江大学科创集团、盐都国投控股、丽水国资等多家国资平台参与，老股东创新资本（CCV）增持。资金将投向三个方向：AtomBrain 具身智能与因果世界模型研发、DataGrid 全栈 AI 基础设施升级，以及多形态机器人在真实工业场景的规模化交付验证。</p>
+    <p>具身智能赛道持续升温：同期另有多家具身智能公司（Lumos Robotics、Vbot、Uncharted Dynamics 等）宣布新融资。世界模型 + 数据基建 + 工业落地，正在成为这一轮融资叙事的标准三件套。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://autonews.gasgoo.com/articles/market-industry/another-embodied-intelligence-company-secures-funding-infiforce-closes-nearly-rmb-1-billion-series-aa-round-2088201248296951808" target="_blank">盖世汽车（英文版）：INFIFORCE closes nearly RMB 1 billion Series A+A+ round</a>
+      <a href="https://www.trysignalbase.com/news/funding/infiforce-raises-150m-series-a-for-embodied-ai" target="_blank">Signalbase：INFIFORCE Raises $150M for Embodied AI</a>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 前瞻与传闻 ==================== -->
+<div class="section">
+  <div class="section-header"><span class="icon">🔮</span>前瞻与传闻</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#16</span>
+      <div class="card-title">传月之暗面 8 月启动上市前新一轮融资<span class="rumor-tag">未确认</span></div>
+    </div>
+    <blockquote>知乎讨论称月之暗面计划 8 月启动上市前最后一轮融资，目标估值约 500 亿美元；官方未确认。</blockquote>
+    <p>背景：7 月底月之暗面刚完成超 35 亿美元 F 轮融资，估值升至约 500 亿美元（证券时报、澎湃等报道），7 月中旬开源了 2.8 万亿参数的 Kimi K3（全球最大规模开源模型之一）。社区传言其将在 8 月启动上市前的最后一轮融资。</p>
+    <p>该消息目前仅见于社区讨论，未获公司或投资方确认，具体金额、时间表均不确定，请按传闻看待。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.zhihu.com/question/2063300922223153511" target="_blank">知乎讨论：月之暗面计划 8 月启动上市前最后一轮融资（未确认）</a>
+      <a href="https://www.stcn.com/article/detail/4050903.html" target="_blank">证券时报：月之暗面 35 亿美元融资背后——背景参考</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#17</span>
+      <div class="card-title">传小红书团队稀疏模型 dots3-note 处于预览阶段<span class="rumor-tag">未确认</span></div>
+    </div>
+    <blockquote>开源社区盘点称小红书团队的 280B MoE 模型 dots3-note 正在预览，活跃参数约 16B，支持 512K 上下文。</blockquote>
+    <p>据 8 月开源 AI 热点盘点：dots3-note 为 280B 参数 MoE 架构、活跃参数约 16B，支持 512K 上下文，面向长文档与长代码库场景，目前处于预览阶段。</p>
+    <p>尚未见到官方模型卡、权重或正式发布信息，消息来源为第三方盘点，请按传闻看待；若属实，将是小红书在端云结合长上下文方向的重要布局。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.tianliaos.com/post/open-source-ai-roundup-august-2026-deepseek-qwen-glm" target="_blank">2026 年 8 月开源 AI 热点盘点（dots3-note 条目）</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#18</span>
+      <div class="card-title">Stripe 收购 OpenRouter 传闻再起：金额口径 70—100 亿美元<span class="rumor-tag">未确认</span></div>
+    </div>
+    <blockquote>WSJ 与 Axios 7 月底报道双方「正在谈判」（约 100 亿美元）；周末有汇总称交易已以 70 亿美元以上达成，双方均未官宣。</blockquote>
+    <p>Stripe 被报道有意收购 AI 模型路由平台 OpenRouter，以补强其在 AI 时代的模型路由、计量与计费能力。WSJ 与 Axios 7 月下旬的口径是「谈判中、潜在交易约 100 亿美元」；8 月 16 日有新闻汇总称交易已达成、金额 70 亿美元以上。</p>
+    <p>两种口径相互矛盾且均无官方公告支撑，此条按未确认传闻处理。OpenRouter 是当前最重要的第三方模型路由入口之一，若交易成真，将直接影响大量开发者与 Agent 产品的计费链路。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.wsj.com/tech/ai/stripe-in-talks-to-buy-buzzy-ai-model-marketplace-openrouter-decc6a74" target="_blank">The Wall Street Journal：Stripe in Talks to Buy OpenRouter</a>
+      <a href="https://www.axios.com/2026-07-24/stripe-openrouter-merger-ai-currency" target="_blank">Axios：AI currency driving Stripe's OpenRouter move</a>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>AI 早报 &middot; 2026-08-17 &middot; 生成于北京时间 2026 年 8 月 17 日上午</p>
+  <p>信息窗口：周一加宽机制，覆盖过去约 72 小时（2026-08-14 至 08-17），收录 18 条，含 3 条未确认传闻（已标注）</p>
+  <p>内容基于公开网络信息整理，链接均为原始来源；「未确认」条目请以官方发布为准</p>
+</div>
+
+</div>
+</body>
+</html>
