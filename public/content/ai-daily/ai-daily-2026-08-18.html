@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 早报 2026-08-18</title>
+<style>
+  :root {
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #1a1a2e;
+    --text-secondary: #555770;
+    --accent: #4361ee;
+    --accent-light: #eef1ff;
+    --border: #e2e4e9;
+    --tag-bg: #f0f1f3;
+    --warn-bg: #fff8e1;
+    --warn-border: #ffe082;
+    --rumor-bg: #fff3e0;
+    --rumor-text: #e65100;
+    --blockquote-border: #4361ee;
+    --blockquote-bg: #f5f7ff;
+    --link: #4361ee;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 40px 0 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .header .date {
+    color: var(--text-secondary);
+    font-size: 15px;
+  }
+  .header .subtitle {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 4px;
+  }
+
+  /* Overview */
+  .overview {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 24px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow);
+  }
+  .overview h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--accent);
+    color: var(--accent);
+  }
+  .overview .cat-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 18px 0 8px;
+  }
+  .overview .cat-title:first-of-type {
+    margin-top: 0;
+  }
+  .overview ul {
+    list-style: none;
+    padding: 0;
+  }
+  .overview li {
+    padding: 4px 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .overview li::before {
+    content: "";
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+  .overview .num {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    font-family: "SF Mono", "Fira Code", monospace;
+    flex-shrink: 0;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 36px;
+  }
+  .section-header {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    padding: 12px 0 8px;
+    margin-bottom: 16px;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-header .icon {
+    font-size: 20px;
+  }
+
+  /* Card */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.15s;
+  }
+  .card:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .card-num {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-light);
+    border-radius: 6px;
+    padding: 2px 8px;
+    flex-shrink: 0;
+    font-family: "SF Mono", "Fira Code", monospace;
+    line-height: 1.6;
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .card-title a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .card-title a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .card blockquote {
+    background: var(--blockquote-bg);
+    border-left: 3px solid var(--blockquote-border);
+    padding: 8px 14px;
+    margin: 10px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+  .card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin: 8px 0;
+  }
+  .card .links {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .card .links-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .card .links a {
+    display: block;
+    font-size: 13px;
+    color: var(--link);
+    text-decoration: none;
+    padding: 2px 0;
+    word-break: break-all;
+  }
+  .card .links a:hover {
+    text-decoration: underline;
+  }
+
+  /* Rumor tag */
+  .rumor-tag {
+    display: inline-block;
+    background: var(--rumor-bg);
+    color: var(--rumor-text);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 32px 0 16px;
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+  .footer p {
+    margin: 4px 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .container { padding: 16px 14px 40px; }
+    .header h1 { font-size: 22px; }
+    .card { padding: 16px 16px; }
+    .overview { padding: 20px 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1>AI 早报 2026-08-18</h1>
+  <div class="date">2026 年 8 月 18 日 星期二</div>
+  <div class="subtitle">收录 25 条 &middot; 6 个分类 &middot; 含 2 条未确认传闻</div>
+</div>
+
+<!-- Overview -->
+<div class="overview">
+  <h2>概览</h2>
+
+  <div class="cat-title">要闻</div>
+  <ul>
+    <li>Anthropic 年化营收飙升至 $650 亿，两个月新增 $180 亿 <span class="num">#1</span></li>
+    <li>Stripe 敲定逾 $70 亿收购模型路由平台 OpenRouter <span class="num">#2</span></li>
+    <li>NVIDIA 设立 $5000 亿+ AI 算力融资平台，SEC 新规松绑 <span class="num">#3</span></li>
+    <li>支付宝发布国内首个智能体商业底座「阿宝」与 AHA 跨端协议 <span class="num">#4</span></li>
+    <li>千问办公上线三天撤回智谱、DeepSeek 两款模型接入 <span class="num">#5</span></li>
+  </ul>
+
+  <div class="cat-title">模型发布</div>
+  <ul>
+    <li>NVIDIA Nemotron 3.5 Lightning 上架 Amazon SageMaker JumpStart <span class="num">#6</span></li>
+  </ul>
+
+  <div class="cat-title">产品应用</div>
+  <ul>
+    <li>AI 自动化公司 Relay 关停，团队加入 Google Chrome <span class="num">#7</span></li>
+    <li>作业帮发布「AI 超级老师」，进军高端学习市场 <span class="num">#8</span></li>
+    <li>Google 于 8 月 17 日正式退役 Imagen 4，转向 Gemini 图像 <span class="num">#9</span></li>
+  </ul>
+
+  <div class="cat-title">开发生态</div>
+  <ul>
+    <li>Cursor 开启 Origin 代码托管服务早期 Beta <span class="num">#10</span></li>
+    <li>字节跳动 Seed 与清华 AIR 提出 CUDA Agent，用 RL 写 CUDA 内核 <span class="num">#11</span></li>
+    <li>LangChain 发布 AgentCore Payments：Agent 预算化支付中间件 <span class="num">#12</span></li>
+    <li>Microsoft Research Webwright：Web Agent 应写代码而非点 UI <span class="num">#13</span></li>
+    <li>具身智能评测平台 RoboColiseum 开放 <span class="num">#14</span></li>
+  </ul>
+
+  <div class="cat-title">行业动态</div>
+  <ul>
+    <li>Groq 再融 $3.5 亿，转向 Nvidia 支持的 Neocloud <span class="num">#15</span></li>
+    <li>Higgsfield 融资 $4 亿，估值 $54 亿，英特尔参投 <span class="num">#16</span></li>
+    <li>Wispr 融资 $2.8 亿，估值 $20 亿 <span class="num">#17</span></li>
+    <li>Crusoe 洽谈 IPO，按 $350 亿估值融 $30 亿 Pre-IPO <span class="num">#18</span></li>
+    <li>英伟达 $15 亿入股 SB Energy，OpenAI 签俄亥俄数据中心 20 年租约 <span class="num">#19</span></li>
+    <li>美国司法部对 a16z 展开反垄断调查 <span class="num">#20</span></li>
+    <li>Hugging Face 观察：中国开源 AI 成部分美国大模型底座 <span class="num">#21</span></li>
+    <li>OpenAI 总裁回应高管流失潮 <span class="num">#22</span></li>
+    <li>第二届世界人形机器人运动会在京进行中 <span class="num">#23</span></li>
+  </ul>
+
+  <div class="cat-title">前瞻与传闻</div>
+  <ul>
+    <li>Fortune：Anthropic 拟 10 月 IPO，估值瞄准约 $2 万亿 <span class="rumor-tag">未确认</span> <span class="num">#24</span></li>
+    <li>报道：OpenAI 最快 9 月 IPO，目标估值超 $1 万亿 <span class="rumor-tag">未确认</span> <span class="num">#25</span></li>
+  </ul>
+</div>
+
+<!-- ===== 要闻 ===== -->
+<div class="section">
+  <div class="section-header"><span class="icon">📰</span> 要闻</div>
+
+  <!-- #1 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#1</span>
+      <div class="card-title"><a href="https://techcrunch.com/2026/08/17/anthropics-annualized-revenue-surges-to-65b/" target="_blank">Anthropic 年化营收飙升至 $650 亿，两个月新增 $180 亿</a></div>
+    </div>
+    <blockquote>TechCrunch 报道，Anthropic 年化营收已达 $650 亿，两个月内新增 $180 亿年化收入。</blockquote>
+    <p>TechCrunch 8 月 17 日报道称，Anthropic 的年化（run-rate）营收已升至 $650 亿。多家聚合信息的统计显示，该数字今年 5 月约为 $470 亿、去年底约为 $90 亿，意味着其营收在半年多时间里增长数倍，企业级 API 与编程场景被普遍视为核心驱动力。</p>
+    <p>营收的快速增长也在强化市场对 Anthropic 上市的预期（Fortune 曾报道其或于 10 月 IPO，见 #24）。Anthropic 官方暂未对该营收数字公开置评，具体数据以公司后续披露为准。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://techcrunch.com/2026/08/17/anthropics-annualized-revenue-surges-to-65b/" target="_blank">TechCrunch 报道</a>
+    </div>
+  </div>
+
+  <!-- #2 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#2</span>
+      <div class="card-title"><a href="https://www.pymnts.com/news/artificial-intelligence/2026/stripe-finalizes-7-billion-deal-for-ai-firm-openrouter/" target="_blank">Stripe 敲定逾 $70 亿收购模型路由平台 OpenRouter</a></div>
+    </div>
+    <blockquote>彭博 8 月 16 日报道交易接近达成后，多家媒体 8 月 17 日称 Stripe 收购 OpenRouter 的交易已敲定，金额超 $70 亿。</blockquote>
+    <p>OpenRouter 聚合了数百个大模型的 API 端点，提供统一计费与路由，是开发者社区最常用的模型聚合入口之一。Stripe 高价将其收入囊中，被解读为把「模型路由 + 支付」纳入同一基础设施，为 AI 时代的 API 计费与 Agent 支付场景提前卡位。</p>
+    <p>这是支付巨头对 AI 开发者工具规模最大的一笔收购之一。交易细节以双方官方披露为准。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.bloomberg.com/news/articles/2026-08-16/stripe-nears-deal-to-buy-ai-firm-openrouter-for-over-7-billion" target="_blank">Bloomberg：交易接近达成</a>
+      <a href="https://www.pymnts.com/news/artificial-intelligence/2026/stripe-finalizes-7-billion-deal-for-ai-firm-openrouter/" target="_blank">PYMNTS：交易敲定</a>
+      <a href="https://www.latent.space/p/ainews-stripe-buys-openrouter-for" target="_blank">Latent Space AI News</a>
+    </div>
+  </div>
+
+  <!-- #3 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#3</span>
+      <div class="card-title"><a href="https://nvidianews.nvidia.com/news/nvidia-partners-with-apollo-blackrock-blackstone-brookfield-goldman-sachs-and-kkr-to-establish-ai-compute-infrastructure-financing-platforms-to-mobilize-over-500-billion-of-third-party-capital" target="_blank">NVIDIA 设立 $5000 亿+ AI 算力融资平台，SEC 新规松绑</a></div>
+    </div>
+    <blockquote>NVIDIA 与 Apollo、BlackRock 等六家机构设立 AI 算力基础设施融资平台，目标撬动超 $5000 亿第三方资本；SEC 新指导意见为证券化扫清障碍。</blockquote>
+    <p>NVIDIA 官方宣布与 Apollo、BlackRock、Blackstone、Brookfield、Goldman Sachs、KKR 合作建立 AI 算力基础设施融资平台，目标动员超过 $5000 亿的第三方资本，引导保险、养老金等长期资金进入 AI 数据中心建设。</p>
+    <p>CNBC 与 Quartz 8 月 17 日报道，SEC 新发布的指导意见放宽了数据中心证券化的风险自留要求，为该计划扫除了关键障碍。分析认为，这标志着 AI 基建融资从「巨头自有资金 + 银行贷款」转向「证券化社会资本」，同时也引发了关于风险转移与系统性杠杆的讨论。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://nvidianews.nvidia.com/news/nvidia-partners-with-apollo-blackrock-blackstone-brookfield-goldman-sachs-and-kkr-to-establish-ai-compute-infrastructure-financing-platforms-to-mobilize-over-500-billion-of-third-party-capital" target="_blank">NVIDIA 官方公告</a>
+      <a href="https://www.cnbc.com/2026/08/17/nvidia-financing-initiative-follows-sec-guidance-taking-sponsors-off-the-hook.html" target="_blank">CNBC：SEC 指导意见</a>
+      <a href="https://qz.com/sec-guidance-nvidia-ai-data-center-financing-500-billion-081726" target="_blank">Quartz 分析</a>
+    </div>
+  </div>
+
+  <!-- #4 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#4</span>
+      <div class="card-title"><a href="https://app.xinhuanet.com/news/article.html?articleId=202608174b2fd4ffea614be584b8bcc5c3eb5186" target="_blank">支付宝发布国内首个智能体商业底座：「阿宝」+ AHA 跨端协议</a></div>
+    </div>
+    <blockquote>支付宝 8 月 17 日发布「全栈智能体商业底座」：超级服务智能体「阿宝」已接入万余项服务，同时发布 AHA 跨端多智能体互联协议。</blockquote>
+    <p>据新华网报道，支付宝在智能体商业大会上推出面向智能体时代的商业基础设施，并发布「智能经营激励计划」。「阿宝」覆盖出行打车、餐饮点餐、文旅景区、政务民生等场景，跨端覆盖 5 家主流手机厂商与 16 家主流车企；AHA（Agent Hub Access）协议用于不同厂商、终端与智能体之间的连接、授权与执行。</p>
+    <p>合作方包括千问、华为、OPPO、vivo、小米、荣耀、比亚迪、吉利、理想、蔚来、阶跃星辰、Rokid 等，服务接入方还包括麦当劳、蜜雪冰城、瑞幸、高德打车、滴滴等。据新浪财经报道，部分商家开发需求已排到明年。智能体时代的「服务履约入口与跨端协议」正在成为新的竞争焦点。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://app.xinhuanet.com/news/article.html?articleId=202608174b2fd4ffea614be584b8bcc5c3eb5186" target="_blank">新华网报道</a>
+      <a href="https://finance.ifeng.com/c/8vfIwha4bNb" target="_blank">凤凰财经</a>
+      <a href="https://cj.sina.cn/articles/view/1850649324/6e4eaaec02002gyq0" target="_blank">新浪财经：商家接入情况</a>
+    </div>
+  </div>
+
+  <!-- #5 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#5</span>
+      <div class="card-title"><a href="https://finance.sina.cn/stock/jdts/2026-08-17/detail-ininruyh8995510.d.html" target="_blank">千问办公上线三天，撤回智谱 GLM-5.3 与 DeepSeek V4 Pro 接入</a></div>
+    </div>
+    <blockquote>新浪财经报道，8 月 14 日千问办公首发接入的两款外部前沿模型，8 月 17 日晚被发现已从产品端下架，原因未公布。</blockquote>
+    <p>8 月 14 日晚，阿里「千问办公」宣布首发接入智谱 GLM-5.3 与 DeepSeek V4 Pro，被媒体称为「模型聚合大战」的开端。但 8 月 17 日晚，这两款外部模型被发现已从产品端移除，模型档位恢复为「高级 / 基础 / 经济」和 Qwen3.8-Max。</p>
+    <p>阿里尚未公开解释下架原因，相关微信公众号文章已被设为隐私、无法查看。背景信息：GLM-5.3 由智谱于 8 月 14 日发布并开源，主打「编程能力最强开源模型」，官方称较 GLM-5.2 提升 50%。下架的具体原因目前仍无法确认。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://finance.sina.cn/stock/jdts/2026-08-17/detail-ininruyh8995510.d.html" target="_blank">新浪财经报道</a>
+      <a href="https://www.ithome.com/0/989/689.htm" target="_blank">IT之家：智谱发布 GLM-5.3</a>
+      <a href="https://www.163.com/dy/article/L4IIHKBH05198NMR.html" target="_blank">网易科技</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 模型发布 ===== -->
+<div class="section">
+  <div class="section-header"><span class="icon">🧠</span> 模型发布</div>
+
+  <!-- #6 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#6</span>
+      <div class="card-title"><a href="https://aws.amazon.com/blogs/machine-learning/nvidia-nemotron-3-5-lightning-now-available-in-amazon-sagemaker-jumpstart/" target="_blank">NVIDIA Nemotron 3.5 Lightning 上架 Amazon SageMaker JumpStart</a></div>
+    </div>
+    <blockquote>NVIDIA 面向 Agent 场景的 Nemotron 3.5 Lightning 模型上线 Amazon SageMaker JumpStart，可在 AWS 内一键部署。</blockquote>
+    <p>AWS 官方博客 8 月 17 日宣布，Nemotron 3.5 Lightning 可通过 SageMaker JumpStart 获取，主要面向 Agent 类任务场景。JumpStart 是亚马逊的模型中心，提供主流模型的一键部署能力。</p>
+    <p>对于在 AWS 上构建 Agent 系统的企业团队而言，这降低了该模型的部署与集成门槛，也延续了 NVIDIA 将自研模型推向各大云平台的策略。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://aws.amazon.com/blogs/machine-learning/nvidia-nemotron-3-5-lightning-now-available-in-amazon-sagemaker-jumpstart/" target="_blank">AWS Machine Learning Blog</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 产品应用 ===== -->
+<div class="section">
+  <div class="section-header"><span class="icon">📱</span> 产品应用</div>
+
+  <!-- #7 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#7</span>
+      <div class="card-title"><a href="https://techcrunch.com/2026/08/17/ai-automation-startup-relay-shuts-down-staff-joins-googles-chrome-team/" target="_blank">AI 自动化公司 Relay 关停，团队加入 Google Chrome</a></div>
+    </div>
+    <blockquote>TechCrunch 报道，AI 工作流自动化初创公司 Relay 宣布关闭，其团队将加入 Google Chrome，从事 AI 辅助生产力方向。</blockquote>
+    <p>Relay 的产品方向是基于 Agent 的跨应用工作流自动化。团队并入 Google Chrome 后，将投入浏览器内的 AI 辅助生产力能力建设，被视为浏览器 Agent 赛道整合的又一案例。</p>
+    <p>对使用此类自动化工具的团队而言，这类收购式关停也提醒关注工具迁移与数据连续性风险。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://techcrunch.com/2026/08/17/ai-automation-startup-relay-shuts-down-staff-joins-googles-chrome-team/" target="_blank">TechCrunch 报道</a>
+    </div>
+  </div>
+
+  <!-- #8 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#8</span>
+      <div class="card-title"><a href="https://k.sina.com.cn/article_7857201856_1d45362c001908jtoc.html?from=tech" target="_blank">作业帮发布「AI 超级老师」与三款新品，进军高端学习市场</a></div>
+    </div>
+    <blockquote>据新浪 AI 热点 8 月 17 日报道，作业帮推出「AI 超级老师」与三款学习产品，宣布进军高端学习硬件市场。</blockquote>
+    <p>AI 教师正在成为学习硬件的核心卖点，作业帮试图以内容与题库积累向高端市场延伸。国内 AI 教育硬件赛道竞争持续升温。</p>
+    <p>注：本条来自新浪 AI 热点小时报汇编，产品细节以公司官方发布为准。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://k.sina.com.cn/article_7857201856_1d45362c001908jtoc.html?from=tech" target="_blank">新浪 AI 热点小时报（2026-08-17）</a>
+    </div>
+  </div>
+
+  <!-- #9 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#9</span>
+      <div class="card-title"><a href="https://developers.googleblog.com/en/imagen-4-retirement-gemini-image/" target="_blank">Google 于 8 月 17 日正式退役 Imagen 4，转向 Gemini 图像能力</a></div>
+    </div>
+    <blockquote>Google 宣布 Imagen 4 的 standard、ultra、fast 图像生成端点于 8 月 17 日全部退役，引导开发者迁移至 Gemini 图像功能。</blockquote>
+    <p>这是 Google 将图像生成能力统一到 Gemini 体系的一部分。随着 Gemini 原生图像生成能力增强，独立的 Imagen API 产品线开始收缩。</p>
+    <p>已接入 Imagen 4 的开发者需尽快迁移接口，否则调用将失败。迁移指引见 Google 开发者博客。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://developers.googleblog.com/en/imagen-4-retirement-gemini-image/" target="_blank">Google Developers Blog</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 开发生态 ===== -->
+<div class="section">
+  <div class="section-header"><span class="icon">⚙️</span> 开发生态</div>
+
+  <!-- #10 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#10</span>
+      <div class="card-title"><a href="https://cursor.com/changelog/origin-code-hosting" target="_blank">Cursor 开启 Origin 代码托管服务早期 Beta</a></div>
+    </div>
+    <blockquote>Cursor 8 月 17 日宣布 Origin 代码托管服务开启早期 Beta：托管仓库、Pull Request、代码浏览与 GitHub 双向同步。</blockquote>
+    <p>Origin 支持 CLI 推送、导入 GitHub 仓库、PR 审阅与合并，Agent 可直接在仓库内执行操作，并可连接 Vercel、Depot、Buildkite 等构建与部署平台。</p>
+    <p>这意味着 Cursor 正从「AI IDE」延伸到「代码托管与协作平台」，直接进入 GitHub 的腹地，AI 编程产品的闭环继续向上游 DevOps 环节扩张。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://cursor.com/changelog/origin-code-hosting" target="_blank">Cursor Changelog</a>
+    </div>
+  </div>
+
+  <!-- #11 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#11</span>
+      <div class="card-title"><a href="https://www.marktechpost.com/2026/08/17/bytedance-seed-and-tsinghua-air-introduces-cuda-agent-a-large-scale-agentic-rl-system-for-cuda-kernel-generation/" target="_blank">字节跳动 Seed 与清华 AIR 提出 CUDA Agent：用 RL 自动写 CUDA 内核</a></div>
+    </div>
+    <blockquote>字节跳动 Seed 与清华 AIR 发布 CUDA Agent，一个大规模 Agentic RL 系统，可自主生成 CUDA GPU 内核，在 KernelBench 96.8% 的任务上优于 torch.compile。</blockquote>
+    <p>该系统采用智能体式强化学习范式，让模型自主编写、剖析并迭代 CUDA 内核，在 KernelBench 基准上平均提速 2.11 倍。</p>
+    <p>这代表了「AI 构建 AI 基础设施」方向的进一步落地：传统上高度依赖专家手工优化的 GPU 内核开发正在被自动化。这也是过去 24 小时内中国团队在 AI-for-Infra 方向的代表性研究产出之一。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.marktechpost.com/2026/08/17/bytedance-seed-and-tsinghua-air-introduces-cuda-agent-a-large-scale-agentic-rl-system-for-cuda-kernel-generation/" target="_blank">MarkTechPost 报道</a>
+    </div>
+  </div>
+
+  <!-- #12 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#12</span>
+      <div class="card-title"><a href="https://www.langchain.com/blog/langchain-agentcore-payments" target="_blank">LangChain 发布 AgentCore Payments：Agent 预算化支付中间件</a></div>
+    </div>
+    <blockquote>LangChain 发布 AgentCore Payments 中间件，让 Agent 在确定性会话预算内为 API 付费：基础设施级限额、x402 微支付、全程可追溯。</blockquote>
+    <p>该中间件基于 Amazon Bedrock AgentCore Payments，提供钱包认证、交易限额与支付签名。当 Agent 调用付费 API 时，中间件按会话预算核验费用、签名支付并重试请求，每笔交易写入 LangSmith 追踪记录。</p>
+    <p>与「用提示词约束花钱」不同，预算控制落在基础设施层，可靠性显著提升。Agent 经济的支付与计费基础设施正在走向成熟。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.langchain.com/blog/langchain-agentcore-payments" target="_blank">LangChain Blog</a>
+    </div>
+  </div>
+
+  <!-- #13 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#13</span>
+      <div class="card-title"><a href="https://towardsdatascience.com/webwright-why-ai-web-agents-should-write-code-not-click/" target="_blank">Microsoft Research Webwright：Web Agent 应写代码而非点 UI</a></div>
+    </div>
+    <blockquote>微软研究院主推的 Webwright 路线认为：Web Agent 优先「写代码调工具」比「模拟 UI 点击」更稳健高效。</blockquote>
+    <p>文章分析了代码驱动的 Web Agent 在复杂任务上优于像素/点击驱动方案的原因：代码可组合、可重试、可验证，且不受 UI 变化影响。</p>
+    <p>这一路线与近期终端式、代码优先 Agent 的趋势一致，为浏览器 Agent 的架构选型（视觉点击派 vs 代码优先派）提供了工程参考。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://towardsdatascience.com/webwright-why-ai-web-agents-should-write-code-not-click/" target="_blank">Towards Data Science</a>
+    </div>
+  </div>
+
+  <!-- #14 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#14</span>
+      <div class="card-title"><a href="https://k.sina.com.cn/article_7857201856_1d45362c001908jueu.html?from=tech" target="_blank">具身智能评测平台 RoboColiseum 开放：30 分钟测出真本事</a></div>
+    </div>
+    <blockquote>据新浪 AI 热点报道，全球高校、社区与科研机构联合打造的具身智能评测平台 RoboColiseum 开放，提供标准化、可复现的仿真测试环境。</blockquote>
+    <p>该平台可为具身智能模型提供统一评测基准，帮助识别真实能力与短板，针对的是具身智能领域长期缺乏标准化评测的问题。</p>
+    <p>注：本条来自新浪 AI 热点小时报汇编，平台细节以项目方官方信息为准。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://k.sina.com.cn/article_7857201856_1d45362c001908jueu.html?from=tech" target="_blank">新浪 AI 热点小时报（2026-08-17 23 时）</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 行业动态 ===== -->
+<div class="section">
+  <div class="section-header"><span class="icon">💼</span> 行业动态</div>
+
+  <!-- #15 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#15</span>
+      <div class="card-title"><a href="https://techcrunch.com/2026/08/17/groq-raises-350m-to-fuel-its-pivot-from-ai-chips-to-neocloud/" target="_blank">Groq 再融 $3.5 亿，转向 Nvidia 支持的 Neocloud</a></div>
+    </div>
+    <blockquote>TechCrunch 报道，Groq 新融资 $3.5 亿，业务重心从 AI 推理芯片转向 Nvidia 支持的推理云服务（Neocloud）。</blockquote>
+    <p>Groq 以 LPU 推理芯片和低延迟推理 API 著称。报道显示其业务重心正转向构建由 Nvidia 生态支持的推理云服务。</p>
+    <p>在推理需求爆发、芯片创业竞争激烈的背景下，「卖云服务」被视为比「卖芯片」更确定的商业化路径。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://techcrunch.com/2026/08/17/groq-raises-350m-to-fuel-its-pivot-from-ai-chips-to-neocloud/" target="_blank">TechCrunch 报道</a>
+    </div>
+  </div>
+
+  <!-- #16 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#16</span>
+      <div class="card-title"><a href="https://www.36kr.com/p/3943619724557445" target="_blank">Higgsfield 融资 $4 亿，估值 $54 亿，英特尔参投</a></div>
+    </div>
+    <blockquote>AI 视频/图像生成平台 Higgsfield 以 $54 亿估值（约人民币 365.6 亿元）融资 $4 亿，DST Global、高盛、Liberty Global、英特尔参投。</blockquote>
+    <p>SiliconANGLE 8 月 17 日报道、36 氪 8 月 18 日证实了本轮融资，资金将用于扩展专业级 AI 视频与图像生成能力。</p>
+    <p>Higgsfield 聚焦专业视频生产场景，是当前 AI 视频赛道估值最高的独角兽之一。英特尔的参投也为 AI 视频工作负载的算力合作留下想象空间。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.36kr.com/p/3943619724557445" target="_blank">36 氪</a>
+      <a href="https://siliconangle.com/2026/08/17/higgsfield-raises-400m-at-5-4-billion-valuation-to-scale-video-and-image-generation-platform/" target="_blank">SiliconANGLE</a>
+    </div>
+  </div>
+
+  <!-- #17 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#17</span>
+      <div class="card-title"><a href="https://techcrunch.com/2026/08/17/wispr-raises-280m-at-2b-valuation-as-it-looks-beyond-dictation/" target="_blank">Wispr 融资 $2.8 亿，估值 $20 亿</a></div>
+    </div>
+    <blockquote>语音输入公司 Wispr 以 $20 亿估值融资 $2.8 亿，产品从语音听写扩展到会议纪要等场景。</blockquote>
+    <p>Wispr 的核心产品是系统级语音输入，目标是取代键盘打字。本轮融资将用于扩展到会议记录等新场景。</p>
+    <p>语音交互赛道正随实时语音模型的成熟持续升温。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://techcrunch.com/2026/08/17/wispr-raises-280m-at-2b-valuation-as-it-looks-beyond-dictation/" target="_blank">TechCrunch 报道</a>
+    </div>
+  </div>
+
+  <!-- #18 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#18</span>
+      <div class="card-title"><a href="https://www.axios.com/pro/climate-deals/2026/08/17/crusoe-ipo-jpm-ms-gs-bofa" target="_blank">Crusoe 洽谈 IPO，按 $350 亿估值融资 $30 亿 Pre-IPO</a></div>
+    </div>
+    <blockquote>Axios 报道，AI 数据中心与清洁能源公司 Crusoe 正在进行 IPO 磋商，同时按约 $350 亿估值融资 $30 亿 Pre-IPO 轮。</blockquote>
+    <p>报道提及的参与机构包括 JPMorgan、Morgan Stanley、Goldman Sachs、Bank of America 等。Crusoe 以清洁能源驱动的数据中心著称，是 AI 基建热潮中「能源 + 算力」的代表公司。</p>
+    <p>若 IPO 成行，将进一步检验资本市场对算力资产的定价逻辑。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.axios.com/pro/climate-deals/2026/08/17/crusoe-ipo-jpm-ms-gs-bofa" target="_blank">Axios 报道</a>
+    </div>
+  </div>
+
+  <!-- #19 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#19</span>
+      <div class="card-title"><a href="https://techcrunch.com/2026/08/17/nvidia-investing-1-5b-in-softbank-data-center-developer-behind-openai-project/" target="_blank">英伟达 $15 亿入股 SB Energy，OpenAI 签俄亥俄数据中心 20 年租约</a></div>
+    </div>
+    <blockquote>英伟达向软银系数据中心开发商 SB Energy 投资 $15 亿；OpenAI 就俄亥俄数据中心签署 20 年租约，英伟达提供最高 $1050 亿支持。</blockquote>
+    <p>TechCrunch 与 The Decoder 8 月 17 日的两篇报道指向同一个俄亥俄州大型数据中心项目：英伟达既是芯片供应商，也为项目提供最高 $1050 亿的融资支持。据新浪 AI 热点引述，该项目规划 8GW 算力规模，OpenAI 将成为唯一租户。</p>
+    <p>「芯片巨头融资 + 超长期租约」的模式正在成为吉瓦级 AI 园区的标配，算力军备竞赛的规模继续抬升。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://techcrunch.com/2026/08/17/nvidia-investing-1-5b-in-softbank-data-center-developer-behind-openai-project/" target="_blank">TechCrunch：英伟达入股 SB Energy</a>
+      <a href="https://the-decoder.com/openai-signs-record-ohio-data-center-lease-with-nvidia-backing-up-to-105-billion/" target="_blank">The Decoder：OpenAI 20 年租约</a>
+      <a href="https://k.sina.com.cn/article_7857201856_1d45362c001908jueu.html?from=tech" target="_blank">新浪 AI 热点</a>
+    </div>
+  </div>
+
+  <!-- #20 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#20</span>
+      <div class="card-title"><a href="https://finance.yahoo.com/technology/ai/articles/doj-probes-andreessen-horowitz-over-214521170.html" target="_blank">美国司法部对 a16z 展开反垄断调查</a></div>
+    </div>
+    <blockquote>The Information 与 Yahoo Finance 报道，美国司法部正就 a16z 合伙人同时持有竞争公司董事会席位一事展开反垄断调查。</blockquote>
+    <p>The Information 的标题提及 Databricks、Fivetran 等竞争公司的董事会席位，另有报道指涉及相互竞争的 AI 公司。a16z 尚未公开回应，调查的具体范围以官方披露为准。</p>
+    <p>这一动向标志着监管对「顶级风投 + 前沿公司」之间交叉持股与席位关联的关注明显升温。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://finance.yahoo.com/technology/ai/articles/doj-probes-andreessen-horowitz-over-214521170.html" target="_blank">Yahoo Finance</a>
+      <a href="https://www.theinformation.com/briefings/andreessen-horowitz-focus-doj-antitrust-probe-databricks-fivetran-board-seats" target="_blank">The Information</a>
+    </div>
+  </div>
+
+  <!-- #21 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#21</span>
+      <div class="card-title"><a href="https://www.guancha.cn/economy/2026_08_17_827632.shtml" target="_blank">Hugging Face 观察：中国开源 AI「狂飙」，成部分美国大模型底座</a></div>
+    </div>
+    <blockquote>观察者网 8 月 17 日援引 Hugging Face 生态的最新观察：中国开放模型快速崛起，一些成果正成为美国超大参数模型的底座，Qwen 是重要开源基座之一。</blockquote>
+    <p>36 氪也刊文称「过去 7 个月，美国开源模型在向中国抄作业」，指出美国模型与研究基于中国开源底座衍生的比例在上升。Hugging Face CEO 此前曾表示，按当前速度，中国在开源模型上的主导地位最快年内追平美国。</p>
+    <p>开源生态正在成为中美 AI 竞争的关键变量之一。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.guancha.cn/economy/2026_08_17_827632.shtml" target="_blank">观察者网</a>
+      <a href="https://www.36kr.com/p/3943282225691781" target="_blank">36 氪</a>
+      <a href="https://www.51cto.com/article/839082.html" target="_blank">51CTO：Hugging Face 全球 AI 开源现状报告</a>
+    </div>
+  </div>
+
+  <!-- #22 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#22</span>
+      <div class="card-title"><a href="https://qz.com/openai-brockman-executive-turnover-departures-081726" target="_blank">OpenAI 总裁回应高管流失潮：「并非十分反常」</a></div>
+    </div>
+    <blockquote>OpenAI 总裁 Greg Brockman 8 月 17 日回应近期高管离职潮；CNBC 此前称流失是 IPO 前的「重大红旗」。</blockquote>
+    <p>OpenAI 首席营收官 Denise Dresser 近日宣布离职，这是短期内第二位重量级高管离开。Quartz 报道 Brockman 回应称，外界的高关注度放大了人员变动，「并非十分反常」。</p>
+    <p>CNBC 8 月 14 日曾报道，人才流失在可能的 IPO 之前引发投资者担忧。高管变动与公司上市进程交织，值得持续关注。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://qz.com/openai-brockman-executive-turnover-departures-081726" target="_blank">Quartz</a>
+      <a href="https://www.cnbc.com/2026/08/14/open-ai-ipo-red-flag.html" target="_blank">CNBC</a>
+      <a href="https://www.nytimes.com/2026/08/13/technology/openai-executive-departure-denise-dresser.html" target="_blank">纽约时报：CRO 离职</a>
+    </div>
+  </div>
+
+  <!-- #23 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#23</span>
+      <div class="card-title"><a href="https://www.news.cn/sports/20260813/95487950b2f3442f83075c5486b2155a/c.html" target="_blank">第二届世界人形机器人运动会在北京进行中</a></div>
+    </div>
+    <blockquote>第二届世界人形机器人运动会正在北京举行，参赛机器人数量较上届翻两番；8 月 17 日线缆连接预赛完赛，14 支队伍晋级决赛。</blockquote>
+    <p>新华网 8 月 13 日报道，本届赛事参赛机器人规模大幅扩容。新浪 AI 热点 8 月 17 日消息，线缆连接项目预赛中，24 支队伍有 14 支晋级，任务考验机器人识别接口方向、对准精度与抓取力度控制。</p>
+    <p>赛事同时是人形机器人产业化成熟度的一次集中展示，通信保障由联通 5G-A 网络支持。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.news.cn/sports/20260813/95487950b2f3442f83075c5486b2155a/c.html" target="_blank">新华网</a>
+      <a href="https://k.sina.com.cn/article_7857201856_1d45362c001908jueu.html?from=tech" target="_blank">新浪 AI 热点</a>
+      <a href="https://www.whrgoc.com/" target="_blank">赛事官网</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 前瞻与传闻 ===== -->
+<div class="section">
+  <div class="section-header"><span class="icon">🔮</span> 前瞻与传闻</div>
+
+  <!-- #24 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#24</span>
+      <div class="card-title"><a href="https://fortune.com/2026/08/13/anthropic-ipo-2-trillion-october-largest-ever-spacex/" target="_blank">Fortune：Anthropic 拟 10 月 IPO，估值瞄准约 $2 万亿</a> <span class="rumor-tag">未确认</span></div>
+    </div>
+    <blockquote>Fortune 8 月 13 日报道，Anthropic 计划 10 月 IPO，投资者目标估值约 $2 万亿，或成为史上最大规模 IPO。尚未官方确认。</blockquote>
+    <p>报道称其规模可能超越 SpaceX 的上市计划。结合 Anthropic 年化营收升至 $650 亿（见 #1）及此前报道的首个盈利季度，市场对其上市预期明显升温。</p>
+    <p>Anthropic 官方尚未确认 IPO 时间表与估值，本条为媒体报道，不构成任何投资建议。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://fortune.com/2026/08/13/anthropic-ipo-2-trillion-october-largest-ever-spacex/" target="_blank">Fortune 报道</a>
+      <a href="https://finance.yahoo.com/technology/ai/articles/anthropic-investors-target-2-trillion-132255261.html" target="_blank">Yahoo Finance</a>
+    </div>
+  </div>
+
+  <!-- #25 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#25</span>
+      <div class="card-title"><a href="https://www.investing.com/analysis/the-trilliondollar-ipo-test-spacex-and-openai-face-public-markets-200680688" target="_blank">报道：OpenAI 最快 9 月 IPO，目标估值超 $1 万亿</a> <span class="rumor-tag">未确认</span></div>
+    </div>
+    <blockquote>多家媒体 8 月 17 日汇总报道，OpenAI 最早可能于 2026 年 9 月 IPO，目标估值超 $1 万亿；年化营收约 $250 亿，2026 年预计亏损约 $140 亿。尚未官方确认。</blockquote>
+    <p>Investing.com 分析认为，这次 IPO 将测试公开市场对前沿 AI 公司「高亏损 + 高增长」模式的容忍度。报道中的财务数据（月营收约 $20 亿、2025 年底年化约 $200 亿等）来自媒体与聚合整理，均未经审计。</p>
+    <p>OpenAI 官方未确认上市计划与招股书时间表，本条为媒体报道汇总，请注意甄别。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.investing.com/analysis/the-trilliondollar-ipo-test-spacex-and-openai-face-public-markets-200680688" target="_blank">Investing.com 分析</a>
+      <a href="https://unrot.co/blogs/ai-news-august-17-2026" target="_blank">8 月 17 日 AI 新闻汇总</a>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>AI 早报 &middot; 自动生成于 2026-08-18</p>
+  <p>信息来源：官方博客、TechCrunch、Bloomberg、CNBC、Axios、Fortune、新华网、新浪财经、观察者网、36 氪 等</p>
+  <p>声明：传闻和未确认信息已明确标注，不构成任何投资或决策建议</p>
+</div>
+
+</div>
+</body>
+</html>

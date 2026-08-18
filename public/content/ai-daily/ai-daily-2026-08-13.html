@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 早报 2026-08-13</title>
+<style>
+  :root {
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #1a1a2e;
+    --text-secondary: #555770;
+    --accent: #4361ee;
+    --accent-light: #eef1ff;
+    --border: #e2e4e9;
+    --tag-bg: #f0f1f3;
+    --warn-bg: #fff8e1;
+    --warn-border: #ffe082;
+    --rumor-bg: #fff3e0;
+    --rumor-text: #e65100;
+    --blockquote-border: #4361ee;
+    --blockquote-bg: #f5f7ff;
+    --link: #4361ee;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 40px 0 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .header .date {
+    color: var(--text-secondary);
+    font-size: 15px;
+  }
+  .header .subtitle {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 4px;
+  }
+
+  /* Overview */
+  .overview {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 24px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow);
+  }
+  .overview h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--accent);
+    color: var(--accent);
+  }
+  .overview .cat-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 18px 0 8px;
+  }
+  .overview .cat-title:first-of-type {
+    margin-top: 0;
+  }
+  .overview ul {
+    list-style: none;
+    padding: 0;
+  }
+  .overview li {
+    padding: 4px 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .overview li::before {
+    content: "";
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+  .overview .num {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    font-family: "SF Mono", "Fira Code", monospace;
+    flex-shrink: 0;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 36px;
+  }
+  .section-header {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    padding: 12px 0 8px;
+    margin-bottom: 16px;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-header .icon {
+    font-size: 20px;
+  }
+
+  /* Card */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.15s;
+  }
+  .card:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .card-num {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-light);
+    border-radius: 6px;
+    padding: 2px 8px;
+    flex-shrink: 0;
+    font-family: "SF Mono", "Fira Code", monospace;
+    line-height: 1.6;
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .card-title a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .card-title a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .card blockquote {
+    background: var(--blockquote-bg);
+    border-left: 3px solid var(--blockquote-border);
+    padding: 8px 14px;
+    margin: 10px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+  .card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin: 8px 0;
+  }
+  .card .links {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .card .links-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .card .links a {
+    display: block;
+    font-size: 13px;
+    color: var(--link);
+    text-decoration: none;
+    padding: 2px 0;
+    word-break: break-all;
+  }
+  .card .links a:hover {
+    text-decoration: underline;
+  }
+
+  /* Rumor tag */
+  .rumor-tag {
+    display: inline-block;
+    background: var(--rumor-bg);
+    color: var(--rumor-text);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 32px 0 16px;
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+  .footer p {
+    margin: 4px 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .container { padding: 16px 14px 40px; }
+    .header h1 { font-size: 22px; }
+    .card { padding: 16px 16px; }
+    .overview { padding: 20px 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1>AI 早报 2026-08-13</h1>
+  <div class="date">2026 年 8 月 13 日 星期四</div>
+  <div class="subtitle">收录 22 条 &middot; 6 个分类 &middot; 含 2 条未确认传闻</div>
+</div>
+
+<!-- Overview -->
+<div class="overview">
+  <h2>概览</h2>
+
+  <div class="cat-title">要闻</div>
+  <ul>
+    <li>Google 宣布 Gemini 应用月活突破 10 亿 <span class="num">#1</span></li>
+    <li>Manus 恢复独立运营，Meta 解除 20 亿美元收购 <span class="num">#2</span></li>
+    <li>前阿里千问核心负责人林俊旸官宣创业「语用科技」 <span class="num">#3</span></li>
+    <li>英伟达联手六家华尔街机构，5000 亿美元 AI 基建融资计划 <span class="num">#4</span></li>
+  </ul>
+
+  <div class="cat-title">模型发布</div>
+  <ul>
+    <li>OpenAI 发布 GPT-5.6-Cyber，Daybreak 扩展至 Blue / Red 双层 <span class="num">#5</span></li>
+    <li>Meta 开源 Muse Glimmer：30B Apache 2.0 智能体模型 <span class="num">#6</span></li>
+    <li>英伟达发布 Nemotron 3.5 Lightning 与 NeMo Switchyard <span class="num">#7</span></li>
+  </ul>
+
+  <div class="cat-title">产品应用</div>
+  <ul>
+    <li>xAI 与 Cursor 推出 Grok Bot 智能体应用 Beta <span class="num">#8</span></li>
+    <li>ChatGPT 桌面应用登陆 Linux（预览版） <span class="num">#9</span></li>
+    <li>飞猪推出 AI 旅行助手「飞猪帮帮」 <span class="num">#10</span></li>
+    <li>米哈游 AI 伴侣「林离」上线 29 天即宣布停运 <span class="num">#11</span></li>
+  </ul>
+
+  <div class="cat-title">开发生态</div>
+  <ul>
+    <li>Claude Code 明日起默认开启 Auto Mode 自动批准 <span class="num">#12</span></li>
+    <li>OpenWALDO 启动：让 AI 训练数据可审计 <span class="num">#13</span></li>
+    <li>Cloudflare 发布为 Agent 而生的浏览器 Kitesurf <span class="num">#14</span></li>
+  </ul>
+
+  <div class="cat-title">行业动态</div>
+  <ul>
+    <li>CoreWeave Q2 营收 25.8 亿美元，同比增长 112% <span class="num">#15</span></li>
+    <li>Cognition 洽谈新一轮融资，估值或达 400 亿美元 <span class="num">#16</span></li>
+    <li>前 OpenAI 产品负责人 Kevin Weil 为 AI4Science 新公司融资 1.5 亿美元 <span class="num">#17</span></li>
+    <li>甲骨文被曝本月启动新一轮裁员，AI 基建债务承压 <span class="num">#18</span></li>
+    <li>大和首予 MiniMax「买入」评级，目标价 530 港元 <span class="num">#19</span></li>
+    <li>DeepSeek 宣布将大幅上调 API 定价 <span class="num">#20</span></li>
+  </ul>
+
+  <div class="cat-title">前瞻与传闻</div>
+  <ul>
+    <li>月之暗面据报 8 月启动上市前最后一轮融资，估值最高 500 亿美元 <span class="rumor-tag">未确认</span> <span class="num">#21</span></li>
+    <li>传 Anthropic 推进大规模 IPO，官方未确认 <span class="rumor-tag">未确认</span> <span class="num">#22</span></li>
+  </ul>
+</div>
+
+<!-- ===== 要闻 ===== -->
+<div class="section">
+  <div class="section-header">要闻</div>
+
+  <!-- #1 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#1</span>
+      <div class="card-title"><a href="https://9to5google.com/2026-08-11/gemini-app-1-billion/" target="_blank">Google 宣布 Gemini 应用月活突破 10 亿</a></div>
+    </div>
+    <blockquote>Sundar Pichai 表示 Gemini 应用月活用户已超过 10 亿，成为 Google 增长最快的产品。</blockquote>
+    <p>Pichai 于 8 月 11 日宣布 Gemini 应用月活跃用户突破 10 亿，是 Google 第 14 个达到该规模的产品，也是其中增长最快的一个。据报道，63% 的用户使用语音交互，每日生成图片超过 1.5 亿张，iOS 端活跃用户超过 1 亿。</p>
+    <p>作为参照，ChatGPT 已于今年 6 月达到 10 亿月活，Gemini 晚了约两个月。两大消费级 AI 应用先后进入「十亿俱乐部」，标志着 AI 助手正式成为主流消费入口。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://9to5google.com/2026-08-11/gemini-app-1-billion/" target="_blank">9to5Google 报道</a>
+      <a href="https://aiweekly.co/alerts/googles-gemini-app-crosses-1b-users-two-months-behind-chatgpt" target="_blank">AI Weekly 快讯</a>
+    </div>
+  </div>
+
+  <!-- #2 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#2</span>
+      <div class="card-title"><a href="https://www.cnbc.com/2026-08-11/manus-china-meta-acquisition.html" target="_blank">Manus 恢复独立运营，Meta 解除 20 亿美元收购</a></div>
+    </div>
+    <blockquote>在监管要求下，Meta 对 Manus 的 20 亿美元收购被解除，Manus 宣布重新独立。</blockquote>
+    <p>CNBC 8 月 11 日报道，Manus 将重新成为独立公司，Meta 正在解除这笔 20 亿美元的收购交易。Manus 官方说明称，拆分源于监管原因，并非安全事件。</p>
+    <p>Manus 同时公布了数据迁移安排：2025 年 12 月 29 日之后创建的部分用户数据将于 8 月 23 日至 24 日（新加坡时间）删除，用户需在 8 月 23 日早上 7:59（新加坡时间）前完成备份，8 月 25 日起恢复服务。使用 Manus 的用户建议尽快备份。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.cnbc.com/2026-08-11/manus-china-meta-acquisition.html" target="_blank">CNBC 报道</a>
+      <a href="https://www.scmp.com/news/us/article/3363704/facebook-parent-meta-unwind-us2-billion-manus-ai-deal-after-beijing-block" target="_blank">南华早报报道</a>
+    </div>
+  </div>
+
+  <!-- #3 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#3</span>
+      <div class="card-title"><a href="https://www.stcn.com/article/detail/4071685.html" target="_blank">前阿里千问核心负责人林俊旸官宣创业「语用科技」</a></div>
+    </div>
+    <blockquote>「基模四杰」之一林俊旸离职 5 个月后在上海创办语用科技，红杉中国、高榕领投，腾讯跟投，估值约 20 亿美元。</blockquote>
+    <p>8 月 12 日，前阿里通义千问核心负责人林俊旸正式宣布创办 AI 公司「语用科技」，落地上海，面向虚拟办公与实体机器人两类智能体方向。首轮融资由高榕、红杉中国领投，腾讯等参与投资，估值约 20 亿美元。</p>
+    <p>林俊旸是千问早期核心贡献者之一，其创业被视为中国基座模型人才向 Agent 赛道流动的标志性事件。红杉中国与腾讯同时入局，也显示出头部机构对 Agent 创业公司的持续押注。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.stcn.com/article/detail/4071685.html" target="_blank">证券时报报道</a>
+      <a href="https://www.tmtpost.com/8100926.html" target="_blank">钛媒体报道</a>
+      <a href="https://www.iyiou.com/briefing/202608121928818" target="_blank">亿欧快讯</a>
+    </div>
+  </div>
+
+  <!-- #4 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#4</span>
+      <div class="card-title"><a href="https://www.theguardian.com/technology/2026/aug/11/nvidia-wall-street-finance-ai-infrastructure" target="_blank">英伟达联手六家华尔街机构，5000 亿美元 AI 基建融资计划</a></div>
+    </div>
+    <blockquote>英伟达与六家华尔街金融机构达成协议，目标为 AI 基础设施筹集超过 5000 亿美元资金。</blockquote>
+    <p>据《卫报》和《华尔街日报》8 月 11 日报道，英伟达与六家华尔街金融机构达成合作，计划为 AI 基础设施建设筹集超过 5000 亿美元资金，用于帮助客户建设数据中心和算力集群。</p>
+    <p>这一安排把芯片供应商进一步推向 AI 基建的金融链条中心：算力正在从「采购项」变成可融资、可证券化的资产。其杠杆效应与潜在风险也引发讨论——同日有媒体指出，AI 基建债务压力已开始倒逼部分公司收缩成本（见 #18）。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.theguardian.com/technology/2026/aug/11/nvidia-wall-street-finance-ai-infrastructure" target="_blank">The Guardian 报道</a>
+      <a href="https://www.wsj.com/business/deals/nvidia-wall-street-firms-strike-ai-financing-deal-targeting-500-billion-c50377db" target="_blank">WSJ 报道</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 模型发布 ===== -->
+<div class="section">
+  <div class="section-header">模型发布</div>
+
+  <!-- #5 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#5</span>
+      <div class="card-title"><a href="https://thehackernews.com/2026/08/openai-launches-gpt-56-cyber-with.html" target="_blank">OpenAI 发布 GPT-5.6-Cyber，Daybreak 扩展至 Blue / Red 双层</a></div>
+    </div>
+    <blockquote>OpenAI 推出面向安全研究的 GPT-5.6-Cyber，在受控访问下放宽对高风险双用途网络安全任务的限制。</blockquote>
+    <p>8 月 11 日，OpenAI 发布 GPT-5.6-Cyber——一个衍生自 GPT-5.6 Sol 的安全专用模型，面向漏洞研究、渗透测试与应急响应。该模型在受限访问下减少对特定高风险、双用途网络安全任务的拒绝。Daybreak 计划随之扩展为两层：Daybreak Red 面向获批组织开放专用安全模型，Daybreak Blue 面向授权防御性安全工作开放通用前沿模型。</p>
+    <p>OpenAI 公布的内部测试显示，GPT-5.6-Cyber 在高级网络安全测试中完成率达 95.0%，而 GPT-5.6 Sol 为 1.5%、Daybreak Blue 为 2.0%、上一代 GPT-5.5-Cyber 为 57.3%。这是前沿实验室中少见的「明确为攻击性安全能力放宽限制」的产品化尝试，访问门槛与合规审核成为关键约束。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://thehackernews.com/2026/08/openai-launches-gpt-56-cyber-with.html" target="_blank">The Hacker News 报道</a>
+      <a href="https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows/" target="_blank">OpenAI 官方博客</a>
+      <a href="https://deploymentsafety.openai.com/gpt-5-6-august-update" target="_blank">OpenAI 部署安全中心 8 月更新</a>
+    </div>
+  </div>
+
+  <!-- #6 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#6</span>
+      <div class="card-title"><a href="https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model" target="_blank">Meta 开源 Muse Glimmer：30B Apache 2.0 智能体模型</a></div>
+    </div>
+    <blockquote>Meta 以 Apache 2.0 协议开源 30B 稠密多模态模型 Muse Glimmer，主打本地 Agent、编程与评审场景。</blockquote>
+    <p>Meta 于 8 月 10 日开源 Muse Glimmer：30B 参数稠密多模态模型，采用 Apache 2.0 协议，面向本地智能体、编程和评审（judge）场景。规格方面：131K 上下文、支持 100 多种语言，4-bit 量化后可装入 20GB 以下显存，在 RTX 5090 上报告有 3.1 倍加速。</p>
+    <p>Meta 同时承诺将开源 Muse Spark 1.2，并设立 10 亿美元社区基金。在 Muse 系列转向闭源争议之后，Glimmer 被视为 Meta 重新回到开源路线的信号。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model" target="_blank">Meta Research 官方博客</a>
+      <a href="https://venturebeat.com/technology/meta-returns-to-open-source-with-muse-glimmer-an-apache-2-0-licensed-30b-parameter-ai-model-optimized-for-agents-available-now" target="_blank">VentureBeat 报道</a>
+      <a href="https://developer.meta.com/ai/models/muse-glimmer/" target="_blank">Meta 开发者平台模型页</a>
+    </div>
+  </div>
+
+  <!-- #7 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#7</span>
+      <div class="card-title"><a href="https://blogs.nvidia.com/blog/nemotron-lightning-switchyard-rtx-dgx/" target="_blank">英伟达发布 Nemotron 3.5 Lightning 与 NeMo Switchyard</a></div>
+    </div>
+    <blockquote>英伟达推出 30B MoE 开源模型 Nemotron 3.5 Lightning 和路由库 NeMo Switchyard，主打低成本高速的本地 Agent 推理。</blockquote>
+    <p>英伟达 8 月 11 日发布 Nemotron 3.5 Lightning：30B 总参数、3B 激活参数的 MoE 模型，官方称在可比性能下输出速度最高提升 4 倍，部分端点约 670 tokens/s。同时开源 NeMo Switchyard 路由库，按任务将请求分发到更便宜的模型以降低成本——Cognition 称其 Devin Desktop 平均成本下降 28%。</p>
+    <p>中文媒体报道称，在 RTX 5090 上运行相关模型可达约 200 tokens/s，成本降低约 67%。这一组合延续了英伟达「把推理成本打下来、把生态留在 DGX/RTX 上」的策略。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://blogs.nvidia.com/blog/nemotron-lightning-switchyard-rtx-dgx/" target="_blank">NVIDIA 官方博客</a>
+      <a href="https://qz.com/nvidia-nemotron-35-lightning-open-source-ai-model-081126" target="_blank">Quartz 报道</a>
+      <a href="https://thenewstack.io/nvidia-nemotron-lightning-switchyard/" target="_blank">The New Stack 报道</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 产品应用 ===== -->
+<div class="section">
+  <div class="section-header">产品应用</div>
+
+  <!-- #8 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#8</span>
+      <div class="card-title"><a href="https://x.ai/news/introducing-grok-bot" target="_blank">xAI 与 Cursor 推出 Grok Bot 智能体应用 Beta</a></div>
+    </div>
+    <blockquote>Grok Bot 以「7×24 在线的 AI 队友」为卖点，每个 Bot 拥有独立云端电脑，可登录真实服务并完成多步骤任务。</blockquote>
+    <p>xAI（现 SpaceXAI）8 月 11 日与 Cursor 联合推出 Grok Bot 早期测试版：每个 Bot 拥有一台专属云端电脑，可登录应用和网站、完成多步骤工作、在关键操作前请求批准，并能学习用户的固定流程、多 Bot 并行工作。</p>
+    <p>目前仅向 SuperGrok Heavy、Cursor Ultra 和 Cursor Teams Premium 订阅用户开放，暂无单独定价；企业用户可申请排队。平台覆盖桌面端（macOS 等）与 iOS，Windows / Linux 版随后推出。这是继 Manus、Claude Code 之后，又一个把「Agent 即员工」产品化的尝试。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://x.ai/news/introducing-grok-bot" target="_blank">xAI 官方公告</a>
+      <a href="https://aiweekly.co/alerts/spacexai-and-cursor-ship-grok-bot-beta-on-mac-ios-pc-linux" target="_blank">AI Weekly 快讯</a>
+      <a href="https://www.firstpost.com/tech/spacex-and-cursor-launch-grok-bot-a-new-ai-agent-app-for-iphone-and-mac-14037530.html" target="_blank">Firstpost 报道</a>
+    </div>
+  </div>
+
+  <!-- #9 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#9</span>
+      <div class="card-title"><a href="https://community.openai.com/t/codex-in-chatgpt-desktop-app-for-linux-is-now-in-preview/1390027" target="_blank">ChatGPT 桌面应用登陆 Linux（预览版）</a></div>
+    </div>
+    <blockquote>OpenAI 发布 ChatGPT 桌面应用 Linux 预览版，覆盖 Ubuntu / Debian / Fedora，内置 Codex。</blockquote>
+    <p>8 月 11 日，OpenAI 发布 ChatGPT 桌面应用的 Linux 预览版，支持 Ubuntu 24.04 / 26.04 LTS、Debian 13 与 Fedora 43 / 44，覆盖 x64 与 ARM64 架构。应用包含 ChatGPT、ChatGPT Work 与 Codex，其中 Codex 可直接操作本地代码仓库、终端和文件夹。</p>
+    <p>需要注意的是，Linux 版暂不支持桌面控制（computer use）功能。对长期抱怨「只有 macOS / Windows 版」的 Linux 开发者群体来说，这是期待已久的补齐。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://community.openai.com/t/codex-in-chatgpt-desktop-app-for-linux-is-now-in-preview/1390027" target="_blank">OpenAI 社区公告</a>
+      <a href="https://thenewstack.io/openais-chatgpt-desktop-linux/" target="_blank">The New Stack 报道</a>
+    </div>
+  </div>
+
+  <!-- #10 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#10</span>
+      <div class="card-title"><a href="https://k.sina.com.cn/article_7857201856_1d45362c001908j5ik.html?from=tech" target="_blank">飞猪推出 AI 旅行助手「飞猪帮帮」</a></div>
+    </div>
+    <blockquote>飞猪上线 AI 助手「飞猪帮帮」，帮助用户做攻略、答疑和处理订单，OTA 平台 AI 入口之争升温。</blockquote>
+    <p>据新浪 AI 热点速递（8 月 12 日），飞猪推出 AI 旅行助手「飞猪帮帮」，可帮助用户制定旅行攻略、解答问题并处理订单。多家在线旅游平台近期密集引入智能助手，AI 正在成为 OTA 争夺用户的新入口。</p>
+    <p>旅行是典型的多轮决策 + 交易场景，适合 Agent 落地；但攻略质量与订单处理的准确率将直接决定留存，后续值得跟踪实际使用数据。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://k.sina.com.cn/article_7857201856_1d45362c001908j5ik.html?from=tech" target="_blank">新浪 AI 热点小时报（2026-08-12）</a>
+    </div>
+  </div>
+
+  <!-- #11 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#11</span>
+      <div class="card-title"><a href="https://k.sina.com.cn/article_7857201856_1d45362c001908j5ik.html?from=tech" target="_blank">米哈游 AI 伴侣「林离」上线 29 天即宣布停运</a></div>
+    </div>
+    <blockquote>米哈游 AI 陪伴应用「林离」上线不到一个月宣布将于 8 月末停运，仅提供离线包保留部分本地功能。</blockquote>
+    <p>据新浪 AI 热点速递（8 月 12 日），米哈游推出的 AI 陪伴应用「林离」在上线 29 天后宣布停运，将于 8 月末下线。官方将提供离线包，仅保留部分本地功能。</p>
+    <p>大厂出品的 AI 陪伴产品在一个月内关停并不常见，反映出 AI 陪伴赛道在内容合规、用户留存与商业模式上的现实压力。赛道热度与实际可运营性之间的落差，值得从业者关注。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://k.sina.com.cn/article_7857201856_1d45362c001908j5ik.html?from=tech" target="_blank">新浪 AI 热点小时报（2026-08-12）</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 开发生态 ===== -->
+<div class="section">
+  <div class="section-header">开发生态</div>
+
+  <!-- #12 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#12</span>
+      <div class="card-title"><a href="https://claude.com/blog/auto-mode" target="_blank">Claude Code 明日起默认开启 Auto Mode 自动批准</a></div>
+    </div>
+    <blockquote>自 8 月 14 日起，Claude Code 对 Pro / Max / Team 用户默认启用自动批准，由安全分类器把关不可逆操作。</blockquote>
+    <p>Anthropic 宣布，自 8 月 14 日（明日）起，Claude Code 的自动批准模式（Auto Mode）将成为 Pro、Max 和 Team 用户的默认设置。系统会用分类器审查不可逆或破坏性的工具调用；内部测试显示该分类器可拦截 89% 的危险命令，而人工审查的拦截率仅 13.6%。使用该模式的团队 PR 产出约提升 25%，分类器消耗的额外 token 免费。</p>
+    <p>这是 AI 编程工具从「每步确认」走向「自动执行 + 异常拦截」的重要节点。建议开发者留意默认行为变化，按需调整权限配置。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://claude.com/blog/auto-mode" target="_blank">Anthropic 官方博客</a>
+      <a href="https://the-decoder.com/anthropic-sets-claude-code-to-auto-mode-by-default-to-protect-developers-from-bad-approvals/" target="_blank">The Decoder 报道</a>
+      <a href="https://news.ycombinator.com/item?id=49214994" target="_blank">Hacker News 讨论</a>
+    </div>
+  </div>
+
+  <!-- #13 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#13</span>
+      <div class="card-title"><a href="https://www.hpcwire.com/aiwire/2026-08-11/openwaldo-launches-shared-open-source-corpus-for-ai-training-data/" target="_blank">OpenWALDO 启动：让 AI 训练数据可审计</a></div>
+    </div>
+    <blockquote>Rocky Linux 创始人 Gregory Kurtzer 发起 OpenWALDO，尝试为 AI 训练数据建立「物料清单」式的来源追踪。</blockquote>
+    <p>8 月 11 日，Rocky Linux 创始人 Gregory Kurtzer 发起社区项目 OpenWALDO，目标是让 AI 训练数据变得可审计。其参考语料库包含约 1240 亿参考 token、7510 万份文档，并提供类似软件物料清单（SBOM）的来源追踪机制。</p>
+    <p>在版权诉讼与数据合规压力持续上升的背景下，「数据出处可证明」正成为开源社区的新基础设施方向。该项目能否成为事实标准仍有待观察，但思路值得关注。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.hpcwire.com/aiwire/2026-08-11/openwaldo-launches-shared-open-source-corpus-for-ai-training-data/" target="_blank">HPCwire 报道</a>
+      <a href="https://markets.businessinsider.com/news/stocks/rocky-linux-founder-gregory-kurtzer-builds-openwaldo-as-a-true-collaborative-open-source-community-for-ai-1036441799" target="_blank">Business Insider 报道</a>
+    </div>
+  </div>
+
+  <!-- #14 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#14</span>
+      <div class="card-title"><a href="https://blog.cloudflare.com/kitesurf/" target="_blank">Cloudflare 发布为 Agent 而生的浏览器 Kitesurf</a></div>
+    </div>
+    <blockquote>Cloudflare 推出托管式 Agent 浏览器 Kitesurf，运行在 Workers V8 隔离环境中，据称内存占用远低于 Chromium。</blockquote>
+    <p>Cloudflare 于 8 月 8 日发布了为 AI Agent 设计的托管浏览器 Kitesurf，运行在 Workers V8 隔离环境中，由多个组件在 12 周内构建完成，可通过约 21.5 万项 Web 平台测试。官方与第三方报道称其 CPU 与内存占用明显低于 Chromium（The Next Web 称内存约为其 1/7）。</p>
+    <p>Kitesurf 现通过 Browser Run 免费 Beta 开放。「浏览器即 Agent 运行时」正在成为云厂商的新战场，对做浏览器自动化和网页 Agent 的团队值得试用评估。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://blog.cloudflare.com/kitesurf/" target="_blank">Cloudflare 官方博客</a>
+      <a href="https://developers.cloudflare.com/browser-run/kitesurf/" target="_blank">Cloudflare 开发者文档</a>
+      <a href="https://thenextweb.com/news/cloudflare-kitesurf-browser-ai-agents-workers" target="_blank">The Next Web 报道</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 行业动态 ===== -->
+<div class="section">
+  <div class="section-header">行业动态</div>
+
+  <!-- #15 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#15</span>
+      <div class="card-title"><a href="https://www.cnbc.com/2026-08-11/coreweave-crwv-q2-earnings-report-2026.html" target="_blank">CoreWeave Q2 营收 25.8 亿美元，同比增长 112%</a></div>
+    </div>
+    <blockquote>AI 云厂商 CoreWeave 二季度营收 25.8 亿美元、略超预期，积压订单达 1040 亿美元，但亏损扩大。</blockquote>
+    <p>CoreWeave 8 月 11 日发布 2026 财年第二季度财报：营收 25.8 亿美元，同比增长 112%，略高于市场预期；积压订单（backlog）达 1040 亿美元，签约电力容量 1.5 GW。由于利息与扩建成本上升，亏损同比扩大。财报发布后股价盘后一度上涨超过 9%。</p>
+    <p>CoreWeave 是当前 AI 算力租赁景气度的最直接风向标：收入与订单暴增和债务高企并存，与英伟达 5000 亿美元融资计划（#4）、甲骨文裁员（#18）共同勾勒出「AI 基建高杠杆扩张」的行业图景。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.cnbc.com/2026-08-11/coreweave-crwv-q2-earnings-report-2026.html" target="_blank">CNBC 报道</a>
+      <a href="https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Second-Quarter-2026-Results/default.aspx" target="_blank">CoreWeave 投资者公告</a>
+      <a href="https://qz.com/coreweave-q2-2026-earnings-revenue-losses-interest-costs-081126" target="_blank">Quartz 报道</a>
+    </div>
+  </div>
+
+  <!-- #16 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#16</span>
+      <div class="card-title"><a href="https://www.cls.cn/detail/2452458" target="_blank">Cognition 洽谈新一轮融资，估值或达 400 亿美元</a></div>
+    </div>
+    <blockquote>Devin 开发商 Cognition 正洽谈规模超 10 亿美元的新融资，估值或升至至少 400 亿美元。</blockquote>
+    <p>据财联社 8 月 12 日报道，AI 编程公司 Cognition（Devin 开发商）正在洽谈新一轮融资，规模可能超过 10 亿美元，估值或升至至少 400 亿美元；公司也可能选择暂不融资或调整条款。其年化收入接近 10 亿美元，约为上一轮融资时的两倍。现有投资方包括 General Catalyst 与 Founders Fund，多名潜在投资者正在争取入股。</p>
+    <p>今年 5 月 Cognition 刚完成 10 亿美元融资，估值 260 亿美元。若本轮落定，三个月内估值再涨五成以上，AI 编程赛道仍是资本最密集的方向之一。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.cls.cn/detail/2452458" target="_blank">财联社报道</a>
+      <a href="https://finance.sina.com.cn/jjxw/2026-08-12/doc-inimzytr4050223.shtml" target="_blank">新浪财经报道</a>
+    </div>
+  </div>
+
+  <!-- #17 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#17</span>
+      <div class="card-title"><a href="https://www.businessinsider.com/weil-valuation-750-million-for-ai-science-startup-2026-8" target="_blank">前 OpenAI 产品负责人 Kevin Weil 为 AI4Science 新公司融资 1.5 亿美元</a></div>
+    </div>
+    <blockquote>Kevin Weil 离开 OpenAI 后创办 AI for Science 公司，正以至少 7.5 亿美元估值融资 1.5 亿美元。</blockquote>
+    <p>Business Insider 8 月 11 日报道，前 OpenAI 首席产品官 Kevin Weil 正在为其 AI for Science 初创公司融资 1.5 亿美元，估值至少 7.5 亿美元。报道提到，此轮创业背景还包括 OpenAI 高管 Brad Lightcap 的离职。</p>
+    <p>「AI for Science」正成为 OpenAI 系高管创业的新热点方向。相较通用助手，科学场景对推理能力和领域数据的要求更高，商业化路径也更长，但一旦突破想象空间巨大。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.businessinsider.com/weil-valuation-750-million-for-ai-science-startup-2026-8" target="_blank">Business Insider 报道</a>
+      <a href="https://finance.yahoo.com/technology/ai/articles/kevin-weil-raising-150m-ai-135907697.html" target="_blank">Yahoo Finance 报道</a>
+    </div>
+  </div>
+
+  <!-- #18 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#18</span>
+      <div class="card-title"><a href="https://qz.com/oracle-layoffs-august-ai-debt-081226" target="_blank">甲骨文被曝本月启动新一轮裁员，AI 基建债务承压</a></div>
+    </div>
+    <blockquote>为应对 AI 基础设施投入带来的债务压力，甲骨文计划本月启动新一轮裁员，部分团队或裁减两位数百分比。</blockquote>
+    <p>据 Quartz 和 Business Insider 8 月 12 日报道，甲骨文计划在本月启动新一轮裁员，以缩减用工开支、应对 AI 基础设施建设带来的借款压力。部分团队可能面临两位数百分比的裁减，计划在 9 月新财年开始前完成。另有报道称，甲骨文 2026 财年已累计裁减约 2.1 万人。</p>
+    <p>一边是 5000 亿美元级别的算力融资盛宴（#4），一边是巨头为基建债务收缩人力成本——AI 基建扩张的账单正开始在行业内部重新分配。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://qz.com/oracle-layoffs-august-ai-debt-081226" target="_blank">Quartz 报道</a>
+      <a href="https://www.businessinsider.com/oracle-is-planning-another-round-of-job-cuts-this-month-2026-8" target="_blank">Business Insider 报道</a>
+      <a href="https://www.tomshardware.com/tech-industry/oracle-plans-more-layoffs-weeks-after-spending-most-of-its-2-1-billion-restructuring-budget" target="_blank">Tom's Hardware 报道</a>
+    </div>
+  </div>
+
+  <!-- #19 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#19</span>
+      <div class="card-title"><a href="https://k.sina.com.cn/article_7857201856_1d45362c001908j5ik.html?from=tech" target="_blank">大和首予 MiniMax「买入」评级，目标价 530 港元</a></div>
+    </div>
+    <blockquote>大和首次覆盖 MiniMax 即给出「买入」评级与 530 港元目标价，MINIMAX-W 盘中一度涨近 10%。</blockquote>
+    <p>据新浪 AI 热点速递（8 月 12 日），大和证券首次覆盖港股上市的 MiniMax（MINIMAX-W），给出「买入」评级和 530 港元目标价，理由包括模型性能、成本控制以及国内商业化前景。当日 MINIMAX-W 盘中一度上涨近 10%。</p>
+    <p>继今年多家中国大模型公司登陆港股后，卖方研究的覆盖密度正在上升，二级市场开始为模型公司的商业模式定价。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://k.sina.com.cn/article_7857201856_1d45362c001908j5ik.html?from=tech" target="_blank">新浪 AI 热点小时报（2026-08-12）</a>
+    </div>
+  </div>
+
+  <!-- #20 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#20</span>
+      <div class="card-title"><a href="https://www.mrjjxw.com/articles/2026-08-06/4533767.html" target="_blank">DeepSeek 宣布将大幅上调 API 定价</a></div>
+    </div>
+    <blockquote>DeepSeek 上周宣布将「近期整体上调」API 服务定价，预计涨幅较大，具体方案待官方通知。</blockquote>
+    <p>据每日经济新闻 8 月 6 日报道，DeepSeek 表示计划近期整体上调 DeepSeek API 服务的定价，预计涨幅较大，具体方案以正式通知为准。报道未披露涉及的具体模型与涨幅。</p>
+    <p>此事发生在上周，今日收录是因为其影响仍在持续：DeepSeek 长期以「低价 API」重塑国内大模型定价体系，此次转向意味着推理成本压力或需求结构变化正在传导至价格端。依赖 DeepSeek API 的开发者建议关注正式方案并评估成本。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://www.mrjjxw.com/articles/2026-08-06/4533767.html" target="_blank">每日经济新闻报道</a>
+      <a href="https://api-docs.deepseek.com/zh-cn/updates/" target="_blank">DeepSeek API 更新日志</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 前瞻与传闻 ===== -->
+<div class="section">
+  <div class="section-header">前瞻与传闻</div>
+
+  <!-- #21 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#21</span>
+      <div class="card-title"><a href="https://inews.hket.com/article/4164446/" target="_blank">月之暗面据报 8 月启动上市前最后一轮融资，估值最高 500 亿美元 <span class="rumor-tag">未确认</span></a></div>
+    </div>
+    <blockquote>多家媒体 7 月下旬报道，月之暗面计划 8 月启动上市前最后一轮融资，估值最高 500 亿美元，为赴港上市铺路。官方尚未确认。</blockquote>
+    <p>据港经日报（hket）与证券时报 7 月下旬报道，月之暗面（Kimi 母公司）计划于 8 月启动上市前最后一轮融资，估值最高不超过 500 亿美元，并推进赴港上市；另有报道称中金、高盛可能担任承销商。Kim K3 发布后，公司日销售额据称至少增长 6 倍。</p>
+    <p>目前上述信息均为媒体转述，月之暗面官方未确认融资规模、估值与 IPO 时间表。8 月已过半，后续是否有正式进展值得跟踪。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://inews.hket.com/article/4164446/" target="_blank">港经日报（hket）报道</a>
+      <a href="https://www.stcn.com/article/detail/4050903.html" target="_blank">证券时报报道</a>
+      <a href="https://hk.finance.yahoo.com/news/%E6%B8%AF%E8%82%A1ipo-kimi-k3%E5%88%BA%E6%BF%80%E6%97%A5%E9%8A%B7%E5%94%AE%E8%87%B3%E5%B0%91%E5%A2%9E6%E5%80%8D-%E6%9C%88%E4%B9%8B%E6%9A%97%E9%9D%A2%E4%B8%8B%E6%9C%88%E4%B8%8A%E5%B8%82%E5%89%8D%E6%9C%80%E5%BE%8C%E8%9E%8D%E8%B3%87-%E6%93%AC%E4%B8%8D%E8%B6%85500%E5%84%84%E7%BE%8E%E5%85%83%E4%BC%B0%E5%80%BC-063948852.html" target="_blank">Yahoo 财经报道</a>
+    </div>
+  </div>
+
+  <!-- #22 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">#22</span>
+      <div class="card-title"><a href="https://k.sina.com.cn/article_7857201856_1d45362c001908j5ik.html?from=tech" target="_blank">传 Anthropic 推进大规模 IPO，官方未确认 <span class="rumor-tag">未确认</span></a></div>
+    </div>
+    <blockquote>有市场消息称 Anthropic 可能推进大规模 IPO，投资人希望管理层多谈商业回报。Anthropic 官方未确认任何上市计划。</blockquote>
+    <p>据新浪 AI 热点速递（8 月 12 日）转述的市场消息，市场预期 Anthropic 可能推进大规模 IPO，部分投资人希望其 CEO 减少对 AI 风险的渲染、更多说明商业回报。Anthropic 官方目前没有确认任何上市计划。</p>
+    <p>背景信息：Anthropic 年化收入已超过 300 亿美元（今年 4 月官方数据），并在 5 月以 9650 亿美元估值完成 650 亿美元融资。其体量若上市将成为标志性事件，但目前一切时间表均为传闻，请谨慎对待。</p>
+    <div class="links">
+      <div class="links-title">相关链接</div>
+      <a href="https://k.sina.com.cn/article_7857201856_1d45362c001908j5ik.html?from=tech" target="_blank">新浪 AI 热点小时报（2026-08-12）</a>
+      <a href="https://www.anthropic.com/news/google-broadcom-partnership-compute" target="_blank">Anthropic 官方公告（收入数据背景）</a>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>AI 早报 &middot; 自动生成于 2026-08-13</p>
+  <p>内容来自公开信息整理，每条附原始链接；传闻类内容已明确标注，请以官方信息为准。</p>
+</div>
+
+</div>
+</body>
+</html>
