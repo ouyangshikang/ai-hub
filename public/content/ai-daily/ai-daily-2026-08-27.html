@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 早报 2026-08-27</title>
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --card-bg: #ffffff;
+    --text: #1f2329;
+    --text-secondary: #5c6470;
+    --border: #e4e7eb;
+    --link: #1a66d6;
+    --accent: #1a66d6;
+    --c-headline: #d4380d;
+    --c-model: #1a66d6;
+    --c-product: #237804;
+    --c-dev: #531dab;
+    --c-industry: #ad4e00;
+    --c-rumor: #ad8b00;
+    --quote-bg: #f0f5ff;
+    --quote-border: #adc6ff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  .container { max-width: 860px; margin: 0 auto; padding: 24px 16px 64px; }
+  header.page-header {
+    background: linear-gradient(135deg, #10233f 0%, #1a3a6b 100%);
+    color: #fff;
+    border-radius: 12px;
+    padding: 36px 28px;
+    margin-bottom: 28px;
+  }
+  header.page-header h1 { font-size: 28px; letter-spacing: 1px; margin-bottom: 8px; }
+  header.page-header .date { font-size: 15px; opacity: .85; }
+  header.page-header .intro { font-size: 14px; opacity: .75; margin-top: 10px; }
+  section { margin-bottom: 36px; }
+  h2.section-title {
+    font-size: 22px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 18px;
+  }
+  .toc-category { margin-bottom: 16px; }
+  .toc-category h3 { font-size: 16px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .toc-category ul { list-style: none; }
+  .toc-category li { padding: 4px 0; font-size: 15px; }
+  .toc-category li a { color: var(--text); text-decoration: none; }
+  .toc-category li a:hover { color: var(--link); text-decoration: underline; }
+  .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; }
+  .dot-headline { background: var(--c-headline); }
+  .dot-model { background: var(--c-model); }
+  .dot-product { background: var(--c-product); }
+  .dot-dev { background: var(--c-dev); }
+  .dot-industry { background: var(--c-industry); }
+  .dot-rumor { background: var(--c-rumor); }
+  .num {
+    display: inline-block;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12px;
+    color: var(--text-secondary);
+    background: #eef0f3;
+    border-radius: 4px;
+    padding: 0 6px;
+    margin-left: 6px;
+    vertical-align: 1px;
+    white-space: nowrap;
+  }
+  .category h2 {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 32px 0 14px;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 22px;
+    margin-bottom: 16px;
+  }
+  .card h3 { font-size: 17px; line-height: 1.5; margin-bottom: 10px; }
+  .card h3 a { color: var(--link); text-decoration: none; }
+  .card h3 a:hover { text-decoration: underline; }
+  .card .meta { margin-bottom: 10px; }
+  .tag {
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 4px;
+    padding: 1px 8px;
+    margin-right: 8px;
+    color: #fff;
+    vertical-align: 2px;
+  }
+  .tag-headline { background: var(--c-headline); }
+  .tag-model { background: var(--c-model); }
+  .tag-product { background: var(--c-product); }
+  .tag-dev { background: var(--c-dev); }
+  .tag-industry { background: var(--c-industry); }
+  .tag-rumor { background: var(--c-rumor); }
+  .badge-rumor {
+    display: inline-block;
+    font-size: 12px;
+    color: #874d00;
+    background: #fff7e6;
+    border: 1px solid #ffd591;
+    border-radius: 4px;
+    padding: 1px 8px;
+    margin-left: 8px;
+    vertical-align: 2px;
+  }
+  .card blockquote {
+    background: var(--quote-bg);
+    border-left: 4px solid var(--quote-border);
+    border-radius: 0 6px 6px 0;
+    padding: 10px 14px;
+    font-size: 14.5px;
+    color: #333c4d;
+    margin-bottom: 12px;
+  }
+  .card p { font-size: 15px; margin-bottom: 10px; }
+  .card .links { margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--border); font-size: 13.5px; }
+  .card .links span { color: var(--text-secondary); margin-right: 6px; }
+  .card .links a { color: var(--link); text-decoration: none; margin-right: 14px; word-break: break-all; }
+  .card .links a:hover { text-decoration: underline; }
+  footer.page-footer {
+    font-size: 13px;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border);
+    padding-top: 18px;
+    line-height: 1.9;
+  }
+  @media (max-width: 640px) {
+    body { font-size: 15px; }
+    header.page-header { padding: 26px 18px; }
+    header.page-header h1 { font-size: 23px; }
+    .card { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="page-header">
+    <h1>AI 早报 2026-08-27</h1>
+    <div class="date">生成日期：2026年8月27日 · 星期三</div>
+    <div class="intro">覆盖过去 24 小时 AI 前沿动态。共收录 22 条：要闻 5 · 模型发布 2 · 产品应用 5 · 开发生态 3 · 行业动态 7。</div>
+  </header>
+
+  <!-- ============ 概览 ============ -->
+  <section id="overview">
+    <h2 class="section-title">概览</h2>
+
+    <div class="toc-category">
+      <h3><span class="dot dot-headline"></span>要闻</h3>
+      <ul>
+        <li><a href="#item-1">英伟达 Q2 FY2027 财报：营收 962 亿美元，数据中心同比增 117%</a><span class="num">#1</span></li>
+        <li><a href="#item-2">阿里开源 Qwen3.8-Flash-Next：基于 Qwen4 架构，训练成本降至 1/9</a><span class="num">#2</span></li>
+        <li><a href="#item-3">智谱开源 GLM-5.3-Flash：320B 参数多模态模型，MIT 协议</a><span class="num">#3</span></li>
+        <li><a href="#item-4">Anthropic Claude 内置浏览器上线，Cowork 桌面端可自主操作网页</a><span class="num">#4</span></li>
+        <li><a href="#item-5">OpenAI 今日起从 ChatGPT 退役 o3 模型，GPT-4.5 已于 6 月下线</a><span class="num">#5</span></li>
+      </ul>
+    </div>
+
+    <div class="toc-category">
+      <h3><span class="dot dot-model"></span>模型发布</h3>
+      <ul>
+        <li><a href="#item-6">阿里 Qwen3.8-Flash-Next 正式开源：125B 参数，百万 Token 上下文</a><span class="num">#6</span></li>
+        <li><a href="#item-7">智谱 GLM-5.3-Flash 开源发布：320B 总参 / 18B 激活，代码能力对标海外顶尖</a><span class="num">#7</span></li>
+      </ul>
+    </div>
+
+    <div class="toc-category">
+      <h3><span class="dot dot-product"></span>产品应用</h3>
+      <ul>
+        <li><a href="#item-8">Anthropic Claude 内置浏览器 + Chrome 扩展全面可用</a><span class="num">#8</span></li>
+        <li><a href="#item-9">OpenAI ChatGPT Work 重大更新：支持登录网站、Webhook 定时任务</a><span class="num">#9</span></li>
+        <li><a href="#item-10">xAI Grok Bot 扩展至更多订阅计划，Grok 4.6 上线 Microsoft Foundry</a><span class="num">#10</span></li>
+        <li><a href="#item-11">字节跳动豆包「工作任务」模块升级：新增技能中心、连接器、多 Agent 协作</a><span class="num">#11</span></li>
+        <li><a href="#item-12">百度 AI Day：文心助手任务引擎 2.0 发布，日活用户同比增 83%</a><span class="num">#12</span></li>
+      </ul>
+    </div>
+
+    <div class="toc-category">
+      <h3><span class="dot dot-dev"></span>开发生态</h3>
+      <ul>
+        <li><a href="#item-13">OpenAI Codex 0.150.0：新增终端 @mention、权限快捷操作</a><span class="num">#13</span></li>
+        <li><a href="#item-14">Claude Code 2.1.247：草稿反馈机制 + API 成本优化工具</a><span class="num">#14</span></li>
+        <li><a href="#item-15">Microsoft 365 Copilot 8 月更新：统一 REST API、Viva Engage 接入</a><span class="num">#15</span></li>
+      </ul>
+    </div>
+
+    <div class="toc-category">
+      <h3><span class="dot dot-industry"></span>行业动态</h3>
+      <ul>
+        <li><a href="#item-16">Anthropic 投资者目标 IPO 估值 2 万亿美元，计划 10 月上市</a><span class="num">#16</span></li>
+        <li><a href="#item-17">OpenAI 公布自研 Jalapeno 推理芯片性能数据，能效优于商用 GPU</a><span class="num">#17</span></li>
+        <li><a href="#item-18">印度 AM Intelligence 订购 9000 套 NVIDIA Vera Rubin 系统，耗资 80 亿美元</a><span class="num">#18</span></li>
+        <li><a href="#item-19">腾讯支持的燧原科技启动近 9 亿美元科创板 IPO 认购</a><span class="num">#19</span></li>
+        <li><a href="#item-20">中国开源 AI 模型使用率首超闭源：DeepSeek V4 Flash 月消耗 18.4T Tokens 居首</a><span class="num">#20</span></li>
+        <li><a href="#item-21">月之暗面正与美三大云厂商洽谈 Kimi K3 部署及收益分成，引发安全关切</a><span class="num">#21</span></li>
+        <li><a href="#item-22">MiniMax 中期业绩：8 月 ARR 超 8 亿美元，上半年收入同比增 283%</a><span class="num">#22</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 详细内容 ============ -->
+  <section id="details">
+    <h2 class="section-title">详细内容</h2>
+
+    <!-- 要闻 -->
+    <div class="category">
+      <h2><span class="dot dot-headline"></span>要闻</h2>
+
+      <article class="card" id="item-1">
+        <div class="meta"><span class="tag tag-headline">要闻</span><span class="num">#1</span></div>
+        <h3><a href="https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-second-quarter-fiscal-2026" target="_blank" rel="noopener">英伟达 Q2 FY2027 财报：营收 962 亿美元，数据中心同比增 117%</a></h3>
+        <blockquote>英伟达于 8 月 26 日美股盘后发布 2027 财年第二季度财报，总营收 962 亿美元，同比增长 106%，净利润 597 亿美元，数据中心业务贡献 890 亿美元。</blockquote>
+        <p>数据中心业务中，超大规模客户贡献 487 亿美元（同比增 102%），AI 云及企业客户产出 403 亿美元（同比增 138%）。Blackwell 架构计算平台大规模部署是核心增长驱动力。公司预计下季度营收约 1080 亿美元。CEO 黄仁勋表示「Blackwell 是全球期待已久的 AI 平台」。</p>
+        <p>市场关注焦点已从订单规模转向订单质量及可持续性，包括客户采购是否具备真实算力利用率、毛利率能否维持 75% 水平、以及系统级产品按期交付能力。</p>
+        <div class="links"><span>相关链接：</span>
+          <a href="https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-second-quarter-fiscal-2026" target="_blank" rel="noopener">NVIDIA 官方新闻</a>
+          <a href="http://www.36kr.com/p/3956971565677702" target="_blank" rel="noopener">36氪 解读</a>
+          <a href="https://www.donews.com/news/detail/4/6686508.html" target="_blank" rel="noopener">DoNews 前瞻</a>
+        </div>
+      </article>
+
+      <article class="card" id="item-2">
+        <div class="meta"><span class="tag tag-headline">要闻</span><span class="num">#2</span></div>
+        <h3><a href="https://www.donews.com/news/detail/8/6684980.html" target="_blank" rel="noopener">阿里开源 Qwen3.8-Flash-Next：基于 Qwen4 架构，训练成本降至 1/9</a></h3>
+        <blockquote>阿里千问团队于 8 月 26 日晚发布基于下一代 Qwen4 架构的预览版多模态 MoE 模型，训练成本仅为前代九分之一，API 定价百万 Token 输入仅需一元。</blockquote>
+        <p>该模型总参数 125B，附加 51B N-gram 嵌入层，单次推理仅唤醒 6B 参数，支持最高百万级上下文。在多项基准测试中，纯文本与多模态任务表现超越 DeepSeek 及 Claude 等竞品。API 定价极具竞争力：百万 Token 输入 1 元、输出 3 元，比 DeepSeek 同期空闲价格还低三分之一。同步推出 FP8 版本，方便开发者提前适配 Qwen4 生态。</p>
+        <div class="links"><span>相关链接：</span>
+          <a href="https://www.donews.com/news/detail/8/6684980.html" target="_blank" rel="noopener">DoNews 报道</a>
+          <a href="http://www.36kr.com/p/3956555141430402" target="_blank" rel="noopener">36氪 深度</a>
+          <a href="https://huggingface.co/Qwen/Qwen3.8-Flash-Next" target="_blank" rel="noopener">Hugging Face 模型页</a>
+        </div>
+      </article>
+
+      <article class="card" id="item-3">
+        <div class="meta"><span class="tag tag-headline">要闻</span><span class="num">#3</span></div>
+        <h3><a href="https://news.aibase.com/zh/news/30353" target="_blank" rel="noopener">智谱开源 GLM-5.3-Flash：320B 参数多模态模型，MIT 协议</a></h3>
+        <blockquote>智谱 AI 发布 GLM-5 系列首款原生多模态 Flash 模型，总规模 320B、激活参数 18B，采用 MIT 许可证全面开源，定价仅为前代十分之一。</blockquote>
+        <p>GLM-5.3-Flash 代码编写能力媲美海外顶尖模型，限时促销价格低至前代二十分之一，比海外同类便宜约 40 倍。此前 GLM-5.3 完整版 API 已于 8 月 19 日上线，在高级编程与网络安全能力方面显著提升，高盛随后上调智谱收入预期 35%。模型权重文件已按计划公开。</p>
+        <div class="links"><span>相关链接：</span>
+          <a href="https://news.aibase.com/zh/news/30353" target="_blank" rel="noopener">AIBase 报道</a>
+          <a href="https://zhuanlan.zhihu.com/p/2071624366392186798" target="_blank" rel="noopener">知乎专栏</a>
+          <a href="https://felloai.com/de/glm-5-3-flash/" target="_blank" rel="noopener">FelloAI</a>
+        </div>
+      </article>
+
+      <article class="card" id="item-4">
+        <div class="meta"><span class="tag tag-headline">要闻</span><span class="num">#4</span></div>
+        <h3><a href="https://thenewstack.io/claude-built-in-browser-cowork/" target="_blank" rel="noopener">Anthropic Claude 内置浏览器上线，Cowork 桌面端可自主操作网页</a></h3>
+        <blockquote>Claude 桌面应用 Cowork 新增内置浏览器，AI 可自主浏览、点击、填写表单并操作网页，用户数据隔离保障安全。</blockquote>
+        <p>这是 Anthropic 向全自主 AI Agent 迈出的重要一步。内置浏览器允许 Claude 在隔离环境中自主执行网页操作，配合高级安全分类器拦截恶意提示注入。同日，Claude in Chrome 浏览器扩展也正式退出 Beta，面向所有付费用户全面可用。</p>
+        <div class="links"><span>相关链接：</span>
+          <a href="https://thenewstack.io/claude-built-in-browser-cowork/" target="_blank" rel="noopener">The New Stack 报道</a>
+          <a href="https://claude.com/blog/claude-in-chrome-generally-available" target="_blank" rel="noopener">Anthropic 官方博客</a>
+        </div>
+      </article>
+
+      <article class="card" id="item-5">
+        <div class="meta"><span class="tag tag-headline">要闻</span><span class="num">#5</span></div>
+        <h3><a href="https://aiweekly.co/alerts/openai-retires-gpt-45-ending-the-entire-gpt-4-era-in-chatgpt" target="_blank" rel="noopener">OpenAI 今日起从 ChatGPT 退役 o3 模型，GPT-4.5 已于 6 月下线</a></h3>
+        <blockquote>OpenAI 于 8 月 26 日正式从 ChatGPT 消费者端下架 o3 推理模型，GPT-4.5 文本模型已于 6 月退役，标志着 GPT-4 时代在消费端全面终结。</blockquote>
+        <p>OpenAI 表示正在「逐步淘汰使用量较少的旧模型，以聚焦更先进替代方案」。两个模型均被第五代替代品取代。此变更仅影响 ChatGPT 消费者端，API 不受影响。社区反应不一：部分用户称赞 o3 是「最佳纯推理模型」，认为新版「仍无法匹配旧版的稳定语调和可预测性」。</p>
+        <div class="links"><span>相关链接：</span>
+          <a href="https://aiweekly.co/alerts/openai-retires-gpt-45-ending-the-entire-gpt-4-era-in-chatgpt" target="_blank" rel="noopener">AI Weekly 报道</a>
+          <a href="https://releasebot.io/updates/openai/chatgpt" target="_blank" rel="noopener">Releasebot 更新日志</a>
+        </div>
+      </article>
+    </div>
+
+    <!-- 模型发布 -->
+    <div class="category">
+      <h2><span class="dot dot-model"></span>模型发布</h2>
+
+      <article class="card" id="item-6">
+        <div class="meta"><span class="tag tag-model">模型发布</span><span class="num">#6</span></div>
+        <h3><a href="https://huggingface.co/Qwen/Qwen3.8-Flash-Next" target="_blank" rel="noopener">阿里 Qwen3.8-Flash-Next 正式开源：125B 参数，百万 Token 上下文</a></h3>
+        <blockquote>基于下一代 Qwen4 架构的多模态 MoE 预览模型，125B 总参数，单次推理仅唤醒 6B，支持百万级上下文，Apache 2.0 协议开源。</blockquote>
+        <p>这是阿里千问团队对 Qwen4 生态的首次预览。模型采用 FP8 精度发布，在纯文本和多模态基准测试中均超越同级别竞品。训练成本仅为前代 Qwen3.8-Flash 的九分之一，体现了 MoE 架构在效率上的显著进步。千问系列全球累计下载量已超 30 亿次。</p>
+        <div class="links"><span>相关链接：</span>
+          <a href="https://huggingface.co/Qwen/Qwen3.8-Flash-Next" target="_blank" rel="noopener">Hugging Face</a>
+          <a href="https://help.aliyun.com/zh/model-studio/newly-released-models" target="_blank" rel="noopener">阿里云帮助文档</a>
+        </div>
+      </article>
+
+      <article class="card" id="item-7">
+        <div class="meta"><span class="tag tag-model">模型发布</span><span class="num">#7</span></div>
+        <h3><a href="https://xiouwang.cn/oarticle/articles/10465.html" target="_blank" rel="noopener">智谱 GLM-5.3-Flash 开源发布：320B 总参 / 18B 激活，代码能力对标海外顶尖</a></h3>
+        <blockquote>GLM-5 系列首款原生多模态 Flash 模型，MIT 协议开源，320B 总参 / 18B 激活参数，定价仅为前代 1/10。</blockquote>
+        <p>GLM-5.3-Flash 被官方称为此前神秘的「牛来」模型，在代码编写和网络安全能力方面表现突出。限时促销价低至前代二十分之一，比海外顶尖模型便宜约 40 倍。此前 GLM-5.3 完整版因 API 抢购引发关注，高盛上调智谱收入预期 35%，反映市场对该模型商业化前景的看好。</p>
+        <div class="links"><span>相关链接：</span>
+          <a href="https://xiouwang.cn/oarticle/articles/10465.html" target="_blank" rel="noopener">希鸥网报道</a>
+          <a href="https://zhuanlan.zhihu.com/p/2071707711306216661" target="_blank" rel="noopener">知乎：GLM5.3 来了</a>
+          <a href="https://docs.bigmodel.cn/cn/update/new-releases" target="_blank" rel="noopener">智谱官方文档</a>
+        </div>
+      </article>
+    </div>
+
+    <!-- 产品应用 -->
+    <div class="category">
+      <h2><span class="dot dot-product"></span>产品应用</h2>
+
+      <article class="card" id="item-8">
+        <div class="meta"><span class="tag tag-product">产品应用</span><span class="num">#8</span></div>
+        <h3><a href="https://claude.com/blog/claude-in-chrome-generally-available" target="_blank" rel="noopener">Anthropic Claude 内置浏览器 + Chrome 扩展全面可用</a></h3>
+        <blockquote>Claude in Chrome 浏览器扩展正式退出 Beta，面向所有付费用户开放，支持 AI 自主操作网页。</blockquote>
+        <p>扩展允许 Claude 代表用户自主与网页交互，内置高级安全分类器可拦截恶意提示注入攻击。配合 Cowork 桌面端的内置浏览器，Claude 现可在两个独立环境中执行网页任务。这是 Agent 类产品从「对话助手」向「自主操作代理」演进的重要节点。</p>
+        <div class="links"><span>相关链接：</span>
+          <a href="https://claude.com/blog/claude-in-chrome-generally-available" target="_blank" rel="noopener">Anthropic 官方博客</a>
+          <a href="https://thenewstack.io/claude-built-in-browser-cowork/" target="_blank" rel="noopener">The New Stack</a>
+        </div>
+      </article>
+
+      <article class="card" id="item-9">
+        <div class="meta"><span class="tag tag-product">产品应用</span><span class="num">#9</span></div>
+        <h3><a href="https://releasebot.io/updates/openai/chatgpt" target="_blank" rel="noopener">OpenAI ChatGPT Work 重大更新：支持登录网站、Webhook 定时任务</a></h3>
+        <blockquote>ChatGPT Work 新增浏览器登录认证、Webhook 触发定时任务、免费用户调度功能，以及基于 WebMCP 标准的站点工具。</blockquote>
+        <p>云浏览器现可在认证网站上执行操作，支持安全凭证输入和密码管理器集成。Webhook 功能允许从外部应用（邮件、消息、代码仓库）触发定时任务。此外，OpenAI 发布基于 WebMCP 标准的「Site tools」，使 AI 代理可直接与实时网页交互，推动 ChatGPT 向真正的 Agent 平台演进。</p>
+        <div class="links"><span>相关链接：</span>
+          <a href="https://releasebot.io/updates/openai/chatgpt" target="_blank" rel="noopener">Releasebot</a>
+          <a href="https://www.technology.org/2026/08/26/chatgpt-scheduled-tasks-free-accounts-triggers/" target="_blank" rel="noopener">Technology.org</a>
+        </div>
+      </article>
+
+      <article class="card" id="item-10">
+        <div class="meta"><span class="tag tag-product">产品应用</span><span class="num">#10</span></div>
+        <h3><a href="https://x.ai/news" target="_blank" rel="noopener">xAI Grok Bot 扩展至更多订阅计划，Grok 4.6 上线 Microsoft Foundry</a></h3>
+        <blockquote>Grok Bot 持久化自主 AI 工作者现已面向 SuperGrok、Cursor Pro 及所有 Cursor Teams 计划开放；Grok 4.6 同步部署至 Microsoft Foundry 平台。</blockquote>
+        <p>Grok Bot 可在自有计算环境中 24/7 运行，自主执行跨软件应用的任务。同时，Elon Musk 宣布 Grok Voice 语音代理已自主处理 Starlink 每日超 15,000 通客服来电，每周完成数千笔订单，是最大规模的自主 AI 语音代理实际部署之一。</p>
+        <div class="links"><span>相关链接：</span>
+          <a href="https://x.ai/news" target="_blank" rel="noopener">xAI 官方</a>
+          <a href="https://www.benzinga.com/markets/tech/26/08/61400959/elon-musk-says-grok-is-taking-over-starlink-support-15000-calls-a-day-3000-orders-a-week" target="_blank" rel="noopener">Benzinga: Grok Voice</a>
+        </div>
+      </article>
+
+      <article class="card" id="item-11">
+        <div class="meta"><span class="tag tag-product">产品应用</span><span class="num">#11</span></div>
+        <h3><a href="https://k.sina.com.cn/article_7880068204_1d5b04c6c06801gfzs.html" target="_blank" rel="noopener">字节跳动豆包「工作任务」模块升级：新增技能中心、连接器、多 Agent 协作</a></h3>
+        <blockquote>豆包「工作任务」模块重大迭代，构建以 AI Agent 为底层的三大核心功能：技能中心、连接器、工作伙伴。</blockquote>
+        <p>「技能中心」用于沉淀标准化流程，「连接器」打破第三方软件数据孤岛，「工作伙伴」支持多智能体分工协作。系统还新增跨终端远程接管、云端与本地双轨运行及文档局部精准修改等功能，推动 AI 从辅助工具向「数字同事」演进。</p>
+        <div class="links"><span>相关链接：</span>
+          <a href="https://k.sina.com.cn/article_7880068204_1d5b04c6c06801gfzs.html" target="_blank" rel="noopener">新浪科技</a>
+        </div>
+      </article>
+
+      <article class="card" id="item-12">
+        <div class="meta"><span class="tag tag-product">产品应用</span><span class="num">#12</span></div>
+        <h3><a href="https://finance.sina.com.cn/tech/roll/2026-08-26/doc-iniprcpz6269034.shtml" target="_blank" rel="noopener">百度 AI Day：文心助手任务引擎 2.0 发布，日活用户同比增 83%</a></h3>
+        <blockquote>百度在 AI Day 上发布文心助手任务引擎 2.0，实现从信息检索到全流程任务交付的转变，核心功能全部免费开放。</blockquote>
+        <p>新版任务引擎可根据用户目标自动规划并执行任务，完成从信息收集到最终成品交付的完整闭环。同时推出「GUI 通识卡片」全新搜索形态，结合知识卡片、动画和步骤图解。截至 6 月，文心助手日活用户同比增长 83%，日均对话轮次翻倍。</p>
+        <div class="links"><span>相关链接：</span>
+          <a href="https://finance.sina.com.cn/tech/roll/2026-08-26/doc-iniprcpz6269034.shtml" target="_blank" rel="noopener">新浪财经</a>
+          <a href="https://www.stcn.com/article/detail/4090577.html" target="_blank" rel="noopener">证券时报</a>
+        </div>
+      </article>
+    </div>
+
+    <!-- 开发生态 -->
+    <div class="category">
+      <h2><span class="dot dot-dev"></span>开发生态</h2>
+
+      <article class="card" id="item-13">
+        <div class="meta"><span class="tag tag-dev">开发生态</span><span class="num">#13</span></div>
+        <h3><a href="https://releasebot.io/updates/openai" target="_blank" rel="noopener">OpenAI Codex 0.150.0：新增终端 @mention、权限快捷操作</a></h3>
+        <blockquote>Codex CLI 最新更新允许开发者在终端中使用 @mention 引用任务，并改进了复制/重命名工作流和权限管理。</blockquote>
+        <p>此版本新增终端中的任务 @mention 功能，简化工作流集成。同时改进了复制和重命名操作、添加了可点击链接，并引入权限快捷方式。修复了多个跨操作系统和云环境的安全与兼容性 Bug。</p>
+        <div class="links"><span>相关链接：</span>
+          <a href="https://releasebot.io/updates/openai" target="_blank" rel="noopener">Releasebot</a>
+        </div>
+      </article>
+
+      <article class="card" id="item-14">
+        <div class="meta"><span class="tag tag-dev">开发生态</span><span class="num">#14</span></div>
+        <h3><a href="https://releasebot.io/updates/anthropic" target="_blank" rel="noopener">Claude Code 2.1.247：草稿反馈机制 + API 成本优化工具</a></h3>
+        <blockquote>Claude Code CLI 最新版引入草稿反馈机制和 API 成本管理工具，持续保持每周多次发布的快速迭代节奏。</blockquote>
+        <p>更新新增了草稿反馈机制、API 成本优化管理工具、增强的云端行为控制，并修复了多个 Bug。Anthropic 开发者工具团队维持着极高的发布频率，确保编程助手持续获得最新改进。</p>
+        <div class="links"><span>相关链接：</span>
+          <a href="https://releasebot.io/updates/anthropic" target="_blank" rel="noopener">Releasebot</a>
+        </div>
+      </article>
+
+      <article class="card" id="item-15">
+        <div class="meta"><span class="tag tag-dev">开发生态</span><span class="num">#15</span></div>
+        <h3><a href="https://learn.microsoft.com/en-us/microsoft-365/copilot/release-notes" target="_blank" rel="noopener">Microsoft 365 Copilot 8 月更新：统一 REST API、Viva Engage 接入</a></h3>
+        <blockquote>微软推出统一 REST 端点替代旧版 Copilot Chat API，Viva Engage 私有内容现可作为 Copilot 知识源，Planner Agent 扩展至基础计划。</blockquote>
+        <p>统一 REST 端点简化了开发者集成，用单一大规模 API 替代多个旧版端点来调用 Agent 和工作流。此外，Word 中默认模型升级为 Sonnet 5 以增强推理能力，Excel 中可通过 Copilot 执行 Python 代码，Web 和工作聊天实现统一。</p>
+        <div class="links"><span>相关链接：</span>
+          <a href="https://learn.microsoft.com/en-us/microsoft-365/copilot/release-notes" target="_blank" rel="noopener">Microsoft 官方文档</a>
+        </div>
+      </article>
+    </div>
+
+    <!-- 行业动态 -->
+    <div class="category">
+      <h2><span class="dot dot-industry"></span>行业动态</h2>
+
+      <article class="card" id="item-16">
+        <div class="meta"><span class="tag tag-industry">行业动态</span><span class="num">#16</span></div>
+        <h3><a href="https://qz.com/anthropic-ipo-2-trillion-valuation-october-081326" target="_blank" rel="noopener">Anthropic 投资者目标 IPO 估值 2 万亿美元，计划 10 月上市</a></h3>
+        <blockquote>Anthropic 投资者预期公司将以不低于 2 万亿美元估值进行 IPO，有望成为史上最大规模 IPO，计划今年 10 月上市。</blockquote>
+        <p>摩根士丹利、高盛和摩根大通担任承销商。公司已于年中向 SEC 提交文件，并启动媒体静默期。预计年收入可达 1200 亿美元，投资者认为快速增长可支撑 30 倍市销率，估值上限约 3 万亿美元。挑战包括政府出口限制、相对竞品的高定价以及与国防部门的法律纠纷。</p>
+        <div class="links"><span>相关链接：</span>
+          <a href="https://qz.com/anthropic-ipo-2-trillion-valuation-october-081326" target="_blank" rel="noopener">Quartz 报道</a>
+          <a href="https://finance.yahoo.com/markets/stocks/articles/anthropic-reportedly-aiming-valuation-2-143819235.html" target="_blank" rel="noopener">Yahoo Finance</a>
+          <a href="https://financialpost.com/financial-times/anthropic-investors-bet-valuation-ipo" target="_blank" rel="noopener">Financial Post</a>
+        </div>
+      </article>
+
+      <article class="card" id="item-17">
+        <div class="meta"><span class="tag tag-industry">行业动态</span><span class="num">#17</span></div>
+        <h3><a href="https://openai.com/index/openai-broadcom-jalapeno-inference-chip/" target="_blank" rel="noopener">OpenAI 公布自研 Jalapeno 推理芯片性能数据，能效优于商用 GPU</a></h3>
+        <blockquote>OpenAI 与 Broadcom 合作开发的自研推理芯片「Jalapeno」首次公布性能基准，在 LLM 推理中展现更优能效比。</blockquote>
+        <p>该芯片在提示处理和 Token 生成方面均优于现有商用 GPU 系统，标志着 OpenAI 正加速减少对 NVIDIA GPU 的推理依赖。这是大型 AI 实验室自研芯片趋势的最新案例，与 Google TPU、Amazon Trainium 等形成竞争格局。</p>
+        <div class="links"><span>相关链接：</span>
+          <a href="https://openai.com/index/openai-broadcom-jalapeno-inference-chip/" target="_blank" rel="noopener">OpenAI 官方博客</a>
+        </div>
+      </article>
+
+      <article class="card" id="item-18">
+        <div class="meta"><span class="tag tag-industry">行业动态</span><span class="num">#18</span></div>
+        <h3><a href="https://finance.yahoo.com/technology/ai/articles/india-ai-data-center-firm-orders-9000-nvidia-vera-rubin-systems-094222289.html" target="_blank" rel="noopener">印度 AM Intelligence 订购 9000 套 NVIDIA Vera Rubin 系统，耗资 80 亿美元</a></h3>
+        <blockquote>印度海得拉巴 AI 基础设施公司 AM Intelligence 下单 9000 套 Vera Rubin GPU 系统，建设 200MW 算力即服务数据中心。</blockquote>
+        <p>这是 NVIDIA 有史以来最大的单笔订单之一，反映印度和东南亚 AI 算力基础设施的急速扩张。200MW 的规划容量使其成为全球最大 AI 数据中心项目之一。</p>
+        <div class="links"><span>相关链接：</span>
+          <a href="https://finance.yahoo.com/technology/ai/articles/india-ai-data-center-firm-orders-9000-nvidia-vera-rubin-systems-094222289.html" target="_blank" rel="noopener">Yahoo Finance / Bloomberg</a>
+        </div>
+      </article>
+
+      <article class="card" id="item-19">
+        <div class="meta"><span class="tag tag-industry">行业动态</span><span class="num">#19</span></div>
+        <h3><a href="https://finance.yahoo.com/technology/ai/articles/ai-chipmaker-enflame-sets-subscription-date-for-near-900-million-shanghai-ipo-030523823.html" target="_blank" rel="noopener">腾讯支持的燧原科技启动近 9 亿美元科创板 IPO 认购</a></h3>
+        <blockquote>腾讯投资的 AI 芯片公司燧原科技将于 9 月 2 日启动科创板 IPO 认购，目标募资约 8.92 亿美元。</blockquote>
+        <p>资金将用于开发下一代 AI 芯片及软件集成。在中国加速国产芯片替代、应对出口限制的背景下，燧原科技是国产 AI 芯片赛道的核心玩家之一。</p>
+        <div class="links"><span>相关链接：</span>
+          <a href="https://finance.yahoo.com/technology/ai/articles/ai-chipmaker-enflame-sets-subscription-date-for-near-900-million-shanghai-ipo-030523823.html" target="_blank" rel="noopener">Yahoo Finance</a>
+        </div>
+      </article>
+
+      <article class="card" id="item-20">
+        <div class="meta"><span class="tag tag-industry">行业动态</span><span class="num">#20</span></div>
+        <h3><a href="https://sputniknews.cn/20260826/1072920386.html" target="_blank" rel="noopener">中国开源 AI 模型使用率首超闭源：DeepSeek V4 Flash 月消耗 18.4T Tokens 居首</a></h3>
+        <blockquote>据南华早报报道，中国开源 AI 模型在热门开发平台使用率达 62%，DeepSeek V4 Flash 以 18.4T Tokens 月用量位居第一。</blockquote>
+        <p>中国研发的模型包揽了前五名中的四个席位。商业网络服务成本高昂是推动开发者转向开源模型的核心动力。这一数据标志着开源模型在全球开发者社区中的影响力已达到新高度。</p>
+        <div class="links"><span>相关链接：</span>
+          <a href="https://sputniknews.cn/20260826/1072920386.html" target="_blank" rel="noopener">卫星通讯社</a>
+        </div>
+      </article>
+
+      <article class="card" id="item-21">
+        <div class="meta"><span class="tag tag-industry">行业动态</span><span class="num">#21</span></div>
+        <h3><a href="https://www.voachinese.com/a/chinese-ai-firm-is-negotiating-with-us-cloud-giants-raises-security-concerns-20260826/8190647.html" target="_blank" rel="noopener">月之暗面正与美三大云厂商洽谈 Kimi K3 部署及收益分成，引发安全关切</a></h3>
+        <blockquote>月之暗面正与微软 Azure、亚马逊 AWS、谷歌 Cloud 磋商，计划将 2.8 万亿参数 Kimi K3 部署至海外云平台，寻求最高 30% 收益分成。</blockquote>
+        <p>若协议达成，月之暗面将获得国际算力支持与美元收入来源。但华盛顿方面对此存在安全忧虑，此前曾指控该公司涉嫌蒸馏美国 AI 模型技术。磋商尚处初期，利益分配、数据权限等核心细节仍待敲定。与此同时，月之暗面宣布 Kimi K2.5 将于 8 月 31 日正式退役，推荐开发者升级至 K3。</p>
+        <div class="links"><span>相关链接：</span>
+          <a href="https://www.voachinese.com/a/chinese-ai-firm-is-negotiating-with-us-cloud-giants-raises-security-concerns-20260826/8190647.html" target="_blank" rel="noopener">VOA 报道</a>
+          <a href="https://www.36kr.com/newsflashes/3956158452235400" target="_blank" rel="noopener">36氪快讯</a>
+          <a href="https://finance.sina.com.cn/roll/2026-08-26/doc-iniprums2326414.shtml" target="_blank" rel="noopener">新浪财经</a>
+        </div>
+      </article>
+
+      <article class="card" id="item-22">
+        <div class="meta"><span class="tag tag-industry">行业动态</span><span class="num">#22</span></div>
+        <h3><a href="https://www.stcn.com/article/detail/4131542.html" target="_blank" rel="noopener">MiniMax 中期业绩：8 月 ARR 超 8 亿美元，上半年收入同比增 283%</a></h3>
+        <blockquote>MiniMax 披露 8 月年化经常性收入突破 8 亿美元，上半年总收入 1.17 亿美元同比增长 283%，海外收入占比六成，企业客户与开发者总数超 200 万。</blockquote>
+        <p>业绩会信息量巨大：毛利率 17.9% 低于预期，公司解释系主动将收入重心转向 B 端开放平台并大幅降价所致。M3 模型发布初期因更改计费方式引发开发者抗议，随后价格腰斩。创始人闫俊杰宣布「到 AGI 实现那天之前，零薪酬」，并承诺出让个人股份激励团队和支持开源社区。调整后净亏损 2.93 亿美元，账上现金储备超 30 亿美元。管理层宣布将加快 M 系列和 H 系列模型的迭代节奏。</p>
+        <div class="links"><span>相关链接：</span>
+          <a href="https://www.stcn.com/article/detail/4131542.html" target="_blank" rel="noopener">证券时报</a>
+          <a href="https://news.qq.com/rain/a/20260826A0DXTW00" target="_blank" rel="noopener">腾讯新闻</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <footer class="page-footer">
+    <p>本早报由 AI 自动生成，信息来源包括：NVIDIA 官方新闻、Anthropic 官方博客、OpenAI 官方更新、36氪、新浪科技、DoNews、Yahoo Finance、The New Stack、Benzinga、VOA、卫星通讯社等。所有内容均保留原始链接，未编造新闻或链接。</p>
+    <p>如有遗漏或错误，欢迎反馈。生成时间：2026-08-27。</p>
+  </footer>
+
+</div>
+</body>
+</html>
