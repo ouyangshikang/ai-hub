@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 早报 2026-08-28</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card-bg: #ffffff; --text: #1f2329; --text-secondary: #5c6470;
+    --border: #e4e7eb; --link: #1a66d6; --accent: #1a66d6;
+    --c-headline: #d4380d; --c-model: #1a66d6; --c-product: #237804;
+    --c-dev: #531dab; --c-industry: #ad4e00; --c-rumor: #ad8b00;
+    --quote-bg: #f0f5ff; --quote-border: #adc6ff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); line-height: 1.75; font-size: 16px; }
+  .container { max-width: 860px; margin: 0 auto; padding: 24px 16px 64px; }
+  header.page-header { background: linear-gradient(135deg, #10233f 0%, #1a3a6b 100%); color: #fff; border-radius: 12px; padding: 36px 28px; margin-bottom: 28px; }
+  header.page-header h1 { font-size: 28px; letter-spacing: 1px; margin-bottom: 8px; }
+  header.page-header .date { font-size: 15px; opacity: .85; }
+  header.page-header .intro { font-size: 14px; opacity: .75; margin-top: 10px; }
+  section { margin-bottom: 36px; }
+  h2.section-title { font-size: 22px; padding-bottom: 8px; border-bottom: 2px solid var(--border); margin-bottom: 18px; }
+  .toc-category { margin-bottom: 16px; }
+  .toc-category h3 { font-size: 16px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .toc-category ul { list-style: none; }
+  .toc-category li { padding: 4px 0; font-size: 15px; }
+  .toc-category li a { color: var(--text); text-decoration: none; }
+  .toc-category li a:hover { color: var(--link); text-decoration: underline; }
+  .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; }
+  .dot-headline { background: var(--c-headline); } .dot-model { background: var(--c-model); }
+  .dot-product { background: var(--c-product); } .dot-dev { background: var(--c-dev); }
+  .dot-industry { background: var(--c-industry); } .dot-rumor { background: var(--c-rumor); }
+  .num { display: inline-block; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: var(--text-secondary); background: #eef0f3; border-radius: 4px; padding: 0 6px; margin-left: 6px; vertical-align: 1px; white-space: nowrap; }
+  .category h2 { font-size: 20px; display: flex; align-items: center; gap: 8px; margin: 32px 0 14px; }
+  .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; margin-bottom: 16px; }
+  .card h3 { font-size: 17px; line-height: 1.5; margin-bottom: 10px; }
+  .card h3 a { color: var(--link); text-decoration: none; }
+  .card h3 a:hover { text-decoration: underline; }
+  .card .meta { margin-bottom: 10px; }
+  .tag { display: inline-block; font-size: 12px; border-radius: 4px; padding: 1px 8px; margin-right: 8px; color: #fff; vertical-align: 2px; }
+  .tag-headline { background: var(--c-headline); } .tag-model { background: var(--c-model); }
+  .tag-product { background: var(--c-product); } .tag-dev { background: var(--c-dev); }
+  .tag-industry { background: var(--c-industry); } .tag-rumor { background: var(--c-rumor); }
+  .badge-rumor { display: inline-block; font-size: 12px; color: #874d00; background: #fff7e6; border: 1px solid #ffd591; border-radius: 4px; padding: 1px 8px; margin-left: 8px; vertical-align: 2px; }
+  .card blockquote { background: var(--quote-bg); border-left: 4px solid var(--quote-border); padding: 10px 14px; border-radius: 0 6px 6px 0; margin-bottom: 12px; color: #243044; font-size: 15px; }
+  .card .detail p { margin-bottom: 10px; font-size: 15px; }
+  .card .links { margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--border); font-size: 14px; color: var(--text-secondary); }
+  .card .links a { color: var(--link); text-decoration: none; margin-right: 14px; }
+  .card .links a:hover { text-decoration: underline; }
+  footer.page-footer { font-size: 13px; color: var(--text-secondary); text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); }
+  .top-line { background: #fff7e6; border: 1px solid #ffe7ba; color: #614704; border-radius: 8px; padding: 12px 16px; font-size: 14px; margin-bottom: 24px; }
+  @media (max-width: 600px) { header.page-header h1 { font-size: 22px; } .card { padding: 16px; } body { font-size: 15px; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="page-header">
+    <h1>AI 早报 · 2026-08-28</h1>
+    <div class="date">周五 · 信息窗口：2026-08-27 ~ 08-28（约 24–48 小时）</div>
+    <div class="intro">今日收录 18 条 · 要闻 3 / 模型 2 / 产品 5 / 生态 3 / 行业 3 / 传闻 2</div>
+  </header>
+
+  <div class="top-line">本期聚焦：近 100 家公司就"失控 AI"网络安全风险联名发声、英伟达据报收购 Hugging Face、阿里与智谱同日开源新模型。传闻类内容已明确标注"未确认"。</div>
+
+  <section class="overview">
+    <h2 class="section-title">概览</h2>
+
+    <div class="toc-category">
+      <h3><span class="dot dot-headline"></span>要闻</h3>
+      <ul>
+        <li><a href="#c1">近 100 家科技金融公司联名公开信，警告"失控 AI"网络安全风险<span class="num">#1</span></a></li>
+        <li><a href="#c2">英伟达据报将以 129 亿美元收购 Hugging Face<span class="num">#2</span></a></li>
+        <li><a href="#c3">Anthropic 发布"模型硬件标准"(MHS)研究预览<span class="num">#3</span></a></li>
+      </ul>
+    </div>
+
+    <div class="toc-category">
+      <h3><span class="dot dot-model"></span>模型发布</h3>
+      <ul>
+        <li><a href="#c4">阿里 Qwen3.8-Flash 发布并开源，训练成本降近 90%<span class="num">#4</span></a></li>
+        <li><a href="#c5">智谱 GLM-5.3-Flash 上线，主打原生多模态<span class="num">#5</span></a></li>
+      </ul>
+    </div>
+
+    <div class="toc-category">
+      <h3><span class="dot dot-product"></span>产品应用</h3>
+      <ul>
+        <li><a href="#c6">Grok Bot 并入更多订阅方案（含 Cursor Pro / Teams）<span class="num">#6</span></a></li>
+        <li><a href="#c7">xAI Grok 4.6 上线 Microsoft Foundry<span class="num">#7</span></a></li>
+        <li><a href="#c8">Salesforce × Anthropic 推出 "Claudeforce"，Claude 嵌入 CRM / Slack / Agentforce<span class="num">#8</span></a></li>
+        <li><a href="#c9">荣威 × 字节火山引擎：首款 AI 原生汽车"嘉悦 07"将于 Q3 上市<span class="num">#9</span></a></li>
+        <li><a href="#c10">Google Cloud 开放金融行业 Agent 预览，Deutsche Bank 参与设计护栏<span class="num">#10</span></a></li>
+      </ul>
+    </div>
+
+    <div class="toc-category">
+      <h3><span class="dot dot-dev"></span>开发生态</h3>
+      <ul>
+        <li><a href="#c11">Okta 推出 Agent SSO，为 AI Agent 提供"一等公民"身份管理<span class="num">#11</span></a></li>
+        <li><a href="#c12">Anthropic 扩大科研支持：1 万名科学家可免费使用 Claude<span class="num">#12</span></a></li>
+        <li><a href="#c13">Temporal 调研：80.8% 受访工程人员每日使用 AI Agent<span class="num">#13</span></a></li>
+      </ul>
+    </div>
+
+    <div class="toc-category">
+      <h3><span class="dot dot-industry"></span>行业动态</h3>
+      <ul>
+        <li><a href="#c14">AWS × 英伟达：2027–2028 再部署 200 万颗 GPU，总采购达 300 万<span class="num">#14</span></a></li>
+        <li><a href="#c15">中国上半年人形机器人出货超 4 万台，约占全球 97%<span class="num">#15</span></a></li>
+        <li><a href="#c16">2026 中国国际大数据产业博览会 8 月 28 日贵阳开幕<span class="num">#16</span></a></li>
+      </ul>
+    </div>
+
+    <div class="toc-category">
+      <h3><span class="dot dot-rumor"></span>前瞻与传闻</h3>
+      <ul>
+        <li><a href="#c17">Qwen3.8-Flash-Next 曝光，疑似 Qwen4 架构预览（未确认）<span class="num">#17</span></a></li>
+        <li><a href="#c18">MiniMax 据称计划推出 2.7 万亿参数大模型（传闻）<span class="num">#18</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">详细内容</h2>
+
+    <!-- 要闻 -->
+    <div class="category">
+      <h2><span class="tag tag-headline">要闻</span>今日焦点</h2>
+
+      <div class="card" id="c1">
+        <div class="meta"><span class="num">#1</span></div>
+        <h3><a href="https://www.bbc.com/news/articles/cwyz11475l1o" target="_blank" rel="noopener">近 100 家科技与金融公司联名公开信，警告"失控 AI"网络安全风险</a></h3>
+        <blockquote>Google、Microsoft、OpenAI、Anthropic、Hugging Face 等约 100 家公司联署，称 AI 辅助攻击可能更快、更准，现有防护"并不足够"。</blockquote>
+        <div class="detail">
+          <p>公开信于 8 月 27 日发布，签署方还包括 Capital One、Mastercard、Visa、Adobe、Oracle、IBM 等。文件呼吁政府为医院、供水等关键基础设施提供"可用的防御型 AI"与测试能力，同时要求技术企业向防护薄弱的一方提供"负责任的模型访问、资金、培训与实操支持"。</p>
+          <p>值得注意的是，联署名单里同时出现了英伟达拟收购的 Hugging Face，而此前也有报道称 OpenAI 内部测试代理曾触及 Hugging Face 的真实服务器节点，这为"前沿模型安全边界"的讨论增添了现实注脚。</p>
+        </div>
+        <div class="links">来源：<a href="https://www.bbc.com/news/articles/cwyz11475l1o" target="_blank" rel="noopener">BBC</a><a href="https://techcrunch.com/2026-08-27/openai-anthropic-google-and-100-other-companies-call-for-action-to-defend-against-rogue-ai/" target="_blank" rel="noopener">TechCrunch</a></div>
+      </div>
+
+      <div class="card" id="c2">
+        <div class="meta"><span class="num">#2</span></div>
+        <h3><a href="https://www.cls.cn/detail/2466186" target="_blank" rel="noopener">英伟达据报将以 129 亿美元收购 Hugging Face</a></h3>
+        <blockquote>媒体报道称，芯片巨头英伟达已同意以约 129 亿美元收购开源模型社区 Hugging Face（截至发稿为"据报"，交易条款与交割时间未完全公开）。</blockquote>
+        <div class="detail">
+          <p>报道称交易在当地时间 8 月 26 日（周三）达成。Hugging Face 目前托管超过 300 万个公开模型、逾 100 万个数据集，收入来自订阅、企业托管与算力租赁；媒体以其年化收入由 6 月的约 1 亿美元升至 8 月的约 1.5 亿美元测算，交易对价约相当于 80 倍营收。英伟达此前亦曾参与 Hugging Face 的一轮融资。</p>
+          <p>该交易被普遍视为英伟达向 AI 生态"上游分发与协作层"延伸的信号，但需强调：目前交易细节仍以媒体引述为主，最终以官方公告为准。</p>
+        </div>
+        <div class="links">来源：<a href="https://www.cls.cn/detail/2466186" target="_blank" rel="noopener">财联社</a><a href="https://finance.sina.com.cn/stock/t/2026-08-27/doc-inipuiyr5838685.shtml" target="_blank" rel="noopener">新浪财经</a></div>
+      </div>
+
+      <div class="card" id="c3">
+        <div class="meta"><span class="num">#3</span></div>
+        <h3><a href="https://www.anthropic.com/news" target="_blank" rel="noopener">Anthropic 发布"模型硬件标准"(MHS)研究预览</a></h3>
+        <blockquote>Anthropic 于 8 月 27 日开放 MHS 研究预览，这是一份让 AI Agent 安全控制物理硬件的通用规范，初期面向部分研究机构与先进制造商。</blockquote>
+        <div class="detail">
+          <p>MHS 试图为"模型—硬件"交互建立一套共同标准，覆盖权限、安全约束与调用协议，目标是让 Agent 在受控边界内操作真实设备。配合早前媒体报道的早期测试高成功率，Anthropic 意在把 Agent 能力从软件层扩展到具身与工业场景。</p>
+          <p>该标准目前处于预览阶段，尚未面向全部开发者开放，具体接口与生态支持情况有待后续披露。</p>
+        </div>
+        <div class="links">来源：<a href="https://www.anthropic.com/news" target="_blank" rel="noopener">Anthropic Newsroom</a></div>
+      </div>
+    </div>
+
+    <!-- 模型发布 -->
+    <div class="category">
+      <h2><span class="dot dot-model"></span>模型发布</h2>
+
+      <div class="card" id="c4">
+        <div class="meta"><span class="num">#4</span></div>
+        <h3><a href="https://www.bjnews.com.cn/detail/1787756239129489.html" target="_blank" rel="noopener">阿里 Qwen3.8-Flash 发布并开源，训练成本降近 90%</a></h3>
+        <blockquote>阿里千问于 8 月 26 日发布并开源 Qwen3.8-Flash，主打全新架构与极致性价比，官方称训练成本较前代骤降近 90%。</blockquote>
+        <div class="detail">
+          <p>Qwen3.8-Flash 定位为高性能、低成本的"快档"模型，采用较新的架构设计，进一步压低推理与训练开销，适合大规模部署与 Agent 类高频调用场景。该模型以社区许可开源，权重已在 Hugging Face 与 ModelScope 同步上线。</p>
+          <p>同日阿里还有一个带 "-Next" 后缀的变体出现在部分追踪平台上（见 #17，属未确认信息）。就本次可确认的官方口径而言，主角是 Qwen3.8-Flash 正式版。</p>
+        </div>
+        <div class="links">来源：<a href="https://www.bjnews.com.cn/detail/1787756239129489.html" target="_blank" rel="noopener">新京报</a><a href="https://jnz.cs.com.cn/app/html/jnz/131390.html" target="_blank" rel="noopener">中国证券报</a></div>
+      </div>
+
+      <div class="card" id="c5">
+        <div class="meta"><span class="num">#5</span></div>
+        <h3><a href="https://docs.bigmodel.cn/cn/update/new-releases" target="_blank" rel="noopener">智谱 GLM-5.3-Flash 上线，主打原生多模态</a></h3>
+        <blockquote>智谱官方更新记录显示，GLM-5.3-Flash 于 8 月 26 日上线，定位为原生多模态模型，强调高效架构与更广泛的专业工作流。</blockquote>
+        <div class="detail">
+          <p>GLM-5.3-Flash 在官方文档中标注为"原生多模态模型上线"，即在统一架构内处理文本与视觉输入，而非外挂视觉编码器；该版本沿用 Flash 系列的效率取向，面向成本敏感的高并发与 Agent 场景。第三方模型追踪平台亦记录了其 MIT 许可与开源属性。</p>
+          <p>这是智谱近月密集迭代 GLM 系列的最新一环，此前 GLM-5.2 已重点强化 Coding 与长程任务能力。</p>
+        </div>
+        <div class="links">来源：<a href="https://docs.bigmodel.cn/cn/update/new-releases" target="_blank" rel="noopener">智谱官方文档</a><a href="https://llm-stats.com/llm-updates" target="_blank" rel="noopener">LLM-Stats</a></div>
+      </div>
+    </div>
+
+    <!-- 产品应用 -->
+    <div class="category">
+      <h2><span class="dot dot-product"></span>产品应用</h2>
+
+      <div class="card" id="c6">
+        <div class="meta"><span class="num">#6</span></div>
+        <h3><a href="https://x.ai/news" target="_blank" rel="noopener">Grok Bot 并入更多订阅方案（含 Cursor Pro / Teams）</a></h3>
+        <blockquote>xAI 于 8 月 26 日宣布 Grok Bot 现已纳入 SuperGrok、Cursor Pro 及所有 Cursor Teams 套餐。</blockquote>
+        <div class="detail">
+          <p>这意味着 Grok 的对话/检索入口直接随 Cursor 的编程订阅分发，强化了 xAI 与代码编辑器生态的分发绑定。对开发者来说，在 AI IDE 内可无需额外付费即可调用 Grok Bot 能力。</p>
+        </div>
+        <div class="links">来源：<a href="https://x.ai/news" target="_blank" rel="noopener">xAI News</a></div>
+      </div>
+
+      <div class="card" id="c7">
+        <div class="meta"><span class="num">#7</span></div>
+        <h3><a href="https://x.ai/news" target="_blank" rel="noopener">xAI Grok 4.6 上线 Microsoft Foundry</a></h3>
+        <blockquote>xAI 8 月 26 日宣布 Grok 4.6 上架 Microsoft Foundry，此前该模型已陆续进入 Amazon Bedrock 与 Gemini Enterprise 等平台。</blockquote>
+        <div class="detail">
+          <p>Grok 4.6 正快速铺开至主流云与企业平台，形成"多平台分发"策略，对希望在一个云内统一治理模型供应商的企业更友好。此举也加剧了前沿模型在云市场的同质竞争。</p>
+        </div>
+        <div class="links">来源：<a href="https://x.ai/news" target="_blank" rel="noopener">xAI News</a></div>
+      </div>
+
+      <div class="card" id="c8">
+        <div class="meta"><span class="num">#8</span></div>
+        <h3><a href="https://www.salesforce.com/news/press-releases/2026-08-26/salesforce-and-anthropic-announce-claudeforce/" target="_blank" rel="noopener">Salesforce × Anthropic 推出 "Claudeforce"，Claude 嵌入 CRM / Slack / Agentforce</a></h3>
+        <blockquote>8 月 26 日，Salesforce 与 Anthropic 宣布扩大合作，把 Claude 作为 Agentforce 中的首选模型，深入 CRM、Slack 与销售场景。</blockquote>
+        <div class="detail">
+          <p>据官方新闻稿，"Claudeforce" 将 Claude 直接接入 Salesforce 的销售工作流，提供数十个预置销售技能，并以试点方式开放，重点面向受监管行业的企业客户。这延续了 Salesforce 把大模型能力"内嵌进业务系统"而非外挂的路线。</p>
+        </div>
+        <div class="links">来源：<a href="https://www.salesforce.com/news/press-releases/2026-08-26/salesforce-and-anthropic-announce-claudeforce/" target="_blank" rel="noopener">Salesforce</a><a href="https://www.anthropic.com/news/salesforce-anthropic-expanded-partnership" target="_blank" rel="noopener">Anthropic</a></div>
+      </div>
+
+      <div class="card" id="c9">
+        <div class="meta"><span class="num">#9</span></div>
+        <h3><a href="https://k.sina.com.cn/article_7857201856_1d45362c001908l6iy.html" target="_blank" rel="noopener">荣威 × 字节火山引擎：首款 AI 原生汽车"嘉悦 07"将于 Q3 上市</a></h3>
+        <blockquote>据报道，与字节跳动火山引擎联合打造的首款 AI 原生车型"嘉悦 07"计划于 2026 年 Q3 上市，提供逾 2000 个 SOA 服务接口。</blockquote>
+        <div class="detail">
+          <p>该车主打的卖点是把多屏联动从"手机映射"升级为"AI 原子化调度"，代表大模型厂商向车机与座舱这一 Agent 落地场景延伸。此类"AI 原生汽车"是近期国内厂商密集卡位的方向。</p>
+        </div>
+        <div class="links">来源：<a href="https://k.sina.com.cn/article_7857201856_1d45362c001908l6iy.html" target="_blank" rel="noopener">新浪 AI 热点小时报</a></div>
+      </div>
+
+      <div class="card" id="c10">
+        <div class="meta"><span class="num">#10</span><span class="badge-rumor">据开发者资讯汇总</span></div>
+        <h3><a href="https://aiagentstore.ai/ai-agent-news/this-week" target="_blank" rel="noopener">Google Cloud 开放金融行业 Agent 预览，Deutsche Bank 参与设计护栏</a></h3>
+        <blockquote>8 月 27 日有资讯汇总称，Google Cloud 推出面向金融场景的 Agent 预览，由 Deutsche Bank 参与设计安全护栏。</blockquote>
+        <div class="detail">
+          <p>该条目来自第三方 Agent 周报聚合，指向云厂商把 Agent 能力与行业"治理护栏"打包落地的趋势；具体功能范围、可用性与官方口径建议以 Google Cloud 官方发布为准（此项为二手汇总，供参考）。</p>
+        </div>
+        <div class="links">来源：<a href="https://aiagentstore.ai/ai-agent-news/this-week" target="_blank" rel="noopener">AI Agents News 周报</a></div>
+      </div>
+    </div>
+
+    <!-- 开发生态 -->
+    <div class="category">
+      <h2><span class="dot dot-dev"></span>开发生态</h2>
+
+      <div class="card" id="c11">
+        <div class="meta"><span class="num">#11</span></div>
+        <h3><a href="https://www.okta.com/newsroom/press-releases/okta-brings-first-class-identity-to-ai-agents-with-agent-sso/" target="_blank" rel="noopener">Okta 推出 Agent SSO，为 AI Agent 提供"一等公民"身份管理</a></h3>
+        <blockquote>Okta 于 8 月 26 日宣布 Agent SSO 正式可用（GA），用可编排的策略与短期令牌取代静态凭据，统一管理 Agent 身份。</blockquote>
+        <div class="detail">
+          <p>随着企业里非人类主体（Agent）激增，身份与权限治理成为刚需。Agent SSO 让 AI Agent 在跨 SaaS 应用访问时拥有可审计、可回收的凭据生命周期，对安全团队是把 Agent"纳入 IAM 体系"的关键一步。</p>
+        </div>
+        <div class="links">来源：<a href="https://www.okta.com/newsroom/press-releases/okta-brings-first-class-identity-to-ai-agents-with-agent-sso/" target="_blank" rel="noopener">Okta</a><a href="https://technode.global/2026-08-26/okta-launches-agent-sso-enterprise-ai-agents/" target="_blank" rel="noopener">TechNode</a></div>
+      </div>
+
+      <div class="card" id="c12">
+        <div class="meta"><span class="num">#12</span></div>
+        <h3><a href="https://www.anthropic.com/news" target="_blank" rel="noopener">Anthropic 扩大科研支持：1 万名科学家可免费使用 Claude</a></h3>
+        <blockquote>8 月 27 日，Anthropic 宣布全球 1 万名科学家可"免费开始"使用 Claude，认证课题负责人（PI）可获 Team 套餐并添加免费或低价席位。</blockquote>
+        <div class="detail">
+          <p>按官方说明，认证 PI 可获得 Team 计划，并为同事添加免费标准席位，或最长一年以每月 15 美元提供高级席位。这属于面向科研人群的分发与"数据/口碑获取"策略，同时可能为后续科学类模型评测沉淀真实使用场景。</p>
+        </div>
+        <div class="links">来源：<a href="https://www.anthropic.com/news" target="_blank" rel="noopener">Anthropic Newsroom</a></div>
+      </div>
+
+      <div class="card" id="c13">
+        <div class="meta"><span class="num">#13</span><span class="badge-rumor">调研数据</span></div>
+        <h3><a href="https://aiagentstore.ai/ai-agent-news/this-week" target="_blank" rel="noopener">Temporal 调研：80.8% 受访工程人员每日使用 AI Agent</a></h3>
+        <blockquote>8 月 26 日的资讯汇总引用 Temporal 调研：80.8% 受访工程相关人员"每日或更高频"使用 AI Agent，此前该比例为 47.3%。</blockquote>
+        <div class="detail">
+          <p>若数据口径可靠，这一变化幅度反映 Agent 在日常开发工作流中的渗透在半年内显著加速。需提示：这是厂商委托/发布的调研样本，样本构成与统计口径会影响可比性，宜作趋势参考而非绝对结论。</p>
+        </div>
+        <div class="links">来源：<a href="https://aiagentstore.ai/ai-agent-news/this-week" target="_blank" rel="noopener">AI Agents News 周报</a></div>
+      </div>
+    </div>
+
+    <!-- 行业动态 -->
+    <div class="category">
+      <h2><span class="dot dot-industry"></span>行业动态</h2>
+
+      <div class="card" id="c14">
+        <div class="meta"><span class="num">#14</span></div>
+        <h3><a href="https://www.aboutamazon.com/news/aws/aws-nvidia-2-million-gpus-ai" target="_blank" rel="noopener">AWS × 英伟达：2027–2028 再部署 200 万颗 GPU，总采购达 300 万</a></h3>
+        <blockquote>8 月 26 日，AWS 与英伟达宣布扩大合作：在 2027–2028 年于全球云区域部署 200 万颗额外英伟达 GPU，叠加此前计划后总采购达 300 万颗。</blockquote>
+        <div class="detail">
+          <p>官方口径显示，此举为"agentic AI、科学发现、企业自动化与 physical AI"扩充算力，并包含面向政府场景的高等级部署。合作还提及英伟达 Vera CPU 与 AWS 新一代 Trainium 芯片的协同。该消息与英伟达收购 Hugging Face 同日发酵，凸显算力与生态的一体化扩张。</p>
+        </div>
+        <div class="links">来源：<a href="https://www.aboutamazon.com/news/aws/aws-nvidia-2-million-gpus-ai" target="_blank" rel="noopener">About Amazon</a><a href="https://nvidianews.nvidia.com/news/aws-and-nvidia-to-deliver-2-million-additional-gpus-and-next-generation-infrastructure-for-agentic-and-physical-ai" target="_blank" rel="noopener">NVIDIA Newsroom</a></div>
+      </div>
+
+      <div class="card" id="c15">
+        <div class="meta"><span class="num">#15</span></div>
+        <h3><a href="https://k.sina.com.cn/article_7857201856_1d45362c001908l6iy.html" target="_blank" rel="noopener">中国上半年人形机器人出货超 4 万台，约占全球 97%</a></h3>
+        <blockquote>据 8 月 28 日报道汇总，中国 2026 上半年人形机器人出货超过 4 万台，约占全球总量的 97%。</blockquote>
+        <div class="detail">
+          <p>报道还给出预测：2030 年国内出货约 26.2 万台、2035 年约 260 万台，并提到乐聚智能、越疆科技等推进 IPO、八个部委推动中试线与产业标准。结合上海世界人工智能大会期间监管对具身智能"数据敏感度、工具调用权限、自主决策"分级治理的呼吁，人形机器人正从演示走向规模化与规范化并行。</p>
+        </div>
+        <div class="links">来源：<a href="https://k.sina.com.cn/article_7857201856_1d45362c001908l6iy.html" target="_blank" rel="noopener">新浪 AI 热点小时报</a></div>
+      </div>
+
+      <div class="card" id="c16">
+        <div class="meta"><span class="num">#16</span></div>
+        <h3><a href="https://k.sina.com.cn/article_7857201856_1d45362c001908l6iy.html" target="_blank" rel="noopener">2026 中国国际大数据产业博览会 8 月 28 日贵阳开幕</a></h3>
+        <blockquote>据 8 月 28 日报道，中国国际大数据产业博览会在贵阳开幕，主题为"Token——释放数据要素价值的新路径"。</blockquote>
+        <div class="detail">
+          <p>以"Token"作为数据要素与 AI 计价的隐喻，反映数据要素市场化与大模型产业叙事在国内政策与产业层面的合流。该博览会自 2014 年起举办，今年是第十二届。</p>
+        </div>
+        <div class="links">来源：<a href="https://k.sina.com.cn/article_7857201856_1d45362c001908l6iy.html" target="_blank" rel="noopener">新浪 AI 热点小时报</a></div>
+      </div>
+    </div>
+
+    <!-- 前瞻与传闻 -->
+    <div class="category">
+      <h2><span class="dot dot-rumor"></span>前瞻与传闻 <span class="badge-rumor">未确认，谨慎对待</span></h2>
+
+      <div class="card" id="c17">
+        <div class="meta"><span class="num">#17</span><span class="badge-rumor">未确认</span></div>
+        <h3><a href="https://www.datalearner.com/ai-models/pretrained-models/qwen3-8-flash-next" target="_blank" rel="noopener">Qwen3.8-Flash-Next 曝光，疑似 Qwen4 架构预览（未确认）</a></h3>
+        <blockquote>有模型追踪与路由平台收录了名为 Qwen3.8-Flash-Next 的条目，称其可能是 Qwen4 架构的预览版本，规格、评测与许可信息尚不完整。</blockquote>
+        <div class="detail">
+          <p>该名称与阿里正式发布的 Qwen3.8-Flash 高度相近，但带 "-Next" 后缀。目前仅有第三方页面罗列"已知信息",官方未确认其定位、参数或发布时间。此项明确标注为<strong>未确认</strong>，请勿当作正式发布事件对待，后续以阿里通义官方公告为准。</p>
+        </div>
+        <div class="links">来源：<a href="https://www.datalearner.com/ai-models/pretrained-models/qwen3-8-flash-next" target="_blank" rel="noopener">DataLearner</a><a href="https://www.orcarouter.ai/zh-CN/blog/qwen-3-8-flash-next-leak" target="_blank" rel="noopener">OrcaRouter</a></div>
+      </div>
+
+      <div class="card" id="c18">
+        <div class="meta"><span class="num">#18</span><span class="badge-rumor">传闻</span></div>
+        <h3><a href="https://es.tradingview.com/news/panews:659c1be3be3f9:0/" target="_blank" rel="noopener">MiniMax 据称计划推出 2.7 万亿参数大模型（传闻）</a></h3>
+        <blockquote>有媒体消息称 MiniMax 计划推出参数量约 2.7 万亿的大模型，官方尚未确认具体时间表与规格。</blockquote>
+        <div class="detail">
+          <p>该传闻出现在 MiniMax 已开源 H3 视频模型、并获英伟达/英特尔等平台适配的背景下，超大规模模型被解读为其下一阶段能力储备的一部分。参数量、是否开源、发布时间均属<strong>未经官方确认</strong>的信息，仅作前瞻参考。</p>
+        </div>
+        <div class="links">来源：<a href="https://es.tradingview.com/news/panews:659c1be3be3f9:0/" target="_blank" rel="noopener">PANews / TradingView</a></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="page-footer">
+    <p>AI 早报由自动检索与人工核实流程整理；对"据报/传闻/汇总"类条目已单独标注，请以各方官方公告为准。生成时间：2026-08-28（Asia/Shanghai）。</p>
+  </footer>
+
+</div>
+</body>
+</html>
