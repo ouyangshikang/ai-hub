@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 早报 2026-09-02</title>
+  <style>
+    :root {
+      --bg: #f7f8fa;
+      --card-bg: #ffffff;
+      --text: #1a1a1a;
+      --text-secondary: #555555;
+      --muted: #888888;
+      --border: #e5e7eb;
+      --accent: #2563eb;
+      --accent-light: #eff6ff;
+      --rumor: #f59e0b;
+      --rumor-bg: #fffbeb;
+      --radius: 12px;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+    header {
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      color: #fff;
+      border-radius: var(--radius);
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+    }
+    header h1 { margin: 0 0 8px; font-size: 2rem; letter-spacing: -0.5px; }
+    header time { color: #cbd5e1; font-size: 0.95rem; }
+    .intro {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+    .overview {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+    }
+    .overview h2 {
+      margin: 0 0 12px;
+      font-size: 1.2rem;
+      color: var(--text);
+    }
+    .overview ul {
+      margin: 0;
+      padding-left: 20px;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+    }
+    .overview li { margin-bottom: 6px; }
+    .overview a { font-weight: 500; }
+    .section {
+      margin-bottom: 32px;
+    }
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin: 0 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--accent);
+      color: var(--text);
+    }
+    .item {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--accent);
+    }
+    .item-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+    .item-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 50%;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .item-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+      margin: 0;
+    }
+    .item-title a { color: var(--text); }
+    .item-title a:hover { color: var(--accent); }
+    .summary {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text);
+      margin: 0 0 8px;
+      padding: 8px 12px;
+      background: var(--accent-light);
+      border-radius: 6px;
+      border-left: 3px solid var(--accent);
+    }
+    .item-body {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+    .item-meta {
+      margin-top: 10px;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .rumor-badge {
+      display: inline-block;
+      background: var(--rumor-bg);
+      color: var(--rumor);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 10px;
+      border: 1px solid var(--rumor);
+    }
+    .rumor-item {
+      border-left-color: var(--rumor);
+    }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.5rem; }
+      .container { padding: 16px 12px 36px; }
+      .item { padding: 14px 16px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>AI 早报</h1>
+    <time datetime="2026-09-02">2026 年 9 月 2 日 · 星期三</time>
+  </header>
+
+  <div class="intro">
+    今日聚焦：Anthropic 连发 Claude Fable 5.1 与 Mythos 5.1 两款模型，编码性能再攀高峰；Google Assistant 将于本周四（9 月 4 日）正式关闭，Gemini 全面接管 Android 生态；MiniMax M3 Pro（3 万亿参数）有望本月推出；字节跳动上调豆包内部股价至 $17.02。
+  </div>
+
+  <div class="overview">
+    <h2>今日速览</h2>
+    <ul>
+      <li><strong>要闻：</strong><a href="#s1">Anthropic 双模型发布</a>、<a href="#s1">Google Assistant 关闭倒计时</a>、<a href="#s1">Anthropic MHS 开放标准</a></li>
+      <li><strong>模型发布：</strong><a href="#s2">智谱 GLM-5.3-Flash</a>、<a href="#s2">MiniMax M3 Pro</a>、<a href="#s2">Seed 2.1</a>、<a href="#s2">DeepSeek-V4-Pro</a>、<a href="#s2">Grok 4.6</a>、<a href="#s2">Qwen3.8-Max</a>、<a href="#s2">Gemini 3.7 Flash</a></li>
+      <li><strong>产品应用：</strong><a href="#s3">豆包手机量产</a>、<a href="#s3">Apple 九月发布会</a></li>
+      <li><strong>开发生态：</strong><a href="#s4">Claude Code 限额调整</a>、<a href="#s4">Mureka V9.5</a></li>
+      <li><strong>行业动态：</strong><a href="#s5">MiniMax 中期业绩</a>、<a href="#s5">豆包股价格上调</a>、<a href="#s5">DeepSeek 新一轮融资</a>、<a href="#s5">可灵获国家基金</a></li>
+      <li><strong>前瞻与传闻：</strong><a href="#s6">NVIDIA Rubin 芯片</a>、<a href="#s6">xAI 并入 SpaceX</a></li>
+    </ul>
+  </div>
+
+  <!-- 要闻 -->
+  <div class="section" id="s1">
+    <h2 class="section-title">要闻</h2>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-number">1</span>
+        <h3 class="item-title"><a href="https://www.anthropic.com/claude-fable-and-mythos-5-1" target="_blank" rel="noopener">Anthropic 发布 Claude Fable 5.1 与 Claude Mythos 5.1</a></h3>
+      </div>
+      <p class="summary">Anthropic 连发两款旗舰模型，Fable 5.1 主打编码降本，Mythos 5.1 拓展生物与网络安全领域。</p>
+      <p class="item-body">Claude Fable 5.1 将缓存读取价格大幅下调 75% 至 $0.25/MTok，输入/输出价格维持 $10/$50 不变。多项基准测试全面超越 Fable 5 与 Opus 5，编码场景提升尤为显著。Claude Mythos 5.1 则在通用能力基础上增加了生物学与网络安全领域的专业访问能力，面向科研和企业安全场景。两款模型已于 9 月 1-2 日陆续上线 API 和 Claude.ai。</p>
+      <div class="item-meta">来源：<a href="https://www.anthropic.com/claude-fable-and-mythos-5-1" target="_blank" rel="noopener">Anthropic</a> · <a href="https://m.cls.cn/detail/2471321" target="_blank" rel="noopener">财联社</a> · 2026-09-01</div>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-number">2</span>
+        <h3 class="item-title"><a href="https://the-decoder.com/google-will-shut-down-google-assistant-starting-september-2026-as-gemini-takes-over-on-android-and-wear-os/" target="_blank" rel="noopener">Google Assistant 将于 9 月 4 日正式关闭，Gemini 全面接管</a></h3>
+      </div>
+      <p class="summary">Google 确认 9 月 4 日起停止 Google Assistant 服务，Android、Wear OS、Android Auto 全线切换至 Gemini。</p>
+      <p class="item-body">这一决定标志着 Google 在端侧 AI 策略上的重大转向。Google Assistant 自 2016 年上线以来一直是 Android 生态的核心语音助手，但随着 Gemini 模型能力的快速提升，Google 选择将 AI 交互统一至 Gemini 品牌下。影响范围覆盖智能手机、平板、手表和车载系统。</p>
+      <div class="item-meta">来源：<a href="https://the-decoder.com/google-will-shut-down-google-assistant-starting-september-2026-as-gemini-takes-over-on-android-and-wear-os/" target="_blank" rel="noopener">The Decoder</a> · <a href="https://www.renascence.io/news/15573/google-assistant-end-of-life-september-2026-gemini-takes-over" target="_blank" rel="noopener">Renascence</a> · 2026-09</div>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-number">3</span>
+        <h3 class="item-title"><a href="https://www.anthropic.com/news/model-hardware-standard-research-preview" target="_blank" rel="noopener">Anthropic 发布 Model Hardware Standard (MHS)，AI Agent 迈入物理世界</a></h3>
+      </div>
+      <p class="summary">MHS 是一套开放标准，让 AI Agent 能直接控制实验室和制造业硬件，如液体处理器和机械臂。</p>
+      <p class="item-body">Anthropic 于 8 月 27 日发布 MHS 研究预览版，旨在标准化 AI 对物理硬件的控制接口。首批支持的设备包括实验室自动化液体处理器和工业机械臂，目标是让 AI Agent 能自主完成实验操作和生产流程。这是继软件 Agent 之后，AI 向物理世界延伸的重要一步。</p>
+      <div class="item-meta">来源：<a href="https://www.anthropic.com/news/model-hardware-standard-research-preview" target="_blank" rel="noopener">Anthropic</a> · <a href="https://www.cnbc.com/2026/08/27/anthropic-pushes-into-physical-world-with-new-standard-to-help-ai-agents-operate-machines.html" target="_blank" rel="noopener">CNBC</a> · 2026-08-27</div>
+    </div>
+  </div>
+
+  <!-- 模型发布 -->
+  <div class="section" id="s2">
+    <h2 class="section-title">模型发布</h2>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-number">4</span>
+        <h3 class="item-title"><a href="https://www.zhipuai.cn/zh/research/163" target="_blank" rel="noopener">智谱 AI 开源 GLM-5.3-Flash：320B 参数，性能持平 Claude Opus 4.8</a></h3>
+      </div>
+      <p class="summary">GLM-5.3-Flash 以 320B 参数量达到 AA 指数 57 分，定价仅为 Claude Opus 的 1/40。</p>
+      <p class="item-body">智谱 AI 于 8 月 26 日发布并开源 GLM-5.3-Flash，在多项基准测试中与 Claude Opus 4.8 持平。模型采用轻量化架构，推理成本大幅降低。这标志着中国开源大模型在性能与性价比上持续缩小与国际顶尖闭源模型的差距。</p>
+      <div class="item-meta">来源：<a href="https://www.zhipuai.cn/zh/research/163" target="_blank" rel="noopener">智谱 AI</a> · <a href="http://www.datayuan.cn/article/24065.htm" target="_blank" rel="noopener">数据猿</a> · 2026-08-26</div>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-number">5</span>
+        <h3 class="item-title"><a href="https://timeline.sohu.com/news/45BCwgG7Nc" target="_blank" rel="noopener">MiniMax M3 Pro 有望 9-10 月推出，参数规模达 3 万亿</a></h3>
+      </div>
+      <p class="summary">华研证券报告指出 M3 Pro 或于本月推出，3T 参数规模将刷新 MiniMax 模型上限。</p>
+      <p class="item-body">据华研证券研报，MiniMax 下一代旗舰模型 M3 Pro（约 3 万亿参数）有望在 9-10 月间发布，同时 M3.1 版本也在开发中。消息推动 MiniMax 股价在 8 月 31 日大涨超 15%，报 346 港元。H3 开源模型下载量已突破 2400 万次。</p>
+      <div class="item-meta">来源：<a href="https://timeline.sohu.com/news/45BCwgG7Nc" target="_blank" rel="noopener">搜狐财经</a> · <a href="https://www.cls.cn/detail/2470385" target="_blank" rel="noopener">财联社</a> · 2026-08-31</div>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-number">6</span>
+        <h3 class="item-title"><a href="https://seed.bytedance.com/zh/seed2_1" target="_blank" rel="noopener">字节跳动 Seed 2.1 系列模型发布：面向 Agent 生产力</a></h3>
+      </div>
+      <p class="summary">Seed 2.1 推出 Pro 和 Turbo 两个版本，强化通用 Agent、编码交付和多模态理解能力。</p>
+      <p class="item-body">字节跳动 Seed 团队于 8 月 10 日发布 Seed 2.1 系列，核心面向真实生产力场景。模型在办公自动化、RTL 芯片设计、跨工具执行、前端页面从多媒体输入自动生成等方面表现突出。Turbo 版本主打低延迟，Pro 版本侧重复杂任务处理能力。</p>
+      <div class="item-meta">来源：<a href="https://seed.bytedance.com/zh/seed2_1" target="_blank" rel="noopener">ByteDance Seed</a> · 2026-08-10</div>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-number">7</span>
+        <h3 class="item-title"><a href="https://api-docs.deepseek.com/zh-cn/news/news260813/" target="_blank" rel="noopener">DeepSeek-V4-Pro 正式版上线：Agent 增强 + Responses API</a></h3>
+      </div>
+      <p class="summary">V4-Pro 强化 Agent 能力并新增 Responses API，支持灵活的思考模式切换。</p>
+      <p class="item-body">DeepSeek 于 8 月 13 日上线 V4-Pro 正式版，重点增强了 Agent 场景下的工具调用和多步推理能力。新增 Responses API 允许开发者灵活控制模型的思考深度和模式。8 月 17 日起实行峰谷定价策略。</p>
+      <div class="item-meta">来源：<a href="https://api-docs.deepseek.com/zh-cn/news/news260813/" target="_blank" rel="noopener">DeepSeek API Docs</a> · 2026-08-13</div>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-number">8</span>
+        <h3 class="item-title"><a href="https://x.ai/news/grok-4-6" target="_blank" rel="noopener">xAI 发布 Grok 4.6：AA 指数 61，持平 GPT-5.6 Sol</a></h3>
+      </div>
+      <p class="summary">Grok 4.6 在 AA 智能指数上达到 61 分，重点优化长时 Agent 任务和视觉工作。</p>
+      <p class="item-body">xAI 于 8 月 12 日发布 Grok 4.6，在 AA 智能指数上与 GPT-5.6 Sol 持平。新模型特别强化了长时间运行的 Agent 任务和视觉理解能力。未公开具体参数规模，但被定位为 Grok 系列目前的最高能力版本。</p>
+      <div class="item-meta">来源：<a href="https://x.ai/news/grok-4-6" target="_blank" rel="noopener">xAI</a> · <a href="https://news.qiniu.com/archives/1785291271252" target="_blank" rel="noopener">七牛云</a> · 2026-08-12</div>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-number">9</span>
+        <h3 class="item-title"><a href="https://news.qiniu.com/archives/1785755470307" target="_blank" rel="noopener">阿里发布 Qwen3.8-Max：2.4T 参数，即将开源</a></h3>
+      </div>
+      <p class="summary">Qwen3.8-Max 以 2.4T 参数在第三方盲测中仅次于 Claude Fable 5，支持 100 万上下文。</p>
+      <p class="item-body">阿里通义实验室于 8 月 3 日发布 Qwen3.8-Max，采用 2.4 万亿参数 MoE 架构，支持 100 万 token 上下文窗口。第三方盲测排名仅次于 Claude Fable 5。核心亮点包括 16 天自主编程能力。模型将于近期开源。同时 8 月 14 日发布了面向消费级硬件的 Qwen3.8-27B。</p>
+      <div class="item-meta">来源：<a href="https://news.qiniu.com/archives/1785755470307" target="_blank" rel="noopener">七牛云</a> · <a href="https://www.zaobao.com/finance/china/story20260803-9461424" target="_blank" rel="noopener">联合早报</a> · 2026-08-03</div>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-number">10</span>
+        <h3 class="item-title"><a href="https://www.axios.com/2026/08/13/google-gemini-37-flash" target="_blank" rel="noopener">Google 发布 Gemini 3.7 Flash：编码能力大幅提升</a></h3>
+      </div>
+      <p class="summary">Gemini 3.7 Flash 于 8 月 13 日发布，编码能力成为最大亮点。</p>
+      <p class="item-body">Google 在 8 月 13 日发布了 Gemini 3.7 Flash，这是一款专注编码能力的轻量模型。值得注意的是，该版本在 Gemini 3.5 Pro 之前发布，表明 Google 正在加速迭代其面向开发者的 Flash 产品线。</p>
+      <div class="item-meta">来源：<a href="https://www.axios.com/2026/08/13/google-gemini-37-flash" target="_blank" rel="noopener">Axios</a> · <a href="https://baike.baidu.com/en/item/Gemini%203.7%20Flash/4561878" target="_blank" rel="noopener">百度百科</a> · 2026-08-13</div>
+    </div>
+  </div>
+
+  <!-- 产品应用 -->
+  <div class="section" id="s3">
+    <h2 class="section-title">产品应用</h2>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-number">11</span>
+        <h3 class="item-title"><a href="https://k.sina.com.cn/article_7880068262_1d5b04ca606801pwny.html" target="_blank" rel="noopener">豆包手机量产：努比亚 NaviX Ultra 9 月上市，端侧 AI Agent 落地</a></h3>
+      </div>
+      <p class="summary">搭载字节豆包端侧模型的努比亚 NaviX Ultra 将于 9 月量产上市，支持离线 AI 任务。</p>
+      <p class="item-body">努比亚 NaviX Ultra 是首款搭载字节豆包"系统级 AI Agent"的量产手机。内置轻量化端侧模型，支持离线状态下的日程管理、图片编辑等任务，通过本地加密保障隐私。这标志着端侧大模型从概念走向真正的大规模消费级落地。</p>
+      <div class="item-meta">来源：<a href="https://k.sina.com.cn/article_7880068262_1d5b04ca606801pwny.html" target="_blank" rel="noopener">新浪财经</a> · 2026-09</div>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-number">12</span>
+        <h3 class="item-title"><a href="https://www.apple.com/newsroom/2026/06/apple-unveils-next-generation-of-apple-intelligence-siri-ai-and-more/" target="_blank" rel="noopener">Apple 九月发布会在即：iPhone 新品 + Apple Intelligence 升级</a></h3>
+      </div>
+      <p class="summary">Apple 将于本月举行秋季发布会，预计推出新款 iPhone 和 Apple Intelligence 新功能。</p>
+      <p class="item-body">根据多方消息，Apple 将在 9 月举行年度秋季发布会，预计推出 iPhone 18 系列、新款 Apple Watch 等产品。WWDC26 上发布的下一代 Apple Intelligence 和全新 Siri AI 有望在新机上进一步落地，带来更深度的系统级 AI 集成。</p>
+      <div class="item-meta">来源：<a href="https://www.apple.com/newsroom/2026/06/apple-unveils-next-generation-of-apple-intelligence-siri-ai-and-more/" target="_blank" rel="noopener">Apple Newsroom</a> · 2026-09</div>
+    </div>
+  </div>
+
+  <!-- 开发生态 -->
+  <div class="section" id="s4">
+    <h2 class="section-title">开发生态</h2>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-number">13</span>
+        <h3 class="item-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-is-cutting-claude-codes-current-weekly-limits-by-17-percent/" target="_blank" rel="noopener">Anthropic Claude Code 限额调整：9 月 14 日起减少 17%</a></h3>
+      </div>
+      <p class="summary">Claude Code 将结束临时 50% 加量期，9 月 14 日起限额降至当前水平的 83%。</p>
+      <p class="item-body">Anthropic 宣布将于 9 月 14 日调整 Claude Code 的周使用限额，相比当前水平减少约 17%。此前 Claude Code 曾临时提供 50% 的额外限额，调整后仍比初始限额高出 25%。此举被视为在模型成本与用户需求之间寻求可持续平衡。</p>
+      <div class="item-meta">来源：<a href="https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-is-cutting-claude-codes-current-weekly-limits-by-17-percent/" target="_blank" rel="noopener">BleepingComputer</a> · 2026-08</div>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-number">14</span>
+        <h3 class="item-title"><a href="https://mureka.ai/" target="_blank" rel="noopener">Mureka V9.5 发布：AI 音乐告别"AI 味"</a></h3>
+      </div>
+      <p class="summary">Mureka V9.5 音乐生成模型发布，核心目标是消除 AI 生成音乐的机械感。</p>
+      <p class="item-body">AI 音乐生成平台 Mureka 于 8 月底发布 V9.5 版本，主打"学会克制"的音乐生成风格——减少过度修饰和模式化表达，让 AI 生成的音乐更接近人类创作的自然感。这是 AI 音乐赛道持续迭代的最新成果。</p>
+      <div class="item-meta">来源：<a href="https://mureka.ai/" target="_blank" rel="noopener">Mureka</a> · 2026-08-31</div>
+    </div>
+  </div>
+
+  <!-- 行业动态 -->
+  <div class="section" id="s5">
+    <h2 class="section-title">行业动态</h2>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-number">15</span>
+        <h3 class="item-title"><a href="https://wap.eastmoney.com/a/202608273855300956.html" target="_blank" rel="noopener">MiniMax 2026 中期业绩：ARR 超 80 亿美元，To B 占比约 80%</a></h3>
+      </div>
+      <p class="summary">MiniMax 上半年 ARR 突破 80 亿美元，CEO 宣布加快 M 和 H 系列模型的研发与发布周期。</p>
+      <p class="item-body">MiniMax 于 8 月 27 日公布 2026 年中期业绩。年化经常性收入（ARR）超过 80 亿美元，其中 To B 业务占比约 80%。CEO 闫俊杰表示将加快 M 系列和 H 系列模型的迭代速度，提升智能化水平和运行效率。H3 开源模型下载量已超 2400 万次。</p>
+      <div class="item-meta">来源：<a href="https://wap.eastmoney.com/a/202608273855300956.html" target="_blank" rel="noopener">东方财富</a> · 2026-08-27</div>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-number">16</span>
+        <h3 class="item-title"><a href="https://wap.eastmoney.com/a/202609013860554345.html" target="_blank" rel="noopener">字节跳动再次上调"豆包股"内部价格至 $17.02/股</a></h3>
+      </div>
+      <p class="summary">字节跳动于 9 月 1 日将豆包业务内部股价上调至 $17.02/股，持续加码 AI 投入。</p>
+      <p class="item-body">据东方财富网报道，字节跳动再次上调与豆包业务挂钩的内部股票价格，显示出公司对 AI 业务增长前景的信心。同日，滴滴自动驾驶新一代车型 Robotaxi R2 在北京和广州开启载客测试服务。</p>
+      <div class="item-meta">来源：<a href="https://wap.eastmoney.com/a/202609013860554345.html" target="_blank" rel="noopener">东方财富</a> · 2026-09-01</div>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-number">17</span>
+        <h3 class="item-title"><a href="https://www.qbitai.com/2026/07/450101.html" target="_blank" rel="noopener">DeepSeek 估值 4800 亿，启动新一轮融资，最快明年 IPO</a></h3>
+      </div>
+      <p class="summary">DeepSeek 以 4800 亿人民币估值开启新一轮融资，此前已完成超 70 亿美元首轮融资。</p>
+      <p class="item-body">据量子位报道，DeepSeek（深度求索）在完成超 70 亿美元首轮融资后，以约 4800 亿人民币（约 660 亿美元）估值启动新一轮融资。此前首轮融资投后估值已超 500 亿美元。公司最快于 2027 年启动 IPO 进程。</p>
+      <div class="item-meta">来源：<a href="https://www.qbitai.com/2026/07/450101.html" target="_blank" rel="noopener">量子位</a> · <a href="https://www.guandian.cn/m/show/567510" target="_blank" rel="noopener">观点网</a> · 2026-07</div>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-number">18</span>
+        <h3 class="item-title"><a href="https://www.chinastarmarket.cn/detail/2470290" target="_blank" rel="noopener">快手可灵获国家 AI 基金等 14 亿出资，投后估值 1228 亿</a></h3>
+      </div>
+      <p class="summary">视频大模型可灵获国家 AI 基金出资 14 亿元，投后估值约 1228 亿元，直逼母公司快手。</p>
+      <p class="item-body">快手旗下视频生成模型可灵完成新一轮融资，获国家 AI 基金及上海国资体系出资 14 亿元，投后估值约 1228 亿元人民币。国家级资本的入场标志着政策层面对视频大模型赛道的认可和支持。</p>
+      <div class="item-meta">来源：<a href="https://www.chinastarmarket.cn/detail/2470290" target="_blank" rel="noopener">中国科创板</a> · 2026-08</div>
+    </div>
+  </div>
+
+  <!-- 前瞻与传闻 -->
+  <div class="section" id="s6">
+    <h2 class="section-title">前瞻与传闻</h2>
+
+    <div class="item rumor-item">
+      <div class="item-header">
+        <span class="item-number">19</span>
+        <span class="rumor-badge">传闻</span>
+        <h3 class="item-title"><a href="https://investor.nvidia.com/news" target="_blank" rel="noopener">NVIDIA Rubin 下一代 AI 芯片平台：6 款新芯片 + AI 超算</a></h3>
+      </div>
+      <p class="summary">NVIDIA 公布 Rubin 架构下一代 AI 芯片平台，包含 6 款新芯片和一台 AI 超级计算机。</p>
+      <p class="item-body">NVIDIA 在近期投资者公告中披露了 Rubin 架构的下一代 AI 芯片平台，计划推出 6 款新芯片和一台 AI 超级计算机。Rubin 被定位为 Blackwell 之后的下一代 AI 计算架构，目标是在 AI 训练和推理上实现新一轮性能飞跃。具体发布时间线尚未明确，但业界预计 2027 年前后进入量产阶段。</p>
+      <div class="item-meta">来源：<a href="https://investor.nvidia.com/news" target="_blank" rel="noopener">NVIDIA Investor</a> · 2026</div>
+    </div>
+
+    <div class="item rumor-item">
+      <div class="item-header">
+        <span class="item-number">20</span>
+        <span class="rumor-badge">传闻</span>
+        <h3 class="item-title"><a href="https://news.pedaily.cn/202605/563630.shtml" target="_blank" rel="noopener">xAI 解散并入 SpaceX，马斯克用 Colossus 2 继续训练 Grok</a></h3>
+      </div>
+      <p class="summary">xAI 因烧钱过快、团队流失解散，业务并入 SpaceX 成立 SpaceXAI，Grok 新模型仍在训练中。</p>
+      <p class="item-body">据投资界报道，xAI 因资金消耗过快、核心团队流失和 GPU 使用效率低下等问题宣布解散，相关业务并入 SpaceX 旗下成立 SpaceXAI。马斯克声称 Grok 并未消亡，正在利用新一代 Colossus 2 计算集群同时训练多款新模型，目标是强化 X 平台的 AI 生态护城河。</p>
+      <div class="item-meta">来源：<a href="https://news.pedaily.cn/202605/563630.shtml" target="_blank" rel="noopener">投资界</a> · 2026-05</div>
+    </div>
+  </div>
+
+  <footer>
+    <p>AI 早报 · 每日精选 AI 行业要闻</p>
+    <p>数据来源截至 2026-09-02，部分内容覆盖过去 1-2 周的重要进展</p>
+  </footer>
+</div>
+</body>
+</html>
