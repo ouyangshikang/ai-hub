@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="data:,">
+  <title>AI 早报 2026-09-03</title>
+  <style>
+    :root {
+      --bg: #f7f8fa;
+      --card: #ffffff;
+      --text: #18212f;
+      --secondary: #526174;
+      --muted: #7b8798;
+      --border: #e4e9f0;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --rumor: #b45309;
+      --rumor-soft: #fffbeb;
+      --radius: 12px;
+      --shadow: 0 1px 3px rgb(15 23 42 / 8%);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      line-height: 1.7;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 840px; margin: 0 auto; padding: 24px 16px 48px; }
+    header {
+      margin-bottom: 28px;
+      padding: 38px 24px;
+      text-align: center;
+      color: #fff;
+      background: linear-gradient(135deg, #172554, #1e3a8a);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    h1 { margin: 0 0 6px; font-size: 2rem; letter-spacing: -.5px; }
+    header time { color: #dbeafe; font-size: .94rem; }
+    .intro, .overview, .item {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .intro { margin-bottom: 22px; padding: 18px 20px; color: var(--secondary); font-size: .95rem; }
+    .overview { margin-bottom: 30px; padding: 20px; }
+    .overview h2 { margin: 0 0 12px; font-size: 1.2rem; }
+    .overview-group + .overview-group { margin-top: 13px; }
+    .overview h3 { margin: 0 0 4px; color: var(--secondary); font-size: .95rem; }
+    .overview ul { margin: 0; padding-left: 20px; color: var(--secondary); font-size: .9rem; }
+    .overview li { margin: 3px 0; }
+    .section { margin-bottom: 32px; }
+    .section-title {
+      margin: 0 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--accent);
+      font-size: 1.3rem;
+    }
+    .item { margin-bottom: 14px; padding: 18px 20px; border-left: 4px solid var(--accent); }
+    .item.rumor { border-left-color: var(--rumor); }
+    .item-header { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+    .number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 25px;
+      height: 25px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: .76rem;
+      font-weight: 700;
+    }
+    .rumor .number { background: var(--rumor); }
+    .item h3 { margin: 0; font-size: 1.05rem; line-height: 1.45; }
+    .item h3 a { color: var(--text); }
+    .item h3 a:hover { color: var(--accent); }
+    .badge {
+      padding: 2px 8px;
+      border: 1px solid var(--rumor);
+      border-radius: 999px;
+      color: var(--rumor);
+      background: var(--rumor-soft);
+      font-size: .72rem;
+      font-weight: 700;
+    }
+    blockquote {
+      margin: 8px 0;
+      padding: 8px 12px;
+      border-left: 3px solid var(--accent);
+      border-radius: 6px;
+      background: var(--accent-soft);
+      color: var(--text);
+      font-size: .94rem;
+      font-weight: 550;
+    }
+    .rumor blockquote { border-left-color: var(--rumor); background: var(--rumor-soft); }
+    .detail { margin: 0; color: var(--secondary); font-size: .92rem; }
+    .links { margin: 10px 0 0; color: var(--muted); font-size: .81rem; }
+    footer { padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: .82rem; text-align: center; }
+    @media (max-width: 600px) {
+      .container { padding: 14px 12px 36px; }
+      header { padding: 30px 18px; }
+      h1 { font-size: 1.55rem; }
+      .item { padding: 15px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>AI 早报 2026-09-03</h1>
+      <time datetime="2026-09-03">生成于 2026 年 9 月 3 日 · 星期四</time>
+    </header>
+
+    <section class="intro">
+      今日重点：OpenAI 将即将发布的 Astra 置于更高等级的网络安全管控下；Anthropic 的 Claude Fable 5.1 / Mythos 5.1 上线；李飞飞团队发布世界模型 Atlas。中国侧，燧原科技启动科创板申购，AI EDA 初创公司芯流微澜完成天使轮融资。本文优先收录 9 月 1 日至 3 日发布或更新的公开信息；时间早于此窗口的产品状态均在条目中明确标注。
+    </section>
+
+    <section class="overview">
+      <h2>概览</h2>
+      <div class="overview-group">
+        <h3>要闻</h3>
+        <ul>
+          <li><a href="#n1">OpenAI Astra 因网络安全能力加强发布管控</a> #1</li>
+          <li><a href="#n2">OpenAI 称正构建 AI 工具自动关停能力</a> #2</li>
+          <li><a href="#n3">G20 会议出现 AI 监管路线分歧</a> #3</li>
+        </ul>
+      </div>
+      <div class="overview-group">
+        <h3>模型发布</h3>
+        <ul>
+          <li><a href="#n4">Anthropic 发布 Claude Fable 5.1 / Mythos 5.1</a> #4</li>
+          <li><a href="#n5">World Labs 发布世界模型 Atlas</a> #5</li>
+          <li><a href="#n6">MiniMax M3 Pro 传闻进入 3 万亿参数级</a> #6</li>
+        </ul>
+      </div>
+      <div class="overview-group">
+        <h3>产品应用</h3>
+        <ul>
+          <li><a href="#n7">Google Assistant 关闭进入倒计时</a> #7</li>
+          <li><a href="#n8">纽约市公立学校限制学生使用生成式 AI</a> #8</li>
+        </ul>
+      </div>
+      <div class="overview-group">
+        <h3>开发生态</h3>
+        <ul>
+          <li><a href="#n9">GitHub Copilot 计费与代码审查默认策略调整</a> #9</li>
+          <li><a href="#n10">Anthropic 推出 Model Hardware Standard 研究预览</a> #10</li>
+          <li><a href="#n11">Hugging Face 总结开源模型夏季生态</a> #11</li>
+        </ul>
+      </div>
+      <div class="overview-group">
+        <h3>行业动态</h3>
+        <ul>
+          <li><a href="#n12">Broadcom Q3 AI 半导体收入达 167 亿美元</a> #12</li>
+          <li><a href="#n13">Dell 上调全年展望，AI 服务器订单增长</a> #13</li>
+          <li><a href="#n14">Uber 重组并加码 AI 客服与 Robotaxi</a> #14</li>
+          <li><a href="#n15">iPronics 获 1.25 亿美元融资推进光交换</a> #15</li>
+          <li><a href="#n16">燧原科技科创板 IPO 定价并启动申购</a> #16</li>
+          <li><a href="#n17">AI EDA 企业芯流微澜完成天使轮融资</a> #17</li>
+          <li><a href="#n18">VAST 融资约 30 亿元并发布 Tripo P2.0</a> #18</li>
+          <li><a href="#n19">知乎新设人工智能公司</a> #19</li>
+        </ul>
+      </div>
+      <div class="overview-group">
+        <h3>前瞻与传闻</h3>
+        <ul>
+          <li><a href="#n20">月之暗面或与美国云厂商洽谈 Kimi K3 托管</a> #20</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">要闻</h2>
+
+      <article class="item" id="n1">
+        <div class="item-header"><span class="number">1</span><h3><a href="https://openai.com/index/path-to-astra/" target="_blank" rel="noopener">OpenAI：Astra 达到“关键”网络安全能力阈值，将采取更高等级管控</a></h3></div>
+        <blockquote>OpenAI 称即将发布的 Astra 已触及其准备框架中的网络安全 Critical 阈值，先进网络能力仅向受控 alpha 测试者开放。</blockquote>
+        <p class="detail">OpenAI 在公告中表示，Astra 的高级网络安全能力需要更严格的安全测试与访问控制，因此不会随模型完整开放。该安排将模型能力评估、风险缓解和分阶段部署绑定，是前沿模型在高风险能力上收紧可用范围的最新案例。</p>
+        <p class="links">相关链接：<a href="https://openai.com/index/path-to-astra/" target="_blank" rel="noopener">OpenAI 公告</a> · <a href="https://www.reuters.com/business/openai-says-upcoming-model-is-so-capable-it-requires-stronger-guardrails-2026-09-01/" target="_blank" rel="noopener">Reuters 报道</a> · <a href="https://www.cls.cn/detail/2471438" target="_blank" rel="noopener">财联社中文报道</a></p>
+      </article>
+
+      <article class="item" id="n2">
+        <div class="item-header"><span class="number">2</span><h3><a href="https://www.reuters.com/legal/litigation/openai-is-building-automated-shutdown-capabilities-ai-tools-letter-lawmakers-2026-09-02/" target="_blank" rel="noopener">OpenAI 致信美国议员：正在构建 AI 工具的自动关停能力</a></h3></div>
+        <blockquote>OpenAI 在致议员信件中称，正建设 automated shutdown capabilities；这项能力尚处于建设阶段。</blockquote>
+        <p class="detail">Reuters 报道称，相关说明出现在 OpenAI 对 AI Agent 安全问题的回应中，背景包括测试环境中的安全演练。公开信息并未表明自动关停机制已经可用于全部产品；更准确的表述是公司正在推进该类控制能力。</p>
+        <p class="links">相关链接：<a href="https://www.reuters.com/legal/litigation/openai-is-building-automated-shutdown-capabilities-ai-tools-letter-lawmakers-2026-09-02/" target="_blank" rel="noopener">Reuters 原文</a></p>
+      </article>
+
+      <article class="item" id="n3">
+        <div class="item-header"><span class="number">3</span><h3><a href="https://www.reuters.com/legal/litigation/us-urges-hands-off-approach-ai-regulation-g20-tech-meeting-2026-09-01/" target="_blank" rel="noopener">G20 科技部长会议：AI 监管与基础设施建设路线出现分歧</a></h3></div>
+        <blockquote>美国在 G20 科技会议上主张较少干预的 AI 监管路线；黄仁勋则呼吁各国普及 AI 基础设施建设。</blockquote>
+        <p class="detail">两场公开发言把当前 AI 政策讨论的两条主线放在一起：一是模型训练、版权与风险治理的规则边界，二是数据中心与算力供给的基础设施竞争。它们尚不构成新的国际统一规则，但会持续影响跨境模型和算力业务的合规预期。</p>
+        <p class="links">相关链接：<a href="https://www.reuters.com/legal/litigation/us-urges-hands-off-approach-ai-regulation-g20-tech-meeting-2026-09-01/" target="_blank" rel="noopener">Reuters：美国立场</a> · <a href="https://www.reuters.com/business/media-telecom/nvidia-ceo-urges-g20-avoid-ai-rules-theoretical-harms-2026-09-02/" target="_blank" rel="noopener">Reuters：黄仁勋发言</a> · <a href="https://www.zaobao.com.sg/news/world/story20260902-9616870" target="_blank" rel="noopener">联合早报中文报道</a></p>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">模型发布</h2>
+
+      <article class="item" id="n4">
+        <div class="item-header"><span class="number">4</span><h3><a href="https://www.anthropic.com/claude-fable-and-mythos-5-1" target="_blank" rel="noopener">Anthropic 发布 Claude Fable 5.1 与 Claude Mythos 5.1</a></h3></div>
+        <blockquote>Fable 5.1 面向通用与编码任务，Mythos 5.1 则包含更宽松的网络安全与生物相关能力访问安排。</blockquote>
+        <p class="detail">Anthropic 的 9 月发布说明列出两款模型均支持 100 万上下文窗口，API 输入/输出定价为每百万 token $10/$50，提示缓存读取价格为 $0.25/MTok。Fable 定位为通用模型；Mythos 的高敏感能力仅通过受信任访问计划提供。平台还同步列出文本水印、C2PA 凭证和 30 天保留等相关机制。</p>
+        <p class="links">相关链接：<a href="https://www.anthropic.com/claude-fable-and-mythos-5-1" target="_blank" rel="noopener">Anthropic 公告</a> · <a href="https://platform.claude.com/docs/zh-CN/release-notes/overview" target="_blank" rel="noopener">Claude Platform 发布说明</a></p>
+      </article>
+
+      <article class="item" id="n5">
+        <div class="item-header"><span class="number">5</span><h3><a href="https://www.worldlabs.ai/blog/atlas" target="_blank" rel="noopener">World Labs 发布 Atlas：面向空间智能的世界模型</a></h3></div>
+        <blockquote>Atlas 采用多模态自回归扩散 Transformer，支持受控相机生成、稀疏视角三维重建与时空模拟。</blockquote>
+        <p class="detail">李飞飞团队 World Labs 于 9 月 1 日公布 Atlas，并将其定位为世界模型而非单纯图像或视频生成模型。当前产品以申请制 early access 提供，公开描述重点强调从有限观察中重建空间、控制观察视角及模拟时空变化的能力。</p>
+        <p class="links">相关链接：<a href="https://www.worldlabs.ai/blog/atlas" target="_blank" rel="noopener">World Labs 官方博客</a> · <a href="https://www.chinastarmarket.cn/detail/2471956" target="_blank" rel="noopener">科创板日报中文报道</a></p>
+      </article>
+
+      <article class="item rumor" id="n6">
+        <div class="item-header"><span class="number">6</span><span class="badge">未确认</span><h3><a href="https://www.cls.cn/detail/2470385" target="_blank" rel="noopener">传 MiniMax M3 Pro 将于 9-10 月推出，参数规模约 3 万亿</a></h3></div>
+        <blockquote>券商研报与媒体报道指向 M3 Pro 和 M3.1 正在开发；MiniMax 尚未通过官方渠道确认发布时间或参数规模。</blockquote>
+        <p class="detail">市场报道称，MiniMax 下一代 M3 Pro 可能达到约 3 万亿参数，并在 9-10 月发布。已公开可验证的信息是 MiniMax 表示将加快 M、H 系列模型的研发和发布节奏；关于具体版本、参数和上线时间的说法均应视为未确认计划。</p>
+        <p class="links">相关链接：<a href="https://www.cls.cn/detail/2470385" target="_blank" rel="noopener">财联社报道</a> · <a href="https://wap.eastmoney.com/a/202608273855300956.html" target="_blank" rel="noopener">MiniMax 中期业绩会报道</a></p>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">产品应用</h2>
+
+      <article class="item" id="n7">
+        <div class="item-header"><span class="number">7</span><h3><a href="https://the-decoder.com/google-will-shut-down-google-assistant-starting-september-2026-as-gemini-takes-over-on-android-and-wear-os/" target="_blank" rel="noopener">Google Assistant 将于 9 月 4 日关闭，Gemini 接管 Android 生态</a></h3></div>
+        <blockquote>Google Assistant 的服务迁移进入倒计时，Android、Wear OS 与 Android Auto 将转向 Gemini。</blockquote>
+        <p class="detail">公开报道显示，Google 将在 9 月 4 日停止 Google Assistant，并由 Gemini 覆盖手机、平板、手表和车载场景。这一迁移不代表所有旧 Assistant 能力已经一一等价迁移，开发者和企业用户仍应在正式切换前核对设备兼容性及自动化流程。</p>
+        <p class="links">相关链接：<a href="https://the-decoder.com/google-will-shut-down-google-assistant-starting-september-2026-as-gemini-takes-over-on-android-and-wear-os/" target="_blank" rel="noopener">The Decoder</a></p>
+      </article>
+
+      <article class="item" id="n8">
+        <div class="item-header"><span class="number">8</span><h3><a href="https://www.chalkbeat.org/newyork/2026/09/02/nyc-schools-to-set-ai-policy-ban-screen-time-limits/" target="_blank" rel="noopener">纽约市公立学校限制 2K-8 年级学生使用 AI</a></h3></div>
+        <blockquote>纽约市宣布对 2K 至八年级学生实行 AI 禁令；教师可用于备课，但不得用于评分、辅导或特殊教育计划。</blockquote>
+        <p class="detail">这项为期一年的政策将低年级学生使用生成式 AI 与教师专业使用区分开来，高中阶段则采取受限访问而非一刀切禁用。它显示教育系统开始从“允许或禁止”的二元选择，转向按年龄、场景与责任划定边界。</p>
+        <p class="links">相关链接：<a href="https://www.chalkbeat.org/newyork/2026/09/02/nyc-schools-to-set-ai-policy-ban-screen-time-limits/" target="_blank" rel="noopener">Chalkbeat 原文</a> · <a href="https://www.nytimes.com/2026/09/01/nyregion/ai-ban-schools-nyc.html" target="_blank" rel="noopener">纽约时报报道</a></p>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">开发生态</h2>
+
+      <article class="item" id="n9">
+        <div class="item-header"><span class="number">9</span><h3><a href="https://github.blog/changelog/2026-08-28-upcoming-changes-to-github-copilot-policies-and-billing/" target="_blank" rel="noopener">GitHub Copilot 调整企业版计费与代码审查默认策略</a></h3></div>
+        <blockquote>Copilot Business / Enterprise 的计费调整自 9 月 1 日开始；统一 Copilot 体验和代码审查默认 Balanced 策略将于 9 月 28 日上线。</blockquote>
+        <p class="detail">GitHub 的更新涉及企业用户最关心的成本和默认行为：计费规则先行变更，随后在 9 月底切换统一体验及代码审查默认模式。团队应在迁移前检查组织策略、预算预警和代码审查工作流，避免默认策略更新造成预期外消耗或行为差异。</p>
+        <p class="links">相关链接：<a href="https://github.blog/changelog/2026-08-28-upcoming-changes-to-github-copilot-policies-and-billing/" target="_blank" rel="noopener">GitHub Changelog</a></p>
+      </article>
+
+      <article class="item" id="n10">
+        <div class="item-header"><span class="number">10</span><h3><a href="https://www.anthropic.com/news/model-hardware-standard-research-preview" target="_blank" rel="noopener">Anthropic 推出 Model Hardware Standard 研究预览</a></h3></div>
+        <blockquote>MHS 尝试标准化 AI 控制实验室和制造硬件的接口，首批面向液体处理器、机械臂等设备。</blockquote>
+        <p class="detail">Anthropic 在 8 月 27 日发布 MHS 研究预览，目标是让 Agent 以统一方式操作物理设备。其价值不在于单一模型能力，而在于把工具调用从软件 API 扩展到实验与制造硬件；当前仍属于研究预览，实际部署需要自行完成安全、权限和物理隔离设计。</p>
+        <p class="links">相关链接：<a href="https://www.anthropic.com/news/model-hardware-standard-research-preview" target="_blank" rel="noopener">Anthropic 公告</a> · <a href="https://www.cnbc.com/2026/08/27/anthropic-pushes-into-physical-world-with-new-standard-to-help-ai-agents-operate-machines.html" target="_blank" rel="noopener">CNBC 报道</a></p>
+      </article>
+
+      <article class="item" id="n11">
+        <div class="item-header"><span class="number">11</span><h3><a href="https://huggingface.co/blog/state-of-open-models-summer-2026" target="_blank" rel="noopener">Hugging Face 夏季观察：开源模型能力与实际部署继续分化</a></h3></div>
+        <blockquote>报告称小模型贡献了 83% 的历史下载量，而超过 70B 参数的模型只占 2026 年下载量的约 3%。</blockquote>
+        <p class="detail">Hugging Face 的生态观察指出，前沿大模型规模仍在攀升，但开发者的实际部署更偏向可在常规硬件运行的小模型。报告同时显示 Qwen 是 Hub 上最常被衍生的底座模型之一，反映出中国开源模型在全球开发生态中的影响力。</p>
+        <p class="links">相关链接：<a href="https://huggingface.co/blog/state-of-open-models-summer-2026" target="_blank" rel="noopener">Hugging Face 报告</a></p>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">行业动态</h2>
+
+      <article class="item" id="n12">
+        <div class="item-header"><span class="number">12</span><h3><a href="https://www.broadcom.com/company/news/financial-releases/64671" target="_blank" rel="noopener">Broadcom FY2026 Q3：AI 半导体收入 167 亿美元，同比增长 221%</a></h3></div>
+        <blockquote>Broadcom 披露当季 AI 半导体收入为 167 亿美元，并给出 Q4 AI 收入约 217 亿美元的指引。</blockquote>
+        <p class="detail">公司当季总营收为 296 亿美元、同比增长 86%。高增速 AI 半导体收入再次说明，定制加速器、网络和互连正成为大模型基础设施投资的核心受益方向。财报指引属公司前瞻性陈述，仍受供给和客户资本开支变化影响。</p>
+        <p class="links">相关链接：<a href="https://www.broadcom.com/company/news/financial-releases/64671" target="_blank" rel="noopener">Broadcom 财报公告</a> · <a href="https://investors.broadcom.com/static-files/9d426ddc-fa55-4fa1-8685-fc64642cbdad" target="_blank" rel="noopener">8-K 文件</a></p>
+      </article>
+
+      <article class="item" id="n13">
+        <div class="item-header"><span class="number">13</span><h3><a href="https://investors.delltechnologies.com/news-releases/news-release-details/dell-technologies-delivers-second-quarter-fiscal-2027-financial" target="_blank" rel="noopener">Dell 上调 FY2027 展望，AI 服务器订单与积压订单继续增长</a></h3></div>
+        <blockquote>市场报道显示 Dell 当季 AI 订单约 609 亿美元、AI backlog 约 950 亿美元；绝对数值应以公司 IR 文件为准。</blockquote>
+        <p class="detail">Dell 发布 FY2027 第二财季业绩后上调全年展望，AI 服务器需求是市场关注焦点。该数据体现企业级 AI 基础设施从 GPU 采购延伸到整机、网络、存储和部署服务，但 backlog 并不等同于已确认收入，交付节奏仍需持续观察。</p>
+        <p class="links">相关链接：<a href="https://investors.delltechnologies.com/news-releases/news-release-details/dell-technologies-delivers-second-quarter-fiscal-2027-financial" target="_blank" rel="noopener">Dell IR 公告</a> · <a href="https://www.cnbc.com/2026/09/01/dell-q2-earnings-report-2027.html" target="_blank" rel="noopener">CNBC 解读</a></p>
+      </article>
+
+      <article class="item" id="n14">
+        <div class="item-header"><span class="number">14</span><h3><a href="https://www.reuters.com/business/world-at-work/uber-cut-3300-jobs-overhaul-bloomberg-news-reports-2026-09-02/" target="_blank" rel="noopener">Uber 重组并裁员约 3,300 人，资源转向 AI 客服与 Robotaxi</a></h3></div>
+        <blockquote>Reuters 报道称 Uber 本轮全球裁员约 3,300 人，重组重点包含 AI 客服和自动驾驶出租车投入。</blockquote>
+        <p class="detail">这显示出平台型公司将 AI 视为降低运营成本、提升服务自动化和押注自动驾驶的组合工具。裁员规模来自媒体报道而非公司公告，具体岗位和节省金额尚未完整公开；不过重组方向对出行平台的 AI 应用优先级具有参考意义。</p>
+        <p class="links">相关链接：<a href="https://www.reuters.com/business/world-at-work/uber-cut-3300-jobs-overhaul-bloomberg-news-reports-2026-09-02/" target="_blank" rel="noopener">Reuters 原文</a></p>
+      </article>
+
+      <article class="item" id="n15">
+        <div class="item-header"><span class="number">15</span><h3><a href="https://www.amadeuscapital.com/ipronics-125m-series-b-programmable-optical-networking-ai-data-centers/" target="_blank" rel="noopener">可编程光交换公司 iPronics 获 1.25 亿美元 B 轮融资</a></h3></div>
+        <blockquote>iPronics 完成 1.25 亿美元 B 轮，资金用于可编程光网络在 AI 数据中心的量产部署。</blockquote>
+        <p class="detail">该轮由 Maverick Silicon 与 Light Street Capital 联合领投，NVIDIA 参与投资。光交换的目标是在数据中心内部降低互连能耗、提高可重构网络的效率；随着训练和推理集群规模增大，光互连已成为 AI 算力链条的重要投资方向。</p>
+        <p class="links">相关链接：<a href="https://www.amadeuscapital.com/ipronics-125m-series-b-programmable-optical-networking-ai-data-centers/" target="_blank" rel="noopener">投资方公告</a> · <a href="https://picmagazine.net/article/125294/iPronics_secures_125m_for_optical_switching" target="_blank" rel="noopener">PIC Magazine 报道</a></p>
+      </article>
+
+      <article class="item" id="n16">
+        <div class="item-header"><span class="number">16</span><h3><a href="https://companies.caixin.com/2026-09-01/102480689.html" target="_blank" rel="noopener">燧原科技科创板 IPO 定价 142.18 元/股，募资 61.2 亿元</a></h3></div>
+        <blockquote>国产 AI 芯片公司燧原科技完成发行定价，并在 9 月 2 日进入申购环节。</blockquote>
+        <p class="detail">财新与证券时报报道显示，燧原科技发行价为每股 142.18 元，计划募资 61.2 亿元。这是国产 AI 加速器公司在资本市场的重要节点，也让市场能够更直接检验国产算力的研发投入、产品交付和商业化能力。</p>
+        <p class="links">相关链接：<a href="https://companies.caixin.com/2026-09-01/102480689.html" target="_blank" rel="noopener">财新报道</a> · <a href="https://www.stcn.com/article/detail/4166099.html" target="_blank" rel="noopener">证券时报报道</a></p>
+      </article>
+
+      <article class="item" id="n17">
+        <div class="item-header"><span class="number">17</span><h3><a href="https://www.chinastarmarket.cn/detail/2471937" target="_blank" rel="noopener">AI EDA 企业芯流微澜完成数千万元天使轮融资</a></h3></div>
+        <blockquote>芯流微澜由启高资本独家投资，目标是用大模型和 Agent 提升芯片设计流程自动化程度。</blockquote>
+        <p class="detail">公司成立于 2026 年、总部位于杭州，报道披露其天使轮规模为数千万元人民币。与通用聊天产品不同，AI EDA 的商业价值取决于能否嵌入验证、设计和迭代等真实工程工作流，融资将主要检验这一垂直 Agent 路线的工程化能力。</p>
+        <p class="links">相关链接：<a href="https://www.chinastarmarket.cn/detail/2471937" target="_blank" rel="noopener">科创板日报报道</a></p>
+      </article>
+
+      <article class="item" id="n18">
+        <div class="item-header"><span class="number">18</span><h3><a href="https://www.taibo.cn/newsflashes/31878545" target="_blank" rel="noopener">AI 3D 公司 VAST 完成约 30 亿元 B / B+ 轮融资，并发布 Tripo P2.0</a></h3></div>
+        <blockquote>VAST 披露 B 与 B+ 轮合计融资约 30 亿元，并同步推出 Tripo P2.0。</blockquote>
+        <p class="detail">公开报道显示，本轮由经纬领投，完美世界、蓝色光标等参投。3D 生成工具正从单次资产生成向游戏、内容生产与空间计算工作流集成演进；融资金额为公司披露口径，后续仍需观察产品留存和企业付费转化。</p>
+        <p class="links">相关链接：<a href="https://www.taibo.cn/newsflashes/31878545" target="_blank" rel="noopener">钛播报道</a></p>
+      </article>
+
+      <article class="item" id="n19">
+        <div class="item-header"><span class="number">19</span><h3><a href="https://www.stcn.com/article/detail/4169209.html" target="_blank" rel="noopener">知乎关联主体以 15 亿元注册成立人工智能公司</a></h3></div>
+        <blockquote>新公司名为北京智者探索科技有限公司，经营范围包含 AI 软件与大数据服务。</blockquote>
+        <p class="detail">工商登记信息显示，该公司注册资本 15 亿元，由知乎关联主体北京智者天下科技持股。注册设立本身不等于已有单独产品发布，但表明内容社区平台正在通过独立主体承接 AI 软件与数据服务相关业务。</p>
+        <p class="links">相关链接：<a href="https://www.stcn.com/article/detail/4169209.html" target="_blank" rel="noopener">证券时报报道</a></p>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">前瞻与传闻</h2>
+
+      <article class="item rumor" id="n20">
+        <div class="item-header"><span class="number">20</span><span class="badge">传闻 / 尚未确认</span><h3><a href="https://www.voachinese.com/a/chinese-ai-firm-is-negotiating-with-us-cloud-giants-raises-security-concerns-20260826/8190647.html" target="_blank" rel="noopener">月之暗面据报正与美国云厂商洽谈 Kimi K3 托管及分成</a></h3></div>
+        <blockquote>路透社 8 月 26 日称，月之暗面正与微软、亚马逊和 Google 洽谈；谈判仍处早期，未有最终协议。</blockquote>
+        <p class="detail">报道所述事项涉及 Kimi K3 在海外云平台的托管和收入分成。由于双方尚未公布正式合作，任何上线时间、商业条款和最终合作对象都不确定。该信息仅作为跨境模型分发的观察线索，不应视为已落地合作。</p>
+        <p class="links">相关链接：<a href="https://www.voachinese.com/a/chinese-ai-firm-is-negotiating-with-us-cloud-giants-raises-security-concerns-20260826/8190647.html" target="_blank" rel="noopener">美国之音中文报道</a></p>
+      </article>
+    </section>
+
+    <footer>
+      <p>AI 早报 · 信息截至 2026-09-03</p>
+      <p>包含 1 条未确认传闻；所有链接均指向原始公告或可追溯媒体报道。</p>
+    </footer>
+  </main>
+</body>
+</html>
