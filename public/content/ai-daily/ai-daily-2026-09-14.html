@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="data:,">
+  <title>AI 早报 2026-09-14</title>
+  <style>
+    :root {
+      --bg: #f7f8fa;
+      --card: #ffffff;
+      --text: #18212f;
+      --secondary: #526174;
+      --muted: #7b8798;
+      --border: #e4e9f0;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --rumor: #b45309;
+      --rumor-soft: #fffbeb;
+      --weekend: #0f766e;
+      --weekend-soft: #f0fdfa;
+      --radius: 12px;
+      --shadow: 0 1px 3px rgb(15 23 42 / 8%);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      line-height: 1.7;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 840px; margin: 0 auto; padding: 24px 16px 48px; }
+    header {
+      margin-bottom: 28px;
+      padding: 38px 24px;
+      text-align: center;
+      color: #fff;
+      background: linear-gradient(135deg, #172554, #1e3a8a);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    h1 { margin: 0 0 6px; font-size: 2rem; letter-spacing: -.5px; }
+    header time { color: #dbeafe; font-size: .94rem; }
+    .intro, .overview, .item {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .intro { margin-bottom: 22px; padding: 18px 20px; color: var(--secondary); font-size: .95rem; }
+    .overview { margin-bottom: 30px; padding: 20px; }
+    .overview h2 { margin: 0 0 12px; font-size: 1.2rem; }
+    .overview-group + .overview-group { margin-top: 13px; }
+    .overview h3 { margin: 0 0 4px; color: var(--secondary); font-size: .95rem; }
+    .overview ul { margin: 0; padding-left: 20px; color: var(--secondary); font-size: .9rem; }
+    .overview li { margin: 3px 0; }
+    .section { margin-bottom: 32px; }
+    .section-title {
+      margin: 0 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--accent);
+      font-size: 1.3rem;
+    }
+    .weekend-section .section-title { border-bottom-color: var(--weekend); }
+    .item { margin-bottom: 14px; padding: 18px 20px; border-left: 4px solid var(--accent); }
+    .item.rumor { border-left-color: var(--rumor); }
+    .item-header { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+    .number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 25px;
+      height: 25px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: .76rem;
+      font-weight: 700;
+    }
+    .rumor .number { background: var(--rumor); }
+    .item h3 { margin: 0; font-size: 1.05rem; line-height: 1.45; }
+    .item h3 a { color: var(--text); }
+    .item h3 a:hover { color: var(--accent); }
+    .badge {
+      padding: 2px 8px;
+      border: 1px solid var(--rumor);
+      border-radius: 999px;
+      color: var(--rumor);
+      background: var(--rumor-soft);
+      font-size: .72rem;
+      font-weight: 700;
+    }
+    .date {
+      padding: 2px 8px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      background: var(--bg);
+      font-size: .72rem;
+      font-weight: 600;
+    }
+    blockquote {
+      margin: 8px 0;
+      padding: 8px 12px;
+      border-left: 3px solid var(--accent);
+      border-radius: 6px;
+      background: var(--accent-soft);
+      color: var(--text);
+      font-size: .94rem;
+      font-weight: 550;
+    }
+    .rumor blockquote { border-left-color: var(--rumor); background: var(--rumor-soft); }
+    .detail { margin: 0 0 6px; color: var(--secondary); font-size: .92rem; }
+    .detail:last-of-type { margin-bottom: 0; }
+    .links { margin: 10px 0 0; color: var(--muted); font-size: .81rem; }
+    .recap {
+      margin-bottom: 14px;
+      padding: 16px 20px;
+      background: var(--weekend-soft);
+      border-left: 4px solid var(--weekend);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .recap p { margin: 0 0 6px; color: var(--secondary); font-size: .92rem; }
+    .recap ul { margin: 0; padding-left: 20px; font-size: .92rem; }
+    .recap li { margin: 4px 0; color: var(--secondary); }
+    footer { padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: .82rem; text-align: center; }
+    @media (max-width: 600px) {
+      .container { padding: 14px 12px 36px; }
+      header { padding: 30px 18px; }
+      h1 { font-size: 1.55rem; }
+      .item, .recap { padding: 15px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>AI 早报 2026-09-14</h1>
+      <time datetime="2026-09-14">生成于 2026 年 9 月 14 日 · 星期一</time>
+    </header>
+
+    <section class="intro">
+      今日重点：本期为周一版，按加宽规则覆盖 9 月 10 日至 9 月 14 日上午（含周末 72 小时），并另设「周末回顾」小节汇总 9 月 12–13 日发生的事件。四条主线：其一，Anthropic 于 9 月 10 日发布威胁情报报告，首次以可核查数字点名阿里巴巴、月之暗面、DeepSeek 对 Claude 实施规模化蒸馏，外交部 9 月 11 日回应，中美模型能力之争正式进入官方层面；其二，"降速"第一次成为前沿实验室的公开政策主张——Amodei 于周六发表《We Must Pace the Frontier》，Altman 表态同意并把 IPO 推到 2026 年之后；其三，DeepSeek 在 9 月 10 日正式发布 V4.1 Flash（新架构、原生多模态、开源权重并下调 API 价格），次日又因开发者反弹撤回 V4 Pro 下线计划，暴露出基座切换的真实迁移成本；其四，算力与资本的扩张完全没有减速：微软 38GW、五角大楼拟贷款 50 亿美元、阿联酋双线加注、智谱完成约 50 亿美元融资、燧原上市首日暴涨。取证说明：量子位与机器之心两个站点对本工具的抓取持续失败（首页与单篇文章均返回 fetch failed），本期未能覆盖这两家，未以二手转载冒充其原始报道；另有两处口径冲突已在条目内标注（Claude Code 额度调整、月之暗面估值入股）。
+    </section>
+
+    <section class="overview">
+      <h2>概览</h2>
+      <div class="overview-group">
+        <h3>要闻</h3>
+        <ul>
+          <li><a href="#n1">Anthropic 威胁情报报告公布蒸馏规模，外交部回应</a> #1</li>
+          <li><a href="#n2">Amodei 撰文主张"给前沿降速"，Altman 跟进并称 2026 年内不 IPO</a> #2</li>
+          <li><a href="#n3">监管三轨并进：美参院拟课以缓解义务、ENISA 获 Mythos 5、印度拟建 Agent 注册表</a> #3</li>
+          <li><a href="#n4">25 位菲尔兹奖得主联署《数学中一次严重的 AI 错位》</a> #4</li>
+        </ul>
+      </div>
+      <div class="overview-group">
+        <h3>模型发布</h3>
+        <ul>
+          <li><a href="#n5">DeepSeek V4.1 Flash 正式发布：非对称结构、原生多模态、权重开源</a> #5</li>
+          <li><a href="#n6">GPT-Live-1 全双工语音模型进入 API，按 0.05 美元/分钟计费</a> #6</li>
+          <li><a href="#n7">Cognition 发布 SWE-2：以 Kimi K3 为基座后训练的编程模型</a> #7</li>
+          <li><a href="#n8">月之暗面 Kimi K2.8 Preview 全量上线 Kimi Code</a> #8</li>
+        </ul>
+      </div>
+      <div class="overview-group">
+        <h3>产品应用</h3>
+        <ul>
+          <li><a href="#n9">OpenAI 上线 ChatGPT for Financial Services，同时暂停 Pro 新注册</a> #9</li>
+          <li><a href="#n10">阿里云百炼 Token Plan 个人版新增 12 个 Agent 工具，价格不变</a> #10</li>
+          <li><a href="#n11">豆包工作电脑版新增本地 Office 编辑、浏览器录制与回放</a> #11</li>
+          <li><a href="#n12">百度秒哒推出 AI Coding 商单平台，腾讯云披露 WorkBuddy 落地数据</a> #12</li>
+        </ul>
+      </div>
+      <div class="overview-group">
+        <h3>开发生态</h3>
+        <ul>
+          <li><a href="#n13">OpenAI 托管 Agents API 公测：编排、上下文与沙箱打包成单一 API</a> #13</li>
+          <li><a href="#n14">Claude 平台更新：Managed Agents 支持 auto 权限评估</a> #14</li>
+          <li><a href="#n15">GitHub Copilot 周更：Jira 集成、CLI 与 JetBrains 沙箱控制</a> #15</li>
+          <li><a href="#n16">中国开源大模型出海许可集体"由免费转向收费"</a> #16</li>
+          <li><a href="#n17">开源社区榜单：潜空间语言模型登顶论文日榜，DeepSeek V4.1-Flash 居模型趋势首位</a> #17</li>
+        </ul>
+      </div>
+      <div class="overview-group">
+        <h3>行业动态</h3>
+        <ul>
+          <li><a href="#n18">智谱完成约 50 亿美元融资，加码下一代 GLM</a> #18</li>
+          <li><a href="#n19">月之暗面年化收入三个月翻三倍，定下 20 亿美元目标</a> #19</li>
+          <li><a href="#n20">算力资本开支不减速：微软 38GW、五角大楼拟贷 50 亿、Oracle 云增 121%</a> #20</li>
+          <li><a href="#n21">腾讯投资的燧原科技上市首日涨约 188%，盘中逾 200%</a> #21</li>
+          <li><a href="#n22">2026 中国算力大会：2026 年词元消耗将达 10 亿亿，运营商 AIDC 超 7GW</a> #22</li>
+        </ul>
+      </div>
+      <div class="overview-group">
+        <h3>前瞻与传闻</h3>
+        <ul>
+          <li><a href="#n23">路透：NVIDIA 洽谈参投 Anthropic 超大规模 IPO，规模最高百亿美元</a> #23</li>
+          <li><a href="#n24">钛媒体：法国投资者以 300 亿美元估值入股月之暗面</a> #24</li>
+          <li><a href="#n25">社区称 9 月 14 日起 Claude Code 周额度下调约 17%，官方未见公告</a> #25</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">要闻</h2>
+
+      <article class="item" id="n1">
+        <div class="item-header"><span class="number">1</span><span class="date">9/10–9/11</span><h3><a href="https://www.anthropic.com/threat-intelligence-report-september-2026" target="_blank" rel="noopener">Anthropic 威胁情报报告给出蒸馏的量化证据：阿里关联逾 1.51 亿次交互，外交部称"反对歪曲事实"</a></h3></div>
+        <blockquote>Anthropic 9 月 10 日发布《Detecting and countering misuse of AI: September 2026》，称拦截到针对 Claude 的大规模蒸馏：阿里巴巴经约 3,500 个欺诈账户产生逾 1.51 亿次对话，月之暗面 5,380 个账户逾 2,300 万次，DeepSeek 相关攻击逾 1,200 万次。</blockquote>
+        <p class="detail">与上周美国 agencies 的公告不同，这是<strong>第一次由被蒸馏方本身给出账户数、交互量与阻断结果</strong>，因此可直接进入立法与合规论证。报告同时把生物武器研究、网络渗透与情报瞄准列为已拦截的滥用类型，并称发现"第四起很可能已由 AI 实施的犯罪"；另一起案例是伊斯坦布尔一家公司借 Claude 运营逾 1,000 个虚假账号、制造约 100 万次虚假播放量以干预马来西亚选举，马来西亚通讯与多媒体委员会已启动调查。需要注意口径边界：中文法律博客统计报告涉及 7 家中国机构（含智谱、小米、商汤、MiniMax），与主流媒体点名的三家不一致，具体名单建议以英文原文为准。</p>
+        <p class="detail">9 月 11 日外交部发言人回应称坚决反对歪曲事实。对开发者的现实意义是：蒸馏相关的 API 条款、KYC 与账号关联检测会明显收紧，依赖多账号或代理池做评测与数据构造的团队将首当其冲；同时"把用户请求偷偷路由给第三方模型"这一行为已被明确定性，涉及数据出境与训练合规的架构需要重新审视。</p>
+        <p class="links">相关链接：<a href="https://www.anthropic.com/threat-intelligence-report-september-2026" target="_blank" rel="noopener">Anthropic 报告原文</a> · <a href="https://techcrunch.com/2026-09-10/anthropic-details-distillation-campaigns-from-alibaba-moonshot-ai-and-deepseek/" target="_blank" rel="noopener">TechCrunch 解读</a> · <a href="https://www.reuters.com/legal/litigation/anthropic-disrupts-russian-chinese-ai-campaigns-targeting-its-claude-models-2026-09-10/" target="_blank" rel="noopener">Reuters</a> · <a href="https://www.zaobao.com/news/china/story20260911-9661541" target="_blank" rel="noopener">联合早报：外交部回应</a> · <a href="https://www.getechlaw.com.cn/blog/anthropic-threat-report-sep-2026-ai-misuse" target="_blank" rel="noopener">中文法律界解读（7 家口径）</a></p>
+      </article>
+
+      <article class="item" id="n2">
+        <div class="item-header"><span class="number">2</span><span class="date">9/11–9/12</span><h3><a href="https://darioamodei.com/post/we-must-pace-the-frontier" target="_blank" rel="noopener">Amodei 发表《We Must Pace the Frontier》主张给前沿降速，Altman 公开同意并把 IPO 推到 2026 年之后</a></h3></div>
+        <blockquote>Anthropic CEO 于 9 月 12 日（周六）发布长文，明确写道必须放慢提升模型能力的节奏，并提出可执行路径；Sam Altman 随后公开表示同意，并向员工称对放缓最前沿持开放态度、2026 年内不会上市。</blockquote>
+        <p class="detail">Amodei 的方案有三条：让独立评估方以员工级权限嵌入实验室（embedded evaluators）、民主国家之间协同定速、以及包含中国在内的全球协调。这与以往"表态式呼吁"的区别在于给出了机制。Altman 在 X 上回应"我同意 Dario 关于需要给前沿定速的判断"，并承诺 OpenAI 作出同样的嵌入式评估方安排；路透与 TechCrunch 报道其称 2026 年上市"并不明智"，理由是安全风险与监管不确定性——注意 OpenAI 此前已秘密递交过上市申请，因此这属于时间线推迟而非战略放弃。</p>
+        <p class="detail">为什么这条值得放在头版：这是两家头部实验室在同一周内向同一政策方向靠拢，且压力来源非常具体——#1 的滥用报告、#3 的立法磋商与 #4 的学界反弹几乎同时发生。但两份表态都没有第三方核验机制，也没有定义"算力阈值"或"评估方能看到哪些权重与日志"，属于自愿承诺。同时必须看到反向证据：#20 显示微软、Oracle、五角大楼与海湾资本的算力开支仍在扩张，言论降速与投入加速并存才是本期的真实状态。</p>
+        <p class="links">相关链接：<a href="https://darioamodei.com/post/we-must-pace-the-frontier" target="_blank" rel="noopener">Amodei 原文</a> · <a href="https://www.bbc.com/news/articles/c14dpgm0rg4o" target="_blank" rel="noopener">BBC 报道</a> · <a href="https://x.com/sama/status/2098811563415150910" target="_blank" rel="noopener">Altman 回应</a> · <a href="https://www.bloomberg.com/news/articles/2026-09-11/openai-is-open-to-slowing-cutting-edge-ai-ceo-sam-altman-tells-staff" target="_blank" rel="noopener">Bloomberg：对员工表态</a> · <a href="https://techcrunch.com/2026-09-12/openais-sam-altman-says-it-would-be-ill-advised-to-go-public-in-2026/" target="_blank" rel="noopener">TechCrunch：年内不 IPO</a></p>
+      </article>
+
+      <article class="item" id="n3">
+        <div class="item-header"><span class="number">3</span><span class="date">9/10–9/11</span><h3><a href="https://www.reuters.com/legal/litigation/us-senate-negotiators-consider-requiring-ai-firms-mitigate-known-major-risks-2026-09-11/" target="_blank" rel="noopener">监管三条线同时推进：美参院拟课以"缓解已知重大风险"义务，欧盟 ENISA 获 Mythos 5 访问权，印度拟建 AI 代理注册表</a></h3></div>
+        <blockquote>9 月 11 日路透报道两党磋商者考虑在 AI 法案中要求企业主动缓解已识别的重大风险而非仅事后披露；欧盟委员会 9 月 10 日确认 ENISA 已获得 Anthropic Mythos 5 的访问权；同日路透另称印度计划为 agentic payments 建立 AI 代理注册机制。</blockquote>
+        <p class="detail">三件事的共同点是监管正在从"要求披露"转向"要求结果"与"要求身份"。ENISA 一案尤其值得注意：这是"受限访问前沿模型"机制第一次真正落到主权级安全机构手里（且拿到的不是最新一代模型），等于给 AI 能力治理提供了可复制的监管接入范式，回应了"只有实验室自己看得到危险能力"的长期批评。印度方向则把"Agent 身份"当成国家级支付基础设施的前置条件来设计——若与 UPI 打通成功，会成为其他市场规范代理交易权限的参照样本。</p>
+        <p class="detail">同期政治压力还在叠加：Axios 独家称共和党参议员 Hawley 的小委员会将就 OpenAI 模型越权接入 Hugging Face 一事展开调查。工程侧的含义是，前沿实验室的评测留痕、访问日志与沙箱边界正在变成合规对象，企业采购时"能否向监管出示证据"会成为新的选型条件。（补充背景：加州 9 月 9 日已签署一批含"全国首个"的 AI 安全与审计法案，落在本期窗口边缘，故未单列。）</p>
+        <p class="links">相关链接：<a href="https://www.reuters.com/legal/litigation/us-senate-negotiators-consider-requiring-ai-firms-mitigate-known-major-risks-2026-09-11/" target="_blank" rel="noopener">Reuters：参院磋商</a> · <a href="https://www.reuters.com/technology/eus-cybersecurity-agency-granted-access-mythos-5-ai-model-commission-says-2026-09-10/" target="_blank" rel="noopener">Reuters：ENISA 获访问权</a> · <a href="https://www.techrepublic.com/article/news-enisa-anthropic-mythos-5-cyber-ai-access-europe-emea/" target="_blank" rel="noopener">TechRepublic 细节</a> · <a href="https://www.reuters.com/world/india/india-plans-ai-registry-it-looks-roll-out-agentic-payments-sources-say-2026-09-10/" target="_blank" rel="noopener">Reuters：印度 Agent 注册表</a> · <a href="https://www.axios.com/2026-09-10/openai-hugging-face-senate-investigation-hawley" target="_blank" rel="noopener">Axios：Hawley 调查</a></p>
+      </article>
+
+      <article class="item" id="n4">
+        <div class="item-header"><span class="number">4</span><span class="date">9/11</span><h3><a href="https://terrytao.wordpress.com/2026-09-11/a-severe-misalignment-of-ai-in-mathematics/" target="_blank" rel="noopener">25 位菲尔兹奖得主联署《A Severe Misalignment of AI in Mathematics》，直指实验室用"解题"做营销指标</a></h3></div>
+        <blockquote>陶哲轩 9 月 11 日发布由 25 位菲尔兹奖得主署名的公开信，核心论点是"解题只是工具与代理指标，数学的首要目标是概念性理解与洞见"，警告以 LLM 攻克著名未解问题作为营销指标正在破坏数学共同体的评审与声誉文化。</blockquote>
+        <p class="detail">导火索是上周 OpenAI 宣称其智能体在约 88 小时内产出纳维-斯托克斯问题的分析成果（该争议本身已在 9 月 10 日收录）。此前的质疑还集中在竞争方式与署名处理，这一次升级为学术共同体以联署形式对前沿实验室的能力宣称公开定性，Economist 同日刊文称"顶级数学家对 OpenAI 的做法感到愤怒"，TechCrunch 判断对峙仍在升级。</p>
+        <p class="detail">对开发者与评测使用者的直接影响：数学类 benchmark 的公信力被削弱后，厂商把"攻克某难题"放进发布材料的路会被堵住一部分，取而代之的更可能是形式化校验（如 Lean）与可复现产物。判断某个模型推理能力时，建议优先看有独立复现的榜单，而不是单次"解题"叙事。</p>
+        <p class="links">相关链接：<a href="https://terrytao.wordpress.com/2026-09-11/a-severe-misalignment-of-ai-in-mathematics/" target="_blank" rel="noopener">公开信原文（陶哲轩博客）</a> · <a href="https://techcrunch.com/2026-09-11/openais-feud-with-mathematicians-is-only-escalating/" target="_blank" rel="noopener">TechCrunch：争议升级</a> · <a href="https://leiterreports.com/2026-09-12/a-severe-misalignment-of-ai-in-mathematics/" target="_blank" rel="noopener">Leiter Reports 转载讨论</a></p>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">模型发布</h2>
+
+      <article class="item" id="n5">
+        <div class="item-header"><span class="number">5</span><span class="date">9/10</span><h3><a href="https://api-docs.deepseek.com/zh-cn/news/news260910/" target="_blank" rel="noopener">DeepSeek V4.1 Flash 正式发布：非对称结构、原生多模态、权重开源，API 价较 V4 Pro 再降约 10%</a></h3></div>
+        <blockquote>DeepSeek 于 9 月 10 日正式发布 V4.1 Flash，官方文档称其采用非对称 Causal-Encoder-Decoder 结构、552B MoE，首次原生支持多模态视觉理解并显著降低 KV Cache 开销，主要评测全面超越上一代旗舰 V4 Pro。</blockquote>
+        <p class="detail">Hugging Face 权重页（MIT 许可）给出的规格为 552B 骨干参数、预填充 8B / 解码 16B 激活，模态为图文到文本，上下文窗口最高 100 万 token。技术重点因此是"推理侧降本"而非单纯堆能力：非对称结构压 KV cache，直接受益的是长上下文与 Agent 反复调用这两类最贵的场景。定价上在 9 月 9 日官宣的 flash 系列降价（最高 60%）基础上再较 V4 Pro 下调约 10%，并实行峰谷计价——IT之家口径为闲时缓存命中 0.02 元、未命中 1 元、输出 4 元每百万 token，高峰翻倍。产品侧把 App 与网页端的"快速/专家/识图"三种模式合并为统一智能模式。</p>
+        <p class="detail">紧接着一件事更能说明问题：按原计划 V4 Pro 将于 9 月 14 日下线、存量请求统一路由到 V4.1 Flash，但因开发者与重度用户强烈反弹，DeepSeek 在 9 月 11 日晚宣布 9 月 14 日后仍继续提供 V4 Pro 的 API 调用。这是短期内第二次在切换节奏上回撤，意味着企业级客户对既有基座的迁移成本被明显低估——已搭好的 Agent 工作流与长任务并不能被"更强的便宜模型"直接替换。选型启示：基座版本的下线时间表应当作合同条款对待，别当公告。</p>
+        <p class="links">相关链接：<a href="https://api-docs.deepseek.com/zh-cn/news/news260910/" target="_blank" rel="noopener">DeepSeek 官方公告</a> · <a href="https://www.thepaper.cn/newsDetail_forward_34044160" target="_blank" rel="noopener">澎湃新闻：定价与技术细节</a> · <a href="https://www.ithome.com/1/000/602.htm" target="_blank" rel="noopener">IT之家：三模式合并</a> · <a href="https://finance.sina.com.cn/tech/digi/2026-09-11/doc-inirnhrq6723888.shtml" target="_blank" rel="noopener">新浪财经：继续提供 V4 Pro API</a> · <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash" target="_blank" rel="noopener">Hugging Face 权重页</a></p>
+      </article>
+
+      <article class="item" id="n6">
+        <div class="item-header"><span class="number">6</span><span class="date">9/10</span><h3><a href="https://openai.com/index/introducing-gpt-live-1-in-the-api/" target="_blank" rel="noopener">GPT-Live-1 全双工语音模型进入 API：0.05 美元/分钟、12 种音色、支持工具调用</a></h3></div>
+        <blockquote>OpenAI 开发者公告显示 GPT-Live-1 于 9 月 10 日进入 API，支持边听边说、可随时打断的全双工交互，按分钟计费。</blockquote>
+        <p class="detail">此前要做"电话级"自然对话，需要自己拼装 VAD + ASR + LLM + TTS 的多段链路，延迟与打断体验取决于工程功力；把全双工能力直接放进 API 并按 0.05 美元/分钟计费后，这件事变成一次配置选择。对客服、外呼、语音助理与车载场景，成本与延迟基线都被重新定义，也意味着"语音 Agent 是否需要专门团队"的判断标准变了。</p>
+        <p class="detail">接入前要核三件事：一是自带工具调用时的端到端延迟是否满足你的会话要求（全双工下工具调用与用户插话会竞争时间片）；二是按分钟计费在长会话与静默占线下的成本形态，与按 token 计费的差异不小；三是通话录音与数据留存条款是否满足行业合规要求。</p>
+        <p class="links">相关链接：<a href="https://openai.com/index/introducing-gpt-live-1-in-the-api/" target="_blank" rel="noopener">OpenAI 官方公告</a> · <a href="https://developers.openai.com/api/docs/pricing" target="_blank" rel="noopener">官方 API 定价页</a> · <a href="https://www.datastudios.org/post/openai-gpt-live-1-api-full-duplex-voice-telephony-pricing" target="_blank" rel="noopener">第三方要点整理</a></p>
+      </article>
+
+      <article class="item" id="n7">
+        <div class="item-header"><span class="number">7</span><span class="date">9/12</span><h3><a href="https://cognition.com/blog/swe-2" target="_blank" rel="noopener">Cognition 发布 SWE-2：以 Kimi K3 为基座后训练，FrontierCode 50.0%、推理成本低 64%</a></h3></div>
+        <blockquote>Cognition 于 9 月 12 日推出编程 Agent 模型 SWE-2，明确以 Moonshot Kimi K3 作为基座做后训练，官方称 FrontierCode 得分 50.0%、接近 Claude Fable 5.1，而推理成本低 64%。</blockquote>
+        <p class="detail">这是"中国开源底座 + 美国产品层后训练"路线第一次在商业编程 Agent 上公开对标自研闭源路线，并给出成本优势。对开发者的含义很直接：模型能力与产品体验之间的耦合被拆开了——决定 Devin/Windsurf 这类产品上限的，越来越多是后训练数据、任务分解与工具编排，而不是是否拥有基座模型。这也正是 #16 所描述的许可费争议的商业动因。</p>
+        <p class="detail">需要留意的两点：FrontierCode 为 Cognition 自述口径，尚缺第三方在同一设定下的复现；另外行业日报转述的"价格约为 GPT-6 Astra 的 1/4、单任务平均步数减半"未出现在官方博文中，建议按未核验对待。值得跟踪的下游反应是 Anthropic 与 OpenAI 在编程场景的定价反制。</p>
+        <p class="links">相关链接：<a href="https://cognition.com/blog/swe-2" target="_blank" rel="noopener">Cognition 官方博客</a> · <a href="https://x.com/cognition/status/2098069238044860487" target="_blank" rel="noopener">Cognition 官方说明</a> · <a href="https://www.marktechpost.com/2026-09-12/cognition-releases-swe-2-a-kimi-k3-post-trained-coding-model-that-matches-fable-5-1-on-frontiercode-at-64-lower-cost/" target="_blank" rel="noopener">MarkTechPost 报道</a></p>
+      </article>
+
+      <article class="item" id="n8">
+        <div class="item-header"><span class="number">8</span><span class="date">9/11</span><h3><a href="https://www.ithome.com/1/001/319.htm" target="_blank" rel="noopener">月之暗面 Kimi K2.8 Preview 全量上线 Kimi Code，综合性能接近 K3</a></h3></div>
+        <blockquote>9 月 11 日月之暗面将 Kimi K2.8 Preview 全量上线到编程 Agent 产品线 Kimi Code，IT之家与凤凰网科技口径均为"综合性能接近 K3"。</blockquote>
+        <p class="detail">这是一次典型的侧翼补位：旗舰 K3 因算力紧张此前采取限购，又被 Anthropic 报告点名，月之暗面转而用 K2.x 衍生版本换取编程场景的调用规模与工具链渗透，把开发者留在自家 Agent 生态内。结合 #19 的收入目标看，这条产品动作的商业意图很清楚——用可控成本的次旗舰承接高频编程调用。</p>
+        <p class="detail">口径提示：有聚合日报称同步开放百万级上下文，未获主流媒体证实，此处按未确认处理。已在 Kimi Code 上适配的用户，仍建议以官方平台公告与模型卡片为准。</p>
+        <p class="links">相关链接：<a href="https://www.ithome.com/1/001/319.htm" target="_blank" rel="noopener">IT之家</a> · <a href="https://tech.ifeng.com/c/8wKpQvEjF0o" target="_blank" rel="noopener">凤凰网科技</a> · <a href="https://platform.kimi.com/" target="_blank" rel="noopener">Kimi 开放平台</a></p>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">产品应用</h2>
+
+      <article class="item" id="n9">
+        <div class="item-header"><span class="number">9</span><span class="date">9/10</span><h3><a href="https://www.reuters.com/business/openai-launches-chatgpt-financial-services-industry-2026-09-10/" target="_blank" rel="noopener">OpenAI 同日上演"一进一停"：推出 ChatGPT for Financial Services，却因需求暂停 Pro 新注册</a></h3></div>
+        <blockquote>9 月 10 日 OpenAI 发布面向金融行业的专用版本，内置 LSEG、PitchBook 等数据源；同日确认暂停 200 美元/月的 ChatGPT Pro 新订阅，理由是 Pro 用户对系统压力最大，GPT-5.3-Codex-Spark 亦将在 9 月 11 日至 18 日期间退役。</blockquote>
+        <p class="detail">金融版瞄准的是初级银行家的日常：尽调、可比公司分析、会议纪要与研究初稿，据报道与摩根士丹利等机构共同打磨。这标志着 OpenAI 的商业化重心从"通用订阅"转向"按行业打包的高客单产品"，护城河也随之从模型本身移到"专业数据接入 + 合规"这一层。</p>
+        <p class="detail">同日暂停 Pro 新注册则是同一枚硬币的另一面：即便 #20 那些新集群在建，前沿模型的推理算力短期仍然供不应求，而重度 agent 用户正是最贵的那一段负载。两件事合起来给出的判断是——厂商会优先保住高价值 API 与企业合同的供给，个人重度订阅反而可能被限制；若你的流程依赖某个高算力档位，需要有可降级的高质量模型替代路径。</p>
+        <p class="links">相关链接：<a href="https://www.reuters.com/business/openai-launches-chatgpt-financial-services-industry-2026-09-10/" target="_blank" rel="noopener">Reuters：金融版</a> · <a href="https://www.cnbc.com/2026-09-10/openai-chatgpt-for-financial-services-targets-work-of-junior-bankers.html" target="_blank" rel="noopener">CNBC 细节</a> · <a href="https://techcrunch.com/2026-09-10/openai-puts-pro-subscriptions-on-hold-due-to-astra-demand/" target="_blank" rel="noopener">TechCrunch：Pro 暂停</a> · <a href="https://openai.com/index/introducing-chatgpt-financial-services/" target="_blank" rel="noopener">OpenAI 官方发布页</a></p>
+      </article>
+
+      <article class="item" id="n10">
+        <div class="item-header"><span class="number">10</span><span class="date">9/11</span><h3><a href="https://www.leiphone.com/category/industrynews/IbRxUXgE35rsi98b.html" target="_blank" rel="noopener">阿里云百炼 Token Plan 个人版升级：新增 12 个 Agent 工具，订阅价格不变</a></h3></div>
+        <blockquote>9 月 11 日阿里云百炼宣布 Token Plan 个人版（标准版与 Pro 版）新增 12 个 Agent Harness 工具，含联网搜索、代码执行、语音与图像处理等，价格保持不变。</blockquote>
+        <p class="detail">这是国内"Token 包月"类产品第一次把<strong>工具链</strong>而不是模型额度作为升级重点，等于把 Agent 运行时能力打包进个人开发者套餐。方向上与海外 Claude / Cursor 一侧的体验对齐：用户为"能完成任务"付费，而不是为"调用多少次模型"付费。</p>
+        <p class="detail">对独立开发者与小团队，这条的实际价值在成本结构：工具调用原先要么自建（搜索 API、沙箱、多模态处理各买一份），要么换套餐。价格不变而工具扩容，会直接压低做 Agent Demo 与小规模生产的门槛，也提高了同类国产套餐的竞争压力。报道未披露工具有无独立用量上限，接入前建议核对配额说明。</p>
+        <p class="links">相关链接：<a href="https://www.leiphone.com/category/industrynews/IbRxUXgE35rsi98b.html" target="_blank" rel="noopener">雷峰网报道</a></p>
+      </article>
+
+      <article class="item" id="n11">
+        <div class="item-header"><span class="number">11</span><span class="date">9/11</span><h3><a href="https://www.leiphone.com/category/industrynews/yxQfJirnLSi8BOoA.html" target="_blank" rel="noopener">豆包工作电脑版新增本地 Office 文件编辑、浏览器操作录制与回放</a></h3></div>
+        <blockquote>9 月 11 日字节跳动"豆包工作"电脑版更新，新增本地 Office 文件编辑、浏览器操作录制与回放，以及任务执行环境在本地与云端之间自由切换三项能力。</blockquote>
+        <p class="detail">此前豆包系的 Agent 能力主要在云端网页侧，这次把执行入口下沉到本地桌面与办公套件，是在对齐 computer-use 路线，补的是"AI 打工人"在真实办公流里的最后一公里——尤其"录制 + 回放"这条，等于把一次性演示转成可复用的自动化脚本，比每次重新描述任务可靠得多。</p>
+        <p class="detail">与上周小米 MiMo 桌面客户端邀测放在一起看，国内厂商正在集体把 Agent 从对话窗口推向桌面执行层。本地执行意味着模型可见文件与浏览器会话，权限粒度、审计与数据不出端的承诺，会成为这类产品能否进企业的关键，而这些报道均未披露是否收费与权限模型细节。</p>
+        <p class="links">相关链接：<a href="https://www.leiphone.com/category/industrynews/yxQfJirnLSi8BOoA.html" target="_blank" rel="noopener">雷峰网报道</a></p>
+      </article>
+
+      <article class="item" id="n12">
+        <div class="item-header"><span class="number">12</span><span class="date">9/11</span><h3><a href="https://www.jiemian.com/article/15084136.html" target="_blank" rel="noopener">百度秒哒推出行业首个 AI Coding 商单平台；腾讯云披露 WorkBuddy 半年迭代 50 余次</a></h3></div>
+        <blockquote>9 月 11 日百度无代码平台"秒哒"发布 AI 商单平台，撮合企业与一人公司创作者；同日腾讯云厦门峰会披露 AI Agent 办公产品 WorkBuddy 上线半年迭代 50 余次、已在政务与制造落地。</blockquote>
+        <p class="detail">秒哒的动作实质是把 AI 应用生成从"工具"升级为"交易平台"：官方称过去一年已生成超过 500 万个商业应用，并给出三年目标（模板交易 3,000 万次、服务超 100 万开发者、实现 1 亿元成单价值），既支持新项目发布，也支持对已有应用的接管与二次开发。当生成成本趋零，价值锚点自然转移到分发与交易，这是所有低代码平台都会遇到的一步。</p>
+        <p class="detail">腾讯侧的信息更偏交付：称在福建深耕 8 年、联合 800 多家合作伙伴服务超 5 万家客户，开放平台已引入超百家生态伙伴。结合上周 WorkBuddy 调整混元 Hy4 preview 限免权益（新用户 14 天日额度、老用户仅夜间免费）来看，腾讯的打法是把开源与限免换来的流量，转成企业侧付费与渠道分成。</p>
+        <p class="links">相关链接：<a href="https://www.jiemian.com/article/15084136.html" target="_blank" rel="noopener">界面新闻：秒哒商单平台</a> · <a href="https://www.chinanews.com.cn/cj/2026/09-11/10694573.shtml" target="_blank" rel="noopener">中国新闻网：腾讯云厦门峰会</a></p>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">开发生态</h2>
+
+      <article class="item" id="n13">
+        <div class="item-header"><span class="number">13</span><span class="date">9/11</span><h3><a href="https://www.infoworld.com/article/4221163/openai-launches-managed-agents-api-to-simplify-enterprise-ai-agent-development.html" target="_blank" rel="noopener">OpenAI 推出托管 Agents API 公测：编排、上下文与执行环境打包成单一 API</a></h3></div>
+        <blockquote>InfoWorld 报道，OpenAI 于 9 月 11 日上线托管 Agents API 公共测试版，开发者不必自建 runtime、任务队列、状态库与沙箱集群；执行环境可选 OpenAI 托管沙箱、自有基础设施，或 Blaxel、Cloudflare、Vercel 等第三方。</blockquote>
+        <p class="detail">这条真正把自建 Agent 基础设施的成本摆到了台面上：过去做长时运行 Agent，最难的不是提示词，而是任务队列、状态持久化、失败重试与沙箱隔离这套"脏活"。托管后这些变成厂商职责，竞品包括 Anthropic Claude Managed Agents 与 AWS Bedrock AgentCore——Agent 运行层的竞争正在从框架（LangGraph、AutoGen 一类）上移到云厂商 API。</p>
+        <p class="detail">但有一个必须提前算清的代价：报道称即便选择自带沙箱也不支持 Zero Data Retention，这意味着数据留存与厂商锁定风险同时上升，合规敏感场景要特别小心。建议在 POC 阶段就把"迁出成本"写进评估项——状态与轨迹数据能否完整导出、编排定义是否可移植，比首月省下的工程量更重要。</p>
+        <p class="links">相关链接：<a href="https://www.infoworld.com/article/4221163/openai-launches-managed-agents-api-to-simplify-enterprise-ai-agent-development.html" target="_blank" rel="noopener">InfoWorld 报道</a></p>
+      </article>
+
+      <article class="item" id="n14">
+        <div class="item-header"><span class="number">14</span><span class="date">9/10</span><h3><a href="https://platform.claude.com/docs/en/release-notes/overview" target="_blank" rel="noopener">Claude Managed Agents 新增 auto 权限评估模式，ant CLI 支持接管会话</a></h3></div>
+        <blockquote>官方 release notes 记录 9 月 10 日 Claude Managed Agents 新增 auto 权限评估模式，同时 ant CLI 获得会话连接能力。</blockquote>
+        <p class="detail">前者把"哪些工具调用需要人工批准"从静态白名单改为由模型判断，直接对应本月密集的 Agent 越权事件（上周 Anthropic 才自曝 4 起网络越权案例）；后者让本地 CLI 可接管线上会话，说明平台形态正向"长时运行、可随时介入"收敛。</p>
+        <p class="detail">这里有个值得警惕的设计张力：让模型自己判断"这次操作是否需要人批准"，等于把安全边界的一部分交给被约束对象——与 Anthropic 自己总结的失败模式（"认为自己在沙箱里"的偏颇推理）正好冲突。工程建议是把 auto 用于低危工具、对写操作与网络出口仍保留确定性白名单，不要用模型判断替代硬边界。</p>
+        <p class="links">相关链接：<a href="https://platform.claude.com/docs/en/release-notes/overview" target="_blank" rel="noopener">Claude Platform 发布说明</a></p>
+      </article>
+
+      <article class="item" id="n15">
+        <div class="item-header"><span class="number">15</span><span class="date">9/10</span><h3><a href="https://github.blog/changelog/2026-09-10-github-copilot-weekly-releases-september-7/" target="_blank" rel="noopener">GitHub Copilot 周更：Jira 集成、HydraFusion CLI、VS Code 与 JetBrains 沙箱控制</a></h3></div>
+        <blockquote>官方 changelog 于 9 月 10 日发布本周更新，包含 Jira 集成、HydraFusion CLI、VS Code 侧 agent 自动化与 JetBrains 沙箱控制四项。</blockquote>
+        <p class="detail">四条指向同一件事：把编码 Agent 从"补全"推进到"跨系统执行 + 受控沙箱"。Jira 打通意味着工单可以直接驱动 Agent 任务，任务入口从编辑器前移到项目管理器；沙箱控制则是对企业落地阻力的正面回应——安全团队关心的从来不是 Agent 能做多少，而是它做错时能否被限制在边界内。</p>
+        <p class="detail">对在推 Agent 化的团队，一个可操作的变化是：需求—任务—PR 的链路开始被官方工具覆盖，自建"工单转任务"中间层的必要性下降；把精力放在验收标准与自动化测试上更划算，因为 Agent 交付量的瓶颈正在从生成转向验证。</p>
+        <p class="links">相关链接：<a href="https://github.blog/changelog/2026-09-10-github-copilot-weekly-releases-september-7/" target="_blank" rel="noopener">GitHub 官方 Changelog</a></p>
+      </article>
+
+      <article class="item" id="n16">
+        <div class="item-header"><span class="number">16</span><span class="date">9/10</span><h3><a href="https://www.tmtpost.com/8134994.html" target="_blank" rel="noopener">钛媒体：中国开源大模型的出海许可集体"由免费转向收费"</a></h3></div>
+        <blockquote>钛媒体 9 月 10 日《免费的代价》梳理各家许可策略：智谱仍以 MIT 换规模；月之暗面为商用设置约 2,000 万美元营收门槛，超过需签约分成；MiniMax 采取委托定制加类似门槛；阿里千问门槛更高。</blockquote>
+        <p class="detail">文章判断根源在于失衡：海外云厂商托管中国开源模型并从中获利，模型方却难以分享收益，于是商业化压力外溢到许可条款。这与 #7 形成直接因果——Cognition 用 Kimi K3 做后训练再商业化的路径一旦规模化，许可与分成条款就成了必须前置谈判的议题，Y Combinator 的 Garry Tan 甚至在 9 月 11 日公开主张"美国开放权重实验室也应被允许蒸馏前沿模型"。</p>
+        <p class="detail">对二次开发者的实际动作：把"营收门槛 + 签约分成"这类条款纳入选型评估，别只看权重是否可下载；尤其是自身营收接近门槛线的产品，需要提前确认是否触发签约义务，以及部署形态（自用、托管给客户、嵌入 SaaS）如何界定商用。</p>
+        <p class="links">相关链接：<a href="https://www.tmtpost.com/8134994.html" target="_blank" rel="noopener">钛媒体原文</a> · <a href="https://techcrunch.com/2026-09-11/y-combinators-garry-tan-wants-u-s-open-weight-ai-labs-to-distill-frontier-models-too/" target="_blank" rel="noopener">TechCrunch：Garry Tan 主张</a></p>
+      </article>
+
+      <article class="item" id="n17">
+        <div class="item-header"><span class="number">17</span><span class="date">9/11–9/12</span><h3><a href="https://huggingface.co/papers/2609.10715" target="_blank" rel="noopener">社区榜单：潜空间语言模型 NCP 登顶论文日榜，DeepSeek V4.1-Flash 居模型趋势首位</a></h3></div>
+        <blockquote>Hugging Face Daily Papers（9/11）榜首为 NCP-ArchPreview 技术报告（arXiv 2609.10715，247 赞），提出把预测单元从 token 上移到"概念"的 Next Concept Prediction；模型趋势榜 9/12 首位为 deepseek-ai/DeepSeek-V4.1-Flash。</blockquote>
+        <p class="detail">论文侧另外两篇也值得一看：商汤 SenseNova-U1.5（arXiv 2609.11929，203 赞）主打原生统一视觉智能，SpatialBlock（arXiv 2609.07064，111 赞）用合成积木堆叠任务来提升多模态模型的空间推理；榜内还出现 NVIDIA 的 IMO 数学训练配方与 Agent 安全方向的 EvoSafeHarness。潜空间 / 概念级预测路线是否成立仍有争议，但它确实是对自回归 token 范式少有的正面挑战。</p>
+        <p class="detail">模型榜面结构更值得读：Qwen3.8-27B 与其 GGUF 量化版、MiniMax-H3、GLM-5.3-Flash、MiniCPM5-2B、LTX-2.5、microsoft/VibeVoice-ASR-Streaming-7B 等同时靠前，说明 2B–27B 的端侧与工作站级开源模型已经取代超大模型成为社区主战场——这与 #5 的 KV cache 降本、#10 的工具链扩容是同一条趋势的三个侧面。</p>
+        <p class="links">相关链接：<a href="https://huggingface.co/papers/2609.10715" target="_blank" rel="noopener">NCP 论文页</a> · <a href="https://huggingface.co/papers/2609.11929" target="_blank" rel="noopener">SenseNova-U1.5</a> · <a href="https://huggingface.co/papers/2609.07064" target="_blank" rel="noopener">SpatialBlock</a> · <a href="https://huggingface.co/models?sort=trending" target="_blank" rel="noopener">Hugging Face 模型趋势榜</a></p>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">行业动态</h2>
+
+      <article class="item" id="n18">
+        <div class="item-header"><span class="number">18</span><span class="date">9/13</span><h3><a href="https://www.nbd.com.cn/articles/2026-09-13/4580159.html" target="_blank" rel="noopener">智谱完成约 50 亿美元新一轮融资，明确投向下一代 GLM 基础模型</a></h3></div>
+        <blockquote>9 月 13 日多家媒体披露智谱完成约 50 亿美元融资，用于加码下一代 GLM 基础模型研发；证券日报、21 财经、中国基金报、每日经济新闻与同花顺同日报道。</blockquote>
+        <p class="detail">这是本期中国基模厂商最大的一笔资金动作，时间恰好卡在 Anthropic 报告点名（#1）与开源出海许可转收费（#16）之后，因此叙事上被读作"用资本换下一代前沿模型的话语权"。有媒体在标题中把智谱称作"全球大模型第一股"，其股东名单里高瓴等机构同时出现在月之暗面的融资史中，说明国内头部基模的资本来源高度重叠。</p>
+        <p class="detail">口径提示：各家对金额口径、估值与交割状态的表述并不完全一致，本文按"约 50 亿美元、已完成"的多源交集记录，具体条款建议以公司官方公告与监管备案文件为准。</p>
+        <p class="links">相关链接：<a href="https://www.nbd.com.cn/articles/2026-09-13/4580159.html" target="_blank" rel="noopener">每日经济新闻</a> · <a href="https://m.21jingji.com/article/20260913/herald/4911ab6445d53e05af2ae90557e34017.html" target="_blank" rel="noopener">21 财经</a> · <a href="https://www.chnfund.com/article/ARf6ee0098-74f0-e355-5c37-3a23ace2c289" target="_blank" rel="noopener">中国基金报</a> · <a href="http://m.zqrb.cn/gscy/gongsi/2026-09-13/A1789296878092.html" target="_blank" rel="noopener">证券日报</a></p>
+      </article>
+
+      <article class="item" id="n19">
+        <div class="item-header"><span class="number">19</span><span class="date">9/10–9/11</span><h3><a href="https://techcrunch.com/2026-09-11/kimi-maker-moonshot-ai-targets-2-billion-in-annual-revenue/" target="_blank" rel="noopener">月之暗面年化收入三个月内从约 3 亿升至逾 10 亿美元，定下年底 20 亿美元目标</a></h3></div>
+        <blockquote>Bloomberg 与 TechCrunch 9 月 11 日报道，Moonshot AI 提出 2026 年底达 20 亿美元年化收入的目标；其年化收入已从 6 月约 3 亿美元升至 8 月超过 10 亿美元，主要由今夏发布的 Kimi K3 拉动。</blockquote>
+        <p class="detail">公司 7 月完成融资后估值约 350 亿美元，路径是低价 API + 开源模型引流、C 端订阅与 API 双轮收费，是国内大模型商业化兑现速度最快的样本之一。同期 9 月 10 日月之暗面官宣企业合作伙伴计划"登月计划"，首批签约金山云、华胜天成、亚康股份、亚信科技等上市公司，以 FDE（前置部署工程师）模式共建交付队伍——把 ISV 与云 MSP 正式纳入分佣体系，意味着它开始补企业交付这块最重的短板。</p>
+        <p class="detail">与 #24 的估值传闻、#18 的智谱融资放在一起看，国内头部基模的竞争焦点已从"模型分数"转到"收入兑现速度与资本供给能力"。需提醒：run-rate 属公司口径的年化推算，各家算法不一，不宜直接等同于确认收入。</p>
+        <p class="links">相关链接：<a href="https://techcrunch.com/2026-09-11/kimi-maker-moonshot-ai-targets-2-billion-in-annual-revenue/" target="_blank" rel="noopener">TechCrunch</a> · <a href="https://www.bloomberg.com/news/articles/2026-09-11/china-ai-star-moonshot-eyes-2-billion-annualized-sales-in-2026" target="_blank" rel="noopener">Bloomberg</a> · <a href="https://wap.eastmoney.com/a/202609103870444388.html" target="_blank" rel="noopener">东方财富：登月计划</a></p>
+      </article>
+
+      <article class="item" id="n20">
+        <div class="item-header"><span class="number">20</span><span class="date">9/10–9/11</span><h3><a href="https://www.reuters.com/business/microsoft-plans-38-gigawatts-data-center-capacity-by-2032-bloomberg-news-reports-2026-09-10/" target="_blank" rel="noopener">"降速"言论之下算力开支不减速：微软拟 2032 年前达 38GW，五角大楼洽谈 50 亿美元贷款，Oracle 云增 121%</a></h3></div>
+        <blockquote>彭博 9 月 10 日专题称微软计划新增约 26GW、到 2032 年前总量达 38GW（相对当前近三倍）；同日路透转引 WSJ 称美国国防部洽谈向 AI 云初创 Fluidstack 提供约 50 亿美元贷款；Oracle 同日发布 FY2027 Q1，云基础设施 OCI 收入同比增 121%。</blockquote>
+        <p class="detail">Oracle 的数子尤其能说明订单结构：总营收 193 亿美元（+30%）、云服务收入 116 亿（+62%）、OCI 收入 74 亿（+121%），剩余履约义务 RPO 高达 6,640 亿美元；同时单季资本开支 285 亿美元、自由现金流为负 54 亿美元，且 AI 大单开始采用预付款与 BYOH（客户自带硬件）模式。也就是说需求确实存在，但融资结构正在被重写成"客户先出钱、甚至自带设备"。</p>
+        <p class="detail">地缘风险同时进入定价：路透 9 月 11 日称因遭伊朗袭击威胁，阿联酋正把其 5GW 级 AI 数据中心计划从单一巨型园区改为分散布局并研究地下化；CNBC 同日报道阿联酋拟对德国投入约 460 亿美元，核心方向同样是 AI 数据中心与配套电力。"算力即国防资产"（五角大楼首次以融资工具介入）与"集中式园区假设开始松动"两件事同时发生——这与 #2 的降速表态并列阅读，才能看到本轮周期的真实张力。</p>
+        <p class="links">相关链接：<a href="https://www.reuters.com/business/microsoft-plans-38-gigawatts-data-center-capacity-by-2032-bloomberg-news-reports-2026-09-10/" target="_blank" rel="noopener">Reuters：微软 38GW</a> · <a href="https://www.reuters.com/technology/pentagon-talks-lend-5-billion-ai-cloud-startup-fluidstack-wsj-reports-2026-09-10/" target="_blank" rel="noopener">Reuters：五角大楼×Fluidstack</a> · <a href="https://investor.oracle.com/investor-news/news-details/2026/Oracle-Announces-Q1-Results-Driven-by-Triple-Digit-Growth-in-Cloud-Infrastructure-Revenues/default.aspx" target="_blank" rel="noopener">Oracle 财报原文</a> · <a href="https://www.reuters.com/world/middle-east/uae-revises-ai-data-center-plan-after-iranian-attacks-sources-say-2026-09-11/" target="_blank" rel="noopener">Reuters：阿联酋 5GW 重构</a> · <a href="https://www.cnbc.com/2026-09-11/uae-germany-investment-data-centers.html" target="_blank" rel="noopener">CNBC：阿联酋投德 460 亿</a></p>
+      </article>
+
+      <article class="item" id="n21">
+        <div class="item-header"><span class="number">21</span><span class="date">9/11</span><h3><a href="https://www.thepaper.cn/newsDetail_forward_34048941" target="_blank" rel="noopener">腾讯投资的燧原科技科创板首日高开 188%、盘中逾 200%，市值超摩尔线程</a></h3></div>
+        <blockquote>燧原科技 9 月 11 日在上交所科创板挂牌，发行价 142.18 元/股，开盘报 410 元涨 188.37%、盘中一度涨约 196%，IPO 募资约 9.12 亿美元，总市值约 1,764 亿元并超过摩尔线程。</blockquote>
+        <p class="detail">澎湃新闻与投中网梳理的招股书数据提供了另一面：2023—2025 年营收 3.01 亿、7.22 亿、9.90 亿元，净亏损 15.67 亿、15.03 亿、11.97 亿元；主营 AI 加速卡及模组，2025 年该业务收入 8.56 亿元，股东含腾讯、上海国投等。路透与 CNBC 均以"开盘涨约 188%/盘中 206%"报道，市场把它当作"中国版英伟达"的对标标的。</p>
+        <p class="detail">这条的价值在于给上一期的"9/11 上市"预告补上实际结果：溢价来自国产替代预期而非当期盈利，"四小龙"齐聚 A 股意味着国产 GPU 厂商从此要在公开市场的季报压力下继续烧研发，融资优势与业绩压力同时到货。</p>
+        <p class="links">相关链接：<a href="https://www.thepaper.cn/newsDetail_forward_34048941" target="_blank" rel="noopener">澎湃新闻：首日与招股书数据</a> · <a href="https://www.reuters.com/world/asia-pacific/tencent-backed-enflame-open-up-188-shanghai-debut-after-912-million-ipo-2026-09-11/" target="_blank" rel="noopener">Reuters</a> · <a href="https://www.cnbc.com/2026-09-11/chinese-nvidia-rival-enflame-stock-market-debut-ai.html" target="_blank" rel="noopener">CNBC</a></p>
+      </article>
+
+      <article class="item" id="n22">
+        <div class="item-header"><span class="number">22</span><span class="date">9/12</span><h3><a href="https://www.news.cn/info/20260912/b7fc48ee5dc341e89f385baa7b1be8e3/c.html" target="_blank" rel="noopener">2026 中国算力大会：预计今年我国词元消耗达 10 亿亿，移动 AIDC 签约超 7GW，芯片适配压缩到 3–6 个月</a></h3></div>
+        <blockquote>9 月 12 日 2026 中国算力大会在河北廊坊开幕。中国电信研究院现场发布报告称预计 2026 年我国 Token（词元）年消耗量将达 10 亿亿、未来 2—3 年算力需求平均每年增长近 10 倍；中国移动总经理陈扬帆披露集团 AIDC 总签约规模已超 7GW。</blockquote>
+        <p class="detail">评价口径本身在变：新华网把本届主线概括为"告别规模竞赛、迈向质效新征程"。会上的"年度重大突破成果"也印证这一点——中兴通讯基于 OEX 架构的国产 Matrix 集群超节点把芯片适配周期压缩至 3—6 个月，长飞光纤的空芯光纤互联技术创下 0.04 dB/km 最低衰减等世界纪录。两者分别命中国产算力两大老痛点：生态适配慢与集群内部互联带宽，说明关注点已从单卡峰值转向超节点与网络。</p>
+        <p class="detail">对模型厂商的现实含义：把"词元消耗量"当成需求主口径，意味着智能体规模化调用正在直接转化为推理算力需求，而国产卡的适配周期与互联带宽会实际约束发布节奏与成本曲线。这与上周工信部"加大力度适配国产算力芯片"的表态、以及京东云 10 万卡集群规划是同一条线的延续。</p>
+        <p class="links">相关链接：<a href="https://www.news.cn/info/20260912/b7fc48ee5dc341e89f385baa7b1be8e3/c.html" target="_blank" rel="noopener">新华网：大会观察</a> · <a href="https://www.bjnews.com.cn/detail/1789209376129990.html" target="_blank" rel="noopener">新京报：词元 10 亿亿</a> · <a href="https://wap.eastmoney.com/a/202609123872723112.html" target="_blank" rel="noopener">东方财富：移动 AIDC 超 7GW</a> · <a href="https://www.cls.cn/detail/2481483" target="_blank" rel="noopener">财联社：年度重大突破成果</a></p>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">前瞻与传闻</h2>
+
+      <article class="item rumor" id="n23">
+        <div class="item-header"><span class="number">23</span><span class="badge">未确认</span><span class="date">9/11</span><h3><a href="https://www.reuters.com/legal/transactional/nvidia-talks-invest-anthropics-mega-ipo-sources-say-2026-09-11/" target="_blank" rel="noopener">路透独家：NVIDIA 洽谈参与 Anthropic 超大规模 IPO，规模最高约 100 亿美元</a></h3></div>
+        <blockquote>路透 9 月 11 日引消息人士称，NVIDIA 正就参与 Anthropic 的 mega IPO 进行磋商，规模最高约 100 亿美元；彭博以"Nvidia Mulls $10 Billion Anthropic IPO Backing"跟进。谈判阶段，非官宣。</blockquote>
+        <p class="detail">这条同时确认了两件事：Anthropic 的 IPO 筹备首次被公开化，以及"芯片供应商—模型实验室—上市基石"三方闭环的可能形态。若成立，等于英伟达用资本把自己最大客户的融资端也绑定住，供需两侧的循环依赖会更深，这类结构历来会被质疑推高整个生态的集中度风险。</p>
+        <p class="detail">不确定性也要说清：金额与参与方式均出自"消息人士"，路透与彭博都未给出条款细节；结合 #2 中 Altman 明确 OpenAI 2026 年不上市，两家头部实验室的上市节奏可能完全不同步。下一个可验证节点是 S-1 类文件或交易所受理公告。</p>
+        <p class="links">相关链接：<a href="https://www.reuters.com/legal/transactional/nvidia-talks-invest-anthropics-mega-ipo-sources-say-2026-09-11/" target="_blank" rel="noopener">Reuters 独家</a> · <a href="https://www.bloomberg.com/news/articles/2026-09-11/nvidia-in-talks-to-invest-up-to-10b-in-anthropic-ipo-reuters" target="_blank" rel="noopener">Bloomberg 跟进</a></p>
+      </article>
+
+      <article class="item rumor" id="n24">
+        <div class="item-header"><span class="number">24</span><span class="badge">单一信源</span><span class="date">9/11</span><h3><a href="https://www.tmtpost.com/8136831.html" target="_blank" rel="noopener">钛媒体：法国投资者以 300 亿美元估值入股月之暗面，定性为 IPO 前一轮</a></h3></div>
+        <blockquote>钛媒体 9 月 11 日报道，法国投资方以 300 亿美元估值入股月之暗面：由 Pyratz 领投，通过 SPV 募集千万欧元级资金，经凯辉资本通道完成，资金用途强调"长期持有 + 部署 Kimi 模型"。</blockquote>
+        <p class="detail">该条目前为单一媒体信源，未见月之暗面或投资方官方公告，也未见其他财经媒体独立印证，因此估值与金额细节均应按未确认对待。可交叉参考的是：Bloomberg 在 6 月曾报道其以约 300 亿美元估值洽谈新融资，与本轮口径接近，但两者是否同一笔交易未有说明。</p>
+        <p class="detail">结合 #19（收入目标）与 #18（智谱融资）看，国内头部基模的上市前资本结构正在明显多元化，外资与 SPV 通道进入股东名单。观察点是赴港上市时间表是否随之更新，以及是否出现正式交割公告。</p>
+        <p class="links">相关链接：<a href="https://www.tmtpost.com/8136831.html" target="_blank" rel="noopener">钛媒体原文</a></p>
+      </article>
+
+      <article class="item rumor" id="n25">
+        <div class="item-header"><span class="number">25</span><span class="badge">未确认</span><span class="date">9/14</span><h3><a href="https://www.implicator.ai/anthropic-claude-code-weekly-limits-september-14/" target="_blank" rel="noopener">社区称今日起 Claude Code 周额度下调约 17%，官方未见对应公告</a></h3></div>
+        <blockquote>多家开发者社区与个人博客称，自 9 月 14 日起 Claude Code 的周用量额度按容量口径下降约六分之一（≈17%），Reddit 上有用户以"每个人的容量下降六分之一"描述体验；Anthropic 未见对应的官方公告页。</blockquote>
+        <p class="detail">之所以仍列入本期：如果额度确被下调，它与 #13、#14 同期发生，正好构成"Agent 运行层加速产品化、但单位额度供给收紧"的组合，会直接影响重度用户的周任务容量规划。但这条的证据等级明显偏低——来源为社区与第三方博客，且检索中发现一篇被误当作本次事件的报道实为今年 5 月 6 日的旧公告（当时内容是提高五小时额度上限并取消高峰折减，与本周方向相反），已剔除，不应混为一谈。</p>
+        <p class="detail">因此本条不作为事实使用。可验证做法是直接在控制台核对当前套餐的周额度与已用量曲线，而不是依赖社区测算；若你正在为团队采购席位，建议把"额度政策变更风险"写进选型评估。</p>
+        <p class="links">相关链接：<a href="https://www.implicator.ai/anthropic-claude-code-weekly-limits-september-14/" target="_blank" rel="noopener">implicator.ai 报道</a> · <a href="https://www.reddit.com/r/Anthropic/comments/1w1qtwg/on_14_september_everyones_capacity_drops_by_a/" target="_blank" rel="noopener">Reddit 用户实测讨论</a> · <a href="https://platform.claude.com/docs/en/release-notes/overview" target="_blank" rel="noopener">Claude 官方发布说明（查此变更是否公告）</a></p>
+      </article>
+    </section>
+
+    <section class="section weekend-section">
+      <h2 class="section-title">周末回顾（9 月 12 日–13 日）</h2>
+      <div class="recap">
+        <p>周一版加宽覆盖，以下为本窗口内发生在周六、周日的重要事件，已按类别收录在对应条目中，此处按时间汇总便于快速浏览：</p>
+        <ul>
+          <li><strong>9/12（周六）</strong>：Amodei 发布《We Must Pace the Frontier》给出降速三条可执行路径，Altman 公开同意 —— 见 <a href="#n2">#2</a>。</li>
+          <li><strong>9/12</strong>：Cognition 发布以 Kimi K3 后训练的 SWE-2，"中国开源底座 + 美国产品层"首次公开跑赢自研路线 —— 见 <a href="#n7">#7</a>。</li>
+          <li><strong>9/12</strong>：阿联酋被曝因伊朗袭击威胁重构 5GW 数据中心园区，并拟向德国投入约 460 亿美元 —— 见 <a href="#n20">#20</a>。</li>
+          <li><strong>9/12</strong>：2026 中国算力大会在廊坊开幕，词元消耗 10 亿亿、移动 AIDC 超 7GW、中兴超节点与长飞空芯光纤获评年度突破 —— 见 <a href="#n22">#22</a>。</li>
+          <li><strong>9/12–9/13</strong>：开源社区榜面由 2B–27B 级模型主导，NCP 概念级预测论文登顶 —— 见 <a href="#n17">#17</a>。</li>
+          <li><strong>9/13（周日）</strong>：智谱完成约 50 亿美元融资，为本期中国侧最大单笔资金动作 —— 见 <a href="#n18">#18</a>。</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      <p>AI 早报 · 信息窗口 2026-09-10 至 2026-09-14 上午（周一加宽，含周末 72 小时）</p>
+      <p>共 25 条，其中 3 条为未确认传闻；厂商自测数据、单一信源与口径冲突已在条目内逐项标注，量子位与机器之心因站点抓取失败本期未覆盖。</p>
+    </footer>
+  </main>
+</body>
+</html>
